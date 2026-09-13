@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kano×Kano Admin | 予約管理</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --accent-soft:#eff6ff;
+      --cta:#f97316;
+      --bg:#f1f5f9;
+      --card:#ffffff;
+      --text:#334155;
+      --muted:#64748b;
+      --border:#cbd5e1;
+      --success:#15803d;
+      --warning:#b45309;
+      --danger:#b91c1c;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text)}
+    button,input,select,textarea{font:inherit}
+    .hidden{display:none!important}
+    .topbar{background:var(--primary);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:20;box-shadow:0 3px 12px rgba(15,23,42,.18)}
+    .brand{font-weight:700;letter-spacing:.02em}.brand span{color:#93c5fd;font-weight:500;margin-left:8px;font-size:.9rem}
+    .top-actions{display:flex;gap:8px;align-items:center}.top-actions button{border:1px solid #475569;background:#1e293b;color:#fff;border-radius:8px;padding:8px 12px;cursor:pointer}
+    .wrap{max-width:1200px;margin:0 auto;padding:26px 18px 50px}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 24px rgba(15,23,42,.06);padding:24px;margin-bottom:20px}
+    h1,h2,h3{color:var(--primary)} h1{margin:0 0 8px;font-size:1.7rem} h2{font-size:1.15rem;margin:0 0 15px}
+    .muted{color:var(--muted);font-size:.9rem}
+    .auth-wrap{max-width:520px;margin:48px auto}.auth-tabs{display:flex;gap:8px;margin:18px 0}.auth-tab{flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:700}.auth-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .field{margin-bottom:14px}.field label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px;color:var(--primary)}.field input,.field select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;background:#fff;outline:none}.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.10)}
+    .primary-btn{border:0;background:var(--accent);color:#fff;padding:12px 16px;border-radius:8px;font-weight:700;cursor:pointer}.primary-btn:hover{filter:brightness(.96)}.primary-btn:disabled{opacity:.55;cursor:not-allowed}
+    .secondary-btn{border:1px solid var(--border);background:#fff;color:var(--primary);padding:9px 12px;border-radius:8px;font-weight:700;cursor:pointer}
+    .message{padding:11px 13px;border-radius:8px;margin-top:12px;font-size:.9rem}.message.error{background:#fef2f2;color:var(--danger);border:1px solid #fecaca}.message.success{background:#f0fdf4;color:var(--success);border:1px solid #bbf7d0}.message.info{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+    .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.summary{background:#fff;border:1px solid var(--border);border-radius:12px;padding:17px}.summary .label{font-size:.82rem;color:var(--muted)}.summary .value{font-size:1.8rem;font-weight:700;color:var(--primary);margin-top:3px}.summary .sub{font-size:.78rem;color:var(--muted)}
+    .toolbar{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:end}.toolbar input,.toolbar select{width:100%;padding:10px 11px;border:1px solid var(--border);border-radius:8px;background:#fff}
+    .table-wrap{overflow:auto;border:1px solid #e2e8f0;border-radius:10px}table{border-collapse:collapse;width:100%;min-width:980px;background:#fff}th,td{padding:12px 11px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top;font-size:.86rem}th{background:#f8fafc;color:var(--primary);font-size:.78rem;position:sticky;top:0;z-index:2}tr:hover td{background:#fcfdff}.name{font-weight:700;color:var(--primary)}.ref{font-size:.72rem;color:var(--muted);font-family:monospace}.small{font-size:.78rem;color:var(--muted)}
+    .status{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.74rem;font-weight:700}.pending{background:#fff7ed;color:#c2410c}.confirmed{background:#eff6ff;color:#1d4ed8}.completed{background:#f0fdf4;color:#15803d}.cancelled{background:#fef2f2;color:#b91c1c}
+    .row-edit{display:grid;gap:6px}.row-edit select,.row-edit input{padding:7px 8px;border:1px solid var(--border);border-radius:7px;background:#fff;min-width:130px}.save-btn{background:var(--primary);color:#fff;border:0;border-radius:7px;padding:7px 10px;cursor:pointer;font-weight:700;font-size:.78rem}
+    .empty{text-align:center;padding:36px 15px;color:var(--muted)}
+    .dashboard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:20px}.admin-email{font-size:.82rem;color:var(--muted)}
+    .loading{padding:30px;text-align:center;color:var(--muted)}
+    .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px;animation:pulse 1s infinite alternate}@keyframes pulse{to{opacity:.25}}
+
+    .availability-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.availability-note{font-size:.82rem;color:var(--muted);line-height:1.7}.availability-actions{display:flex;gap:8px;flex-wrap:wrap}.day-availability{border:1px solid #e2e8f0;border-radius:10px;margin-top:10px;background:#fff;overflow:hidden}.day-availability summary{cursor:pointer;padding:12px 14px;font-weight:700;color:var(--primary);display:flex;align-items:center;justify-content:space-between;gap:10px}.day-availability summary::-webkit-details-marker{display:none}.day-count{font-size:.76rem;color:var(--muted);font-weight:500}.day-body{border-top:1px solid #e2e8f0;padding:12px 14px}.day-tools{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.mini-btn{border:1px solid var(--border);background:#fff;color:var(--primary);border-radius:7px;padding:6px 9px;font-size:.76rem;font-weight:700;cursor:pointer}.slot-grid{display:grid;grid-template-columns:repeat(8,minmax(58px,1fr));gap:6px}.availability-slot{border:1px solid #cbd5e1;background:#f8fafc;color:#64748b;border-radius:7px;padding:7px 3px;font-size:.74rem;font-weight:700;cursor:pointer;min-height:36px}.availability-slot.on{background:#eff6ff;border-color:#60a5fa;color:#1d4ed8}.availability-slot.dirty{box-shadow:inset 0 0 0 2px #f59e0b}.save-day{margin-top:10px;background:var(--primary);color:#fff;border:0;border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer}.save-day:disabled{opacity:.55;cursor:not-allowed}.availability-message{font-size:.78rem;margin-left:8px;color:var(--success)}
+    .daily-toolbar{display:grid;grid-template-columns:minmax(220px,320px) auto;gap:10px;align-items:end;margin:16px 0}.daily-toolbar label{display:block;font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:6px}.daily-toolbar input{width:100%;padding:10px 11px;border:1px solid var(--border);border-radius:8px;background:#fff}.daily-meta{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 12px}.daily-badge{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:999px;background:#f8fafc;border:1px solid #e2e8f0;color:#475569;font-size:.74rem;font-weight:700}.daily-badge.override{background:#fff7ed;border-color:#fed7aa;color:#c2410c}.daily-badge.booked{background:#fff7ed;border-color:#fdba74;color:#9a3412}.daily-actions{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.danger-mini{border-color:#fecaca;color:#b91c1c;background:#fff7f7}.availability-slot.booked{position:relative;border-color:#fb923c}.availability-slot.booked::after{content:'予約';position:absolute;right:3px;top:2px;font-size:.55rem;line-height:1;color:#c2410c;background:#ffedd5;border-radius:999px;padding:2px 4px}.daily-save-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.daily-help{margin-top:10px;padding:10px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:var(--muted);font-size:.76rem;line-height:1.7}
+
+    .teacher-grid{display:grid;grid-template-columns:360px 1fr;gap:16px}.teacher-list{display:grid;gap:9px}.teacher-card{border:1px solid #e2e8f0;border-radius:10px;padding:12px;background:#fff;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.teacher-card.selected{border-color:#60a5fa;background:#eff6ff}.teacher-name{font-weight:700;color:var(--primary)}.teacher-meta{font-size:.76rem;color:var(--muted);margin-top:3px}.teacher-card-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.teacher-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.teacher-form-grid .wide{grid-column:1/-1}.teacher-form-grid textarea{width:100%;min-height:74px;padding:10px 11px;border:1px solid var(--border);border-radius:8px;resize:vertical}.teacher-schedule-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}.teacher-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.teacher-tab{border:1px solid var(--border);background:#fff;border-radius:8px;padding:8px 11px;font-weight:700;cursor:pointer}.teacher-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}.teacher-empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:10px}.teacher-status-active{color:var(--success);font-weight:700}.teacher-status-off{color:var(--muted);font-weight:700}.teacher-select{width:100%;padding:7px 8px;border:1px solid var(--border);border-radius:7px;background:#fff;min-width:150px}.teacher-booking-note{font-size:.7rem;color:var(--muted)}
+
+    .contract-grid{display:grid;grid-template-columns:380px 1fr;gap:16px}.contract-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.contract-form-grid .wide{grid-column:1/-1}.contract-list{display:grid;gap:10px}.contract-card{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff}.contract-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.contract-name{font-weight:800;color:var(--primary)}.contract-email{font-size:.78rem;color:var(--muted);margin-top:2px}.contract-meter{height:9px;border-radius:999px;background:#e8eef6;overflow:hidden;margin:10px 0 6px}.contract-meter span{display:block;height:100%;background:#2563eb}.contract-meta{font-size:.78rem;color:var(--muted);line-height:1.55}.contract-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.contract-remaining{font-size:1.05rem;font-weight:900;color:#0f6c4f}.contract-status{font-size:.72rem;font-weight:800;padding:5px 8px;border-radius:999px;background:#eef2f7}.contract-status.active{background:#e8f7ef;color:#16734a}.contract-status.paused{background:#fff4df;color:#946000}.contract-status.completed{background:#edf2f7;color:#52606d}.contract-status.cancelled{background:#fff0f0;color:#a22}@media(max-width:800px){.contract-grid{grid-template-columns:1fr}.contract-form-grid{grid-template-columns:1fr}}
+    @media(max-width:800px){.teacher-grid{grid-template-columns:1fr}.teacher-form-grid{grid-template-columns:1fr}.daily-toolbar{grid-template-columns:1fr}.slot-grid{grid-template-columns:repeat(5,minmax(54px,1fr))}.summary-grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.toolbar .search{grid-column:1/-1}.dashboard-head{flex-direction:column}.wrap{padding:16px 10px 40px}.panel{padding:16px}.topbar{padding:11px 12px}.brand span{display:none}}
+    @media(max-width:480px){.slot-grid{grid-template-columns:repeat(4,minmax(52px,1fr))}.summary-grid{grid-template-columns:1fr 1fr}.summary{padding:13px}.summary .value{font-size:1.45rem}.toolbar{grid-template-columns:1fr}.toolbar .search{grid-column:auto}}
+  
+.payment-grid{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:16px}.payment-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.payment-form-grid .wide{grid-column:1/-1}.payment-list{display:grid;gap:10px}.payment-card{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff}.payment-top{display:flex;justify-content:space-between;gap:10px}.payment-title{font-weight:900}.payment-email{font-size:12px;color:var(--muted);margin-top:4px}.payment-status{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef2f7}.payment-status.paid{background:#e9f8ef;color:#147542}.payment-status.unpaid{background:#fff6e6;color:#9b6200}.payment-status.overdue{background:#ffecec;color:#b42318}.payment-status.waived{background:#eef2ff;color:#4653c8}.payment-meta{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}.payment-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}@media(max-width:850px){.payment-grid{grid-template-columns:1fr}.payment-form-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Kano×Kano <span>Admin</span></div>
+    <div class="top-actions">
+      <button id="homeBtn" onclick="location.href='index.html'">サイトを見る</button>
+      <button id="logoutBtn" class="hidden">ログアウト</button>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section id="authView" class="auth-wrap">
+      <div class="panel">
+        <h1>管理者ログイン</h1>
+        <p class="muted">予約者の個人情報を扱うため、管理者認証が必要です。</p>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-mode="login">ログイン</button>
+          <button class="auth-tab" data-mode="signup">初回登録</button>
+        </div>
+
+        <form id="authForm">
+          <div class="field">
+            <label for="authEmail">管理者メールアドレス</label>
+            <input id="authEmail" type="email" value="adgjp0129@gmail.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="authPassword">パスワード</label>
+            <input id="authPassword" type="password" minlength="8" autocomplete="current-password" placeholder="8文字以上" required>
+          </div>
+          <button id="authSubmit" class="primary-btn" type="submit">ログイン</button>
+        </form>
+        <div id="authMessage"></div>
+        <p class="muted" style="margin-top:16px">初回は「初回登録」からアカウントを作成し、Supabaseから届く確認メールでメールアドレスを確認してください。その後、このページでログインできます。</p>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="hidden">
+      <div class="dashboard-head">
+        <div>
+          <h1>予約管理ダッシュボード</h1>
+          <div class="admin-email" id="signedInAs"></div>
+        </div>
+        <button id="refreshBtn" class="secondary-btn">↻ 最新情報に更新</button>
+      </div>
+
+      <div class="summary-grid" style="margin-bottom:20px">
+        <div class="summary"><div class="label">未確認</div><div class="value" id="sumPending">0</div><div class="sub">Pending</div></div>
+        <div class="summary"><div class="label">予約確定</div><div class="value" id="sumConfirmed">0</div><div class="sub">Confirmed</div></div>
+        <div class="summary"><div class="label">今日のレッスン</div><div class="value" id="sumToday">0</div><div class="sub">Browser local time</div></div>
+        <div class="summary"><div class="label">予約総数</div><div class="value" id="sumTotal">0</div><div class="sub">All bookings</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="availability-head">
+          <div>
+            <h2 style="margin-bottom:6px">レッスン受付可能時間</h2>
+            <div class="availability-note">日本時間（JST）で設定します。月〜日、8:00〜23:00の範囲を30分刻みでON/OFFできます。<br>23:00が終了時刻です。50分レッスンの最終開始は22:00、30分レッスンは22:30です。</div>
+          </div>
+          <button id="reloadAvailabilityBtn" class="secondary-btn">↻ 空き枠を再読込</button>
+        </div>
+        <div id="availabilityArea" class="loading"><span class="dot"></span>空き枠設定を読み込んでいます…</div>
+      </div>
+
+      <div class="panel">
+        <div class="availability-head">
+          <div>
+            <h2 style="margin-bottom:6px">日別スケジュール・臨時変更</h2>
+            <div class="availability-note">通常の曜日設定をベースに、その日だけ受付時間を変更できます。<strong>今日から3か月先まで</strong>先に設定できます。<br>「終日休講」「一部時間だけOFF」「普段OFFの時間をこの日だけON」に対応しています。</div>
+          </div>
+          <button id="reloadDailyBtn" class="secondary-btn">↻ 日別設定を再読込</button>
+        </div>
+        <div class="daily-toolbar">
+          <div><label for="dailyScheduleDate">変更する日（日本時間）</label><input id="dailyScheduleDate" type="date"></div>
+          <button id="loadDailyBtn" class="secondary-btn">この日の設定を開く</button>
+        </div>
+        <div id="dailyScheduleArea" class="loading"><span class="dot"></span>日付を準備しています…</div>
+      </div>
+
+      <div class="panel">
+        <div class="availability-head">
+          <div>
+            <h2 style="margin-bottom:6px">講師管理</h2>
+            <div class="availability-note">講師を登録し、講師ごとの勤務可能時間を設定します。生徒には、その時間に対応可能な講師が1人以上いる場合だけ予約枠が表示されます。</div>
+          </div>
+          <button id="reloadTeachersBtn" class="secondary-btn">↻ 講師情報を再読込</button>
+        </div>
+        <div class="teacher-grid" style="margin-top:16px">
+          <div>
+            <form id="teacherForm" class="panel" style="box-shadow:none;margin-bottom:12px;padding:16px">
+              <h3 id="teacherFormTitle" style="margin:0 0 12px">講師を追加</h3>
+              <input id="teacherId" type="hidden">
+              <div class="teacher-form-grid">
+                <div class="field"><label for="teacherName">表示名</label><input id="teacherName" required placeholder="例：Haruki Sensei"></div>
+                <div class="field"><label for="teacherEmail">メール（任意）</label><input id="teacherEmail" type="email" placeholder="teacher@example.com"></div>
+                <div class="field wide"><label for="teacherNotes">メモ（任意）</label><textarea id="teacherNotes" placeholder="資格、担当可能コースなど"></textarea></div>
+                <div class="field"><label for="teacherActive">状態</label><select id="teacherActive"><option value="true">有効</option><option value="false">無効</option></select></div>
+                <div class="field"><label for="teacherSortOrder">表示順</label><input id="teacherSortOrder" type="number" min="1" value="10"></div>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" id="teacherSaveBtn" type="submit">講師を保存</button><button class="secondary-btn" id="teacherFormReset" type="button">新規入力に戻す</button></div>
+              <div id="teacherFormMessage"></div>
+            </form>
+            <div id="teachersArea" class="loading"><span class="dot"></span>講師を読み込んでいます…</div>
+          </div>
+          <div>
+            <div id="teacherScheduleArea" class="teacher-empty">左の講師を選択すると勤務時間を設定できます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="contractPanel">
+        <div class="availability-head">
+          <div><h2 style="margin-bottom:6px">コース契約・残りレッスン管理</h2><div class="availability-note">生徒の月謝・パッケージ契約を管理します。予約を「完了」にすると、契約期間・レッスン時間が一致する有効契約から1回自動消化します。</div></div>
+          <button id="reloadContractsBtn" class="secondary-btn">↻ 契約を再読込</button>
+        </div>
+        <div class="contract-grid" style="margin-top:16px">
+          <form id="contractForm" class="panel" style="box-shadow:none;margin:0;padding:16px">
+            <h3 id="contractFormTitle" style="margin:0 0 12px">契約を追加</h3>
+            <input id="contractId" type="hidden">
+            <div class="contract-form-grid">
+              <div class="field wide"><label>生徒メール</label><input id="contractEmail" type="email" required placeholder="student@example.com"></div>
+              <div class="field"><label>コースコード</label><input id="contractCode" required placeholder="beginner-8"></div>
+              <div class="field"><label>コース名</label><input id="contractName" required placeholder="初級日本語コース 月8回"></div>
+              <div class="field"><label>契約タイプ</label><select id="contractBilling"><option value="monthly">月謝</option><option value="package">パッケージ</option></select></div>
+              <div class="field"><label>1回の時間</label><select id="contractDuration"><option value="30">30分</option><option value="50" selected>50分</option><option value="60">60分</option><option value="90">90分</option><option value="15">15分</option></select></div>
+              <div class="field"><label>含まれる回数</label><input id="contractIncluded" type="number" min="0" value="8"></div>
+              <div class="field"><label>料金（円）</label><input id="contractPrice" type="number" min="0" value="16000"></div>
+              <div class="field"><label>開始日</label><input id="contractStart" type="date" required></div>
+              <div class="field"><label>終了日</label><input id="contractEnd" type="date" required></div>
+              <div class="field"><label>状態</label><select id="contractStatus"><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
+              <div class="field wide"><label>管理メモ</label><textarea id="contractNotes" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px" placeholder="支払い状況、特記事項など"></textarea></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" type="submit" id="contractSaveBtn">契約を保存</button><button class="secondary-btn" type="button" id="contractResetBtn">新規入力</button></div>
+            <div id="contractMessage"></div>
+          </form>
+          <div><div style="display:flex;gap:8px;margin-bottom:10px"><input id="contractSearch" type="search" placeholder="生徒メール・コース名で検索" style="flex:1"><select id="contractStatusFilter"><option value="all">すべて</option><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div><div id="contractsArea" class="loading"><span class="dot"></span>契約を読み込んでいます…</div></div>
+        </div>
+      </div>
+
+
+      <div class="panel" id="paymentPanel">
+        <div class="availability-head">
+          <div><h2 style="margin-bottom:6px">支払い状況管理</h2><div class="availability-note">生徒ごとの請求・支払期限・支払い状況を管理します。期限を過ぎた未払いは生徒画面で自動的に「期限超過」と表示されます。</div></div>
+          <button id="reloadPaymentsBtn" class="secondary-btn">↻ 支払いを再読込</button>
+        </div>
+        <div class="payment-grid" style="margin-top:16px">
+          <form id="paymentForm" class="panel" style="box-shadow:none;margin:0;padding:16px">
+            <h3 id="paymentFormTitle" style="margin:0 0 12px">請求を追加</h3>
+            <input id="paymentId" type="hidden">
+            <div class="payment-form-grid">
+              <div class="field wide"><label>生徒メール</label><input id="paymentEmail" type="email" required placeholder="student@example.com"></div>
+              <div class="field wide"><label>請求名</label><input id="paymentLabel" required placeholder="例：2026年9月 月謝"></div>
+              <div class="field"><label>金額（円）</label><input id="paymentAmount" type="number" min="0" value="16000" required></div>
+              <div class="field"><label>支払期限</label><input id="paymentDue" type="date" required></div>
+              <div class="field"><label>状態</label><select id="paymentStatus"><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
+              <div class="field"><label>支払方法</label><input id="paymentMethod" placeholder="銀行振込 / Stripe / 現金 など"></div>
+              <div class="field"><label>支払日時</label><input id="paymentPaidAt" type="datetime-local"></div>
+              <div class="field"><label>契約ID（任意）</label><input id="paymentContractId" placeholder="自動連携用。空欄可"></div>
+              <div class="field wide"><label>管理メモ</label><textarea id="paymentNotes" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px"></textarea></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" type="submit" id="paymentSaveBtn">請求を保存</button><button class="secondary-btn" type="button" id="paymentResetBtn">新規入力</button></div>
+            <div id="paymentMessage"></div>
+          </form>
+          <div>
+            <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><input id="paymentSearch" type="search" placeholder="生徒メール・請求名で検索" style="flex:1;min-width:220px"><select id="paymentStatusFilter"><option value="all">すべて</option><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
+            <div id="paymentsArea" class="loading"><span class="dot"></span>支払い情報を読み込んでいます…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>予約一覧</h2>
+        <div class="toolbar" style="margin-bottom:14px">
+          <div class="search"><input id="searchInput" type="search" placeholder="名前・メール・予約番号・国・目的で検索"></div>
+          <div><select id="statusFilter"><option value="all">すべての状態</option><option value="pending">未確認</option><option value="confirmed">確定</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
+          <div><select id="timeFilter"><option value="all">全期間</option><option value="upcoming">今後のみ</option><option value="today">今日</option><option value="past">過去</option></select></div>
+          <button id="clearFilterBtn" class="secondary-btn">クリア</button>
+        </div>
+
+        <div id="tableArea" class="loading"><span class="dot"></span>予約情報を読み込んでいます…</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+  <script>
+    const SUPABASE_URL = 'https://xyptzcdpiumxqgayihqi.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ydS-f68XrLtacf0CTiRrzw_3ViLjGAG';
+    const ADMIN_EMAIL = 'adgjp0129@gmail.com';
+    const ADMIN_REDIRECT_URL = `${window.location.origin}/admin.html`; // host-independent redirect
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+    async function adminRpc(action,args={}){
+      const {data,error}=await db.functions.invoke('admin-api',{body:{action,args}});
+      if(error)return {data:null,error};
+      if(data?.error)return {data:null,error:new Error(data.error)};
+      return {data:data?.data??null,error:null};
+    }
+
+    let authMode = 'login';
+    let allBookings = [];
+    let courseContracts = [];
+    let paymentRows = [];
+    let availabilityRows = [];
+    const availabilityDraft = new Map();
+    let dailyOverrideRows = [];
+    const dailyDraft = new Map();
+    let selectedDailyDate = '';
+    let teachers = [];
+    let selectedTeacherId = '';
+    let teacherWeeklyRows = [];
+    const teacherWeeklyDraft = new Map();
+    let teacherDailyRows = [];
+    const teacherDailyDraft = new Map();
+    let selectedTeacherDailyDate = '';
+    const JST_TIMEZONE = 'Asia/Tokyo';
+    const WEEKDAYS = ['','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日','日曜日'];
+
+    const authView = document.getElementById('authView');
+    const dashboardView = document.getElementById('dashboardView');
+    const authMessage = document.getElementById('authMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const tableArea = document.getElementById('tableArea');
+    const availabilityArea = document.getElementById('availabilityArea');
+    const dailyScheduleArea = document.getElementById('dailyScheduleArea');
+    const dailyScheduleDate = document.getElementById('dailyScheduleDate');
+    const teachersArea = document.getElementById('teachersArea');
+    const teacherScheduleArea = document.getElementById('teacherScheduleArea');
+
+    document.querySelectorAll('.auth-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        authMode = btn.dataset.mode;
+        document.querySelectorAll('.auth-tab').forEach(x => x.classList.toggle('active', x === btn));
+        document.getElementById('authSubmit').textContent = authMode === 'login' ? 'ログイン' : '管理者アカウントを作成';
+        document.getElementById('authPassword').autocomplete = authMode === 'login' ? 'current-password' : 'new-password';
+        authMessage.innerHTML = '';
+      });
+    });
+
+    document.getElementById('authForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      authMessage.innerHTML = '';
+      const email = document.getElementById('authEmail').value.trim().toLowerCase();
+      const password = document.getElementById('authPassword').value;
+      const submit = document.getElementById('authSubmit');
+
+      if (email !== ADMIN_EMAIL) {
+        showAuthMessage('このメールアドレスには管理者権限がありません。', 'error');
+        return;
+      }
+      submit.disabled = true;
+      submit.textContent = '処理中…';
+
+      try {
+        if (authMode === 'signup') {
+          const { data, error } = await db.auth.signUp({
+            email,
+            password,
+            options: { emailRedirectTo: ADMIN_REDIRECT_URL }
+          });
+          if (error) throw error;
+          if (data.session) {
+            showAuthMessage('管理者アカウントを作成し、ログインしました。', 'success');
+            await enterDashboard(data.session);
+          } else {
+            showAuthMessage('登録しました。メールの確認リンクを押すとKano×Kanoの管理画面に戻ります。確認後、この画面からログインしてください。', 'success');
+          }
+        } else {
+          const { data, error } = await db.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          await enterDashboard(data.session);
+        }
+      } catch (err) {
+        console.error(err);
+        showAuthMessage(humanizeAuthError(err), 'error');
+      } finally {
+        submit.disabled = false;
+        submit.textContent = authMode === 'login' ? 'ログイン' : '管理者アカウントを作成';
+      }
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      await db.auth.signOut();
+      allBookings = [];
+      dashboardView.classList.add('hidden');
+      authView.classList.remove('hidden');
+      logoutBtn.classList.add('hidden');
+      showAuthMessage('ログアウトしました。', 'info');
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', async()=>{await Promise.all([loadBookings(),loadAvailability(),loadTeachers()]); if(selectedDailyDate) await loadDailySchedule(); if(selectedTeacherId) await loadTeacherSchedule(selectedTeacherId);});
+    document.getElementById('reloadAvailabilityBtn').addEventListener('click', async()=>{await loadAvailability(); if(selectedDailyDate) await loadDailySchedule();});
+    document.getElementById('reloadDailyBtn').addEventListener('click', loadDailySchedule);
+    document.getElementById('reloadTeachersBtn').addEventListener('click', loadTeachers);
+    document.getElementById('teacherForm').addEventListener('submit', saveTeacher);
+    document.getElementById('teacherFormReset').addEventListener('click', resetTeacherForm);
+    document.getElementById('loadDailyBtn').addEventListener('click', loadDailySchedule);
+    dailyScheduleDate.addEventListener('change', loadDailySchedule);
+    ['searchInput','statusFilter','timeFilter'].forEach(id => document.getElementById(id).addEventListener(id === 'searchInput' ? 'input' : 'change', renderBookings));
+    document.getElementById('clearFilterBtn').addEventListener('click', () => {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('statusFilter').value = 'all';
+      document.getElementById('timeFilter').value = 'all';
+      renderBookings();
+    });
+
+    function showAuthMessage(text, type='info') {
+      authMessage.innerHTML = `<div class="message ${type}">${escapeHtml(text)}</div>`;
+    }
+
+    function humanizeAuthError(err) {
+      const msg = String(err?.message || err || '認証エラーが発生しました。');
+      if (/invalid login credentials/i.test(msg)) return 'メールアドレスまたはパスワードが正しくありません。';
+      if (/user already registered/i.test(msg)) return 'このメールアドレスはすでに登録されています。「ログイン」を選んでください。';
+      if (/email not confirmed/i.test(msg)) return 'メール確認がまだ完了していません。Supabaseから届いた確認メールを開いてください。';
+      return msg;
+    }
+
+    async function enterDashboard(session) {
+      const email = session?.user?.email?.toLowerCase();
+      if (email !== ADMIN_EMAIL) {
+        await db.auth.signOut();
+        showAuthMessage('管理者として許可されていないアカウントです。', 'error');
+        return;
+      }
+      authView.classList.add('hidden');
+      dashboardView.classList.remove('hidden');
+      logoutBtn.classList.remove('hidden');
+      document.getElementById('signedInAs').textContent = `ログイン中: ${email}`;
+      await Promise.all([loadBookings(), loadAvailability(), loadTeachers(), loadCourseContracts(), loadPayments()]);
+      initializeDailyDateRange();
+      await loadDailySchedule();
+    }
+
+    async function loadBookings() {
+      tableArea.innerHTML = '<div class="loading"><span class="dot"></span>予約情報を読み込んでいます…</div>';
+      const columns = 'id,booking_ref,name,email,country,level,goal,lesson_start,lesson_duration_minutes,timezone,note,locale,status,teacher_id,assigned_teacher_name,google_meet_url,google_calendar_event_id,created_at,updated_at';
+      const { data, error } = await db.from('bookings').select(columns).order('lesson_start', { ascending: true });
+      if (error) {
+        console.error(error);
+        tableArea.innerHTML = `<div class="message error">予約情報を取得できませんでした：${escapeHtml(error.message)}</div>`;
+        return;
+      }
+      allBookings = data || [];
+      updateSummary();
+      renderBookings();
+      if(selectedDailyDate && !dailyScheduleArea.classList.contains('hidden')) renderDailySchedule();
+    }
+
+    function updateSummary() {
+      const now = new Date();
+      document.getElementById('sumPending').textContent = allBookings.filter(b => b.status === 'pending').length;
+      document.getElementById('sumConfirmed').textContent = allBookings.filter(b => b.status === 'confirmed').length;
+      document.getElementById('sumToday').textContent = allBookings.filter(b => isSameLocalDate(new Date(b.lesson_start), now)).length;
+      document.getElementById('sumTotal').textContent = allBookings.length;
+    }
+
+    function renderBookings() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const status = document.getElementById('statusFilter').value;
+      const time = document.getElementById('timeFilter').value;
+      const now = new Date();
+
+      const filtered = allBookings.filter(b => {
+        const haystack = [b.booking_ref,b.name,b.email,b.country,b.level,b.goal,b.assigned_teacher_name,b.note].filter(Boolean).join(' ').toLowerCase();
+        if (q && !haystack.includes(q)) return false;
+        if (status !== 'all' && b.status !== status) return false;
+        const d = new Date(b.lesson_start);
+        if (time === 'upcoming' && d < now) return false;
+        if (time === 'past' && d >= now) return false;
+        if (time === 'today' && !isSameLocalDate(d, now)) return false;
+        return true;
+      });
+
+      if (!filtered.length) {
+        tableArea.innerHTML = '<div class="empty">条件に合う予約はありません。</div>';
+        return;
+      }
+
+      const rows = filtered.map(b => {
+        const date = new Date(b.lesson_start);
+        return `<tr>
+          <td><div class="name">${escapeHtml(b.name)}</div><div class="small">${escapeHtml(b.email)}</div><div class="ref">${escapeHtml(b.booking_ref)}</div></td>
+          <td><strong>${escapeHtml(formatDateTime(date))}</strong><div class="small">${escapeHtml(String(b.lesson_duration_minutes || 15))}分 / ${escapeHtml(b.timezone || '')}</div></td>
+          <td>${escapeHtml(b.country || '—')}</td>
+          <td>${escapeHtml(b.level || '—')}<div class="small">${escapeHtml(b.goal || '—')}</div></td>
+          <td>${b.note ? escapeHtml(b.note) : '<span class="small">なし</span>'}</td>
+          <td><span class="status ${escapeHtml(b.status)}">${escapeHtml(statusLabel(b.status))}</span></td>
+          <td>
+            <div class="row-edit">
+              <select id="teacher-${b.id}" class="teacher-select"><option value="">読込中…</option></select><div class="teacher-booking-note" id="teacher-note-${b.id}">${b.assigned_teacher_name?`現在：${escapeHtml(b.assigned_teacher_name)}`:'未割当'}</div>
+              <select id="status-${b.id}">
+                ${['pending','confirmed','completed','cancelled'].map(s => `<option value="${s}" ${s===b.status?'selected':''}>${statusLabel(s)}</option>`).join('')}
+              </select>
+              <input id="meet-${b.id}" type="url" placeholder="https://meet.google.com/..." value="${escapeAttr(b.google_meet_url||'')}" style="width:100%;min-width:220px;padding:7px 8px;border:1px solid var(--border);border-radius:7px">
+              ${b.google_meet_url?`<a href="${escapeAttr(b.google_meet_url)}" target="_blank" rel="noopener" class="mini-btn" style="text-decoration:none;text-align:center">Meetを開く</a>`:''}
+              <button class="save-btn" onclick="saveBooking('${b.id}', this)">保存</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+
+      tableArea.innerHTML = `<div class="table-wrap"><table>
+        <thead><tr><th>学習者</th><th>予約日時</th><th>国・地域</th><th>レベル / 目的</th><th>メモ</th><th>状態</th><th>管理</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div><div class="small" style="margin-top:9px">${filtered.length}件を表示</div>`;
+      hydrateAssignableTeachers(filtered);
+    }
+
+    async function saveBooking(id, button) {
+      const teacherId = document.getElementById(`teacher-${id}`).value || null;
+      const status = document.getElementById(`status-${id}`).value;
+      const meetUrl = (document.getElementById(`meet-${id}`).value || '').trim() || null;
+      if (meetUrl && !/^https:\/\/meet\.google\.com\/[A-Za-z0-9_-]+/.test(meetUrl)) {
+        alert('Google Meet URLは https://meet.google.com/... の形式で入力してください。');
+        return;
+      }
+      button.disabled = true;
+      button.textContent = '保存中…';
+
+      const { error } = await db.from('bookings').update({
+        teacher_id: teacherId,
+        status,
+        google_meet_url: meetUrl,
+        updated_at: new Date().toISOString()
+      }).eq('id', id);
+
+      if (error) {
+        console.error(error);
+        alert('保存に失敗しました: ' + error.message);
+        button.disabled = false;
+        button.textContent = '保存';
+        return;
+      }
+      const item = allBookings.find(x => x.id === id);
+      if (item) {
+        item.teacher_id = teacherId;
+        item.status = status;
+        item.google_meet_url = meetUrl;
+        const teacher = teachers.find(t=>t.id===teacherId);
+        item.assigned_teacher_name = teacher ? teacher.display_name : null;
+        item.updated_at = new Date().toISOString();
+      }
+      updateSummary();
+      renderBookings();
+    }
+    window.saveBooking = saveBooking;
+
+    function normalizeTime(v){return String(v||'').slice(0,5)}
+    function availabilityKey(day,time){return `${day}-${normalizeTime(time)}`}
+    function getDraftValue(day,time){
+      const key=availabilityKey(day,time);
+      if(availabilityDraft.has(key)) return availabilityDraft.get(key);
+      const row=availabilityRows.find(r=>Number(r.weekday)===day&&normalizeTime(r.start_time)===normalizeTime(time));
+      return !!row?.is_available;
+    }
+    async function loadAvailability(){
+      availabilityArea.innerHTML='<div class="loading"><span class="dot"></span>空き枠設定を読み込んでいます…</div>';
+      const {data,error}=await db.from('weekly_availability').select('weekday,start_time,is_available,updated_at').order('weekday').order('start_time');
+      if(error){
+        console.error(error);
+        availabilityArea.innerHTML=`<div class="message error">空き枠設定を取得できませんでした：${escapeHtml(error.message)}</div>`;
+        return;
+      }
+      availabilityRows=data||[];
+      availabilityDraft.clear();
+      renderAvailability();
+    }
+    function renderAvailability(){
+      const openDays=new Set([...availabilityArea.querySelectorAll('details[open]')].map(x=>Number(x.dataset.day)));
+      const chunks=[];
+      for(let day=1;day<=7;day++){
+        const rows=availabilityRows.filter(r=>Number(r.weekday)===day);
+        const times=rows.map(r=>normalizeTime(r.start_time));
+        const onCount=times.filter(t=>getDraftValue(day,t)).length;
+        const dirtyCount=times.filter(t=>availabilityDraft.has(availabilityKey(day,t))).length;
+        const open=(openDays.has(day)||(openDays.size===0&&day===1))?' open':'';
+        const buttons=times.map(t=>{
+          const key=availabilityKey(day,t),on=getDraftValue(day,t),dirty=availabilityDraft.has(key);
+          return `<button type="button" class="availability-slot ${on?'on':''} ${dirty?'dirty':''}" data-day="${day}" data-time="${t}" aria-pressed="${on}">${t}</button>`;
+        }).join('');
+        chunks.push(`<details class="day-availability" data-day="${day}"${open}>\n          <summary><span>${WEEKDAYS[day]}</span><span class="day-count">受付ON ${onCount}/${times.length}${dirtyCount?` ・ 未保存 ${dirtyCount}`:''}</span></summary>\n          <div class="day-body">\n            <div class="day-tools"><button type="button" class="mini-btn" data-day-all="${day}" data-value="1">この曜日をすべてON</button><button type="button" class="mini-btn" data-day-all="${day}" data-value="0">すべてOFF</button></div>\n            <div class="slot-grid">${buttons}</div>\n            <button type="button" class="save-day" data-save-day="${day}" ${dirtyCount?'':'disabled'}>${WEEKDAYS[day]}を保存</button><span class="availability-message" id="availability-message-${day}"></span>\n          </div>\n        </details>`);
+      }
+      availabilityArea.innerHTML=chunks.join('');
+      availabilityArea.querySelectorAll('.availability-slot').forEach(btn=>btn.addEventListener('click',()=>{
+        const day=Number(btn.dataset.day),time=btn.dataset.time,key=availabilityKey(day,time);
+        const row=availabilityRows.find(r=>Number(r.weekday)===day&&normalizeTime(r.start_time)===normalizeTime(time));
+        const next=!getDraftValue(day,time);
+        if(row && next===!!row.is_available) availabilityDraft.delete(key); else availabilityDraft.set(key,next);
+        renderAvailability();
+      }));
+      availabilityArea.querySelectorAll('[data-day-all]').forEach(btn=>btn.addEventListener('click',(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const day=Number(btn.dataset.day),value=btn.dataset.value==='1';
+        const rows=availabilityRows.filter(r=>Number(r.weekday)===day);
+        if(!rows.length){
+          alert('この曜日の時間枠を読み込めませんでした。再読み込みしてください。');
+          return;
+        }
+        rows.forEach(r=>{
+          const key=availabilityKey(day,r.start_time);
+          if(value===!!r.is_available) availabilityDraft.delete(key); else availabilityDraft.set(key,value);
+        });
+        renderAvailability();
+        requestAnimationFrame(()=>{
+          const msg=document.getElementById(`availability-message-${day}`);
+          if(msg) msg.textContent=value?'すべてONに変更しました。保存してください。':'すべてOFFに変更しました。保存してください。';
+        });
+      }));
+      availabilityArea.querySelectorAll('[data-save-day]').forEach(btn=>btn.addEventListener('click',()=>saveAvailabilityDay(Number(btn.dataset.saveDay),btn)));
+    }
+    async function saveAvailabilityDay(day,button){
+      const changed=availabilityRows.filter(r=>r.weekday===day&&availabilityDraft.has(availabilityKey(day,r.start_time))).map(r=>({
+        weekday:day,start_time:normalizeTime(r.start_time),is_available:getDraftValue(day,r.start_time),updated_at:new Date().toISOString()
+      }));
+      if(!changed.length)return;
+      button.disabled=true;button.textContent='保存中…';
+      const {error}=await db.from('weekly_availability').upsert(changed,{onConflict:'weekday,start_time'});
+      if(error){console.error(error);alert('空き枠の保存に失敗しました: '+error.message);button.disabled=false;button.textContent=WEEKDAYS[day]+'を保存';return}
+      changed.forEach(c=>{
+        const row=availabilityRows.find(r=>r.weekday===day&&normalizeTime(r.start_time)===c.start_time);
+        if(row){row.is_available=c.is_available;row.updated_at=c.updated_at}
+        availabilityDraft.delete(availabilityKey(day,c.start_time));
+      });
+      renderAvailability();
+      const msg=document.getElementById(`availability-message-${day}`);if(msg){msg.textContent='保存しました';setTimeout(()=>{if(msg)msg.textContent=''},1800)}
+    }
+
+    function jstParts(date=new Date()){
+      const parts=new Intl.DateTimeFormat('en-US',{timeZone:JST_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date);
+      const obj={}; parts.forEach(p=>{if(p.type!=='literal')obj[p.type]=p.value});
+      return {year:Number(obj.year),month:Number(obj.month),day:Number(obj.day)};
+    }
+    function ymdFromParts(p){return `${p.year}-${String(p.month).padStart(2,'0')}-${String(p.day).padStart(2,'0')}`}
+    function jstTodayYmd(){return ymdFromParts(jstParts())}
+    function addMonthsYmd(ymd,months){
+      const [y,m,d]=ymd.split('-').map(Number);
+      const targetFirst=new Date(Date.UTC(y,m-1+months,1));
+      const ty=targetFirst.getUTCFullYear(), tm=targetFirst.getUTCMonth();
+      const last=new Date(Date.UTC(ty,tm+1,0)).getUTCDate();
+      return `${ty}-${String(tm+1).padStart(2,'0')}-${String(Math.min(d,last)).padStart(2,'0')}`;
+    }
+    function isoWeekdayFromYmd(ymd){const d=new Date(ymd+'T00:00:00Z').getUTCDay();return d===0?7:d}
+    function initializeDailyDateRange(){
+      const min=jstTodayYmd(),max=addMonthsYmd(min,3);
+      dailyScheduleDate.min=min; dailyScheduleDate.max=max;
+      if(!dailyScheduleDate.value || dailyScheduleDate.value<min || dailyScheduleDate.value>max) dailyScheduleDate.value=min;
+      selectedDailyDate=dailyScheduleDate.value;
+    }
+    function weeklyBaseForDateTime(ymd,time){
+      const day=isoWeekdayFromYmd(ymd), t=normalizeTime(time);
+      const row=availabilityRows.find(r=>Number(r.weekday)===day&&normalizeTime(r.start_time)===t);
+      return !!row?.is_available;
+    }
+    function dailyInitialValue(time){
+      const t=normalizeTime(time);
+      const override=dailyOverrideRows.find(r=>normalizeTime(r.start_time)===t);
+      return override ? !!override.is_available : weeklyBaseForDateTime(selectedDailyDate,t);
+    }
+    function dailyValue(time){const t=normalizeTime(time);return dailyDraft.has(t)?dailyDraft.get(t):dailyInitialValue(t)}
+    function getDailyTimes(){
+      if(!selectedDailyDate)return [];
+      const day=isoWeekdayFromYmd(selectedDailyDate);
+      return availabilityRows.filter(r=>Number(r.weekday)===day).map(r=>normalizeTime(r.start_time));
+    }
+    function bookingOccupiedTimesForDailyDate(){
+      if(!selectedDailyDate)return new Set();
+      const occupied=new Set();
+      const partsFormatter=new Intl.DateTimeFormat('en-US',{timeZone:JST_TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+      for(const b of allBookings){
+        if(b.status==='cancelled')continue;
+        const ps={};partsFormatter.formatToParts(new Date(b.lesson_start)).forEach(p=>{if(p.type!=='literal')ps[p.type]=p.value});
+        const ymd=`${ps.year}-${ps.month}-${ps.day}`;
+        if(ymd!==selectedDailyDate)continue;
+        const startMin=Number(ps.hour)*60+Number(ps.minute), count=Math.ceil(Number(b.lesson_duration_minutes||15)/30);
+        for(let i=0;i<count;i++){
+          const mins=startMin+i*30,hh=String(Math.floor(mins/60)).padStart(2,'0'),mm=String(mins%60).padStart(2,'0');
+          occupied.add(`${hh}:${mm}`);
+        }
+      }
+      return occupied;
+    }
+    function setDailyAll(valueOrBase){
+      const times=getDailyTimes();
+      times.forEach(t=>{
+        const next=valueOrBase==='base'?weeklyBaseForDateTime(selectedDailyDate,t):!!valueOrBase;
+        if(next===dailyInitialValue(t))dailyDraft.delete(t);else dailyDraft.set(t,next);
+      });
+      renderDailySchedule();
+    }
+    async function loadDailySchedule(){
+      if(!dailyScheduleDate.value)initializeDailyDateRange();
+      const min=jstTodayYmd(),max=addMonthsYmd(min,3),date=dailyScheduleDate.value;
+      if(date<min||date>max){dailyScheduleArea.innerHTML='<div class="message error">日別設定は今日から3か月先まで変更できます。</div>';return}
+      selectedDailyDate=date;
+      dailyScheduleArea.innerHTML='<div class="loading"><span class="dot"></span>日別設定を読み込んでいます…</div>';
+      if(!availabilityRows.length)await loadAvailability();
+      const {data,error}=await db.from('daily_availability_overrides').select('override_date,start_time,is_available,updated_at').eq('override_date',date).order('start_time');
+      if(error){console.error(error);dailyScheduleArea.innerHTML=`<div class="message error">日別設定を取得できませんでした：${escapeHtml(error.message)}</div>`;return}
+      dailyOverrideRows=data||[]; dailyDraft.clear(); renderDailySchedule();
+    }
+    function renderDailySchedule(){
+      if(!selectedDailyDate)return;
+      const day=isoWeekdayFromYmd(selectedDailyDate),times=getDailyTimes(),occupied=bookingOccupiedTimesForDailyDate();
+      const localeDate=new Intl.DateTimeFormat('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'long',timeZone:'UTC'}).format(new Date(selectedDailyDate+'T00:00:00Z'));
+      const overrideCount=dailyOverrideRows.length,dirtyCount=dailyDraft.size,onCount=times.filter(t=>dailyValue(t)).length;
+      const buttons=times.map(t=>{
+        const on=dailyValue(t),dirty=dailyDraft.has(t),booked=occupied.has(t);
+        return `<button type="button" class="availability-slot ${on?'on':''} ${dirty?'dirty':''} ${booked?'booked':''}" data-daily-time="${t}" aria-pressed="${on}" title="${booked?'この時間には既存予約があります。設定変更は新規予約にのみ反映されます。':''}">${t}</button>`;
+      }).join('');
+      dailyScheduleArea.innerHTML=`
+        <div class="daily-meta"><span class="daily-badge">${escapeHtml(localeDate)}</span><span class="daily-badge">通常：${WEEKDAYS[day]}</span><span class="daily-badge ${overrideCount?'override':''}">${overrideCount?`日別変更 ${overrideCount}枠`:'通常設定を使用中'}</span>${occupied.size?`<span class="daily-badge booked">予約済み ${occupied.size}枠</span>`:''}</div>
+        <div class="daily-actions"><button type="button" class="mini-btn danger-mini" id="dailyAllOff">終日休講にする</button><button type="button" class="mini-btn" id="dailyAllOn">この日をすべてON</button><button type="button" class="mini-btn" id="dailyResetBase">通常の曜日設定に戻す</button></div>
+        <div class="slot-grid">${buttons}</div>
+        <div class="daily-save-row"><button type="button" class="save-day" id="saveDailyBtn" ${dirtyCount?'':'disabled'}>この日の日別設定を保存</button><span class="availability-message" id="dailySaveMessage">${dirtyCount?`未保存 ${dirtyCount}枠`:`受付ON ${onCount}/${times.length}`}</span></div>
+        <div class="daily-help">※ オレンジの「予約」表示は既存予約です。日別設定をOFFにしても既存予約はキャンセルされず、その時間への新しい予約受付だけが停止します。<br>※ 「通常の曜日設定に戻す」を保存すると、その日の個別変更を削除して毎週の設定を再び使います。</div>`;
+      dailyScheduleArea.querySelectorAll('[data-daily-time]').forEach(btn=>btn.addEventListener('click',()=>{
+        const t=btn.dataset.dailyTime,next=!dailyValue(t);
+        if(next===dailyInitialValue(t))dailyDraft.delete(t);else dailyDraft.set(t,next);
+        renderDailySchedule();
+      }));
+      document.getElementById('dailyAllOff').addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();setDailyAll(false);requestAnimationFrame(()=>{const m=document.getElementById('dailySaveMessage');if(m)m.textContent='終日OFFに変更しました。保存してください。';});});
+      document.getElementById('dailyAllOn').addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();setDailyAll(true);requestAnimationFrame(()=>{const m=document.getElementById('dailySaveMessage');if(m)m.textContent='すべてONに変更しました。保存してください。';});});
+      document.getElementById('dailyResetBase').addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();setDailyAll('base');requestAnimationFrame(()=>{const m=document.getElementById('dailySaveMessage');if(m)m.textContent='通常の曜日設定に戻しました。保存してください。';});});
+      document.getElementById('saveDailyBtn').addEventListener('click',saveDailySchedule);
+    }
+    async function saveDailySchedule(){
+      if(!dailyDraft.size)return;
+      const btn=document.getElementById('saveDailyBtn');btn.disabled=true;btn.textContent='保存中…';
+      const deletes=[],upserts=[];
+      for(const [time,desired] of dailyDraft.entries()){
+        const base=weeklyBaseForDateTime(selectedDailyDate,time);
+        if(desired===base)deletes.push(time);else upserts.push({override_date:selectedDailyDate,start_time:time,is_available:desired,updated_at:new Date().toISOString()});
+      }
+      try{
+        if(deletes.length){const {error}=await db.from('daily_availability_overrides').delete().eq('override_date',selectedDailyDate).in('start_time',deletes);if(error)throw error}
+        if(upserts.length){const {error}=await db.from('daily_availability_overrides').upsert(upserts,{onConflict:'override_date,start_time'});if(error)throw error}
+        await loadDailySchedule();
+        const msg=document.getElementById('dailySaveMessage');if(msg){msg.textContent='保存しました';setTimeout(()=>{if(document.getElementById('dailySaveMessage'))renderDailySchedule()},1500)}
+      }catch(error){console.error(error);alert('日別設定の保存に失敗しました: '+error.message);renderDailySchedule()}
+    }
+
+
+    async function hydrateAssignableTeachers(bookings){
+      await Promise.all(bookings.map(async b=>{
+        const select=document.getElementById(`teacher-${b.id}`); if(!select)return;
+        const {data,error}=await adminRpc('get_assignable_teachers',{p_booking_id:b.id});
+        let list=data||[];
+        if(error){console.error(error);select.innerHTML='<option value="">取得エラー</option>';return;}
+        if(b.teacher_id && !list.some(x=>x.teacher_id===b.teacher_id)){
+          const current=teachers.find(t=>t.id===b.teacher_id);
+          if(current)list=[{teacher_id:current.id,teacher_name:current.display_name},...list];
+        }
+        select.innerHTML='<option value="">未割当</option>'+list.map(t=>`<option value="${escapeAttr(t.teacher_id)}" ${t.teacher_id===b.teacher_id?'selected':''}>${escapeHtml(t.teacher_name)}</option>`).join('');
+      }));
+    }
+
+    function resetTeacherForm(){
+      document.getElementById('teacherId').value='';
+      document.getElementById('teacherName').value='';
+      document.getElementById('teacherEmail').value='';
+      document.getElementById('teacherNotes').value='';
+      document.getElementById('teacherActive').value='true';
+      document.getElementById('teacherSortOrder').value=String((teachers.length+1)*10);
+      document.getElementById('teacherFormTitle').textContent='講師を追加';
+      document.getElementById('teacherSaveBtn').textContent='講師を保存';
+      document.getElementById('teacherFormMessage').innerHTML='';
+    }
+    function editTeacher(id){
+      const t=teachers.find(x=>x.id===id); if(!t)return;
+      document.getElementById('teacherId').value=t.id;
+      document.getElementById('teacherName').value=t.display_name||'';
+      document.getElementById('teacherEmail').value=t.email||'';
+      document.getElementById('teacherNotes').value=t.notes||'';
+      document.getElementById('teacherActive').value=String(!!t.is_active);
+      document.getElementById('teacherSortOrder').value=String(t.sort_order||10);
+      document.getElementById('teacherFormTitle').textContent='講師を編集';
+      document.getElementById('teacherSaveBtn').textContent='変更を保存';
+      document.getElementById('teacherForm').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    async function saveTeacher(e){
+      e.preventDefault();
+      const id=document.getElementById('teacherId').value;
+      const payload={display_name:document.getElementById('teacherName').value.trim(),email:document.getElementById('teacherEmail').value.trim()||null,notes:document.getElementById('teacherNotes').value.trim()||null,is_active:document.getElementById('teacherActive').value==='true',sort_order:Number(document.getElementById('teacherSortOrder').value||10),updated_at:new Date().toISOString()};
+      const msg=document.getElementById('teacherFormMessage');
+      if(!payload.display_name){msg.innerHTML='<div class="message error">講師名を入力してください。</div>';return;}
+      const btn=document.getElementById('teacherSaveBtn');btn.disabled=true;btn.textContent='保存中…';
+      try{
+        let error;
+        if(id){({error}=await db.from('teachers').update(payload).eq('id',id));}
+        else {const res=await db.from('teachers').insert(payload).select('id').single();error=res.error;if(!error)selectedTeacherId=res.data.id;}
+        if(error)throw error;
+        msg.innerHTML='<div class="message success">保存しました。</div>';
+        await loadTeachers();
+        if(selectedTeacherId)await loadTeacherSchedule(selectedTeacherId);
+        resetTeacherForm();
+      }catch(error){console.error(error);msg.innerHTML=`<div class="message error">保存に失敗しました：${escapeHtml(error.message)}</div>`;}
+      finally{btn.disabled=false;if(!document.getElementById('teacherId').value)btn.textContent='講師を保存';}
+    }
+    async function toggleTeacherActive(id,next){
+      const {error}=await db.from('teachers').update({is_active:next,updated_at:new Date().toISOString()}).eq('id',id);
+      if(error){alert('状態変更に失敗しました: '+error.message);return;}
+      await loadTeachers(); await loadBookings();
+    }
+    async function loadTeachers(){
+      teachersArea.innerHTML='<div class="loading"><span class="dot"></span>講師を読み込んでいます…</div>';
+      const {data,error}=await db.from('teachers').select('id,display_name,email,is_active,notes,sort_order,created_at,updated_at').order('sort_order').order('display_name');
+      if(error){console.error(error);teachersArea.innerHTML=`<div class="message error">講師情報を取得できませんでした：${escapeHtml(error.message)}</div>`;return;}
+      teachers=data||[];
+      if(selectedTeacherId && !teachers.some(t=>t.id===selectedTeacherId))selectedTeacherId='';
+      if(!selectedTeacherId && teachers.length)selectedTeacherId=teachers[0].id;
+      renderTeachers();
+      if(selectedTeacherId)await loadTeacherSchedule(selectedTeacherId);else teacherScheduleArea.innerHTML='<div class="teacher-empty">講師を追加すると勤務時間を設定できます。</div>';
+      if(allBookings.length)renderBookings();
+    }
+    function renderTeachers(){
+      if(!teachers.length){teachersArea.innerHTML='<div class="teacher-empty">まだ講師が登録されていません。</div>';return;}
+      teachersArea.innerHTML='<div class="teacher-list">'+teachers.map(t=>`<div class="teacher-card ${t.id===selectedTeacherId?'selected':''}"><div><div class="teacher-name">${escapeHtml(t.display_name)}</div><div class="teacher-meta">${escapeHtml(t.email||'メール未登録')}</div><div class="teacher-meta ${t.is_active?'teacher-status-active':'teacher-status-off'}">${t.is_active?'● 予約受付対象':'○ 無効'}</div></div><div class="teacher-card-actions"><button type="button" class="mini-btn" data-select-teacher="${t.id}">勤務時間</button><button type="button" class="mini-btn" data-edit-teacher="${t.id}">編集</button><button type="button" class="mini-btn ${t.is_active?'danger-mini':''}" data-toggle-teacher="${t.id}" data-next="${t.is_active?'0':'1'}">${t.is_active?'無効化':'有効化'}</button></div></div>`).join('')+'</div>';
+      teachersArea.querySelectorAll('[data-select-teacher]').forEach(b=>b.addEventListener('click',async()=>{selectedTeacherId=b.dataset.selectTeacher;renderTeachers();await loadTeacherSchedule(selectedTeacherId);}));
+      teachersArea.querySelectorAll('[data-edit-teacher]').forEach(b=>b.addEventListener('click',()=>editTeacher(b.dataset.editTeacher)));
+      teachersArea.querySelectorAll('[data-toggle-teacher]').forEach(b=>b.addEventListener('click',()=>toggleTeacherActive(b.dataset.toggleTeacher,b.dataset.next==='1')));
+    }
+    function teacherWeeklyKey(day,time){return `${day}-${normalizeTime(time)}`}
+    function teacherWeeklyValue(day,time){
+      const k=teacherWeeklyKey(day,time);if(teacherWeeklyDraft.has(k))return teacherWeeklyDraft.get(k);
+      const r=teacherWeeklyRows.find(x=>Number(x.weekday)===day&&normalizeTime(x.start_time)===normalizeTime(time));return !!r?.is_available;
+    }
+    async function loadTeacherSchedule(id){
+      const teacher=teachers.find(t=>t.id===id);if(!teacher)return;
+      teacherScheduleArea.innerHTML='<div class="loading"><span class="dot"></span>講師の勤務時間を読み込んでいます…</div>';
+      const {data,error}=await db.from('teacher_weekly_availability').select('teacher_id,weekday,start_time,is_available,updated_at').eq('teacher_id',id).order('weekday').order('start_time');
+      if(error){teacherScheduleArea.innerHTML=`<div class="message error">勤務時間を取得できませんでした：${escapeHtml(error.message)}</div>`;return;}
+      teacherWeeklyRows=data||[];teacherWeeklyDraft.clear();initializeTeacherDailyRange();renderTeacherSchedule();
+    }
+    function initializeTeacherDailyRange(){
+      const min=jstTodayYmd(),max=addMonthsYmd(min,3);
+      if(!selectedTeacherDailyDate||selectedTeacherDailyDate<min||selectedTeacherDailyDate>max)selectedTeacherDailyDate=min;
+    }
+    function renderTeacherSchedule(){
+      const t=teachers.find(x=>x.id===selectedTeacherId);if(!t)return;
+      const dayBlocks=[];
+      for(let day=1;day<=7;day++){
+        const rows=teacherWeeklyRows.filter(r=>Number(r.weekday)===day),times=rows.map(r=>normalizeTime(r.start_time));
+        const on=times.filter(x=>teacherWeeklyValue(day,x)).length,dirty=times.filter(x=>teacherWeeklyDraft.has(teacherWeeklyKey(day,x))).length;
+        dayBlocks.push(`<details class="day-availability" ${day===1?'open':''}><summary><span>${WEEKDAYS[day]}</span><span class="day-count">勤務ON ${on}/${times.length}${dirty?` ・ 未保存 ${dirty}`:''}</span></summary><div class="day-body"><div class="day-tools"><button type="button" class="mini-btn" data-tw-all="${day}" data-value="1">すべてON</button><button type="button" class="mini-btn" data-tw-all="${day}" data-value="0">すべてOFF</button></div><div class="slot-grid">${times.map(tm=>`<button type="button" class="availability-slot ${teacherWeeklyValue(day,tm)?'on':''} ${teacherWeeklyDraft.has(teacherWeeklyKey(day,tm))?'dirty':''}" data-tw-day="${day}" data-tw-time="${tm}">${tm}</button>`).join('')}</div><button type="button" class="save-day" data-tw-save="${day}" ${dirty?'':'disabled'}>${WEEKDAYS[day]}を保存</button></div></details>`);
+      }
+      teacherScheduleArea.innerHTML=`<div class="teacher-schedule-head"><div><h3 style="margin:0 0 4px">${escapeHtml(t.display_name)} の勤務時間</h3><div class="availability-note">日本時間。学校全体の受付時間がONで、かつこの講師の勤務時間もONのとき予約受付対象になります。</div></div></div><div class="teacher-tabs"><button type="button" class="teacher-tab active" id="teacherWeeklyTab">毎週の勤務時間</button><button type="button" class="teacher-tab" id="teacherDailyTab">日別の休み・例外</button></div><div id="teacherWeeklyPane">${dayBlocks.join('')}</div><div id="teacherDailyPane" class="hidden"><div class="daily-toolbar"><div><label for="teacherDailyDate">変更する日（日本時間）</label><input id="teacherDailyDate" type="date" min="${jstTodayYmd()}" max="${addMonthsYmd(jstTodayYmd(),3)}" value="${selectedTeacherDailyDate}"></div><button type="button" id="loadTeacherDailyBtn" class="secondary-btn">この日の設定を開く</button></div><div id="teacherDailyArea" class="teacher-empty">日付を選んで設定を開いてください。</div></div>`;
+      teacherScheduleArea.querySelectorAll('[data-tw-day]').forEach(b=>b.addEventListener('click',()=>{const day=Number(b.dataset.twDay),time=b.dataset.twTime,k=teacherWeeklyKey(day,time),row=teacherWeeklyRows.find(r=>Number(r.weekday)===day&&normalizeTime(r.start_time)===time),next=!teacherWeeklyValue(day,time);if(row&&next===!!row.is_available)teacherWeeklyDraft.delete(k);else teacherWeeklyDraft.set(k,next);renderTeacherSchedule();}));
+      teacherScheduleArea.querySelectorAll('[data-tw-all]').forEach(b=>b.addEventListener('click',()=>{const day=Number(b.dataset.twAll),val=b.dataset.value==='1';teacherWeeklyRows.filter(r=>Number(r.weekday)===day).forEach(r=>{const k=teacherWeeklyKey(day,r.start_time);if(val===!!r.is_available)teacherWeeklyDraft.delete(k);else teacherWeeklyDraft.set(k,val)});renderTeacherSchedule();}));
+      teacherScheduleArea.querySelectorAll('[data-tw-save]').forEach(b=>b.addEventListener('click',()=>saveTeacherWeeklyDay(Number(b.dataset.twSave),b)));
+      document.getElementById('teacherDailyTab').addEventListener('click',()=>switchTeacherScheduleTab(false));document.getElementById('teacherWeeklyTab').addEventListener('click',()=>switchTeacherScheduleTab(true));
+    }
+    function switchTeacherScheduleTab(weekly){
+      document.getElementById('teacherWeeklyPane').classList.toggle('hidden',!weekly);document.getElementById('teacherDailyPane').classList.toggle('hidden',weekly);document.getElementById('teacherWeeklyTab').classList.toggle('active',weekly);document.getElementById('teacherDailyTab').classList.toggle('active',!weekly);
+      if(!weekly){document.getElementById('teacherDailyDate').addEventListener('change',loadTeacherDaily);document.getElementById('loadTeacherDailyBtn').addEventListener('click',loadTeacherDaily);loadTeacherDaily();}
+    }
+    async function saveTeacherWeeklyDay(day,btn){
+      const changed=teacherWeeklyRows.filter(r=>Number(r.weekday)===day&&teacherWeeklyDraft.has(teacherWeeklyKey(day,r.start_time))).map(r=>({teacher_id:selectedTeacherId,weekday:day,start_time:normalizeTime(r.start_time),is_available:teacherWeeklyValue(day,r.start_time),updated_at:new Date().toISOString()}));if(!changed.length)return;btn.disabled=true;btn.textContent='保存中…';const {error}=await db.from('teacher_weekly_availability').upsert(changed,{onConflict:'teacher_id,weekday,start_time'});if(error){alert('保存に失敗しました: '+error.message);renderTeacherSchedule();return;}await loadTeacherSchedule(selectedTeacherId);await loadBookings();}
+    function teacherDailyBase(time){const day=isoWeekdayFromYmd(selectedTeacherDailyDate),r=teacherWeeklyRows.find(x=>Number(x.weekday)===day&&normalizeTime(x.start_time)===normalizeTime(time));return !!r?.is_available;}
+    function teacherDailyInitial(time){const t=normalizeTime(time),o=teacherDailyRows.find(x=>normalizeTime(x.start_time)===t);return o?!!o.is_available:teacherDailyBase(t)}
+    function teacherDailyValue(time){const t=normalizeTime(time);return teacherDailyDraft.has(t)?teacherDailyDraft.get(t):teacherDailyInitial(t)}
+    async function loadTeacherDaily(){
+      const inp=document.getElementById('teacherDailyDate');if(!inp)return;selectedTeacherDailyDate=inp.value||jstTodayYmd();const area=document.getElementById('teacherDailyArea');area.innerHTML='<div class="loading"><span class="dot"></span>読込中…</div>';const {data,error}=await db.from('teacher_daily_overrides').select('teacher_id,override_date,start_time,is_available,updated_at').eq('teacher_id',selectedTeacherId).eq('override_date',selectedTeacherDailyDate).order('start_time');if(error){area.innerHTML=`<div class="message error">取得できませんでした：${escapeHtml(error.message)}</div>`;return;}teacherDailyRows=data||[];teacherDailyDraft.clear();renderTeacherDaily();
+    }
+    function renderTeacherDaily(){
+      const area=document.getElementById('teacherDailyArea');if(!area)return;const day=isoWeekdayFromYmd(selectedTeacherDailyDate),times=teacherWeeklyRows.filter(r=>Number(r.weekday)===day).map(r=>normalizeTime(r.start_time));const dirty=teacherDailyDraft.size;area.innerHTML=`<div class="daily-actions"><button type="button" class="mini-btn danger-mini" id="teacherDailyOff">終日休み</button><button type="button" class="mini-btn" id="teacherDailyOn">すべてON</button><button type="button" class="mini-btn" id="teacherDailyBase">通常勤務に戻す</button></div><div class="slot-grid">${times.map(tm=>`<button type="button" class="availability-slot ${teacherDailyValue(tm)?'on':''} ${teacherDailyDraft.has(tm)?'dirty':''}" data-td-time="${tm}">${tm}</button>`).join('')}</div><div class="daily-save-row"><button type="button" class="save-day" id="saveTeacherDaily" ${dirty?'':'disabled'}>この日の設定を保存</button><span class="availability-message">${dirty?`未保存 ${dirty}枠`:`日別変更 ${teacherDailyRows.length}枠`}</span></div>`;
+      area.querySelectorAll('[data-td-time]').forEach(b=>b.addEventListener('click',()=>{const tm=b.dataset.tdTime,next=!teacherDailyValue(tm);if(next===teacherDailyInitial(tm))teacherDailyDraft.delete(tm);else teacherDailyDraft.set(tm,next);renderTeacherDaily();}));
+      document.getElementById('teacherDailyOff').addEventListener('click',()=>setTeacherDailyAll(false));document.getElementById('teacherDailyOn').addEventListener('click',()=>setTeacherDailyAll(true));document.getElementById('teacherDailyBase').addEventListener('click',()=>setTeacherDailyAll('base'));document.getElementById('saveTeacherDaily').addEventListener('click',saveTeacherDaily);
+    }
+    function setTeacherDailyAll(mode){const day=isoWeekdayFromYmd(selectedTeacherDailyDate),times=teacherWeeklyRows.filter(r=>Number(r.weekday)===day).map(r=>normalizeTime(r.start_time));times.forEach(tm=>{const next=mode==='base'?teacherDailyBase(tm):!!mode;if(next===teacherDailyInitial(tm))teacherDailyDraft.delete(tm);else teacherDailyDraft.set(tm,next)});renderTeacherDaily();}
+    async function saveTeacherDaily(){
+      if(!teacherDailyDraft.size)return;const deletes=[],upserts=[];for(const [tm,v] of teacherDailyDraft){const base=teacherDailyBase(tm);if(v===base)deletes.push(tm);else upserts.push({teacher_id:selectedTeacherId,override_date:selectedTeacherDailyDate,start_time:tm,is_available:v,updated_at:new Date().toISOString()});}try{if(deletes.length){const {error}=await db.from('teacher_daily_overrides').delete().eq('teacher_id',selectedTeacherId).eq('override_date',selectedTeacherDailyDate).in('start_time',deletes);if(error)throw error}if(upserts.length){const {error}=await db.from('teacher_daily_overrides').upsert(upserts,{onConflict:'teacher_id,override_date,start_time'});if(error)throw error}await loadTeacherDaily();await loadBookings();}catch(error){alert('保存に失敗しました: '+error.message);}}
+    window.editTeacher=editTeacher;
+
+    function contractStatusLabel(s){return ({active:'有効',paused:'一時停止',completed:'完了',cancelled:'キャンセル'})[s]||s}
+    function yen(v){return new Intl.NumberFormat('ja-JP',{style:'currency',currency:'JPY',maximumFractionDigits:0}).format(Number(v)||0)}
+    async function loadCourseContracts(){
+      const area=document.getElementById('contractsArea');if(!area)return;area.innerHTML='<div class="loading"><span class="dot"></span>契約を読み込んでいます…</div>';
+      const {data,error}=await adminRpc('admin_list_course_contracts',{p_student_email:null});
+      if(error){area.innerHTML=`<div class="message error">契約を取得できませんでした：${escapeHtml(error.message)}</div>`;return;}
+      courseContracts=data||[];renderCourseContracts();
+    }
+    function renderCourseContracts(){
+      const area=document.getElementById('contractsArea');if(!area)return;
+      const q=(document.getElementById('contractSearch')?.value||'').trim().toLowerCase();const st=document.getElementById('contractStatusFilter')?.value||'all';
+      const rows=courseContracts.filter(c=>(!q||[c.student_email,c.course_name,c.course_code].join(' ').toLowerCase().includes(q))&&(st==='all'||c.status===st));
+      if(!rows.length){area.innerHTML='<div class="teacher-empty">条件に合う契約はありません。</div>';return;}
+      area.innerHTML='<div class="contract-list">'+rows.map(c=>{const used=Number(c.lessons_used)||0,total=Number(c.lessons_included)||0,pct=total?Math.min(100,Math.round(used/total*100)):0;return `<div class="contract-card"><div class="contract-top"><div><div class="contract-name">${escapeHtml(c.course_name)}</div><div class="contract-email">${escapeHtml(c.student_email)} · ${escapeHtml(c.course_code)}</div></div><span class="contract-status ${escapeAttr(c.status)}">${escapeHtml(contractStatusLabel(c.status))}</span></div><div class="contract-meter"><span style="width:${pct}%"></span></div><div class="contract-remaining">残り ${escapeHtml(c.lessons_remaining)} / ${escapeHtml(c.lessons_included)} 回</div><div class="contract-meta">使用済み ${escapeHtml(c.lessons_used)}回 · ${escapeHtml(c.lesson_duration_minutes)}分/回 · ${escapeHtml(yen(c.price_jpy))}<br>${escapeHtml(c.start_date)} ～ ${escapeHtml(c.end_date)} · ${c.billing_type==='monthly'?'月謝':'パッケージ'}${c.notes?`<br>メモ：${escapeHtml(c.notes)}`:''}</div><div class="contract-actions"><button class="mini-btn" data-contract-edit="${c.id}">編集</button><label class="small">使用済み <input data-contract-used="${c.id}" type="number" min="0" max="${total}" value="${used}" style="width:72px;padding:5px"></label><button class="mini-btn" data-contract-usage-save="${c.id}">回数更新</button></div></div>`}).join('')+'</div>';
+      area.querySelectorAll('[data-contract-edit]').forEach(b=>b.addEventListener('click',()=>editCourseContract(b.dataset.contractEdit)));
+      area.querySelectorAll('[data-contract-usage-save]').forEach(b=>b.addEventListener('click',()=>saveContractUsage(b.dataset.contractUsageSave)));
+    }
+    function resetCourseContractForm(){
+      document.getElementById('contractId').value='';document.getElementById('contractEmail').value='';document.getElementById('contractCode').value='';document.getElementById('contractName').value='';document.getElementById('contractBilling').value='monthly';document.getElementById('contractDuration').value='50';document.getElementById('contractIncluded').value='8';document.getElementById('contractPrice').value='16000';document.getElementById('contractStatus').value='active';document.getElementById('contractNotes').value='';document.getElementById('contractFormTitle').textContent='契約を追加';document.getElementById('contractSaveBtn').textContent='契約を保存';document.getElementById('contractMessage').innerHTML='';const now=new Date(),start=now.toISOString().slice(0,10),end=new Date(now.getFullYear(),now.getMonth()+1,now.getDate()-1).toISOString().slice(0,10);document.getElementById('contractStart').value=start;document.getElementById('contractEnd').value=end;
+    }
+    function editCourseContract(id){const c=courseContracts.find(x=>x.id===id);if(!c)return;document.getElementById('contractId').value=c.id;document.getElementById('contractEmail').value=c.student_email||'';document.getElementById('contractCode').value=c.course_code||'';document.getElementById('contractName').value=c.course_name||'';document.getElementById('contractBilling').value=c.billing_type;document.getElementById('contractDuration').value=String(c.lesson_duration_minutes);document.getElementById('contractIncluded').value=String(c.lessons_included);document.getElementById('contractPrice').value=String(c.price_jpy);document.getElementById('contractStart').value=c.start_date;document.getElementById('contractEnd').value=c.end_date;document.getElementById('contractStatus').value=c.status;document.getElementById('contractNotes').value=c.notes||'';document.getElementById('contractFormTitle').textContent='契約を編集';document.getElementById('contractSaveBtn').textContent='変更を保存';document.getElementById('contractForm').scrollIntoView({behavior:'smooth',block:'center'});}
+    async function saveCourseContract(e){e.preventDefault();const btn=document.getElementById('contractSaveBtn');btn.disabled=true;btn.textContent='保存中…';const args={p_id:document.getElementById('contractId').value||null,p_student_email:document.getElementById('contractEmail').value.trim(),p_course_code:document.getElementById('contractCode').value.trim(),p_course_name:document.getElementById('contractName').value.trim(),p_billing_type:document.getElementById('contractBilling').value,p_lesson_duration_minutes:Number(document.getElementById('contractDuration').value),p_lessons_included:Number(document.getElementById('contractIncluded').value),p_price_jpy:Number(document.getElementById('contractPrice').value),p_start_date:document.getElementById('contractStart').value,p_end_date:document.getElementById('contractEnd').value,p_status:document.getElementById('contractStatus').value,p_notes:document.getElementById('contractNotes').value.trim()||null};const {error}=await adminRpc('admin_save_course_contract',args);if(error){document.getElementById('contractMessage').innerHTML=`<div class="message error">保存に失敗しました：${escapeHtml(error.message)}</div>`;}else{document.getElementById('contractMessage').innerHTML='<div class="message success">契約を保存しました。</div>';await loadCourseContracts();resetCourseContractForm();}btn.disabled=false;if(!document.getElementById('contractId').value)btn.textContent='契約を保存';}
+    async function saveContractUsage(id){const inp=document.querySelector(`[data-contract-used="${id}"]`);if(!inp)return;const {error}=await adminRpc('admin_adjust_course_usage',{p_id:id,p_lessons_used:Number(inp.value)});if(error){alert('回数更新に失敗しました: '+error.message);return;}await loadCourseContracts();}
+    document.getElementById('contractForm')?.addEventListener('submit',saveCourseContract);
+    document.getElementById('contractResetBtn')?.addEventListener('click',resetCourseContractForm);
+    document.getElementById('reloadContractsBtn')?.addEventListener('click',loadCourseContracts);
+    document.getElementById('contractSearch')?.addEventListener('input',renderCourseContracts);
+    document.getElementById('contractStatusFilter')?.addEventListener('change',renderCourseContracts);
+    resetCourseContractForm();
+
+
+    function paymentStatusLabel(s){return ({unpaid:'未払い',paid:'支払済み',overdue:'期限超過',waived:'免除'})[s]||s}
+    function effectivePaymentStatus(p){const today=new Date().toISOString().slice(0,10);return p.status==='unpaid'&&p.due_date<today?'overdue':p.status}
+    async function loadPayments(){
+      const area=document.getElementById('paymentsArea');if(!area)return;
+      area.innerHTML='<div class="loading"><span class="dot"></span>支払い情報を読み込んでいます…</div>';
+      const {data,error}=await adminRpc('admin_list_payments',{p_student_email:null});
+      if(error){area.innerHTML=`<div class="message error">支払い情報を取得できませんでした：${escapeHtml(error.message)}</div>`;return;}
+      paymentRows=data||[];renderPayments();
+    }
+    function renderPayments(){
+      const area=document.getElementById('paymentsArea');if(!area)return;
+      const q=(document.getElementById('paymentSearch')?.value||'').trim().toLowerCase(),f=document.getElementById('paymentStatusFilter')?.value||'all';
+      const rows=paymentRows.filter(p=>{const s=effectivePaymentStatus(p);return(!q||`${p.student_email} ${p.invoice_label}`.toLowerCase().includes(q))&&(f==='all'||s===f)});
+      if(!rows.length){area.innerHTML='<div class="teacher-empty">条件に合う支払い情報はありません。</div>';return;}
+      area.innerHTML='<div class="payment-list">'+rows.map(p=>{const s=effectivePaymentStatus(p);return `<div class="payment-card"><div class="payment-top"><div><div class="payment-title">${escapeHtml(p.invoice_label)}</div><div class="payment-email">${escapeHtml(p.student_email)}</div></div><span class="payment-status ${escapeAttr(s)}">${escapeHtml(paymentStatusLabel(s))}</span></div><div class="payment-meta"><b>${escapeHtml(yen(p.amount_jpy))}</b> · 支払期限 ${escapeHtml(p.due_date)}${p.paid_at?`<br>支払日時 ${escapeHtml(new Date(p.paid_at).toLocaleString('ja-JP'))}`:''}${p.payment_method?` · ${escapeHtml(p.payment_method)}`:''}${p.notes?`<br>メモ：${escapeHtml(p.notes)}`:''}</div><div class="payment-actions"><button class="mini-btn" type="button" data-payment-edit="${p.id}">編集</button>${s!=='paid'?`<button class="mini-btn" type="button" data-payment-paid="${p.id}">支払済みにする</button>`:''}</div></div>`}).join('')+'</div>';
+      area.querySelectorAll('[data-payment-edit]').forEach(b=>b.addEventListener('click',()=>editPayment(b.dataset.paymentEdit)));
+      area.querySelectorAll('[data-payment-paid]').forEach(b=>b.addEventListener('click',()=>markPaymentPaid(b.dataset.paymentPaid)));
+    }
+    function resetPaymentForm(){
+      for(const id of ['paymentId','paymentEmail','paymentLabel','paymentMethod','paymentPaidAt','paymentContractId','paymentNotes'])document.getElementById(id).value='';
+      document.getElementById('paymentAmount').value='16000';document.getElementById('paymentStatus').value='unpaid';document.getElementById('paymentDue').value=new Date().toISOString().slice(0,10);
+      document.getElementById('paymentFormTitle').textContent='請求を追加';document.getElementById('paymentSaveBtn').textContent='請求を保存';document.getElementById('paymentMessage').innerHTML='';
+    }
+    function toLocalDatetime(v){if(!v)return'';const d=new Date(v),pad=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
+    function editPayment(id){const p=paymentRows.find(x=>x.id===id);if(!p)return;document.getElementById('paymentId').value=p.id;document.getElementById('paymentEmail').value=p.student_email||'';document.getElementById('paymentLabel').value=p.invoice_label||'';document.getElementById('paymentAmount').value=p.amount_jpy??0;document.getElementById('paymentDue').value=p.due_date||'';document.getElementById('paymentStatus').value=p.status||'unpaid';document.getElementById('paymentMethod').value=p.payment_method||'';document.getElementById('paymentPaidAt').value=toLocalDatetime(p.paid_at);document.getElementById('paymentContractId').value=p.contract_id||'';document.getElementById('paymentNotes').value=p.notes||'';document.getElementById('paymentFormTitle').textContent='請求を編集';document.getElementById('paymentSaveBtn').textContent='変更を保存';document.getElementById('paymentForm').scrollIntoView({behavior:'smooth',block:'center'})}
+    async function savePayment(e){e.preventDefault();const btn=document.getElementById('paymentSaveBtn');btn.disabled=true;btn.textContent='保存中…';const rawPaid=document.getElementById('paymentPaidAt').value;const args={p_id:document.getElementById('paymentId').value||null,p_student_email:document.getElementById('paymentEmail').value.trim(),p_contract_id:document.getElementById('paymentContractId').value.trim()||null,p_invoice_label:document.getElementById('paymentLabel').value.trim(),p_amount_jpy:Number(document.getElementById('paymentAmount').value),p_due_date:document.getElementById('paymentDue').value,p_status:document.getElementById('paymentStatus').value,p_paid_at:rawPaid?new Date(rawPaid).toISOString():null,p_payment_method:document.getElementById('paymentMethod').value.trim()||null,p_notes:document.getElementById('paymentNotes').value.trim()||null};const {error}=await adminRpc('admin_save_payment',args);if(error){document.getElementById('paymentMessage').innerHTML=`<div class="message error">保存に失敗しました：${escapeHtml(error.message)}</div>`;}else{document.getElementById('paymentMessage').innerHTML='<div class="message success">支払い情報を保存しました。</div>';await loadPayments();resetPaymentForm()}btn.disabled=false;btn.textContent=document.getElementById('paymentId').value?'変更を保存':'請求を保存'}
+    async function markPaymentPaid(id){const p=paymentRows.find(x=>x.id===id);if(!p)return;const {error}=await adminRpc('admin_save_payment',{p_id:p.id,p_student_email:p.student_email,p_contract_id:p.contract_id||null,p_invoice_label:p.invoice_label,p_amount_jpy:p.amount_jpy,p_due_date:p.due_date,p_status:'paid',p_paid_at:new Date().toISOString(),p_payment_method:p.payment_method||null,p_notes:p.notes||null});if(error){alert(error.message);return}await loadPayments()}
+    document.getElementById('paymentForm')?.addEventListener('submit',savePayment);
+    document.getElementById('paymentResetBtn')?.addEventListener('click',resetPaymentForm);
+    document.getElementById('reloadPaymentsBtn')?.addEventListener('click',loadPayments);
+    document.getElementById('paymentSearch')?.addEventListener('input',renderPayments);
+    document.getElementById('paymentStatusFilter')?.addEventListener('change',renderPayments);
+    resetPaymentForm();
+
+    function statusLabel(status) {
+      return ({ pending:'未確認', confirmed:'確定', completed:'完了', cancelled:'キャンセル' })[status] || status;
+    }
+    function isSameLocalDate(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+    function formatDateTime(d){return new Intl.DateTimeFormat('ja-JP',{year:'numeric',month:'short',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit'}).format(d)}
+    function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+    function escapeAttr(v){return escapeHtml(v)}
+
+    (async function init(){
+      const { data: { session } } = await db.auth.getSession();
+      if (session) await enterDashboard(session);
+    })();
+  </script>
+<div style="text-align:center;padding:16px 12px;color:#667085;font-size:.82rem"><a href="tokusho.html" style="color:inherit;text-decoration:underline">特定商取引法に基づく表記</a></div>
+</body>
+</html>

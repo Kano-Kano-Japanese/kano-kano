@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google Search Console 所有権確認タグ -->
+    <meta name="google-site-verification" content="8_hdlIGzCuYINWO3BJV29Al-4r03VnPgWDxkMWAkVVM" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kano×Kano | 国家資格保有講師による高品質な1対1オンライン日本語レッスン</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --cta-color: #f97316;
+            --bg-light: #f1f5f9;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            line-height: 1.8;
+        }
+        .lang-bar {
+            background-color: #020617;
+            padding: 10px 20px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .lang-select {
+            background-color: #1e293b;
+            color: #ffffff;
+            border: 1px solid #334155;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* 📍 ナビゲーションメニュー */
+        .nav-menu {
+            background-color: #0f172a;
+            border-bottom: 1px solid #1e293b;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .nav-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            background-color: var(--accent-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 60px 20px 50px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        header p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin: 0;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 36px;
+            margin-bottom: 40px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            border-left: 6px solid var(--accent-color);
+            padding-left: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        /* プロフィール写真レイアウト（スマホでも横並び） */
+        .profile-wrapper {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .profile-img-group {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            flex-shrink: 0;
+            width: 260px;
+        }
+        .profile-img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-content {
+            flex-grow: 1;
+        }
+        .profile-content p {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .feature-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+            background: #f1f5f9;
+        }
+        .feature-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        .feature-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .feature-detail-full {
+            grid-column: 1 / -1;
+        }
+
+        .badge-container {
+            margin-top: 12px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .course-item {
+            margin-bottom: 20px;
+        }
+        .price-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 24px;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .price-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            background-color: #f8fafc;
+        }
+        .price-card h3 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--cta-color);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+        .click-hint {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        .accordion-detail {
+            display: none;
+            background: #eff6ff;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-top: 16px;
+            animation: expandDown 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .accordion-detail.active {
+            display: block;
+        }
+        .accordion-detail p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        .accordion-detail ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+        }
+
+        @keyframes expandDown {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.8) translateY(-10px);
+                transform-origin: top center;
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1) translateY(0);
+                transform-origin: top center;
+            }
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            margin: 30px auto 0 auto;
+            padding: 16px;
+            background-color: var(--cta-color);
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-sizing: border-box;
+        }
+        .btn:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .hero-actions {
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 26px;
+        }
+        .hero-btn {
+            display: inline-block; padding: 13px 22px; border-radius: 8px; text-decoration: none; font-weight: 700;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .hero-btn:hover { transform: translateY(-2px); opacity: 0.95; }
+        .hero-btn.primary { background: var(--cta-color); color: #fff; }
+        .hero-btn.secondary { background: rgba(255,255,255,0.08); border: 1px solid #475569; color: #fff; }
+        .hero-note { margin-top: 16px !important; font-size: 0.9rem !important; color: #cbd5e1 !important; }
+        .step-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .step-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px 18px;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            column-gap: 14px;
+            align-items: center;
+        }
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            margin: 0;
+            font-weight: 700;
+            grid-row: 1 / span 2;
+        }
+        .step-box h3 { margin: 0 0 3px; color: var(--primary-color); font-size: 1rem; }
+        .step-box p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+        .global-note {
+            margin-top: 18px; padding: 14px 16px; background: #eff6ff; border-left: 4px solid var(--accent-color); border-radius: 8px;
+        }
+
+
+        .recommended-plan {
+            border: 2px solid var(--accent-color);
+            background: #ffffff;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            right: 16px;
+            background: var(--accent-color);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.22);
+        }
+
+
+        /* コース別プラン */
+        .course-type-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            background: #dbeafe;
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin-bottom: 8px;
+        }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .mini-plan {
+            position: relative;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border-radius: 9px;
+            padding: 14px 10px;
+            text-align: center;
+        }
+        .mini-plan.recommended {
+            border: 2px solid var(--accent-color);
+            background: #ffffff;
+        }
+        .mini-plan .mini-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            background: var(--accent-color);
+            color: #fff;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 0.66rem;
+            font-weight: 700;
+        }
+        .mini-plan strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 0.98rem;
+            margin-bottom: 4px;
+        }
+        .mini-plan .mini-price {
+            color: var(--cta-color);
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+        .mini-plan small {
+            display: block;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .duration-option {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            border-radius: 9px;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .duration-option:hover, .duration-option.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+            transform: translateY(-1px);
+        }
+        .duration-option strong { color: var(--primary-color); display:block; }
+        .duration-option small { color: var(--text-muted); display:block; margin-top:4px; }
+        .pace-detail {
+            display: none;
+            grid-column: 1 / -1;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            padding: 14px 16px;
+            text-align: left;
+            color: var(--text-dark);
+            line-height: 1.65;
+        }
+        .pace-detail.active { display: block; }
+        .pace-detail strong { color: var(--primary-color); }
+        .course-summary-price { color: var(--cta-color); font-weight: 700; margin-top: 8px; }
+        .section-subtitle {
+            margin: 28px 0 12px;
+            padding: 10px 14px;
+            border-left: 4px solid var(--cta-color);
+            background: #fff7ed;
+            color: var(--primary-color);
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+
+        .floating-trial-btn {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 2000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            padding: 14px 20px;
+            border-radius: 999px;
+            background: var(--cta-color);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.98rem;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.32);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        .floating-trial-btn:hover {
+            transform: translateY(-2px);
+            background: #ea580c;
+            box-shadow: 0 14px 28px rgba(249, 115, 22, 0.38);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+            .nav-menu {
+                gap: 5px;
+                padding: 8px 4px;
+            }
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 4px 7px;
+            }
+            header {
+                padding: 28px 12px 20px 12px;
+            }
+            header h1 {
+                font-size: 1.15rem;
+                line-height: 1.4;
+            }
+            header p {
+                font-size: 0.78rem;
+            }
+            .container {
+                padding: 12px 8px;
+            }
+            .card {
+                padding: 16px 12px;
+                margin-bottom: 24px;
+                border-radius: 8px;
+                scroll-margin-top: 60px;
+            }
+            h2 {
+                font-size: 1.05rem;
+                border-left-width: 4px;
+                padding-left: 8px;
+                padding-bottom: 4px;
+                margin-bottom: 12px;
+            }
+            
+            .profile-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            .profile-img-group {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5px;
+                margin-top: 10px;
+            }
+            .feature-box {
+                padding: 8px 5px;
+                border-left-width: 2px;
+                border-radius: 6px;
+            }
+            .feature-box h3 {
+                font-size: 0.72rem;
+                margin-bottom: 2px;
+                line-height: 1.3;
+            }
+            .feature-box p {
+                font-size: 0.68rem;
+                line-height: 1.3;
+            }
+            .click-hint {
+                font-size: 0.65rem;
+                margin-top: 4px;
+            }
+
+            .badge {
+                padding: 2px 6px;
+                font-size: 0.68rem;
+                margin-right: 2px;
+                margin-bottom: 4px;
+            }
+
+            .price-card {
+                padding: 10px 8px;
+            }
+            .price-card h3 {
+                font-size: 0.9rem;
+            }
+            .price {
+                font-size: 0.85rem;
+            }
+
+            .accordion-detail {
+                padding: 10px;
+                margin-top: 8px;
+            }
+            .accordion-detail p, .accordion-detail li {
+                font-size: 0.75rem;
+                line-height: 1.4;
+            }
+
+            .lang-bar {
+                justify-content: center;
+                padding: 4px 6px;
+                font-size: 0.72rem;
+            }
+            .lang-select {
+                padding: 2px 4px;
+                font-size: 0.72rem;
+            }
+            .hero-actions { gap: 8px; margin-top: 16px; }
+            .hero-btn { padding: 10px 14px; font-size: 0.78rem; }
+            .hero-note { font-size: 0.7rem !important; }
+            .step-grid { gap: 8px; }
+            .step-box { padding: 12px 10px; grid-template-columns: 36px 1fr; column-gap: 9px; }
+            .step-box h3 { font-size: 0.78rem; }
+            .step-box p { font-size: 0.68rem; }
+
+
+            .plan-grid { grid-template-columns: 1fr; gap: 8px; }
+            .duration-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .mini-plan, .duration-option { padding: 10px 8px; }
+            .mini-plan strong { font-size: 0.78rem; }
+            .mini-plan .mini-price { font-size: 0.75rem; }
+            .mini-plan small, .duration-option small { font-size: 0.68rem; }
+
+
+            .floating-trial-btn {
+                right: 10px;
+                bottom: 10px;
+                min-width: 0;
+                padding: 10px 14px;
+                font-size: 0.75rem;
+                box-shadow: 0 8px 18px rgba(249, 115, 22, 0.3);
+            }
+
+            .btn {
+                padding: 10px;
+                font-size: 0.85rem;
+                margin-top: 14px;
+            }
+        }
+    
+        .stripe-test-banner {
+            margin: 0 0 18px;
+            padding: 12px 14px;
+            border: 1px solid #f0b429;
+            border-radius: 12px;
+            background: #fff8e1;
+            color: #6b4e00;
+            font-size: .88rem;
+            line-height: 1.55;
+        }
+        .checkout-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+        .checkout-btn {
+            display:inline-flex; align-items:center; justify-content:center; gap:6px;
+            min-height:40px; padding:9px 14px; border-radius:10px;
+            text-decoration:none; font-weight:800; font-size:.86rem;
+            background:#635bff; color:#fff; border:1px solid #635bff;
+            box-shadow:0 2px 8px rgba(99,91,255,.18); transition:.18s ease;
+        }
+        .checkout-btn:hover { transform:translateY(-1px); filter:brightness(.96); }
+        .checkout-btn.secondary { background:#fff; color:#635bff; }
+        .checkout-note { margin-top:8px; color:var(--text-muted); font-size:.78rem; line-height:1.5; }
+
+
+        /* ===== Kano×Kano visual refresh v11 ===== */
+        :root {
+            --primary-color: #172033;
+            --accent-color: #3159d8;
+            --accent-deep: #203b9f;
+            --cta-color: #e96a4a;
+            --bg-light: #f7f4ed;
+            --surface: #fffdf8;
+            --surface-soft: #f2ede2;
+            --text-dark: #273043;
+            --text-muted: #6f7785;
+            --line: rgba(23,32,51,.10);
+            --shadow-soft: 0 22px 60px rgba(42,44,52,.09);
+        }
+        * { box-sizing: border-box; }
+        body {
+            background:
+                radial-gradient(circle at 8% 2%, rgba(49,89,216,.07), transparent 26rem),
+                radial-gradient(circle at 94% 10%, rgba(233,106,74,.08), transparent 22rem),
+                #f7f4ed;
+            color: var(--text-dark);
+            letter-spacing: .01em;
+        }
+        .lang-bar {
+            position: relative;
+            background: #172033;
+            padding: 7px max(20px, calc((100vw - 1180px)/2));
+            color: rgba(255,255,255,.68);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .lang-select {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.14);
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+        .nav-menu {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255,253,248,.90);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-bottom: 1px solid rgba(23,32,51,.08);
+            padding: 11px max(18px, calc((100vw - 1180px)/2));
+            gap: 7px;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: 0 8px 28px rgba(23,32,51,.04);
+        }
+        .brand-lockup {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: auto;
+            text-decoration: none;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+        .brand-k {
+            width: 36px; height: 36px;
+            border-radius: 12px;
+            display: grid; place-items: center;
+            color: white;
+            font-weight: 800;
+            background: linear-gradient(145deg, var(--accent-color), var(--accent-deep));
+            box-shadow: 0 8px 20px rgba(49,89,216,.24);
+        }
+        .brand-name { font-weight: 800; letter-spacing: -.02em; font-size: 1.03rem; }
+        .brand-cross { color: var(--cta-color); margin: 0 1px; }
+        .nav-link {
+            background: transparent;
+            color: #465064;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: .82rem;
+        }
+        .nav-link:hover { color: var(--accent-deep); background: rgba(49,89,216,.08); }
+        #navLogin {
+            background: var(--primary-color);
+            color: white;
+            padding-inline: 16px;
+        }
+        #navLogin:hover { background: var(--accent-deep); }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, #172033 0%, #1d2b4c 52%, #263d77 100%);
+            padding: 84px 24px 78px;
+            text-align: left;
+            isolation: isolate;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            width: 520px; height: 520px;
+            border-radius: 50%;
+            right: -170px; top: -245px;
+            border: 1px solid rgba(255,255,255,.11);
+            box-shadow: inset 0 0 0 80px rgba(255,255,255,.018), inset 0 0 0 160px rgba(255,255,255,.018);
+            z-index: -1;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+        }
+        .hero-inner {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(310px, .65fr);
+            gap: 62px;
+            align-items: center;
+        }
+        .hero-copy { max-width: 760px; }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #cbd6ff;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.06);
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            margin-bottom: 22px;
+        }
+        .eyebrow-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #ff9a76;
+            box-shadow: 0 0 0 5px rgba(255,154,118,.10);
+        }
+        header h1 {
+            font-size: clamp(2.2rem, 4.5vw, 4.15rem);
+            line-height: 1.22;
+            letter-spacing: -.045em;
+            margin: 0 0 24px;
+            font-weight: 800;
+            text-wrap: balance;
+        }
+        header p#heroSub {
+            max-width: 680px;
+            font-size: 1.06rem;
+            line-height: 1.9;
+            color: #c4cce0;
+        }
+        .hero-actions { justify-content: flex-start; margin-top: 30px; gap: 12px; }
+        .hero-btn {
+            border-radius: 999px;
+            padding: 14px 22px;
+            font-size: .94rem;
+            box-shadow: none;
+        }
+        .hero-btn.primary {
+            background: linear-gradient(135deg, #f47a59, #df5f41);
+            box-shadow: 0 14px 34px rgba(233,106,74,.28);
+        }
+        .hero-btn.secondary {
+            background: rgba(255,255,255,.07);
+            border-color: rgba(255,255,255,.18);
+        }
+        .hero-btn:hover { transform: translateY(-3px); }
+        .hero-note {
+            margin-top: 20px !important;
+            font-size: .80rem !important;
+            color: #aeb9d2 !important;
+            letter-spacing: .02em;
+        }
+        .hero-art {
+            position: relative;
+            min-height: 340px;
+            filter: drop-shadow(0 28px 50px rgba(2,8,23,.24));
+        }
+        .hero-art-card {
+            position: absolute;
+            width: 190px; height: 245px;
+            border-radius: 28px;
+            display: grid; place-items: center;
+            border: 1px solid rgba(255,255,255,.22);
+            backdrop-filter: blur(8px);
+            font-family: serif;
+            font-weight: 700;
+            font-size: 7rem;
+            line-height: 1;
+        }
+        .hero-art-card span { transform: translateY(-3px); }
+        .card-a {
+            left: 0; top: 18px;
+            color: #233c83;
+            background: linear-gradient(145deg, #f7f2e7, #e8dfce);
+            transform: rotate(-6deg);
+        }
+        .card-b {
+            right: 4px; bottom: 10px;
+            color: #f3e9d8;
+            background: linear-gradient(145deg, #4166cd, #27479f);
+            transform: rotate(7deg);
+        }
+        .hero-art-seal {
+            position: absolute;
+            left: 50%; top: 48%;
+            width: 82px; height: 82px;
+            transform: translate(-50%,-50%) rotate(-4deg);
+            display: grid; place-items: center;
+            border-radius: 24px;
+            background: #e96a4a;
+            color: #fff7ef;
+            font-family: serif;
+            font-weight: 700;
+            letter-spacing: -.05em;
+            border: 5px solid rgba(255,247,239,.8);
+            box-shadow: 0 16px 28px rgba(233,106,74,.26);
+            z-index: 3;
+        }
+        .hero-art-line { position: absolute; height: 1px; background: rgba(255,255,255,.18); width: 110%; left: -5%; }
+        .line-a { top: 16%; transform: rotate(-13deg); }
+        .line-b { bottom: 13%; transform: rotate(11deg); }
+
+        .container {
+            max-width: 1120px;
+            padding: 62px 24px 90px;
+        }
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 44px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(23,32,51,.08);
+            background: rgba(255,253,248,.92);
+            box-shadow: var(--shadow-soft);
+            scroll-margin-top: 88px;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            right: -60px; top: -60px;
+            background: radial-gradient(circle, rgba(49,89,216,.06), transparent 70%);
+            pointer-events: none;
+        }
+        h2 {
+            border: 0;
+            padding: 0 0 14px;
+            margin-bottom: 28px;
+            font-size: clamp(1.35rem, 2vw, 1.8rem);
+            letter-spacing: -.025em;
+            position: relative;
+        }
+        h2::after {
+            content: "";
+            display: block;
+            width: 46px; height: 3px;
+            margin-top: 14px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-color), var(--cta-color));
+        }
+        .feature-grid { gap: 14px; }
+        .feature-box {
+            border: 1px solid rgba(23,32,51,.08);
+            border-left: 1px solid rgba(23,32,51,.08);
+            border-radius: 18px;
+            padding: 24px;
+            background: linear-gradient(180deg, #fffdf8 0%, #f8f5ee 100%);
+            box-shadow: 0 8px 24px rgba(23,32,51,.04);
+        }
+        .feature-box:hover {
+            border-color: rgba(49,89,216,.28);
+            background: #fff;
+            box-shadow: 0 16px 34px rgba(49,89,216,.10);
+            transform: translateY(-5px);
+        }
+        .feature-box h3 { font-size: 1.04rem; line-height: 1.5; }
+        .click-hint { color: var(--accent-deep); font-size: .76rem; }
+        .accordion-detail {
+            border: 1px solid rgba(49,89,216,.15);
+            background: #f3f6ff;
+            border-radius: 16px;
+        }
+        .profile-wrapper { gap: 32px; align-items: stretch; }
+        .profile-img-group { width: 300px; gap: 12px; }
+        .profile-img {
+            border-radius: 18px;
+            box-shadow: 0 14px 32px rgba(23,32,51,.14);
+            min-height: 250px;
+        }
+        .badge {
+            background: #eef2ff;
+            color: #314ea8;
+            border: 1px solid rgba(49,89,216,.10);
+            padding: 6px 11px;
+        }
+        .price-card {
+            border: 1px solid rgba(23,32,51,.08);
+            background: linear-gradient(180deg, #fffdf8 0%, #f8f5ee 100%);
+            border-radius: 20px;
+            padding: 26px 28px;
+        }
+        .price-card:hover {
+            border-color: rgba(49,89,216,.30);
+            background: #fff;
+            box-shadow: 0 16px 34px rgba(23,32,51,.08);
+        }
+        .course-type-label {
+            background: #eef2ff !important;
+            color: #3159d8 !important;
+            border-radius: 999px !important;
+            border: 1px solid rgba(49,89,216,.10);
+        }
+        .plan-grid { gap: 12px; }
+        .mini-plan {
+            border-radius: 16px;
+            background: #fffdfa;
+            border-color: rgba(23,32,51,.09);
+        }
+        .mini-plan.recommended {
+            border-color: rgba(49,89,216,.42);
+            box-shadow: 0 12px 26px rgba(49,89,216,.08);
+        }
+        .checkout-btn {
+            border-radius: 999px;
+            background: linear-gradient(135deg, #3159d8, #2648b6);
+            border-color: transparent;
+            box-shadow: 0 9px 20px rgba(49,89,216,.18);
+        }
+        .checkout-btn.secondary { border-color: rgba(49,89,216,.18); }
+        .stripe-test-banner {
+            border-radius: 16px;
+            background: #fff5d9;
+            border-color: rgba(184,131,18,.25);
+        }
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .step-box {
+            display: block;
+            border: 1px solid rgba(23,32,51,.08);
+            border-radius: 18px;
+            background: #faf7f0;
+            padding: 20px;
+        }
+        .step-number {
+            margin: 0 0 14px;
+            background: linear-gradient(135deg, #3159d8, #203b9f);
+            box-shadow: 0 8px 18px rgba(49,89,216,.20);
+        }
+        .global-note {
+            background: #f3f6ff;
+            border-left: 0;
+            border: 1px solid rgba(49,89,216,.12);
+            border-radius: 14px;
+        }
+        #sec-contact {
+            background: linear-gradient(135deg, #fffdf8 0%, #f3f6ff 100%);
+        }
+        .floating-trial-btn {
+            border-radius: 999px !important;
+            background: linear-gradient(135deg, #f47a59, #df5f41) !important;
+            box-shadow: 0 14px 32px rgba(233,106,74,.28) !important;
+        }
+        footer { background: #172033 !important; }
+
+        @media (max-width: 900px) {
+            .nav-menu { justify-content: center; padding-inline: 12px; }
+            .brand-lockup { width: 100%; justify-content: center; margin: 0 0 4px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+            .hero-art { display: none; }
+            header { text-align: center; padding: 62px 20px 58px; }
+            .hero-copy { margin: 0 auto; }
+            .hero-actions { justify-content: center; }
+            .container { padding-top: 36px; }
+            .step-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .lang-bar { justify-content: center; padding: 6px 10px; }
+            .nav-menu { gap: 4px; }
+            .brand-k { width: 32px; height: 32px; border-radius: 10px; }
+            .brand-name { font-size: .96rem; }
+            .nav-link { font-size: .72rem; padding: 6px 9px; }
+            header { padding: 48px 16px 46px; }
+            header h1 { font-size: clamp(1.8rem, 9vw, 2.55rem); line-height: 1.28; }
+            header p#heroSub { font-size: .9rem; line-height: 1.78; }
+            .hero-eyebrow { margin-bottom: 16px; }
+            .hero-actions { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+            .hero-btn { width: 100%; text-align: center; padding: 12px 10px; font-size: .78rem; }
+            .hero-note { font-size: .68rem !important; line-height: 1.65; }
+            .container { padding: 24px 12px 72px; }
+            .card { border-radius: 20px; padding: 22px 16px; margin-bottom: 18px; }
+            h2 { font-size: 1.25rem; margin-bottom: 20px; }
+            .feature-grid { grid-template-columns: 1fr; gap: 10px; }
+            .feature-box { padding: 16px; border-radius: 14px; }
+            .feature-box h3 { font-size: .88rem; }
+            .feature-box p { font-size: .79rem; }
+            .profile-wrapper { flex-direction: column; gap: 18px; }
+            .profile-img-group { width: 100%; }
+            .profile-img { min-height: 0; border-radius: 14px; }
+            .price-card { padding: 18px 16px; border-radius: 16px; }
+            .step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .step-box { padding: 14px; border-radius: 14px; }
+            .step-box h3 { font-size: .82rem; }
+            .step-box p { font-size: .72rem; }
+        }
+
+
+        /* ===== Motion system v12 ===== */
+        @keyframes heroRise {
+            from { opacity: 0; transform: translateY(24px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        @keyframes floatA {
+            0%,100% { transform: rotate(-6deg) translate3d(0,0,0); }
+            50% { transform: rotate(-3deg) translate3d(0,-14px,0); }
+        }
+        @keyframes floatB {
+            0%,100% { transform: rotate(7deg) translate3d(0,0,0); }
+            50% { transform: rotate(4deg) translate3d(0,12px,0); }
+        }
+        @keyframes sealPulse {
+            0%,100% { transform: translate(-50%,-50%) rotate(-4deg) scale(1); }
+            50% { transform: translate(-50%,-50%) rotate(2deg) scale(1.045); }
+        }
+        @keyframes softGlow {
+            0%,100% { opacity: .50; transform: translate3d(0,0,0) scale(1); }
+            50% { opacity: .82; transform: translate3d(-10px,8px,0) scale(1.06); }
+        }
+        @keyframes ctaSheen {
+            0% { transform: translateX(-160%) skewX(-20deg); }
+            58%,100% { transform: translateX(260%) skewX(-20deg); }
+        }
+        @keyframes lineGrow {
+            from { transform: scaleX(0); transform-origin: left; }
+            to { transform: scaleX(1); transform-origin: left; }
+        }
+        @keyframes badgeBreathe {
+            0%,100% { box-shadow: 0 0 0 0 rgba(233,106,74,.10); }
+            50% { box-shadow: 0 0 0 7px rgba(233,106,74,0); }
+        }
+
+        header::before { animation: softGlow 9s ease-in-out infinite; }
+        .hero-eyebrow, header h1, header p#heroSub, .hero-actions, .hero-note {
+            opacity: 0;
+            animation: heroRise .75s cubic-bezier(.2,.7,.2,1) forwards;
+        }
+        .hero-eyebrow { animation-delay: .08s; }
+        header h1 { animation-delay: .17s; }
+        header p#heroSub { animation-delay: .28s; }
+        .hero-actions { animation-delay: .39s; }
+        .hero-note { animation-delay: .49s; }
+        .card-a { animation: floatA 6.2s ease-in-out infinite; }
+        .card-b { animation: floatB 7.1s ease-in-out infinite; }
+        .hero-art-seal { animation: sealPulse 5s ease-in-out infinite; }
+        .eyebrow-dot { animation: badgeBreathe 2.6s ease-out infinite; }
+
+        .hero-btn.primary { position: relative; overflow: hidden; isolation: isolate; }
+        .hero-btn.primary::after {
+            content: "";
+            position: absolute;
+            inset: -30% auto -30% -35%;
+            width: 28%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.46), transparent);
+            animation: ctaSheen 4.8s ease-in-out 1.6s infinite;
+            pointer-events: none;
+        }
+        .hero-btn, .checkout-btn, .floating-trial-btn {
+            transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, filter .28s ease;
+        }
+        .hero-btn:active, .checkout-btn:active, .floating-trial-btn:active { transform: translateY(0) scale(.985); }
+
+        h2::after { animation: lineGrow .65s ease both; animation-play-state: paused; }
+        .reveal.is-visible h2::after { animation-play-state: running; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px) scale(.992);
+            transition:
+                opacity .72s cubic-bezier(.2,.7,.2,1),
+                transform .72s cubic-bezier(.2,.7,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .56s ease, transform .56s cubic-bezier(.2,.7,.2,1);
+        }
+        .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+        .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: .04s; }
+        .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: .11s; }
+        .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: .18s; }
+        .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: .25s; }
+        .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: .32s; }
+        .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: .39s; }
+
+        .feature-box, .price-card, .mini-plan, .step-box {
+            transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease, background .35s ease;
+        }
+        .mini-plan:hover, .step-box:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(23,32,51,.08); }
+        .profile-img { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease; }
+        .profile-img:hover { transform: translateY(-5px) rotate(.5deg) scale(1.018); box-shadow: 0 22px 46px rgba(23,32,51,.18); }
+
+        .nav-menu { transition: padding .28s ease, box-shadow .28s ease, background .28s ease; }
+        .nav-menu.nav-compact { padding-top: 7px; padding-bottom: 7px; box-shadow: 0 12px 32px rgba(23,32,51,.08); background: rgba(255,253,248,.95); }
+        .brand-k { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+        .brand-lockup:hover .brand-k { transform: rotate(-6deg) scale(1.06); }
+
+        .hero-art { transform-style: preserve-3d; perspective: 900px; }
+        .hero-art-card, .hero-art-seal { will-change: transform; }
+
+        .scroll-progress {
+            position: fixed;
+            left: 0; top: 0;
+            height: 3px;
+            width: 0;
+            z-index: 2000;
+            background: linear-gradient(90deg, var(--accent-color), var(--cta-color));
+            box-shadow: 0 0 14px rgba(49,89,216,.35);
+            pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <div class="lang-bar">
+        <span>🌐 Language / 言語:</span>
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="en">English (英語)</option>
+            <option value="th">ไทย (タイ語)</option>
+            <option value="ko">한국어 (한국어)</option>
+            <option value="zh">中文 (中国語)</option>
+        </select>
+    </div>
+
+    <!-- 📍 ナビゲーションメニュー -->
+    <nav class="nav-menu">
+        <a href="#" class="brand-lockup" aria-label="Kano×Kano home"><span class="brand-k">K</span><span class="brand-name">Kano<span class="brand-cross">×</span>Kano</span></a>
+        <a href="#sec-reasons" class="nav-link" id="navReasons">3つの理由</a>
+        <a href="#sec-profile" class="nav-link" id="navProfile">プロフィール</a>
+        <a href="#sec-courses" class="nav-link" id="navCourses">料金プラン</a>
+        <a href="#sec-how" class="nav-link" id="navHow">受講の流れ</a>
+        <a href="#sec-contact" class="nav-link" id="navContact">無料体験</a>
+        <a href="student.html" class="nav-link" id="navLogin">ログイン</a>
+    </nav>
+
+    <header>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Kano×Kano</div>
+                <h1 id="heroTitle">講師全員が「国家資格」保有者。<br>妥協のない質で学ぶオンライン日本語塾</h1>
+                <p id="heroSub">誰でも講師になれるサービスではありません。<br>厳選された資格保有講師が、あなたに合わせた高品質な1対1レッスンを提供します。</p>
+                <div class="hero-actions">
+                    <a href="booking.html" class="hero-btn primary" id="heroTrial">無料体験を予約</a>
+                    <a href="#sec-how" class="hero-btn secondary" id="heroHow">受講の流れを見る</a>
+                </div>
+                <p class="hero-note" id="heroNote">🎓 全講師が国家資格保有　✅ 塾が講師品質を管理　👤 完全1対1</p>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="hero-art-card card-a"><span>日</span></div>
+                <div class="hero-art-card card-b"><span>語</span></div>
+                <div class="hero-art-seal">K×K</div>
+                <div class="hero-art-line line-a"></div>
+                <div class="hero-art-line line-b"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. 選ばれる理由 -->
+        <div class="card reveal" id="sec-reasons">
+            <h2 id="reasonsTitle">Kano×Kanoが選ばれる3つの理由</h2>
+            <p style="margin-top: -8px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.78rem;" id="reasonsNote">※タップするとカード群の下に詳しい内容が表示されます。</p>
+            
+            <div class="feature-grid reveal-stagger">
+                <div class="feature-box" onclick="toggleDetail('detail-feat1', 'reasons')">
+                    <h3 id="feat1Title">① 講師全員が国家資格保有者</h3>
+                    <p id="feat1Desc">資格と専門性を備えた講師だけがレッスンを担当します。</p>
+                    <span class="click-hint" id="feat1Hint">▼ タップして詳細を見る</span>
+                </div>
+
+                <div class="feature-box" onclick="toggleDetail('detail-feat2', 'reasons')">
+                    <h3 id="feat2Title">② 塾が授業品質を管理</h3>
+                    <p id="feat2Desc">誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。</p>
+                    <span class="click-hint" id="feat2Hint">▼ タップして詳細を見る</span>
+                </div>
+
+                <div class="feature-box" onclick="toggleDetail('detail-feat3', 'reasons')">
+                    <h3 id="feat3Title">③ 1対1＋授業外サポート</h3>
+                    <p id="feat3Desc">一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。</p>
+                    <span class="click-hint" id="feat3Hint">▼ タップして詳細を見る</span>
+                </div>
+
+                <div id="detail-feat1" class="accordion-detail feature-detail-full">
+                    <p id="df1Desc">🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格を持っていることを講師としてのスタートラインとし、そのうえで指導経験や説明のわかりやすさ、学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではなく、専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせて丁寧に指導します。「何となく話せる」だけではなく、文法・語彙・発音の背景まで正しく説明できる、質の高いレッスンを提供することが、Kano×Kanoの基本方針です。</p>
+                </div>
+                <div id="detail-feat2" class="accordion-detail feature-detail-full">
+                    <p id="df2Desc">✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。</p>
+                </div>
+                <div id="detail-feat3" class="accordion-detail feature-detail-full">
+                    <p id="df3Desc">📝 <strong>詳細解説：</strong><br>1対1だからこそ、学習者一人ひとりのレベル・目的・苦手分野に合わせて、授業内容や進度、練習量を柔軟に調整できます。授業中だけで終わらず、QuizletやGoogleフォームなどを活用して、語彙・漢字・文法の復習や必要に応じた宿題・フィードバックまでサポート。次のレッスンにつなげながら、自分のペースで学び、苦手を置き去りにしない学習を目指します。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. プロフィール -->
+        <div class="card reveal" id="sec-profile">
+            <h2 id="profileTitle">代表プロフィール（Profile）</h2>
+            
+            <div class="profile-wrapper">
+                <div class="profile-img-group">
+                    <img src="profile.jpg.jpg" alt="代表講師 加納春紀" class="profile-img">
+                    <img src="sub-photo.jpg.jpg" alt="活動の様子" class="profile-img">
+                </div>
+                <div class="profile-content">
+                    <p><strong id="profileName">代表講師：加納 春紀（かのう はるき） / はるき先生</strong></p>
+                    <p id="profileP1">はじめまして、代表講師の加納春紀です。タイで日本語教育に携わった後、現在はシンガポールで現役の日本語教師として、多様な背景を持つ学習者を指導しています。</p>
+                    <p id="profileP2">「初めて日本語を学ぶ」「もっと自然に話せるようになりたい」「JLPTに合格したい」——目標は人それぞれです。国家資格を持つ日本語教師としての専門知識と海外での指導経験を生かし、一人ひとりの理解度や目的に合わせた、わかりやすく質の高いレッスンを大切にしています。</p>
+                    <p id="profileP3">また、<strong>剣道を10年以上続け三段を取得し、書道でも段位を取得。</strong>言葉だけでなく、日本の文化や考え方、表現の背景にあるニュアンスまで伝えながら、「学んだ日本語を実際に使える」ことを大切にしています。</p>
+                    
+                    <div class="badge-container">
+                        <span class="badge" id="b1">国家資格取得者</span>
+                        <span class="badge" id="b2">シンガポール現役教師</span>
+                        <span class="badge" id="b3">タイでの指導実績</span>
+                        <span class="badge" id="b4">剣道三段 / 書道段位取得</span>
+                        <span class="badge" id="b5">Googleフォーム対応</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. コース・料金 -->
+        <div class="card reveal" id="sec-courses">
+            <h2 id="coursesTitle">コース・料金案内（Courses & Plans）</h2>
+            <p style="margin-top: -8px; margin-bottom: 18px; color: var(--text-muted); font-size: 0.88rem;" id="coursesNote">
+                初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。
+            </p>
+            <div class="stripe-test-banner" id="stripeTestBanner"><strong>Stripe テスト決済</strong>：現在はテストモードです。実際の請求は発生しません。各プランの「テスト決済へ」からStripeの安全な決済画面を確認できます。</div>
+
+            <div class="course-item">
+                <div class="price-card" onclick="toggleDetail('detail-beginner', 'courses')">
+                    <span class="course-type-label" id="beginnerLabel">初級</span>
+                    <h3 id="beginnerTitle">初級日本語コース</h3>
+                    <p style="margin: 4px 0 8px; color: var(--text-muted);" id="beginnerDesc">ひらがな・カタカナから基本文法まで、ゼロから着実に学びたい方へ。</p>
+                    <div class="course-summary-price" id="beginnerSummary">月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円</div>
+                    <span class="click-hint" id="beginnerHint">▼ プラン詳細を見る</span>
+                </div>
+                <div id="detail-beginner" class="accordion-detail">
+                    <p id="beginnerDetail">📘 <strong>初級日本語：</strong><br>「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。</p>
+                    <div class="plan-grid reveal-stagger">
+                        <div class="mini-plan"><strong id="beginner4Title">月4回</strong><div class="mini-price" id="beginner4Price">8,000円 / 月</div><small id="beginner4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner4Pay" href="https://buy.stripe.com/test_00w7sK1W2gAGddN6cqeEo0i" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="beginnerRec">おすすめ</span><strong id="beginner8Title">月8回</strong><div class="mini-price" id="beginner8Price">16,000円 / 月</div><small id="beginner8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner8Pay" href="https://buy.stripe.com/test_00wdR80RY3NU5Ll8kyeEo0j" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan"><strong id="beginner12Title">月12回</strong><div class="mini-price" id="beginner12Price">24,000円 / 月</div><small id="beginner12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner12Pay" href="https://buy.stripe.com/test_4gMeVcgQWesy2z958meEo0k" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-item">
+                <div class="price-card" onclick="toggleDetail('detail-intermediate', 'courses')">
+                    <span class="course-type-label" id="intermediateLabel">中級</span>
+                    <h3 id="intermediateTitle">中級日本語コース（N4〜N3目安）</h3>
+                    <p style="margin: 4px 0 8px; color: var(--text-muted);" id="intermediateDesc">より複雑な文法・表現を学び、実践的に使える日本語を身につけます。</p>
+                    <div class="course-summary-price" id="intermediateSummary">月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円</div>
+                    <span class="click-hint" id="intermediateHint">▼ プラン詳細を見る</span>
+                </div>
+                <div id="detail-intermediate" class="accordion-detail">
+                    <p id="intermediateDetail">📈 <strong>中級日本語：</strong><br>文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。</p>
+                    <div class="plan-grid reveal-stagger">
+                        <div class="mini-plan"><strong id="intermediate4Title">月4回</strong><div class="mini-price" id="intermediate4Price">8,000円 / 月</div><small id="intermediate4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate4Pay" href="https://buy.stripe.com/test_aFa28q8kq98e1v56cqeEo0l" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="intermediateRec">おすすめ</span><strong id="intermediate8Title">月8回</strong><div class="mini-price" id="intermediate8Price">16,000円 / 月</div><small id="intermediate8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate8Pay" href="https://buy.stripe.com/test_00weVceIO2JQ3DdgR4eEo0m" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan"><strong id="intermediate12Title">月12回</strong><div class="mini-price" id="intermediate12Price">24,000円 / 月</div><small id="intermediate12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate12Pay" href="https://buy.stripe.com/test_7sYfZgasy1FM5LlcAOeEo0n" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-item">
+                <div class="price-card" onclick="toggleDetail('detail-conversation', 'courses')">
+                    <span class="course-type-label" id="conversationLabel">会話</span>
+                    <h3 id="conversationTitle">日常会話コース</h3>
+                    <p style="margin: 4px 0 8px; color: var(--text-muted);" id="conversationDesc">会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。</p>
+                    <div class="course-summary-price" id="conversationSummary">30分：月4回 4,000円〜 ・ 50分：月4回 6,000円〜 ｜ 毎月自動更新</div>
+                    <span class="click-hint" id="conversationHint">▼ プラン詳細を見る</span>
+                </div>
+                <div id="detail-conversation" class="accordion-detail">
+                    <p id="conversationDetail">💬 <strong>日常会話：</strong><br>旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。30分または50分を選び、月4回・8回・12回のサブスクリプションで受講します。毎月同じ回数が自動更新されるため、継続して会話量を確保したい方に向いています。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。</p>
+                    <div class="checkout-note" id="conversationPayNote">日常会話も毎月自動更新のサブスクリプションです。30分または50分を選び、月4回・8回・12回からお選びください。</div>
+                    <div class="plan-grid reveal-stagger">
+                        <div class="mini-plan"><strong id="conversation4Title">月4回</strong><div class="mini-price" id="conversation4Price">30分 4,000円 / 50分 6,000円</div><small id="conversation4Note">月に4回、気軽に日本人との会話を楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_4Pay" href="https://buy.stripe.com/test_7sYbJ00RYdoub5F9oCeEo0a" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月4回</a><a class="checkout-btn secondary" id="conversation50_4Pay" href="https://buy.stripe.com/test_9B65kCasy98eddNdESeEo0d" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月4回</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="conversationRec">おすすめ</span><strong id="conversation8Title">月8回</strong><div class="mini-price" id="conversation8Price">30分 8,000円 / 50分 12,000円</div><small id="conversation8Note">週2回ほど、会話する時間を生活の中に取り入れたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_8Pay" href="https://buy.stripe.com/test_8x2aEWfMS2JQ0r1asGeEo0b" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月8回</a><a class="checkout-btn secondary" id="conversation50_8Pay" href="https://buy.stripe.com/test_bJe3cugQW1FM5Ll58meEo0e" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月8回</a></div></div>
+                        <div class="mini-plan"><strong id="conversation12Title">月12回</strong><div class="mini-price" id="conversation12Price">30分 12,000円 / 50分 18,000円</div><small id="conversation12Note">たくさん話して、日本語での会話を日常的に楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_12Pay" href="https://buy.stripe.com/test_aFa3cu44a98ea1B30eeEo0c" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月12回</a><a class="checkout-btn secondary" id="conversation50_12Pay" href="https://buy.stripe.com/test_00wfZg3060BI0r130eeEo0f" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月12回</a></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-note" id="subscriptionPolicyNote" style="margin:24px 0 30px;">
+                <strong>月額プランについて</strong><br>
+                月額プランは自動更新です。<strong>原則として、決済完了後の契約キャンセル・返金は受け付けていません。</strong><br>
+                継続を希望しない場合は、次回更新日前までにお客様ご自身で自動更新を停止してください。停止は次回以降の更新を止める手続きで、現在の支払済み期間はその終了までご利用いただけます。<br>
+                <small>※ 法令上必要な場合、当校の責による場合、その他当校が特別に認める場合を除きます。</small>
+            </div>
+
+            <div class="section-subtitle" id="jlptSectionTitle">JLPT 合格集中コース</div>
+            <p id="jlptSectionDesc" style="color: var(--text-muted); margin-top: -4px;">N5・N4は、合格までの期間を決めて体系的に進める特別カリキュラムです。</p>
+
+            <div class="course-item">
+                <div class="price-card" onclick="toggleDetail('detail-n5', 'courses')">
+                    <span class="course-type-label" id="n5Label">JLPT N5</span>
+                    <h3 id="n5Title">N5合格集中コース</h3>
+                    <p style="margin: 4px 0 8px; color: var(--text-muted);" id="n5Desc">N5合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。</p>
+                    <div class="course-summary-price" id="n5Summary">全51回・100,000円 ／ 6か月コース または 1年コース</div>
+                    <span class="click-hint" id="n5Hint">▼ コース詳細を見る</span>
+                </div>
+                <div id="detail-n5" class="accordion-detail">
+                    <p id="n5Detail">🏆 <strong>N5合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。</p>
+                    <div class="duration-grid">
+                        <div class="duration-option" onclick="togglePace('pace-n5-six', this)"><strong id="n5SixTitle">6か月コース</strong><small id="n5SixNote">短期集中でN5合格を目指す</small></div>
+                        <div class="duration-option" onclick="togglePace('pace-n5-year', this)"><strong id="n5YearTitle">1年コース</strong><small id="n5YearNote">基礎を固めながらじっくりN5合格を目指す</small></div>
+                        <div class="pace-detail" id="pace-n5-six"><span id="n5SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
+                        <div class="pace-detail" id="pace-n5-year"><span id="n5YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
+                    </div>
+                    <div class="checkout-actions"><a class="checkout-btn" id="n5Pay" href="https://buy.stripe.com/test_6oUaEW9ou3NU3Dd30eeEo0g" target="_blank" rel="noopener" onclick="event.stopPropagation()">N5コースをテスト決済（100,000円）</a></div>
+                </div>
+            </div>
+
+            <div class="course-item">
+                <div class="price-card" onclick="toggleDetail('detail-n4', 'courses')">
+                    <span class="course-type-label" id="n4Label">JLPT N4</span>
+                    <h3 id="n4Title">N4合格集中コース</h3>
+                    <p style="margin: 4px 0 8px; color: var(--text-muted);" id="n4Desc">N4合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。</p>
+                    <div class="course-summary-price" id="n4Summary">全51回・100,000円 ／ 6か月コース または 1年コース</div>
+                    <span class="click-hint" id="n4Hint">▼ コース詳細を見る</span>
+                </div>
+                <div id="detail-n4" class="accordion-detail">
+                    <p id="n4Detail">🏆 <strong>N4合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。</p>
+                    <div class="duration-grid">
+                        <div class="duration-option" onclick="togglePace('pace-n4-six', this)"><strong id="n4SixTitle">6か月コース</strong><small id="n4SixNote">短期集中でN4合格を目指す</small></div>
+                        <div class="duration-option" onclick="togglePace('pace-n4-year', this)"><strong id="n4YearTitle">1年コース</strong><small id="n4YearNote">無理のないペースでN4合格を目指す</small></div>
+                        <div class="pace-detail" id="pace-n4-six"><span id="n4SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
+                        <div class="pace-detail" id="pace-n4-year"><span id="n4YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
+                    </div>
+                    <div class="checkout-actions"><a class="checkout-btn" id="n4Pay" href="https://buy.stripe.com/test_dRm5kC0RYaci0r1gR4eEo0h" target="_blank" rel="noopener" onclick="event.stopPropagation()">N4コースをテスト決済（100,000円）</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 受講の流れ -->
+        <div class="card reveal" id="sec-how">
+            <h2 id="howTitle">高品質な1対1レッスンを、世界中から</h2>
+            <p id="howIntro">授業の質を第一にしながら、世界中の学習者が続けやすい予約制を採用。空いている資格保有講師と時間を選び、あなたの現地時間で1対1レッスンを受講できます。</p>
+            <div class="step-grid reveal-stagger">
+                <div class="step-box"><div class="step-number">1</div><h3 id="step1Title">無料登録</h3><p id="step1Desc">学習目的や日本語レベルを登録します。</p></div>
+                <div class="step-box"><div class="step-number">2</div><h3 id="step2Title">日時を選ぶ</h3><p id="step2Desc">表示される空き時間から好きな日時を選びます。</p></div>
+                <div class="step-box"><div class="step-number">3</div><h3 id="step3Title">1対1レッスン</h3><p id="step3Desc">国家資格を持つ講師とオンラインで学びます。</p></div>
+                <div class="step-box"><div class="step-number">4</div><h3 id="step4Title">復習・次回予約</h3><p id="step4Desc">フィードバックを確認し、好きな時間に次回を予約。</p></div>
+            </div>
+            <div class="global-note" id="globalNote">🕒 予約時間は、生徒のタイムゾーンに合わせて表示するシステムを導入予定です。</div>
+        </div>
+
+        <!-- 5. お問い合わせ・体験レッスン -->
+        <div class="card reveal" id="sec-contact" style="text-align: center;">
+            <h2 id="contactTitle">お問い合わせ・体験レッスン</h2>
+            <p id="contactDesc">まずは15分の無料体験で、日本語レベル・目標・学び方を一緒に確認します。</p>
+            <p id="contactSubDesc" style="color: var(--accent-color); font-weight: bold; margin: 12px 0;">✨ 体験レッスンは15分無料で、お客様の日本語レベルの確認とご要望をお伺いします！</p>
+            <p style="font-size: 0.95rem; margin: 10px 0;"><strong id="contactEmailLabel">📧 メールアドレス:</strong> adgjp0129@gmail.com</p>
+            
+            <a href="booking.html" class="btn" id="btnText">無料体験を予約する</a>
+        </div>
+
+    </div>
+
+
+    <a href="booking.html" class="floating-trial-btn" id="floatingTrialBtn">無料体験予約はこちら</a>
+
+    <footer>
+        &copy; 2026 Kano×Kano (Kano×Kano). All Rights Reserved.<br>
+        <a href="tokusho.html" style="color:inherit; text-decoration:underline;">特定商取引法に基づく表記</a>
+    </footer>
+
+    <script>
+        function toggleDetail(id, group) {
+            const target = document.getElementById(id);
+
+            if (group === 'reasons') {
+                const isActive = target ? target.classList.contains('active') : false;
+                document.querySelectorAll('.feature-detail-full').forEach(el => el.classList.remove('active'));
+                if (!isActive && target) {
+                    target.classList.add('active');
+                }
+            } else if (group === 'courses') {
+                if (target) {
+                    target.classList.toggle('active');
+                }
+            }
+        }
+
+        function togglePace(id, option) {
+            const panel = document.getElementById(id);
+            if (!panel) return;
+            const grid = option.closest('.duration-grid');
+            const wasOpen = panel.classList.contains('active');
+            if (grid) {
+                grid.querySelectorAll('.pace-detail').forEach(el => el.classList.remove('active'));
+                grid.querySelectorAll('.duration-option').forEach(el => el.classList.remove('active'));
+            }
+            if (!wasOpen) {
+                panel.classList.add('active');
+                option.classList.add('active');
+            }
+        }
+
+        const i18n = {
+            ja: {
+                navReasons: "3つの理由", navProfile: "プロフィール", navCourses: "料金プラン", navHow: "受講の流れ", navContact: "無料体験", navLogin: "ログイン", floatingTrialBtn: "無料体験予約はこちら",
+                heroTitle: "講師全員が「国家資格」保有者。<br>妥協のない質で学ぶオンライン日本語塾",
+                heroSub: "誰でも講師になれるサービスではありません。<br>厳選された資格保有講師が、あなたに合わせた高品質な1対1レッスンを提供します。",
+                heroTrial: "無料体験を予約", heroHow: "受講の流れを見る", heroNote: "🎓 全講師が国家資格保有　✅ 塾が講師品質を管理　👤 完全1対1",
+                reasonsTitle: "Kano×Kanoが選ばれる3つの理由",
+                reasonsNote: "※タップするとカード群の下に詳しい内容が表示されます。",
+                feat1Title: "① 講師全員が国家資格保有者", feat1Desc: "資格と専門性を備えた講師だけがレッスンを担当します。", feat1Hint: "▼ タップして詳細を見る",
+                feat2Title: "② 塾が授業品質を管理", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "▼ タップして詳細を見る",
+                feat3Title: "③ 1対1＋授業外サポート", feat3Desc: "一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。", feat3Hint: "▼ タップして詳細を見る",
+                df1Desc: "🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格を持っていることを講師としてのスタートラインとし、そのうえで指導経験や説明のわかりやすさ、学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではなく、専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせて丁寧に指導します。「何となく話せる」だけではなく、文法・語彙・発音の背景まで正しく説明できる、質の高いレッスンを提供することが、Kano×Kanoの基本方針です。",
+                df2Desc: "✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。",
+                df3Desc: "📝 <strong>詳細解説：</strong><br>1対1だからこそ、学習者一人ひとりのレベル・目的・苦手分野に合わせて、授業内容や進度、練習量を柔軟に調整できます。授業中だけで終わらず、QuizletやGoogleフォームなどを活用して、語彙・漢字・文法の復習や必要に応じた宿題・フィードバックまでサポート。次のレッスンにつなげながら、自分のペースで学び、苦手を置き去りにしない学習を目指します。",
+                profileTitle: "代表プロフィール（Profile）", profileName: "代表講師：加納 春紀（かのう はるき） / はるき先生",
+                profileP1: "はじめまして、代表講師の加納春紀です。タイで日本語教育に携わった後、現在はシンガポールで現役の日本語教師として、多様な背景を持つ学習者を指導しています。",
+                profileP2: "「初めて日本語を学ぶ」「もっと自然に話せるようになりたい」「JLPTに合格したい」——目標は人それぞれです。国家資格を持つ日本語教師としての専門知識と海外での指導経験を生かし、一人ひとりの理解度や目的に合わせた、わかりやすく質の高いレッスンを大切にしています。",
+                profileP3: "また、<strong>剣道を10年以上続け三段を取得し、書道でも段位を取得。</strong>言葉だけでなく、日本の文化や考え方、表現の背景にあるニュアンスまで伝えながら、「学んだ日本語を実際に使える」ことを大切にしています。",
+                b1: "国家資格取得者", b2: "シンガポール現役教師", b3: "タイでの指導実績", b4: "剣道三段 / 書道段位取得", b5: "Googleフォーム対応",
+                coursesTitle: "コース・料金案内（Courses & Plans）", coursesNote: "初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。",
+                beginnerLabel: "初級", beginnerTitle: "初級日本語コース", beginnerDesc: "ひらがな・カタカナから基本文法まで、ゼロから着実に学びたい方へ。", beginnerSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", beginnerHint: "▼ プラン詳細を見る", beginnerDetail: "📘 <strong>初級日本語：</strong><br>「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。", beginner4Title: "月4回", beginner4Price: "8,000円 / 月", beginner4Note: "週1ペースで、無理なく続けたい方に", beginner8Title: "月8回", beginner8Price: "16,000円 / 月", beginner8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", beginner12Title: "月12回", beginner12Price: "24,000円 / 月", beginner12Note: "週3ペースで、集中的に上達を目指したい方に", beginnerRec: "おすすめ",
+                intermediateLabel: "中級", intermediateTitle: "中級日本語コース（N4〜N3目安）", intermediateDesc: "より複雑な文法・表現を学び、実践的に使える日本語を身につけます。", intermediateSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", intermediateHint: "▼ プラン詳細を見る", intermediateDetail: "📈 <strong>中級日本語：</strong><br>文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。", intermediate4Title: "月4回", intermediate4Price: "8,000円 / 月", intermediate4Note: "週1ペースで、無理なく続けたい方に", intermediate8Title: "月8回", intermediate8Price: "16,000円 / 月", intermediate8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", intermediate12Title: "月12回", intermediate12Price: "24,000円 / 月", intermediate12Note: "週3ペースで、集中的に上達を目指したい方に", intermediateRec: "おすすめ",
+                conversationLabel: "会話", conversationTitle: "日常会話コース", conversationDesc: "会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。", conversationSummary: "30分 1,000円 / 回 ・ 50分 1,500円 / 回 ｜ 月4回・8回・12回", conversationHint: "▼ プラン詳細を見る", conversationDetail: "💬 <strong>日常会話：</strong><br>旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。会話力を伸ばしたい方はもちろん、「特別な教材は使わず、ただ気楽に日本人と話してみたい」という方もOK。レッスンは30分（1回1,000円）と50分（1回1,500円）から、予約ごとに選べます。忙しい日は「今日はサクッと30分」、時間がある日は「今日はじっくり50分」のように、ライフスタイルに合わせて利用できます。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。月額料金は、各回で選んだ30分・50分の組み合わせに応じて計算されます。", conversation4Title: "月4回", conversation4Price: "30分 4,000円 / 50分 6,000円", conversation4Note: "月に4回、気軽に日本人との会話を楽しみたい方に", conversation8Title: "月8回", conversation8Price: "30分 8,000円 / 50分 12,000円", conversation8Note: "週2回ほど、会話する時間を生活の中に取り入れたい方に", conversation12Title: "月12回", conversation12Price: "30分 12,000円 / 50分 18,000円", conversation12Note: "たくさん話して、日本語での会話を日常的に楽しみたい方に", conversationRec: "おすすめ",
+                jlptSectionTitle: "JLPT 合格集中コース", jlptSectionDesc: "N5・N4は、合格までの期間を決めて体系的に進める特別カリキュラムです。",
+                n5Label: "JLPT N5", n5Title: "N5合格集中コース", n5Desc: "N5合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n5Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n5Hint: "▼ コース詳細を見る", n5Detail: "🏆 <strong>N5合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n5SixTitle: "6か月コース", n5SixNote: "短期集中でN5合格を目指す", n5YearTitle: "1年コース", n5YearNote: "基礎を固めながらじっくりN5合格を目指す", n5SixPace: "<strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n5YearPace: "<strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
+                n4Label: "JLPT N4", n4Title: "N4合格集中コース", n4Desc: "N4合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n4Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n4Hint: "▼ コース詳細を見る", n4Detail: "🏆 <strong>N4合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n4SixTitle: "6か月コース", n4SixNote: "短期集中でN4合格を目指す", n4YearTitle: "1年コース", n4YearNote: "無理のないペースでN4合格を目指す", n4SixPace: "<strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n4YearPace: "<strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
+                howTitle: "高品質な1対1レッスンを、世界中から", howIntro: "授業の質を第一にしながら、世界中の学習者が続けやすい予約制を採用。空いている資格保有講師と時間を選び、あなたの現地時間で1対1レッスンを受講できます。", step1Title: "無料登録", step1Desc: "学習目的や日本語レベルを登録します。", step2Title: "日時を選ぶ", step2Desc: "表示される空き時間から好きな日時を選びます。", step3Title: "1対1レッスン", step3Desc: "国家資格を持つ講師とオンラインで学びます。", step4Title: "復習・次回予約", step4Desc: "フィードバックを確認し、好きな時間に次回を予約。", globalNote: "🕒 予約時間は、生徒のタイムゾーンに合わせて表示するシステムを導入予定です。", contactTitle: "お問い合わせ・無料体験", contactDesc: "まずは15分の無料体験で、日本語レベル・目標・学び方を一緒に確認します。", contactSubDesc: "✨ 体験レッスンは15分無料です。", contactEmailLabel: "📧 メールアドレス:", btnText: "無料体験を予約する"
+            },
+            en: {
+                navReasons: "Reasons", navProfile: "Profile", navCourses: "Plans", navHow: "How it works", navContact: "Free Trial", navLogin: "Login", floatingTrialBtn: "Book a Free Trial",
+                heroTitle: "Every Teacher is Nationally Certified.<br>Quality-First Online Japanese Lessons",
+                heroSub: "This is not an open tutor marketplace. Every lesson is taught by a carefully selected, nationally certified Japanese-language professional.<br>Personalized 1-to-1 lessons, available worldwide.", heroTrial: "Book a Free Trial", heroHow: "See How It Works", heroNote: "🎓 100% nationally certified teachers  ✅ School-managed quality  👤 Private 1-to-1",
+                reasonsTitle: "3 Reasons to Choose Kano×Kano", reasonsNote: "* Tap to view full details below the cards.",
+                feat1Title: "① 100% Nationally Certified Teachers", feat1Desc: "Only qualified professionals with national certification teach our lessons.", feat1Hint: "▼ Tap for details",
+                feat2Title: "② Quality Managed by Kano×Kano", feat2Desc: "We are not an open tutor marketplace. The school sets and manages standards for teachers and lessons.", feat2Hint: "▼ Tap for details",
+                feat3Title: "③ 1-to-1 + After-Class Support", feat3Desc: "Lessons and review are tailored to each learner’s goals, level, and weaknesses.", feat3Hint: "▼ Tap for details",
+                df1Desc: "🎓 <strong>Details:</strong><br>Every Kano×Kano teacher holds a national qualification in Japanese-language education. Certification is our minimum standard; we also value teaching experience, clear explanations, and thoughtful communication with learners. Kano×Kano is not an open marketplace where anyone can register as a tutor. Our teachers use professional knowledge to adapt explanations to each learner’s level and goals, including the grammar, vocabulary, pronunciation, and reasoning behind natural Japanese. Providing consistently high-quality lessons is a core principle of Kano×Kano.",
+                df2Desc: "✅ <strong>Details:</strong><br>Kano×Kano is not an open marketplace where anyone can register as a tutor. We review not only qualifications, but also teaching experience, clarity of explanation, and communication skills, and only instructors who meet our standards teach lessons. We also share materials, teaching guidelines, and learning records within the school, helping maintain continuity and a consistent standard of lesson quality even when a student studies with a different teacher.",
+                df3Desc: "📝 <strong>Details:</strong><br>Because every lesson is 1-to-1, teachers can flexibly adjust the content, pace, and amount of practice to each learner’s level, goals, and weak points. Support continues beyond the lesson through Quizlet, Google Forms, homework, and feedback when needed, so each lesson connects naturally to the next and learners can improve without leaving weak areas behind.",
+                profileTitle: "Instructor Profile", profileName: "Head Instructor: Haruki Kano / Haruki Sensei",
+                profileP1: "Hello, I’m Haruki Kano, head instructor of Kano×Kano. After teaching Japanese in Thailand, I now work as an active Japanese-language teacher in Singapore, teaching learners from a wide range of backgrounds.",
+                profileP2: "Whether you are learning Japanese for the first time, want to speak more naturally, or are aiming to pass the JLPT, your goals are unique. I combine professional knowledge as a nationally certified Japanese-language teacher with international teaching experience to provide clear, high-quality lessons tailored to each learner’s level and goals.",
+                profileP3: "I have also practiced Kendo for more than 10 years and hold 3rd Dan, as well as a rank in Japanese calligraphy. My lessons go beyond words and grammar to include the culture, ways of thinking, and nuances behind real Japanese expression—with the goal of helping learners actually use the Japanese they study.",
+                b1: "Nationally Certified", b2: "Active Teacher", b3: "Thailand Experience", b4: "Kendo 3rd Dan / Calligraphy", b5: "Google Forms Support",
+                coursesTitle: "Courses & Plans", coursesNote: "Beginner and intermediate lessons are 50 minutes. Conversation lessons can be 30 or 50 minutes. All are private 1-to-1 courses with 4, 8, or 12 lessons per month.",
+                beginnerLabel: "Beginner", beginnerTitle: "Beginner Japanese Course", beginnerDesc: "Start from hiragana and katakana and build a solid foundation in basic grammar.", beginnerSummary: "4 lessons: 8,000 JPY / 8 lessons: 16,000 JPY / 12 lessons: 24,000 JPY", beginnerHint: "▼ View plans", beginnerDetail: "📘 <strong>Beginner Japanese:</strong><br>Based on Minna no Nihongo, this course systematically covers hiragana, katakana, pronunciation, basic vocabulary, and essential grammar. Rather than simply following the textbook, we use specially refined materials designed to make concepts more intuitive and deepen understanding. Because every lesson is 1-to-1, the pace can be adjusted carefully to each learner.", beginner4Title: "4 / month", beginner4Price: "8,000 JPY / month", beginner4Note: "Four times a month — for casually enjoying conversation with Japanese speakers", beginner8Title: "8 / month", beginner8Price: "16,000 JPY / month", beginner8Note: "About twice a week — make Japanese conversation part of your routine", beginner12Title: "12 / month", beginner12Price: "24,000 JPY / month", beginner12Note: "Talk often and enjoy Japanese conversation as a regular part of your everyday life", beginnerRec: "Recommended",
+                intermediateLabel: "Intermediate", intermediateTitle: "Intermediate Japanese Course (approx. N4–N3)", intermediateDesc: "Learn more complex grammar and expressions and develop practical Japanese skills.", intermediateSummary: "4 lessons: 8,000 JPY / 8 lessons: 16,000 JPY / 12 lessons: 24,000 JPY", intermediateHint: "▼ View plans", intermediateDetail: "📈 <strong>Intermediate Japanese:</strong><br>Develop grammar, vocabulary, reading, and conversation in balance, moving from Japanese you know to Japanese you can actually use.", intermediate4Title: "4 / month", intermediate4Price: "8,000 JPY / month", intermediate4Note: "Four times a month — for casually enjoying conversation with Japanese speakers", intermediate8Title: "8 / month", intermediate8Price: "16,000 JPY / month", intermediate8Note: "About twice a week — make Japanese conversation part of your routine", intermediate12Title: "12 / month", intermediate12Price: "24,000 JPY / month", intermediate12Note: "Talk often and enjoy Japanese conversation as a regular part of your everyday life", intermediateRec: "Recommended",
+                conversationLabel: "Conversation", conversationTitle: "Daily Conversation Course", conversationDesc: "Perfect for improving conversation skills—and also for anyone who simply wants a relaxed chat with a Japanese teacher.", conversationSummary: "30 min: from 4,000 JPY/month · 50 min: from 6,000 JPY/month | auto-renew monthly", conversationHint: "▼ View plans", conversationDetail: "💬 <strong>Daily Conversation:</strong><br>Talk about travel, work, hobbies, anime, or anything else you enjoy. This course is not only for learners who want structured speaking practice; it is also perfect if you simply want to relax and chat with a Japanese person without using formal materials. Choose a 30-minute or 50-minute monthly subscription, with 4, 8, or 12 lessons per month. The subscription renews automatically each month, making it easy to maintain a steady conversation routine. Your teacher can also give feedback on grammar, vocabulary, and more natural expressions whenever you want it.", conversation4Title: "4 / month", conversation4Price: "30 min: 4,000 JPY / 50 min: 6,000 JPY", conversation4Note: "Four times a month — for casually enjoying conversation with Japanese speakers", conversation8Title: "8 / month", conversation8Price: "30 min: 8,000 JPY / 50 min: 12,000 JPY", conversation8Note: "About twice a week — make Japanese conversation part of your routine", conversation12Title: "12 / month", conversation12Price: "30 min: 12,000 JPY / 50 min: 18,000 JPY", conversation12Note: "Talk often and enjoy Japanese conversation as a regular part of your everyday life", conversationRec: "Recommended",
+                jlptSectionTitle: "JLPT Intensive Pass Courses", jlptSectionDesc: "N5 and N4 use structured curricula with a defined 6-month or 1-year study period.",
+                n5Label: "JLPT N5", n5Title: "JLPT N5 Intensive Course", n5Desc: "Study the grammar, listening, and reading needed for N5 over six months or one year.", n5Summary: "51 lessons · 100,000 JPY / 6-month or 1-year track", n5Hint: "▼ View course details", n5Detail: "🏆 <strong>N5 Intensive:</strong><br>51 lessons total: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Choose a 6-month or 1-year pace based on your target date.", n5SixTitle: "6-Month Track", n5SixNote: "Intensive preparation for N5", n5YearTitle: "1-Year Track", n5YearNote: "Build the foundation steadily toward N5", n5SixPace: "<strong>6-month pace</strong><br>About 2 lessons per week (roughly 8–9 per month), completing all 51 lessons: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Best for learners aiming to pass N5 in a shorter, focused period. Monthly lesson counts may vary slightly by calendar and booking availability.", n5YearPace: "<strong>1-year pace</strong><br>About 1 lesson per week (roughly 4–5 per month), completing the same 51-lesson curriculum. This pace gives you more time to review and consolidate each topic before the final mock exam and review. Monthly lesson counts may vary slightly by calendar and booking availability.",
+                n4Label: "JLPT N4", n4Title: "JLPT N4 Intensive Course", n4Desc: "Study the grammar, listening, and reading needed for N4 over six months or one year.", n4Summary: "51 lessons · 100,000 JPY / 6-month or 1-year track", n4Hint: "▼ View course details", n4Detail: "🏆 <strong>N4 Intensive:</strong><br>51 lessons total: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Choose a 6-month or 1-year pace based on your target date.", n4SixTitle: "6-Month Track", n4SixNote: "Intensive preparation for N4", n4YearTitle: "1-Year Track", n4YearNote: "A steady pace toward N4", n4SixPace: "<strong>6-month pace</strong><br>About 2 lessons per week (roughly 8–9 per month), completing all 51 lessons: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Best for focused N4 preparation over a shorter period. Monthly lesson counts may vary slightly by calendar and booking availability.", n4YearPace: "<strong>1-year pace</strong><br>About 1 lesson per week (roughly 4–5 per month), completing the same 51 lessons at a steady pace. Suitable for learners balancing study with work or school while preparing carefully for N4. Monthly lesson counts may vary slightly by calendar and booking availability.",
+                howTitle: "Quality 1-to-1 Lessons, Available Worldwide", howIntro: "Quality comes first. Our flexible booking system then makes it easy for learners worldwide to choose an available certified teacher and study in their own local time.", step1Title: "Create an Account", step1Desc: "Tell us your level and learning goals.", step2Title: "Choose a Time", step2Desc: "Pick from available lesson times.", step3Title: "Take a 1-to-1 Lesson", step3Desc: "Learn online with a certified professional teacher.", step4Title: "Review & Rebook", step4Desc: "Check feedback and book your next lesson anytime.", globalNote: "🕒 Booking times will be shown in each learner’s local time zone.", contactTitle: "Contact & Free Trial", contactDesc: "Start with a free 15-minute trial to discuss your level, goals, and study plan.", contactSubDesc: "✨ Your first 15-minute trial is free.", contactEmailLabel: "📧 Email:", btnText: "Book a Free Trial"
+            },
+            th: {
+                navReasons: "เหตุผล", navProfile: "ประวัติผู้สอน", navCourses: "แพ็กเกจ", navHow: "ขั้นตอนการเรียน", navContact: "ทดลองฟรี", navLogin: "เข้าสู่ระบบ", floatingTrialBtn: "จองทดลองเรียนฟรี",
+                heroTitle: "ครูทุกคนมีคุณวุฒิระดับชาติ<br>เรียนภาษาญี่ปุ่นออนไลน์โดยเน้นคุณภาพเป็นอันดับแรก",
+                heroSub: "เราไม่ใช่แพลตฟอร์มที่ใครก็สมัครเป็นติวเตอร์ได้<br>ทุกบทเรียนสอนโดยครูภาษาญี่ปุ่นมืออาชีพที่ผ่านการคัดเลือกและมีคุณวุฒิระดับชาติ",
+                reasonsTitle: "3 เหตุผลที่ควรเลือก Kano×Kano", reasonsNote: "* กดเพื่อดูรายละเอียดด้านล่าง",
+                feat1Title: "① ครูทุกคนมีคุณวุฒิระดับชาติ", feat1Desc: "เฉพาะครูมืออาชีพที่มีคุณวุฒิและความเชี่ยวชาญเท่านั้นที่สอน", feat1Hint: "▼ กดเพื่อดูรายละเอียด",
+                feat2Title: "② โรงเรียนควบคุมคุณภาพการสอน", feat2Desc: "ไม่ใช่ตลาดติวเตอร์แบบเปิด แต่ Kano×Kano กำหนดมาตรฐานและดูแลคุณภาพครูและบทเรียน", feat2Hint: "▼ กดเพื่อดูรายละเอียด",
+                feat3Title: "③ เรียนตัวต่อตัว + ดูแลนอกเวลา", feat3Desc: "ปรับบทเรียนและการทบทวนให้เหมาะกับเป้าหมาย ระดับ และจุดอ่อนของผู้เรียนแต่ละคน", feat3Hint: "▼ กดเพื่อดูรายละเอียด",
+                df1Desc: "🎓 <strong>รายละเอียด:</strong><br>ครูผู้สอนของ Kano×Kano ทุกคนมีคุณวุฒิระดับชาติด้านการสอนภาษาญี่ปุ่น โดยคุณวุฒิเป็นมาตรฐานขั้นต่ำของเรา และเรายังให้ความสำคัญกับประสบการณ์สอน ความสามารถในการอธิบายให้เข้าใจง่าย และการสื่อสารกับผู้เรียน เราไม่ใช่แพลตฟอร์มเปิดที่ใครก็สมัครเป็นครูได้ ครูของเราสามารถอธิบายทั้งไวยากรณ์ คำศัพท์ การออกเสียง และเหตุผลเบื้องหลังภาษาญี่ปุ่นที่เป็นธรรมชาติ พร้อมปรับการสอนให้เหมาะกับระดับและเป้าหมายของแต่ละคน",
+                df2Desc: "✅ <strong>รายละเอียด:</strong><br>Kano×Kano ไม่ใช่แพลตฟอร์มแบบเปิดที่ใครก็สมัครเป็นครูได้ เราตรวจสอบทั้งคุณวุฒิ ประสบการณ์การสอน ความสามารถในการอธิบาย และทักษะการสื่อสาร และให้เฉพาะครูที่ผ่านมาตรฐานของโรงเรียนเป็นผู้สอน นอกจากนี้ยังมีการแชร์สื่อการเรียน แนวทางการสอน และบันทึกการเรียนภายในโรงเรียน เพื่อให้การเรียนต่อเนื่องและรักษามาตรฐานคุณภาพของบทเรียนได้แม้เปลี่ยนครูผู้สอน",
+                df3Desc: "📝 <strong>รายละเอียด:</strong><br>เพราะเป็นการเรียนแบบตัวต่อตัว ครูจึงสามารถปรับเนื้อหา ความเร็ว และปริมาณการฝึกให้เหมาะกับระดับ เป้าหมาย และจุดอ่อนของผู้เรียนแต่ละคนได้อย่างยืดหยุ่น การดูแลไม่ได้จบแค่ในชั้นเรียน แต่ยังมี Quizlet, Google Forms, การบ้าน และฟีดแบ็กตามความจำเป็น เพื่อเชื่อมต่อการเรียนแต่ละครั้งและไม่ปล่อยให้จุดอ่อนถูกทิ้งไว้",
+                profileTitle: "ประวัติผู้สอน", profileName: "หัวหน้าผู้สอน: ฮารุกิ คาโน่ / Haruki Sensei",
+                profileP1: "สวัสดีครับ ผมฮารุกิ คาโนะ ผู้สอนหลักของ Kano×Kano หลังจากมีประสบการณ์สอนภาษาญี่ปุ่นในประเทศไทย ปัจจุบันผมทำงานเป็นครูสอนภาษาญี่ปุ่นในสิงคโปร์ และสอนผู้เรียนจากหลากหลายพื้นฐาน",
+                profileP2: "ไม่ว่าจะเริ่มเรียนภาษาญี่ปุ่นเป็นครั้งแรก อยากพูดให้เป็นธรรมชาติมากขึ้น หรือมีเป้าหมายสอบ JLPT ผมใช้ทั้งความรู้ในฐานะครูภาษาญี่ปุ่นที่มีคุณวุฒิระดับชาติและประสบการณ์สอนต่างประเทศ เพื่อจัดบทเรียนคุณภาพสูงที่เข้าใจง่ายและเหมาะกับระดับและเป้าหมายของผู้เรียนแต่ละคน",
+                profileP3: "นอกจากนี้ ผมฝึกเคนโดมากกว่า 10 ปีและได้ระดับ 3 ดั้ง รวมถึงมีระดับด้านการเขียนพู่กันญี่ปุ่น จึงให้ความสำคัญกับการสอนทั้งภาษา วัฒนธรรม วิธีคิด และนัยของสำนวน เพื่อให้ผู้เรียนสามารถนำภาษาญี่ปุ่นที่เรียนไปใช้ได้จริง",
+                b1: "รับรองระดับชาติ", b2: "ครูประจำ", b3: "ประสบการณ์ในไทย", b4: "เคนโด 3단 / พู่กัน", b5: "รองรับ Google Forms",
+                coursesTitle: "คอร์สและแพ็กเกจ", coursesNote: "คอร์สระดับต้นและระดับกลางเรียนครั้งละ 50 นาที ส่วนคอร์สสนทนาเลือกได้ 30 หรือ 50 นาที ทุกคอร์สเป็นแบบตัวต่อตัว และเลือกเรียนเดือนละ 4, 8 หรือ 12 ครั้งได้",
+                beginnerLabel: "ระดับต้น", beginnerTitle: "คอร์สภาษาญี่ปุ่นระดับต้น", beginnerDesc: "เริ่มตั้งแต่ฮิรางานะ คาตากานะ และไวยากรณ์พื้นฐานอย่างเป็นระบบ", beginnerSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", beginnerHint: "▼ ดูแพ็กเกจ", beginnerDetail: "📘 <strong>ภาษาญี่ปุ่นระดับต้น:</strong><br>ใช้ Minna no Nihongo เป็นพื้นฐาน เรียนฮิรางานะ คาตากานะ การออกเสียง คำศัพท์พื้นฐาน และไวยากรณ์อย่างเป็นระบบ เราไม่ได้เพียงเรียนตามหนังสือ แต่ปรับและพัฒนาสื่อการสอนของเราเองให้เข้าใจได้ง่ายและลึกขึ้น และด้วยการเรียนแบบตัวต่อตัว ครูสามารถปรับจังหวะให้เหมาะกับผู้เรียนแต่ละคนได้", beginner4Title: "4 ครั้ง/เดือน", beginner4Price: "8,000 เยน/เดือน", beginner4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", beginner8Title: "8 ครั้ง/เดือน", beginner8Price: "16,000 เยน/เดือน", beginner8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", beginner12Title: "12 ครั้ง/เดือน", beginner12Price: "24,000 เยน/เดือน", beginner12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", beginnerRec: "แนะนำ",
+                intermediateLabel: "ระดับกลาง", intermediateTitle: "คอร์สภาษาญี่ปุ่นระดับกลาง (ประมาณ N4–N3)", intermediateDesc: "พัฒนาไวยากรณ์และสำนวนที่ซับซ้อนขึ้นเพื่อใช้ภาษาญี่ปุ่นได้จริง", intermediateSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", intermediateHint: "▼ ดูแพ็กเกจ", intermediateDetail: "📈 <strong>ภาษาญี่ปุ่นระดับกลาง:</strong><br>พัฒนาไวยากรณ์ คำศัพท์ การอ่าน และการสนทนาอย่างสมดุล เพื่อเปลี่ยนจากภาษาญี่ปุ่นที่รู้เป็นภาษาญี่ปุ่นที่ใช้ได้จริง", intermediate4Title: "4 ครั้ง/เดือน", intermediate4Price: "8,000 เยน/เดือน", intermediate4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", intermediate8Title: "8 ครั้ง/เดือน", intermediate8Price: "16,000 เยน/เดือน", intermediate8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", intermediate12Title: "12 ครั้ง/เดือน", intermediate12Price: "24,000 เยน/เดือน", intermediate12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", intermediateRec: "แนะนำ",
+                conversationLabel: "สนทนา", conversationTitle: "คอร์สสนทนาในชีวิตประจำวัน", conversationDesc: "เหมาะทั้งสำหรับผู้ที่อยากพัฒนาการสนทนา และผู้ที่เพียงอยากคุยกับคนญี่ปุ่นแบบสบาย ๆ", conversationSummary: "30 นาที เริ่ม 4,000 เยน/เดือน · 50 นาที เริ่ม 6,000 เยน/เดือน | ต่ออายุอัตโนมัติทุกเดือน", conversationHint: "▼ ดูแพ็กเกจ", conversationDetail: "💬 <strong>สนทนาในชีวิตประจำวัน:</strong><br>คุยเรื่องท่องเที่ยว งาน งานอดิเรก อนิเมะ หรือเรื่องที่คุณชอบได้อย่างสบาย ๆ เหมาะทั้งสำหรับผู้ที่อยากฝึกพูดอย่างจริงจังและผู้ที่เพียงอยากคุยกับคนญี่ปุ่นโดยไม่ต้องใช้ตำรา เลือกได้ทุกครั้งว่าจะเรียน 30 นาที (1,000 เยน) หรือ 50 นาที (1,500 เยน) วันที่ยุ่งก็เรียนสั้น ๆ 30 นาที วันที่มีเวลาก็คุยเต็มที่ 50 นาที และหากต้องการ ครูจะช่วยแก้ไวยากรณ์ คำศัพท์ และสำนวนที่เป็นธรรมชาติให้ด้วย ค่าเรียนต่อเดือนจะคำนวณตามจำนวนครั้งที่เลือกเรียน 30 นาทีและ 50 นาที", conversation4Title: "4 ครั้ง/เดือน", conversation4Price: "30 นาที 4,000 เยน / 50 นาที 6,000 เยน", conversation4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", conversation8Title: "8 ครั้ง/เดือน", conversation8Price: "30 นาที 8,000 เยน / 50 นาที 12,000 เยน", conversation8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", conversation12Title: "12 ครั้ง/เดือน", conversation12Price: "30 นาที 12,000 เยน / 50 นาที 18,000 เยน", conversation12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", conversationRec: "แนะนำ",
+                jlptSectionTitle: "คอร์สเข้มข้นเพื่อสอบผ่าน JLPT", jlptSectionDesc: "คอร์ส N5 และ N4 เป็นหลักสูตรที่วางแผนเรียนแบบ 6 เดือนหรือ 1 ปีอย่างเป็นระบบ",
+                n5Label: "JLPT N5", n5Title: "คอร์สเข้มข้น JLPT N5", n5Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N5 ภายใน 6 เดือนหรือ 1 ปี", n5Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n5Hint: "▼ ดูรายละเอียด", n5Detail: "🏆 <strong>N5 Intensive:</strong><br>ทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n5SixTitle: "คอร์ส 6 เดือน", n5SixNote: "เตรียมสอบ N5 แบบเข้มข้น", n5YearTitle: "คอร์ส 1 ปี", n5YearNote: "ค่อย ๆ สร้างพื้นฐานเพื่อสอบ N5", n5SixPace: "<strong>แนวทางเรียน 6 เดือน</strong><br>ประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N5 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n5YearPace: "<strong>แนวทางเรียน 1 ปี</strong><br>ประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้งเท่ากัน เหมาะกับผู้ที่ต้องการมีเวลาทบทวนและสร้างพื้นฐานอย่างมั่นคงก่อนสอบ N5 จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
+                n4Label: "JLPT N4", n4Title: "คอร์สเข้มข้น JLPT N4", n4Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N4 ภายใน 6 เดือนหรือ 1 ปี", n4Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n4Hint: "▼ ดูรายละเอียด", n4Detail: "🏆 <strong>N4 Intensive:</strong><br>ทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n4SixTitle: "คอร์ส 6 เดือน", n4SixNote: "เตรียมสอบ N4 แบบเข้มข้น", n4YearTitle: "คอร์ส 1 ปี", n4YearNote: "เรียนอย่างต่อเนื่องเพื่อสอบ N4", n4SixPace: "<strong>แนวทางเรียน 6 เดือน</strong><br>ประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N4 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n4YearPace: "<strong>แนวทางเรียน 1 ปี</strong><br>ประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้ง เหมาะกับผู้ที่ต้องการเรียนควบคู่กับงานหรือโรงเรียนและเตรียมสอบ N4 อย่างต่อเนื่อง จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
+                contactTitle: "ติดต่อและสมัครเรียนทดลอง", contactDesc: "หากมีข้อสงสัยหรือสนใจเรียนทดลอง สามารถติดต่อได้ตลอดเวลาครับ!", contactSubDesc: "✨ ทดลองเรียน 15 นาทีแรกฟรี! เพื่อประเมินระดับภาษาและพูดคุยความต้องการของคุณ", contactEmailLabel: "📧 อีเมล:", btnText: "สมัครเรียนทดลอง"
+            },
+            ko: {
+                navReasons: "3가지 이유", navProfile: "프로필", navCourses: "요금 플랜", navHow: "수강 방법", navContact: "무료 체험", navLogin: "로그인", floatingTrialBtn: "무료 체험 예약",
+                heroTitle: "강사진 전원 국가자격 보유.<br>수업의 질을 최우선으로 하는 온라인 일본어 학원",
+                heroSub: "누구나 강사로 등록할 수 있는 서비스가 아닙니다.<br>엄선된 국가자격 보유 전문 강사가 고품질 1:1 레슨을 제공합니다.",
+                reasonsTitle: "하루키 숙을 선택해야 하는 3가지 이유", reasonsNote: "* 누르면 상세 내용이 표시됩니다.",
+                feat1Title: "① 강사진 전원 국가자격 보유자", feat1Desc: "검증된 프로 강사만 수업 담당.", feat1Hint: "▼ 상세 보기",
+                feat2Title: "② 학원이 수업 품질을 관리", feat2Desc: "오픈 튜터 마켓이 아니라 학원 기준으로 강사와 수업 품질을 관리합니다.", feat2Hint: "▼ 상세 보기",
+                feat3Title: "③ 1:1 + 수업 외 학습 지원", feat3Desc: "학습자의 목표·수준·약점에 맞춰 수업과 복습을 지원합니다.", feat3Hint: "▼ 상세 보기",
+                df1Desc: "🎓 <strong>상세 설명:</strong><br>Kano×Kano의 모든 강사는 일본어 교육 관련 국가자격을 보유하고 있습니다. 자격 보유를 기본 조건으로 하며, 지도 경험과 알기 쉬운 설명, 학습자와의 소통도 중요하게 봅니다. 누구나 강사로 등록할 수 있는 오픈 플랫폼이 아니며, 전문 지식을 갖춘 강사가 학습자의 수준과 목적에 맞춰 문법·어휘·발음과 자연스러운 표현의 배경까지 정확하고 이해하기 쉽게 지도합니다.",
+                df2Desc: "✅ <strong>상세 설명:</strong><br>Kano×Kano는 누구나 강사로 등록할 수 있는 오픈형 플랫폼이 아닙니다. 자격뿐 아니라 지도 경험, 설명력, 커뮤니케이션 능력까지 확인하여 학원의 기준을 충족한 강사만 수업을 담당합니다. 또한 교재, 수업 방침, 학습 기록을 학원 내에서 공유해 담당 강사가 바뀌어도 학습 흐름이 끊기지 않고 일정한 수준의 수업 품질을 유지할 수 있도록 관리합니다.",
+                df3Desc: "📝 <strong>상세 설명:</strong><br>1:1 수업이기 때문에 학습자의 수준, 목표, 약점에 맞춰 수업 내용과 진도, 연습량을 유연하게 조정할 수 있습니다. 수업 후에도 Quizlet, Google 폼, 필요에 따른 과제와 피드백을 활용해 복습을 지원하고, 다음 수업으로 자연스럽게 이어지도록 하여 약점을 남기지 않고 자신의 속도로 학습할 수 있도록 돕습니다.",
+                profileTitle: "대표 강사 프로필", profileName: "대표 강사: 카노 하루키 / 하루키 선생님",
+                profileP1: "안녕하세요. Kano×Kano 대표 강사 카노 하루키입니다. 태국에서 일본어 교육 경험을 쌓은 뒤, 현재는 싱가포르에서 현직 일본어 교사로 다양한 배경의 학습자를 지도하고 있습니다.",
+                profileP2: "처음 일본어를 배우는 분, 더 자연스럽게 말하고 싶은 분, JLPT 합격을 목표로 하는 분까지 목표는 각자 다릅니다. 국가자격을 갖춘 일본어 교사로서의 전문 지식과 해외 지도 경험을 바탕으로 학습자의 수준과 목적에 맞춘 알기 쉽고 질 높은 수업을 제공합니다.",
+                profileP3: "또한 검도를 10년 이상 수련해 3단을 취득했고 서예 단위도 보유하고 있습니다. 단어와 문법뿐 아니라 일본 문화, 사고방식, 표현 속 뉘앙스까지 전달하며 배운 일본어를 실제로 사용할 수 있도록 하는 것을 중요하게 생각합니다.",
+                b1: "국가자격 보유", b2: "현직 교사", b3: "태국 지도 실적", b4: "검도 3단/서예", b5: "Google 폼 지원",
+                coursesTitle: "코스・요금 안내", coursesNote: "초급・중급은 50분, 일상회화는 30분 또는 50분 1:1 수업입니다. 각 코스는 월 4회, 8회, 12회 플랜 중에서 선택할 수 있습니다.",
+                beginnerLabel: "초급", beginnerTitle: "초급 일본어 코스", beginnerDesc: "히라가나・가타카나부터 기본 문법까지 처음부터 탄탄하게 배웁니다.", beginnerSummary: "월 4회 8,000엔 / 월 8회 16,000엔 / 월 12회 24,000엔", beginnerHint: "▼ 플랜 상세 보기", beginnerDetail: "📘 <strong>초급 일본어:</strong><br>『민나노 니혼고』를 바탕으로 히라가나・가타카나, 발음, 기본 어휘와 기초 문법을 체계적으로 배웁니다. 교과서를 그대로 따라가는 데 그치지 않고 학습자가 더 직관적으로 이해하고 깊이 익힐 수 있도록 자체적으로 보완한 교재를 사용합니다. 1:1 수업이므로 각 학습자의 이해도에 맞춰 세심하게 진행합니다.", beginner4Title: "월 4회", beginner4Price: "월 8,000엔", beginner4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", beginner8Title: "월 8회", beginner8Price: "월 16,000엔", beginner8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", beginner12Title: "월 12회", beginner12Price: "월 24,000엔", beginner12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", beginnerRec: "추천",
+                intermediateLabel: "중급", intermediateTitle: "중급 일본어 코스 (N4~N3 정도)", intermediateDesc: "더 복잡한 문법과 표현을 익혀 실전에서 사용할 수 있는 일본어를 기릅니다.", intermediateSummary: "월 4회 8,000엔 / 월 8회 16,000엔 / 월 12회 24,000엔", intermediateHint: "▼ 플랜 상세 보기", intermediateDetail: "📈 <strong>중급 일본어:</strong><br>문법, 어휘, 독해, 회화를 균형 있게 향상시켜 아는 일본어에서 실제로 쓰는 일본어로 발전합니다.", intermediate4Title: "월 4회", intermediate4Price: "월 8,000엔", intermediate4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", intermediate8Title: "월 8회", intermediate8Price: "월 16,000엔", intermediate8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", intermediate12Title: "월 12회", intermediate12Price: "월 24,000엔", intermediate12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", intermediateRec: "추천",
+                conversationLabel: "회화", conversationTitle: "일상회화 코스", conversationDesc: "회화 실력을 늘리고 싶은 분은 물론, 부담 없이 일본인과 편하게 이야기하고 싶은 분도 환영합니다.", conversationSummary: "30분 월 4회 4,000엔부터 · 50분 월 4회 6,000엔부터 | 매월 자동 갱신", conversationHint: "▼ 플랜 상세 보기", conversationDetail: "💬 <strong>일상회화:</strong><br>여행, 일, 취미, 애니메이션 등 좋아하는 주제로 즐겁게 일본어를 말하는 코스입니다. 회화 실력을 키우고 싶은 분뿐 아니라 별도 교재 없이 일본인과 편하게 이야기해 보고 싶은 분도 괜찮습니다. 예약할 때마다 30분(1회 1,000엔) 또는 50분(1회 1,500엔)을 선택할 수 있어 바쁜 날에는 30분, 여유 있는 날에는 50분으로 생활 패턴에 맞춰 이용할 수 있습니다. 원하면 문법, 어휘, 자연스러운 표현도 강사가 꼼꼼하게 피드백합니다. 월 요금은 각 예약에서 선택한 30분・50분 수업 조합에 따라 계산됩니다.", conversation4Title: "월 4회", conversation4Price: "30분 4,000엔 / 50분 6,000엔", conversation4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", conversation8Title: "월 8회", conversation8Price: "30분 8,000엔 / 50분 12,000엔", conversation8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", conversation12Title: "월 12회", conversation12Price: "30분 12,000엔 / 50분 18,000엔", conversation12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", conversationRec: "추천",
+                jlptSectionTitle: "JLPT 합격 집중 코스", jlptSectionDesc: "N5・N4는 6개월 또는 1년 기간을 정해 체계적으로 진행하는 특별 커리큘럼입니다.",
+                n5Label: "JLPT N5", n5Title: "N5 합격 집중 코스", n5Desc: "N5에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n5Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n5Hint: "▼ 코스 상세 보기", n5Detail: "🏆 <strong>N5 집중:</strong><br>문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n5SixTitle: "6개월 코스", n5SixNote: "단기간 집중해서 N5 합격 목표", n5YearTitle: "1년 코스", n5YearNote: "기초를 다지며 천천히 N5 합격 목표", n5SixPace: "<strong>6개월 학습 페이스</strong><br>주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N5 합격을 목표로 하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n5YearPace: "<strong>1년 학습 페이스</strong><br>주 약 1회(월 4~5회 정도)로 같은 총 51회를 진행합니다. 복습 시간을 충분히 가지며 기초를 차근차근 다져 N5 합격을 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
+                n4Label: "JLPT N4", n4Title: "N4 합격 집중 코스", n4Desc: "N4에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n4Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n4Hint: "▼ 코스 상세 보기", n4Detail: "🏆 <strong>N4 집중:</strong><br>문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n4SixTitle: "6개월 코스", n4SixNote: "단기간 집중해서 N4 합격 목표", n4YearTitle: "1년 코스", n4YearNote: "무리 없는 페이스로 N4 합격 목표", n4SixPace: "<strong>6개월 학습 페이스</strong><br>주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N4 합격을 준비하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n4YearPace: "<strong>1년 학습 페이스</strong><br>주 약 1회(월 4~5회 정도)로 총 51회를 진행합니다. 학교나 일과 병행하면서 꾸준히 N4를 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
+                contactTitle: "문의 및 체험 레슨 신청", contactDesc: "체험 레슨을 신청하시려면 언제든 편하게 연락 주세요!", contactSubDesc: "✨ 체험 레슨은 15분 무료로 일본어 레벨 확인 및 희망 사항을 상담해 드립니다!", contactEmailLabel: "📧 이메일:", btnText: "체험 레슨 신청하기"
+            },
+            zh: {
+                navReasons: "选择理由", navProfile: "讲师简介", navCourses: "课程套餐", navHow: "上课流程", navContact: "免费试听", navLogin: "登录", floatingTrialBtn: "预约免费试听",
+                heroTitle: "讲师全员持有国家资格。<br>以教学质量为第一的在线日语学校",
+                heroSub: "这里不是任何人都能注册成为老师的平台。<br>由严格筛选、持有国家资格的专业日语教师提供高品质一对一课程。",
+                reasonsTitle: "选择Kano×Kano的3大理由", reasonsNote: "※ 点击查看详细内容。",
+                feat1Title: "① 全员持国家资格证书", feat1Desc: "由严选专业讲师授课，保证高质量教学。", feat1Hint: "▼ 查看详情",
+                feat2Title: "② 学校统一管理教学质量", feat2Desc: "不是开放式教师市场，而是由Kano×Kano按照标准筛选教师并管理课程质量。", feat2Hint: "▼ 查看详情",
+                feat3Title: "③ 一对一＋课后学习支持", feat3Desc: "根据每位学习者的目标、水平和弱项调整课程与复习。", feat3Hint: "▼ 查看详情",
+                df1Desc: "🎓 <strong>详细讲解：</strong><br>Kano×Kano所有授课教师均持有日语教育相关国家资格。持证只是我们对讲师的基本要求，我们同样重视教学经验、清晰易懂的讲解能力以及与学习者的沟通。这里不是任何人都可以注册成为教师的开放平台。专业教师会根据每位学习者的水平和目标，准确讲解语法、词汇、发音以及自然表达背后的原因，提供稳定而高质量的课程。",
+                df2Desc: "✅ <strong>详细讲解：</strong><br>Kano×Kano并不是任何人都可以自由注册成为教师的开放式平台。我们不仅确认教师的资格，还会综合考察教学经验、讲解能力和沟通能力，只有达到本校标准的教师才能授课。同时，教材、教学方针和学习记录会在校内共享，即使更换教师，也能尽量保持学习的连续性和稳定的课程质量。",
+                df3Desc: "📝 <strong>详细讲解：</strong><br>因为采用一对一教学，教师可以根据每位学习者的水平、目标和薄弱点，灵活调整课程内容、进度和练习量。课程结束后也会根据需要通过Quizlet、Google Forms、作业和反馈继续支持复习，让每一次课程自然衔接到下一次，并帮助学习者按照自己的节奏稳步前进，不让薄弱环节被忽略。",
+                profileTitle: "代表讲师简介", profileName: "代表讲师：加纳 春纪 / Haruki 老师",
+                profileP1: "您好，我是Kano×Kano代表讲师加纳春纪。在泰国从事日语教育后，目前在新加坡担任日语教师，教授来自不同背景的学习者。",
+                profileP2: "无论是第一次学习日语、想说得更自然，还是以通过JLPT为目标，每个人的学习目标都不同。我结合国家资格日语教师的专业知识与海外教学经验，根据每位学习者的水平和目标，提供清晰、易懂且高质量的一对一课程。",
+                profileP3: "此外，我练习剑道超过10年并取得三段，同时拥有书法段位。课程不仅教授词汇和语法，也会介绍日本文化、思维方式以及表达背后的细微语感，重视让学习者真正能够使用所学的日语。",
+                b1: "国家资格持有者", b2: "现役教师", b3: "泰国教学経験", b4: "剑道三段/书法", b5: "支持Google Form",
+                coursesTitle: "课程与收费方案", coursesNote: "初级和中级课程每次50分钟；日常会话可选择30分钟或50分钟。所有课程均为一对一，可选择每月4次、8次或12次。",
+                beginnerLabel: "初级", beginnerTitle: "初级日语课程", beginnerDesc: "从平假名、片假名和基础语法开始，扎实建立日语基础。", beginnerSummary: "每月4次 8,000日元 / 8次 16,000日元 / 12次 24,000日元", beginnerHint: "▼ 查看方案", beginnerDetail: "📘 <strong>初级日语：</strong><br>以《大家的日语》为基础，系统学习平假名、片假名、发音、基础词汇和基础语法。我们并非简单照着教材推进，而是使用经过独立优化的教学资料，让学习者更直观地理解并加深掌握。一对一授课也能根据每位学习者的理解程度细致调整进度。", beginner4Title: "每月4次", beginner4Price: "8,000日元/月", beginner4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", beginner8Title: "每月8次", beginner8Price: "16,000日元/月", beginner8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", beginner12Title: "每月12次", beginner12Price: "24,000日元/月", beginner12Note: "适合想多聊天、在日常中经常享受日语会话的人", beginnerRec: "推荐",
+                intermediateLabel: "中级", intermediateTitle: "中级日语课程（约N4～N3）", intermediateDesc: "学习更复杂的语法与表达，培养实际运用日语的能力。", intermediateSummary: "每月4次 8,000日元 / 8次 16,000日元 / 12次 24,000日元", intermediateHint: "▼ 查看方案", intermediateDetail: "📈 <strong>中级日语：</strong><br>均衡提升语法、词汇、阅读与会话能力，从“知道日语”进阶到“会用日语”。", intermediate4Title: "每月4次", intermediate4Price: "8,000日元/月", intermediate4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", intermediate8Title: "每月8次", intermediate8Price: "16,000日元/月", intermediate8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", intermediate12Title: "每月12次", intermediate12Price: "24,000日元/月", intermediate12Note: "适合想多聊天、在日常中经常享受日语会话的人", intermediateRec: "推荐",
+                conversationLabel: "会话", conversationTitle: "日常会话课程", conversationDesc: "不仅适合想提高会话能力的人，也欢迎只是想轻松和日本人聊天的人。", conversationSummary: "30分钟：每月4次4,000日元起 · 50分钟：每月4次6,000日元起 | 每月自动续费", conversationHint: "▼ 查看方案", conversationDetail: "💬 <strong>日常会话：</strong><br>可以围绕旅行、工作、兴趣、动漫等喜欢的话题轻松地用日语聊天。不仅适合想系统提高会话能力的人，也适合不使用特别教材、只是想轻松和日本人聊天的人。每次预约都可以选择30分钟（1次1,000日元）或50分钟（1次1,500日元）：忙的时候轻松聊30分钟，有时间时则认真聊50分钟。需要的话，老师也会对语法、词汇和更自然的表达给予细致反馈。每月费用会根据每次预约所选择的30分钟与50分钟课程组合计算。", conversation4Title: "每月4次", conversation4Price: "30分钟 4,000日元 / 50分钟 6,000日元", conversation4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", conversation8Title: "每月8次", conversation8Price: "30分钟 8,000日元 / 50分钟 12,000日元", conversation8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", conversation12Title: "每月12次", conversation12Price: "30分钟 12,000日元 / 50分钟 18,000日元", conversation12Note: "适合想多聊天、在日常中经常享受日语会话的人", conversationRec: "推荐",
+                jlptSectionTitle: "JLPT 合格集中课程", jlptSectionDesc: "N5、N4采用设定6个月或1年学习周期的系统化特别课程。",
+                n5Label: "JLPT N5", n5Title: "N5合格集中课程", n5Desc: "在6个月或1年内系统学习N5所需的语法、听力和阅读。", n5Summary: "共51次・100,000日元 / 6个月或1年课程", n5Hint: "▼ 查看课程详情", n5Detail: "🏆 <strong>N5集中课程：</strong><br>共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n5SixTitle: "6个月课程", n5SixNote: "短期集中备考N5", n5YearTitle: "1年课程", n5YearNote: "扎实打基础，稳步备考N5", n5SixPace: "<strong>6个月学习节奏</strong><br>每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N5的学习者。每月次数可能会根据日历和预约情况略有调整。", n5YearPace: "<strong>1年学习节奏</strong><br>每周约1次（每月约4–5次），完成同样的51次课程。可以保留充足的复习时间，扎实建立基础并稳步准备N5。每月次数可能会根据日历和预约情况略有调整。",
+                n4Label: "JLPT N4", n4Title: "N4合格集中课程", n4Desc: "在6个月或1年内系统学习N4所需的语法、听力和阅读。", n4Summary: "共51次・100,000日元 / 6个月或1年课程", n4Hint: "▼ 查看课程详情", n4Detail: "🏆 <strong>N4集中课程：</strong><br>共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n4SixTitle: "6个月课程", n4SixNote: "短期集中备考N4", n4YearTitle: "1年课程", n4YearNote: "以稳定节奏备考N4", n4SixPace: "<strong>6个月学习节奏</strong><br>每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N4的学习者。每月次数可能会根据日历和预约情况略有调整。", n4YearPace: "<strong>1年学习节奏</strong><br>每周约1次（每月约4–5次），完成全部51次课程。适合希望兼顾工作或学校、以稳定节奏认真准备N4的学习者。每月次数可能会根据日历和预约情况略有调整。",
+                contactTitle: "咨询与试听课申請", contactDesc: "如有任何疑问或想申请试听课，欢迎随时与我们联系！", contactSubDesc: "✨ 试听课前15分钟免费！为您确认日语水平并详细了解您的学习需求。", contactEmailLabel: "📧 电子邮箱:", btnText: "申请试听课"
+            }
+        };
+
+        const paymentI18n = {
+            ja: { banner: '<strong>Stripe テスト決済</strong>：現在はテストモードです。実際の請求は発生しません。各プランの「テスト決済へ」からStripeの安全な決済画面を確認できます。', pay: 'テスト決済へ', c30_4: '30分・月4回', c50_4: '50分・月4回', c30_8: '30分・月8回', c50_8: '50分・月8回', c30_12: '30分・月12回', c50_12: '50分・月12回', cnote: '日常会話も毎月自動更新のサブスクリプションです。', n5: 'N5コースをテスト決済（100,000円）', n4: 'N4コースをテスト決済（100,000円）' },
+            en: { banner: '<strong>Stripe test checkout</strong>: This site is currently in test mode. No real charge will be made. Use the test checkout buttons to preview Stripe Checkout.', pay: 'Test checkout', c30_4: '30 min · 4/month', c50_4: '50 min · 4/month', c30_8: '30 min · 8/month', c50_8: '50 min · 8/month', c30_12: '30 min · 12/month', c50_12: '50 min · 12/month', cnote: 'Daily Conversation is also an auto-renewing monthly subscription.', n5: 'Test checkout N5 course (¥100,000)', n4: 'Test checkout N4 course (¥100,000)' },
+            th: { banner: '<strong>ชำระเงินทดสอบด้วย Stripe</strong>: ขณะนี้เป็นโหมดทดสอบ จึงไม่มีการเรียกเก็บเงินจริง กดปุ่มชำระเงินทดสอบเพื่อดูหน้าชำระเงินของ Stripe', pay: 'ชำระเงินทดสอบ', c30_4: '30 นาที · 4 ครั้ง/เดือน', c50_4: '50 นาที · 4 ครั้ง/เดือน', c30_8: '30 นาที · 8 ครั้ง/เดือน', c50_8: '50 นาที · 8 ครั้ง/เดือน', c30_12: '30 นาที · 12 ครั้ง/เดือน', c50_12: '50 นาที · 12 ครั้ง/เดือน', cnote: 'คอร์สสนทนาเป็นสมาชิกแบบต่ออายุอัตโนมัติทุกเดือนเช่นกัน', n5: 'ชำระเงินทดสอบคอร์ส N5 (¥100,000)', n4: 'ชำระเงินทดสอบคอร์ส N4 (¥100,000)' },
+            ko: { banner: '<strong>Stripe 테스트 결제</strong>: 현재 테스트 모드이므로 실제 청구는 발생하지 않습니다. 테스트 결제 버튼으로 Stripe 결제 화면을 확인할 수 있습니다.', pay: '테스트 결제', c30_4: '30분 · 월 4회', c50_4: '50분 · 월 4회', c30_8: '30분 · 월 8회', c50_8: '50분 · 월 8회', c30_12: '30분 · 월 12회', c50_12: '50분 · 월 12회', cnote: '일상회화도 매월 자동 갱신되는 구독입니다.', n5: 'N5 코스 테스트 결제 (¥100,000)', n4: 'N4 코스 테스트 결제 (¥100,000)' },
+            zh: { banner: '<strong>Stripe 测试支付</strong>：目前为测试模式，不会产生真实扣款。可通过测试支付按钮查看Stripe结账页面。', pay: '测试支付', c30_4: '30分钟·每月4次', c50_4: '50分钟·每月4次', c30_8: '30分钟·每月8次', c50_8: '50分钟·每月8次', c30_12: '30分钟·每月12次', c50_12: '50分钟·每月12次', cnote: '日常会话也是每月自动续费订阅。', n5: '测试支付N5课程（¥100,000）', n4: '测试支付N4课程（¥100,000）' }
+        };
+
+        function changeLanguage(lang) {
+            const data = i18n[lang] || i18n['ja'];
+            for (let key in data) {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (key.includes('Title') || key.includes('Desc') || key.includes('Price') || key.includes('P') || key.includes('Note') || key.includes('Pace') || key.includes('hero')) {
+                        el.innerHTML = data[key];
+                    } else {
+                        el.innerText = data[key];
+                    }
+                }
+            }
+            const pi = paymentI18n[lang] || paymentI18n.ja;
+            const banner = document.getElementById('stripeTestBanner'); if (banner) banner.innerHTML = pi.banner;
+            ['beginner4Pay','beginner8Pay','beginner12Pay','intermediate4Pay','intermediate8Pay','intermediate12Pay'].forEach(id => { const e=document.getElementById(id); if(e) e.textContent=pi.pay; });
+            [['conversation30_4Pay','c30_4'],['conversation50_4Pay','c50_4'],['conversation30_8Pay','c30_8'],['conversation50_8Pay','c50_8'],['conversation30_12Pay','c30_12'],['conversation50_12Pay','c50_12']].forEach(([id,key])=>{const el=document.getElementById(id); if(el && pi[key]) el.textContent=pi[key];});
+            const cn=document.getElementById('conversationPayNote'); if(cn && pi.cnote)cn.textContent=pi.cnote;
+            const n5=document.getElementById('n5Pay'); if(n5)n5.textContent=pi.n5;
+            const n4=document.getElementById('n4Pay'); if(n4)n4.textContent=pi.n4;
+        }
+    </script>
+
+    <script>
+    (() => {
+        const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const revealItems = [...document.querySelectorAll('.reveal, .reveal-stagger')];
+        if (!reduced && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+            revealItems.forEach(el => io.observe(el));
+        } else {
+            revealItems.forEach(el => el.classList.add('is-visible'));
+        }
+
+        const nav = document.querySelector('.nav-menu');
+        const progress = document.getElementById('scrollProgress');
+        const onScroll = () => {
+            const y = window.scrollY || 0;
+            if (nav) nav.classList.toggle('nav-compact', y > 80);
+            if (progress) {
+                const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+                progress.style.width = Math.min(100, (y / max) * 100) + '%';
+            }
+        };
+        onScroll();
+        addEventListener('scroll', onScroll, { passive: true });
+
+        if (!reduced && matchMedia('(pointer:fine)').matches) {
+            const hero = document.querySelector('.hero-art');
+            if (hero) {
+                hero.addEventListener('pointermove', (e) => {
+                    const r = hero.getBoundingClientRect();
+                    const x = (e.clientX - r.left) / r.width - .5;
+                    const y = (e.clientY - r.top) / r.height - .5;
+                    hero.style.transform = `rotateX(${-y*4}deg) rotateY(${x*5}deg)`;
+                });
+                hero.addEventListener('pointerleave', () => { hero.style.transform = ''; });
+            }
+        }
+    })();
+    </script>
+
+</body>
+</html>
