@@ -3694,6 +3694,88 @@
 }
 </style>
 
+
+<style id="v45-polish">
+/* ===== v45: fixed hero constellation + balanced reason labels + deliberate two-stage learning ===== */
+/* Hero: keep LEARN and CONNECT fixed around a smaller HEART mark. */
+.hero-art .speech-a,.hero-art .speech-b{animation:none!important}
+.hero-art .heart-mark{width:142px!important;height:142px!important;left:50%!important;top:50%!important;overflow:hidden!important}
+.hero-art .heart-mark em{top:17px!important;font-size:.48rem!important;letter-spacing:.20em!important}
+.hero-art .heart-mark span{font-size:2.65rem!important;margin-top:10px!important;line-height:.96!important}
+.hero-art .heart-mark small{display:block!important;left:9%!important;right:9%!important;bottom:11px!important;max-width:82%!important;font-size:.34rem!important;line-height:1.08!important;text-align:center!important;white-space:normal!important;overflow:hidden!important;box-sizing:border-box!important;letter-spacing:0!important}
+.hero-art .heart-mark small b{display:block!important;font-size:.30rem!important;line-height:1.04!important;white-space:nowrap!important;letter-spacing:0!important}
+.hero-art .speech-card{width:104px!important;min-height:68px!important;padding:11px 12px!important;border-radius:17px!important}
+.hero-art .speech-kicker{font-size:.45rem!important;letter-spacing:.12em!important;margin-bottom:4px!important}
+.hero-art .speech-card strong{font-size:1rem!important;line-height:1.05!important}
+.hero-art .speech-a{left:4%!important;top:8%!important;right:auto!important;bottom:auto!important;transform:rotate(-7deg)!important}
+.hero-art .speech-b{right:2%!important;bottom:8%!important;left:auto!important;top:auto!important;transform:rotate(7deg)!important}
+
+/* Reason illustration: all orange labels share a clean six-slot rhythm. */
+.reason-v38-visual .rv-tag{animation:none!important;transform:none!important;min-height:22px!important;padding:4px 7px!important;font-size:.43rem!important}
+.reason-v38-visual.cert .rv-tag-cert,
+.reason-v38-visual.quality .rv-tag-cert,
+.reason-v38-visual.personal .rv-tag-cert{left:39%!important;top:7%!important;right:auto!important;bottom:auto!important}
+.reason-v38-visual.quality .rv-tag-exp,
+.reason-v38-visual.personal .rv-tag-exp{left:3%!important;top:48%!important;right:auto!important;bottom:auto!important}
+.reason-v38-visual.quality .rv-tag-explain,
+.reason-v38-visual.personal .rv-tag-explain{left:7%!important;top:auto!important;right:auto!important;bottom:6%!important}
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{right:3%!important;top:48%!important;left:auto!important;bottom:auto!important}
+.reason-v38-visual.personal .rv-tag-review{right:5%!important;top:18%!important;left:auto!important;bottom:auto!important}
+.reason-v38-visual.personal .rv-tag-feedback{right:38%!important;top:auto!important;left:auto!important;bottom:5%!important}
+/* CONNECT is a genuinely solid tile: the orbit cannot bleed through. */
+.reason-v38-visual .rv-connect{
+  position:absolute!important;z-index:20!important;opacity:1!important;
+  background:#355bd5!important;background-image:none!important;color:#fff!important;
+  border:1px solid rgba(255,255,255,.42)!important;filter:none!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;isolation:isolate!important;
+  overflow:hidden!important;box-shadow:inset 0 0 0 999px #355bd5,0 12px 26px rgba(5,24,82,.24)!important;
+}
+.reason-v38-visual .rv-connect::before,.reason-v38-visual .rv-connect::after{display:none!important}
+.reason-v38-visual .rv-connect small,.reason-v38-visual .rv-connect strong{position:relative!important;z-index:2!important}
+
+/* Learning colours: only CONNECT/つながる is orange. */
+.learning-step:nth-child(1) .learning-node,
+.learning-step:nth-child(2) .learning-node{background:linear-gradient(145deg,#3159d8,#173a9a)!important}
+.learning-step:nth-child(1) .learning-node::after,
+.learning-step:nth-child(2) .learning-node::after{background:#3159d8!important;box-shadow:0 0 0 6px rgba(49,89,216,.12)!important}
+.learning-step:nth-child(3) .learning-node{background:linear-gradient(145deg,#ff866b,#f05f44)!important}
+.learning-step:nth-child(3) .learning-node::after{background:#ff7658!important;box-shadow:0 0 0 6px rgba(255,118,88,.13)!important}
+.learning-step:nth-child(1) .learning-feature::before,
+.learning-step:nth-child(2) .learning-feature::before{background:#3159d8!important}
+.learning-step:nth-child(3) .learning-feature::before{background:#ff7658!important}
+
+@media(max-width:600px){
+  .hero-art{width:156px!important;height:156px!important;right:7px!important;top:22px!important;overflow:visible!important}
+  .hero-art .orbit-a{width:138px!important;height:138px!important}
+  .hero-art .orbit-b{width:98px!important;height:98px!important}
+  .hero-art .heart-mark{width:70px!important;height:70px!important;left:50%!important;top:50%!important}
+  .hero-art .heart-mark em{top:6px!important;font-size:.235rem!important;letter-spacing:.16em!important}
+  .hero-art .heart-mark span{font-size:1.32rem!important;margin-top:1px!important;line-height:.96!important}
+  .hero-art .heart-mark small{left:7%!important;right:7%!important;bottom:4px!important;max-width:86%!important;font-size:.145rem!important;line-height:1.04!important;letter-spacing:0!important}
+  .hero-art .heart-mark small b{display:block!important;font-size:.128rem!important;line-height:1.04!important;white-space:nowrap!important;letter-spacing:0!important}
+  .hero-art .speech-card{width:48px!important;min-height:31px!important;padding:4px 5px!important;border-radius:9px!important;box-sizing:border-box!important}
+  .hero-art .speech-kicker{font-size:.19rem!important;letter-spacing:.08em!important;margin-bottom:1px!important}
+  .hero-art .speech-card strong{font-size:.49rem!important;line-height:1.02!important}
+  .hero-art .speech-a{left:1px!important;top:4px!important;right:auto!important;bottom:auto!important;transform:rotate(-7deg)!important}
+  .hero-art .speech-b{right:0!important;bottom:5px!important;left:auto!important;top:auto!important;transform:rotate(7deg)!important}
+  /* Reserve enough vertical room so the fixed lower-right CONNECT card never touches the paragraph below. */
+  header h1{margin-top:76px!important}
+  header p#heroSub{margin-top:8px!important;position:relative!important;z-index:8!important}
+}
+@media(max-width:360px){
+  .hero-art{width:148px!important;height:148px!important;right:5px!important;top:20px!important}
+  .hero-art .orbit-a{width:130px!important;height:130px!important}.hero-art .orbit-b{width:92px!important;height:92px!important}
+  .hero-art .heart-mark{width:66px!important;height:66px!important}
+  .hero-art .heart-mark span{font-size:1.24rem!important}
+  .hero-art .heart-mark small{font-size:.134rem!important;bottom:3px!important}
+  .hero-art .heart-mark small b{font-size:.118rem!important}
+  .hero-art .speech-card{width:45px!important;min-height:29px!important;padding:4px!important}
+  .hero-art .speech-card strong{font-size:.46rem!important}
+  header h1{margin-top:72px!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -5382,18 +5464,18 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     const raw=clamp((start-r.top)/Math.max(1,r.height-(start-end)),0,1);
 
     // Stage 1 grows from WAKARU to TSUTAWARU, then deliberately pauses.
-    const stage1=clamp(raw/.30,0,1);
-    // Long plateau: no second line growth until the learner scrolls further.
-    const stage2=raw<=.62 ? 0 : clamp((raw-.62)/.30,0,1);
+    const stage1=clamp(raw/.45,0,1);
+    // Deliberate plateau at TSUTAWARU. The orange segment does not start until substantially more scrolling.
+    const stage2=raw<=.78 ? 0 : clamp((raw-.78)/.20,0,1);
 
     cycle.style.setProperty('--learning-stage1',stage1.toFixed(4));
     cycle.style.setProperty('--learning-stage2',stage2.toFixed(4));
     cycle.style.setProperty('--learning-progress',((stage1+stage2)/2).toFixed(4));
 
-    steps[0].classList.toggle('is-active',raw>=.02);
-    steps[1].classList.toggle('is-active',raw>=.28);
-    steps[2].classList.toggle('is-active',raw>=.90);
-    bridge?.classList.toggle('is-active',raw>=.94);
+    steps[0].classList.toggle('is-active',raw>=.04);
+    steps[1].classList.toggle('is-active',raw>=.43);
+    steps[2].classList.toggle('is-active',raw>=.86);
+    bridge?.classList.toggle('is-active',raw>=.96);
   }
   let raf=0;
   const schedule=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;update()})};
