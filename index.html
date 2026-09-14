@@ -3442,7 +3442,98 @@
             .hero-art .speech-b{right:6px!important;bottom:1px!important;width:48px!important}
             #sec-how #howTitle{font-size:.79rem!important}
         }
+        /* ===== v40: small hero lift + cumulative orange reason-map progression ===== */
+        /* The illustration is cumulative: 01 stays fixed, 02 adds to it, 03 adds again. */
+        .reason-v38-visual .rv-tag,
+        .reason-v38-visual .rv-tag.light,
+        .reason-v38-visual .rv-tag.warm{
+            background:#ff7658 !important;
+            color:#fff !important;
+            border-color:rgba(255,255,255,.38) !important;
+            opacity:1 !important;
+        }
+        /* Keep every previously introduced label in exactly the same place. */
+        .reason-v38-visual.cert .rv-tag-cert,
+        .reason-v38-visual.quality .rv-tag-cert,
+        .reason-v38-visual.personal .rv-tag-cert{left:7% !important;top:39% !important;right:auto !important;bottom:auto !important}
+        .reason-v38-visual.quality .rv-tag-exp,
+        .reason-v38-visual.personal .rv-tag-exp{left:4% !important;top:53% !important;right:auto !important;bottom:auto !important}
+        .reason-v38-visual.quality .rv-tag-explain,
+        .reason-v38-visual.personal .rv-tag-explain{left:18% !important;top:70% !important;right:auto !important;bottom:auto !important}
+        .reason-v38-visual.quality .rv-tag-comm,
+        .reason-v38-visual.personal .rv-tag-comm{right:3% !important;bottom:31% !important;left:auto !important;top:auto !important}
+        /* Make CONNECT fully opaque so the orbit never shows through it. */
+        .reason-v38-visual .rv-connect{
+            z-index:5 !important;background:#355bd5 !important;color:#fff !important;
+            opacity:1 !important;border:1px solid rgba(255,255,255,.42) !important;
+            backdrop-filter:none !important;isolation:isolate;overflow:hidden;
+            box-shadow:0 12px 26px rgba(5,24,82,.24) !important;
+        }
+        .reason-v38-visual .rv-heart{
+            grid-template-rows:auto auto !important;align-content:center !important;justify-items:center !important;
+            gap:2px !important;padding-top:1px !important;
+        }
+        .reason-v38-visual .rv-heart small{
+            display:block;font-family:Arial,sans-serif;font-size:.31rem;line-height:1;
+            letter-spacing:.18em;font-weight:900;color:#6d6252;text-transform:uppercase;
+        }
+        .reason-v38-visual .rv-heart strong{
+            display:block;font:inherit;line-height:.95;color:inherit;
+        }
+        @media(max-width:600px){
+            /* Lift the complete HEART / LEARN / CONNECT cluster only a few pixels. */
+            .hero-art{top:38px !important}
+        }
+        @media(max-width:340px){.hero-art{top:37px !important}}
         @media(prefers-reduced-motion:reduce){.reason-v38-visual *{animation:none!important}.profile-detail-drawer-v38{transition:none!important}}
+    </style>
+
+
+    <style id="v41-learning-cycle">
+        /* ===== v41: Kano×Kano learning philosophy — わかる → 伝わる → つながる ===== */
+        #sec-learning{position:relative;overflow:hidden;background:linear-gradient(145deg,#ffffff 0%,#f8faff 60%,#fff9f6 100%)}
+        #sec-learning::before{content:'';position:absolute;width:330px;height:330px;border-radius:50%;border:1px solid rgba(49,89,216,.08);right:-150px;top:-150px;box-shadow:0 0 0 58px rgba(49,89,216,.018),0 0 0 116px rgba(255,118,88,.012);pointer-events:none}
+        .learning-lead{max-width:760px;margin:-6px auto 28px;text-align:center;color:var(--text-muted);font-size:.9rem;line-height:1.9}
+        .learning-lead strong{color:#173a9a;font-weight:900}
+        .learning-cycle{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;margin-top:18px}
+        .learning-cycle::before{content:'';position:absolute;left:13%;right:13%;top:62px;height:1px;background:linear-gradient(90deg,rgba(49,89,216,.12),rgba(255,118,88,.75),rgba(49,89,216,.12));z-index:0}
+        .learning-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;padding:0 10px 10px}
+        .learning-node{position:relative;width:124px;height:124px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#3159d8,#173a9a);color:#fff;box-shadow:0 18px 42px rgba(23,58,154,.2),inset 0 1px 0 rgba(255,255,255,.25);isolation:isolate;animation:learningFloat 5.4s ease-in-out infinite}
+        .learning-step:nth-child(2) .learning-node{animation-delay:-1.8s;background:linear-gradient(145deg,#496fe2,#2448b7)}
+        .learning-step:nth-child(3) .learning-node{animation-delay:-3.6s;background:linear-gradient(145deg,#ff866b,#f05f44);box-shadow:0 18px 42px rgba(240,95,68,.2),inset 0 1px 0 rgba(255,255,255,.25)}
+        .learning-node::before{content:'';position:absolute;inset:-10px;border:1px solid rgba(49,89,216,.13);border-radius:50%;z-index:-1}
+        .learning-step:nth-child(3) .learning-node::before{border-color:rgba(255,118,88,.18)}
+        .learning-node::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#ff7658;right:4px;top:20px;box-shadow:0 0 0 6px rgba(255,118,88,.12);animation:learningBlink 2.5s ease-in-out infinite}
+        .learning-step:nth-child(3) .learning-node::after{background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.13)}
+        .learning-en{display:block;font-size:.46rem;letter-spacing:.18em;font-weight:900;opacity:.72;margin-bottom:4px}
+        .learning-jp{display:block;font-family:Georgia,'Yu Mincho','Hiragino Mincho ProN',serif;font-size:1.45rem;font-weight:900;line-height:1}
+        .learning-step h3{margin:22px 0 5px;font-size:1rem;color:#14213d;font-weight:900}
+        .learning-step>p{margin:0;max-width:280px;color:#536078;font-size:.83rem;line-height:1.75}
+        .learning-feature{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:7px 11px;border-radius:999px;background:#f0f4ff;color:#2448b7;font-size:.67rem;font-weight:900;line-height:1.2}
+        .learning-step:nth-child(3) .learning-feature{background:#fff0eb;color:#c84a33}
+        .learning-feature::before{content:'';width:6px;height:6px;border-radius:50%;background:#ff7658;flex:0 0 auto}
+        .learning-bridge{margin:28px auto 0;max-width:760px;padding:18px 22px;border-radius:18px;background:linear-gradient(135deg,#152e6b,#234996);color:#fff;text-align:center;box-shadow:0 16px 38px rgba(21,46,107,.14)}
+        .learning-bridge strong{display:block;margin-bottom:5px;font-size:.92rem}
+        .learning-bridge span{display:block;color:rgba(255,255,255,.82);font-size:.78rem;line-height:1.75}
+        @keyframes learningFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+        @keyframes learningBlink{0%,100%{opacity:.45;transform:scale(.88)}50%{opacity:1;transform:scale(1.08)}}
+        @media(max-width:780px){
+            .learning-cycle{grid-template-columns:1fr;gap:10px;max-width:520px;margin:18px auto 0}
+            .learning-cycle::before{left:50%;right:auto;top:55px;bottom:55px;width:1px;height:auto;background:linear-gradient(180deg,rgba(49,89,216,.10),rgba(255,118,88,.65),rgba(49,89,216,.10))}
+            .learning-step{padding:8px 8px 20px}
+            .learning-node{width:108px;height:108px}
+            .learning-jp{font-size:1.27rem}
+            .learning-step h3{margin-top:17px}
+            .learning-step>p{max-width:350px}
+            .learning-lead{margin-bottom:18px;font-size:.82rem;text-align:left}
+        }
+        @media(max-width:600px){
+            #sec-learning{padding-left:18px!important;padding-right:18px!important}
+            #sec-learning h2{font-size:clamp(1.32rem,6.4vw,1.72rem)!important;line-height:1.35!important}
+            .learning-bridge{padding:16px 14px;margin-top:18px}
+            .learning-bridge strong{font-size:.86rem}.learning-bridge span{font-size:.73rem}
+        }
+        @media(prefers-reduced-motion:reduce){.learning-node,.learning-node::after{animation:none!important}}
     </style>
 
 </head>
@@ -3469,6 +3560,7 @@
     <nav class="nav-menu">
         <a href="#" class="brand-lockup" aria-label="Kano×Kano home"><span class="brand-k">K</span><span class="brand-name">Kano<span class="brand-cross">×</span>Kano</span></a>
         <a href="#sec-reasons" class="nav-link" id="navReasons">3つの理由</a>
+        <a href="#sec-learning" class="nav-link" id="navLearning">学び方</a>
         <a href="#sec-profile" class="nav-link" id="navProfile">プロフィール</a>
         <a href="#sec-courses" class="nav-link" id="navCourses">料金プラン</a>
         <a href="#sec-how" class="nav-link" id="navHow">受講の流れ</a>
@@ -3548,6 +3640,37 @@
                         <div class="reason-zoom-helper">TAP ANYWHERE IN THE BLUE CIRCLE TO CLOSE</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
+        <!-- v41: Kano×Kanoの学び方 -->
+        <div class="card reveal" id="sec-learning">
+            <h2 id="learningTitle">「わかる」から「つながる」へ。Kano×Kanoの学び方</h2>
+            <p class="learning-lead" id="learningLead">Kano×Kanoが大切にしているのは、知識を覚えるだけで終わらないこと。<strong>国家資格を持つ講師との1対1レッスン</strong>で、「理解する → 自分のことばで伝える → 人とつながる」までを一つの学びとして育てます。</p>
+            <div class="learning-cycle reveal-stagger">
+                <div class="learning-step">
+                    <div class="learning-node"><div><span class="learning-en">LEARN</span><span class="learning-jp" id="learning1Word">わかる</span></div></div>
+                    <h3 id="learning1Title">日本語の仕組みを理解する。</h3>
+                    <p id="learning1Desc">文法・語彙・発音を「なぜそうなるのか」まで丁寧に。国家資格を持つ講師の専門性と説明力で、曖昧な理解を確かな「わかる」に変えます。</p>
+                    <span class="learning-feature" id="learning1Feature">国家資格 × わかりやすい説明</span>
+                </div>
+                <div class="learning-step">
+                    <div class="learning-node"><div><span class="learning-en">EXPRESS</span><span class="learning-jp" id="learning2Word">伝わる</span></div></div>
+                    <h3 id="learning2Title">自分のことばで表現できるようになる。</h3>
+                    <p id="learning2Desc">理解した日本語を、1対1の会話で実際に使います。間違いを恐れず話し、講師のフィードバックを受けながら、「知っている」を「使える」に変えていきます。</p>
+                    <span class="learning-feature" id="learning2Feature">完全1対1 × 実践・フィードバック</span>
+                </div>
+                <div class="learning-step">
+                    <div class="learning-node"><div><span class="learning-en">CONNECT</span><span class="learning-jp" id="learning3Word">つながる</span></div></div>
+                    <h3 id="learning3Title">相手を理解し、人と関係を築く。</h3>
+                    <p id="learning3Desc">最終的なゴールは、正しい日本語を言うことだけではありません。相手のことばを理解し、自分の気持ちを届け、ことばを通して人と関係を築ける力を育てます。</p>
+                    <span class="learning-feature" id="learning3Feature">対話 × 人とのつながり</span>
+                </div>
+            </div>
+            <div class="learning-bridge">
+                <strong id="learningBridgeTitle">わかる → 伝わる → つながる。</strong>
+                <span id="learningBridgeDesc">Kano×Kanoでは、この3つを行き来しながら、一人ひとりの目的・レベル・ペースに合わせて学びを深めていきます。</span>
             </div>
         </div>
 
@@ -4134,6 +4257,13 @@
                 heroTrial: "無料体験を予約", heroHow: "受講の流れを見る", heroNote: "<span>国家資格保有講師</span><span>完全1対1</span><span>世界中から受講</span>",
                 reasonsTitle: "Kano×Kanoが選ばれる3つの理由",
                 reasonsNote: "Kano×Kanoならではの、他にはない3つの強みをご紹介します。タップすると詳細が出ます。",
+                navLearning: "学び方",
+                learningTitle: "「わかる」から「つながる」へ。Kano×Kanoの学び方",
+                learningLead: "Kano×Kanoが大切にしているのは、知識を覚えるだけで終わらないこと。<strong>国家資格を持つ講師との1対1レッスン</strong>で、「理解する → 自分のことばで伝える → 人とつながる」までを一つの学びとして育てます。",
+                learning1Word: "わかる", learning1Title: "日本語の仕組みを理解する。", learning1Desc: "文法・語彙・発音を「なぜそうなるのか」まで丁寧に。国家資格を持つ講師の専門性と説明力で、曖昧な理解を確かな「わかる」に変えます。", learning1Feature: "国家資格 × わかりやすい説明",
+                learning2Word: "伝わる", learning2Title: "自分のことばで表現できるようになる。", learning2Desc: "理解した日本語を、1対1の会話で実際に使います。間違いを恐れず話し、講師のフィードバックを受けながら、「知っている」を「使える」に変えていきます。", learning2Feature: "完全1対1 × 実践・フィードバック",
+                learning3Word: "つながる", learning3Title: "相手を理解し、人と関係を築く。", learning3Desc: "最終的なゴールは、正しい日本語を言うことだけではありません。相手のことばを理解し、自分の気持ちを届け、ことばを通して人と関係を築ける力を育てます。", learning3Feature: "対話 × 人とのつながり",
+                learningBridgeTitle: "わかる → 伝わる → つながる。", learningBridgeDesc: "Kano×Kanoでは、この3つを行き来しながら、一人ひとりの目的・レベル・ペースに合わせて学びを深めていきます。",
                 feat1Title: "全員<br>国家資格", feat1Desc: "資格と専門性を備えた講師だけがレッスンを担当します。", feat1Hint: "詳しく見る →",
                 feat2Title: "授業の質", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "詳しく見る →",
                 feat3Title: "1対1<br>継続サポート", feat3Desc: "一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。", feat3Hint: "詳しく見る →",
@@ -4159,6 +4289,13 @@
                 heroTitle: "Language brings<br><span class=\"hero-accent\">people closer.</span>",
                 heroSub: "No matter how advanced AI becomes, people are the ones who share feelings, understand one another, and build relationships.<br>Kano×Kano helps you develop Japanese that truly connects, through 1-to-1 lessons with nationally certified teachers.", heroTrial: "Book a Free Trial", heroHow: "See How It Works", heroNote: "🎓 100% nationally certified teachers  ✅ School-managed quality  👤 Private 1-to-1",
                 reasonsTitle: "3 Reasons to Choose Kano×Kano", reasonsNote: "Discover three strengths that make Kano×Kano different. Tap any item to see the details.",
+                navLearning: "Our Method",
+                learningTitle: "From Understanding to Connection — The Kano×Kano Way",
+                learningLead: "At Kano×Kano, learning does not stop at memorizing knowledge. Through <strong>private 1-to-1 lessons with nationally certified teachers</strong>, we help you move from understanding Japanese, to expressing yourself, to truly connecting with people.",
+                learning1Word: "Understand", learning1Title: "Understand how Japanese works.", learning1Desc: "We explain grammar, vocabulary, and pronunciation—including the reasons behind them. Certified teachers turn vague knowledge into clear, dependable understanding.", learning1Feature: "National certification × Clear explanations",
+                learning2Word: "Express", learning2Title: "Express yourself in your own words.", learning2Desc: "Use what you understand in real 1-to-1 conversation. Speak without fear of mistakes and turn knowledge into usable Japanese through focused feedback.", learning2Feature: "Private 1-to-1 × Practice & feedback",
+                learning3Word: "Connect", learning3Title: "Understand others and build relationships.", learning3Desc: "The goal is more than speaking correct Japanese. We help you understand the other person, communicate what you feel, and build real relationships through language.", learning3Feature: "Dialogue × Human connection",
+                learningBridgeTitle: "Understand → Express → Connect.", learningBridgeDesc: "Kano×Kano moves between these three stages continuously, adapting each lesson to your goals, level, and pace.",
                 feat1Title: "All Teachers<br>Certified", feat1Desc: "Only qualified professionals with national certification teach our lessons.", feat1Hint: "Learn more →",
                 feat2Title: "Lesson<br>Quality", feat2Desc: "We are not an open tutor marketplace. The school sets and manages standards for teachers and lessons.", feat2Hint: "Learn more →",
                 feat3Title: "1-to-1<br>Ongoing Support", feat3Desc: "Lessons and review are tailored to each learner’s goals, level, and weaknesses.", feat3Hint: "Learn more →",
@@ -4184,6 +4321,13 @@
                 heroTitle: "ภาษา ทำให้<br><span class=\"hero-accent\">ผู้คนใกล้กันมากขึ้น</span>",
                 heroSub: "ไม่ว่า AI จะพัฒนาไปไกลแค่ไหน คนยังคงเป็นผู้ถ่ายทอดความรู้สึก เข้าใจกัน และสร้างความสัมพันธ์<br>Kano×Kano ช่วยพัฒนาภาษาญี่ปุ่นที่สื่อถึงใจ ผ่านบทเรียนตัวต่อตัวกับครูที่มีคุณวุฒิระดับชาติ",
                 reasonsTitle: "3 เหตุผลที่ควรเลือก Kano×Kano", reasonsNote: "พบกับ 3 จุดแข็งที่เป็นเอกลักษณ์ของ Kano×Kano แตะหัวข้อที่สนใจเพื่อดูรายละเอียด",
+                navLearning: "แนวทางการเรียน",
+                learningTitle: "จาก ‘เข้าใจ’ สู่ ‘เชื่อมโยง’ — วิธีเรียนแบบ Kano×Kano",
+                learningLead: "Kano×Kano ไม่ได้ต้องการให้ผู้เรียนเพียงจดจำความรู้ แต่ใช้ <strong>บทเรียนตัวต่อตัวกับครูที่มีคุณวุฒิระดับชาติ</strong> เพื่อพัฒนาจากการเข้าใจภาษา ไปสู่การสื่อสารด้วยคำของตนเอง และสร้างความสัมพันธ์กับผู้อื่น",
+                learning1Word: "เข้าใจ", learning1Title: "เข้าใจโครงสร้างของภาษาญี่ปุ่น", learning1Desc: "เรียนไวยากรณ์ คำศัพท์ และการออกเสียงพร้อมเหตุผลว่าทำไมจึงใช้แบบนั้น ครูผู้มีความเชี่ยวชาญช่วยเปลี่ยนความเข้าใจที่คลุมเครือให้ชัดเจน", learning1Feature: "คุณวุฒิระดับชาติ × อธิบายเข้าใจง่าย",
+                learning2Word: "สื่อสาร", learning2Title: "ถ่ายทอดความคิดด้วยคำของตัวเอง", learning2Desc: "นำภาษาญี่ปุ่นที่เข้าใจแล้วมาใช้จริงในการสนทนาแบบตัวต่อตัว ฝึกพูดอย่างไม่กลัวผิดและพัฒนาจาก ‘รู้’ ให้เป็น ‘ใช้ได้’ ผ่านฟีดแบ็ก", learning2Feature: "ตัวต่อตัว × ฝึกใช้จริงและฟีดแบ็ก",
+                learning3Word: "เชื่อมโยง", learning3Title: "เข้าใจอีกฝ่ายและสร้างความสัมพันธ์", learning3Desc: "เป้าหมายไม่ได้มีเพียงการพูดภาษาญี่ปุ่นให้ถูกต้อง แต่คือการเข้าใจอีกฝ่าย ถ่ายทอดความรู้สึกของตน และสร้างความสัมพันธ์ผ่านภาษา", learning3Feature: "การสนทนา × ความสัมพันธ์ระหว่างคน",
+                learningBridgeTitle: "เข้าใจ → สื่อสาร → เชื่อมโยง", learningBridgeDesc: "Kano×Kano เชื่อมโยงทั้งสามขั้นตอนเข้าด้วยกัน พร้อมปรับบทเรียนตามเป้าหมาย ระดับ และจังหวะการเรียนของแต่ละคน",
                 feat1Title: "ครูทุกคน<br>มีคุณวุฒิ", feat1Desc: "เฉพาะครูมืออาชีพที่มีคุณวุฒิและความเชี่ยวชาญเท่านั้นที่สอน", feat1Hint: "▼ กดเพื่อดูรายละเอียด",
                 feat2Title: "มาตรฐานโรงเรียน<br>ควบคุมคุณภาพ", feat2Desc: "ไม่ใช่ตลาดติวเตอร์แบบเปิด แต่ Kano×Kano กำหนดมาตรฐานและดูแลคุณภาพครูและบทเรียน", feat2Hint: "▼ กดเพื่อดูรายละเอียด",
                 feat3Title: "1 ต่อ 1<br>ดูแลต่อเนื่อง", feat3Desc: "ปรับบทเรียนและการทบทวนให้เหมาะกับเป้าหมาย ระดับ และจุดอ่อนของผู้เรียนแต่ละคน", feat3Hint: "▼ กดเพื่อดูรายละเอียด",
@@ -4209,6 +4353,13 @@
                 heroTitle: "언어로,<br><span class=\"hero-accent\">사람과 사람을 더 가깝게.</span>",
                 heroSub: "AI가 아무리 발전해도 마음을 전하고, 서로를 이해하고, 관계를 만드는 주체는 사람입니다.<br>Kano×Kano는 국가자격을 갖춘 일본어 교사와의 1:1 수업을 통해 진짜로 전달되는 일본어를 키웁니다.",
                 reasonsTitle: "Kano×Kano를 선택하는 3가지 이유", reasonsNote: "Kano×Kano만의 차별화된 3가지 강점을 소개합니다. 궁금한 항목을 탭하면 자세한 내용이 표시됩니다.",
+                navLearning: "학습 방식",
+                learningTitle: "‘이해’에서 ‘연결’까지. Kano×Kano의 학습 방식",
+                learningLead: "Kano×Kano는 지식을 외우는 것에서 끝나지 않습니다. <strong>국가 자격을 갖춘 교사와의 1:1 수업</strong>을 통해 일본어를 이해하고, 자신의 말로 표현하고, 사람과 연결되는 단계까지 함께 키웁니다.",
+                learning1Word: "이해하다", learning1Title: "일본어의 원리를 이해합니다.", learning1Desc: "문법·어휘·발음을 왜 그렇게 쓰는지까지 설명합니다. 국가 자격 교사의 전문성과 설명력으로 막연한 지식을 확실한 이해로 바꿉니다.", learning1Feature: "국가 자격 × 이해하기 쉬운 설명",
+                learning2Word: "전하다", learning2Title: "자신의 말로 표현할 수 있게 됩니다.", learning2Desc: "이해한 일본어를 1:1 대화에서 실제로 사용합니다. 실수를 두려워하지 않고 말하며 피드백을 통해 ‘아는 일본어’를 ‘쓰는 일본어’로 바꿉니다.", learning2Feature: "완전 1:1 × 실전·피드백",
+                learning3Word: "연결되다", learning3Title: "상대를 이해하고 관계를 만듭니다.", learning3Desc: "목표는 단지 정확한 일본어를 말하는 것이 아닙니다. 상대의 말을 이해하고 자신의 마음을 전하며 언어를 통해 관계를 만드는 힘을 키웁니다.", learning3Feature: "대화 × 사람과의 연결",
+                learningBridgeTitle: "이해하다 → 전하다 → 연결되다.", learningBridgeDesc: "Kano×Kano는 이 세 단계를 오가며 각자의 목표·레벨·속도에 맞춰 학습을 깊게 만들어 갑니다.",
                 feat1Title: "전원<br>국가자격", feat1Desc: "검증된 프로 강사만 수업 담당.", feat1Hint: "▼ 상세 보기",
                 feat2Title: "학원 기준<br>품질 관리", feat2Desc: "오픈 튜터 마켓이 아니라 학원 기준으로 강사와 수업 품질을 관리합니다.", feat2Hint: "▼ 상세 보기",
                 feat3Title: "1:1<br>지속 지원", feat3Desc: "학습자의 목표·수준·약점에 맞춰 수업과 복습을 지원합니다.", feat3Hint: "▼ 상세 보기",
@@ -4234,6 +4385,13 @@
                 heroTitle: "用语言，<br><span class=\"hero-accent\">让人与人更靠近。</span>",
                 heroSub: "无论AI如何进步，传递感情、理解彼此、建立关系的依然是人。<br>Kano×Kano通过国家资格日语教师的一对一课程，帮助你培养真正能够传达心意的日语。",
                 reasonsTitle: "选择Kano×Kano的3大理由", reasonsNote: "介绍Kano×Kano独有的3项优势。点击感兴趣的项目即可查看详细内容。",
+                navLearning: "学习方式",
+                learningTitle: "从“理解”到“连接”——Kano×Kano的学习方式",
+                learningLead: "Kano×Kano重视的不只是记住知识。通过<strong>国家资格日语教师的一对一课程</strong>，我们帮助你从理解日语，到用自己的语言表达，再到真正与人建立连接。",
+                learning1Word: "理解", learning1Title: "理解日语的结构与原理。", learning1Desc: "不仅学习语法、词汇和发音，还理解为什么这样使用。国家资格教师以专业知识和清晰讲解，把模糊的认知变成真正的“理解”。", learning1Feature: "国家资格 × 清晰讲解",
+                learning2Word: "传达", learning2Title: "能够用自己的语言表达。", learning2Desc: "把理解过的日语真正用于一对一会话。无需害怕犯错，通过教师反馈，把“知道的日语”转化为“会用的日语”。", learning2Feature: "完全一对一 × 实践与反馈",
+                learning3Word: "连接", learning3Title: "理解对方，并建立人与人的关系。", learning3Desc: "最终目标不只是说出正确的日语，而是理解对方的话、传达自己的心意，并通过语言建立真实的人际关系。", learning3Feature: "对话 × 人与人的连接",
+                learningBridgeTitle: "理解 → 传达 → 连接。", learningBridgeDesc: "Kano×Kano让这三个阶段不断循环，并根据每个人的目标、水平与节奏调整学习过程。",
                 feat1Title: "全员<br>国家资格", feat1Desc: "由严选专业讲师授课，保证高质量教学。", feat1Hint: "▼ 查看详情",
                 feat2Title: "课程<br>质量", feat2Desc: "不是开放式教师市场，而是由Kano×Kano按照标准筛选教师并管理课程质量。", feat2Hint: "▼ 查看详情",
                 feat3Title: "1对1<br>持续支持", feat3Desc: "根据每位学习者的目标、水平和弱项调整课程与复习。", feat3Hint: "▼ 查看详情",
@@ -4321,7 +4479,7 @@
                 if (el) {
                     if (plainCourseMarkupKeys.has(key)) {
                         el.textContent = stripCourseMarkup(data[key]);
-                    } else if (key.includes('Title') || key.includes('Desc') || key.includes('Price') || key.includes('P') || key.includes('Note') || key.includes('Pace') || key.includes('hero')) {
+                    } else if (key.includes('Title') || key.includes('Desc') || key.includes('Price') || key.includes('P') || key.includes('Note') || key.includes('Pace') || key.includes('Lead') || key.includes('hero')) {
                         el.innerHTML = data[key];
                     } else {
                         el.innerText = data[key];
@@ -4938,10 +5096,10 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     art.setAttribute('aria-hidden','true');
     const tagSets={
       cert:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span>`,
-      quality:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp light">経験</span><span class="rv-tag rv-tag-explain light">説明力</span><span class="rv-tag rv-tag-comm">コミュニケーション力</span>`,
-      personal:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp light">経験</span><span class="rv-tag rv-tag-comm">コミュニケーション力</span><span class="rv-tag rv-tag-review light">復習</span><span class="rv-tag rv-tag-feedback light">フィードバック</span>`
+      quality:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span>`,
+      personal:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span><span class="rv-tag rv-tag-review warm">復習</span><span class="rv-tag rv-tag-feedback warm">フィードバック</span>`
     };
-    art.innerHTML=`<div class="rv-orbit rv-o1"></div><div class="rv-orbit rv-o2"></div><div class="rv-heart">心</div><div class="rv-chip rv-learn"><small>LEARN</small><strong>わかる</strong></div><div class="rv-chip rv-connect"><small>CONNECT</small><strong>伝わる</strong></div><div class="rv-spark rv-s1"></div><div class="rv-spark rv-s2"></div>${tagSets[kind]}`;
+    art.innerHTML=`<div class="rv-orbit rv-o1"></div><div class="rv-orbit rv-o2"></div><div class="rv-heart"><small>HEART</small><strong>心</strong></div><div class="rv-chip rv-learn"><small>LEARN</small><strong>わかる</strong></div><div class="rv-chip rv-connect"><small>CONNECT</small><strong>伝わる</strong></div><div class="rv-spark rv-s1"></div><div class="rv-spark rv-s2"></div>${tagSets[kind]}`;
     return art;
   }
 
