@@ -3163,6 +3163,150 @@
         }
     </style>
 
+    <style>
+        /* ===== v37: compact mobile hero, stronger JLPT duration choices, vertical lesson flow ===== */
+        /* The lesson flow is intentionally sequential on every screen. */
+        #sec-how .step-grid {
+            display:grid !important;
+            grid-template-columns:1fr !important;
+            gap:12px !important;
+            max-width:760px;
+            margin:22px auto 0 !important;
+        }
+        #sec-how .step-box {
+            display:grid !important;
+            grid-template-columns:48px minmax(0,1fr) !important;
+            grid-template-rows:auto auto !important;
+            column-gap:14px !important;
+            align-items:center !important;
+            padding:16px 18px !important;
+            text-align:left !important;
+        }
+        #sec-how .step-number {
+            grid-column:1 !important;
+            grid-row:1 / span 2 !important;
+            margin:0 !important;
+        }
+        #sec-how .step-box h3 { grid-column:2 !important; grid-row:1 !important; margin:0 0 3px !important; }
+        #sec-how .step-box p { grid-column:2 !important; grid-row:2 !important; margin:0 !important; }
+
+        /* In JLPT intensive plans, the duration is the main choice and the explanation is secondary. */
+        .duration-option { padding:16px 14px !important; }
+        .duration-option strong {
+            display:block !important;
+            margin:0 0 6px !important;
+            color:#173a9a !important;
+            font-size:1.12rem !important;
+            line-height:1.25 !important;
+            font-weight:900 !important;
+        }
+        .duration-option small {
+            display:block !important;
+            margin-top:0 !important;
+            font-size:.76rem !important;
+            line-height:1.5 !important;
+        }
+
+        @media (max-width: 600px) {
+            /* Put the message at left and the HEART / LEARN / CONNECT artwork at right.
+               Orbit rings may overlap the headline area, but the cards themselves stay clear. */
+            header { padding:10px 16px 42px !important; }
+            .hero-inner {
+                display:block !important;
+                position:relative !important;
+                min-height:0 !important;
+                width:100% !important;
+                overflow:hidden !important;
+            }
+            .hero-copy {
+                display:block !important;
+                position:relative !important;
+                z-index:3 !important;
+                max-width:100% !important;
+            }
+            .hero-eyebrow {
+                width:100% !important;
+                margin:0 0 18px !important;
+                padding:0 !important;
+                line-height:1.35 !important;
+                position:relative !important;
+                z-index:4 !important;
+            }
+            header h1 {
+                width:62% !important;
+                max-width:62% !important;
+                margin:0 0 24px !important;
+                font-size:clamp(1.82rem,7.4vw,2.2rem) !important;
+                line-height:1.14 !important;
+                position:relative !important;
+                z-index:4 !important;
+            }
+            .hero-accent { white-space:normal !important; }
+            .hero-art {
+                display:block !important;
+                position:absolute !important;
+                z-index:2 !important;
+                width:184px !important;
+                height:176px !important;
+                min-height:0 !important;
+                max-width:none !important;
+                right:8px !important;
+                top:40px !important;
+                margin:0 !important;
+                transform:none !important;
+                opacity:1 !important;
+                overflow:visible !important;
+                pointer-events:none !important;
+            }
+            .hero-art .orbit-a { width:166px !important; height:166px !important; }
+            .hero-art .orbit-b { width:118px !important; height:118px !important; }
+            .hero-art .heart-mark { width:82px !important; height:82px !important; }
+            .hero-art .heart-mark em { top:11px !important; font-size:.34rem !important; letter-spacing:.18em !important; }
+            .hero-art .heart-mark span { font-size:1.72rem !important; margin-top:12px !important; }
+            .hero-art .heart-mark small { left:7px !important; right:7px !important; bottom:7px !important; font-size:.25rem !important; line-height:1.15 !important; }
+            .hero-art .speech-card { width:76px !important; min-height:48px !important; padding:7px 8px !important; border-radius:13px !important; }
+            .hero-art .speech-kicker { margin-bottom:2px !important; font-size:.35rem !important; line-height:1 !important; }
+            .hero-art .speech-card strong { font-size:.73rem !important; line-height:1.12 !important; }
+            .hero-art .speech-a { left:0 !important; top:2px !important; }
+            .hero-art .speech-b { right:4px !important; bottom:54px !important; z-index:4 !important; }
+            .hero-art .connection-dot { transform:scale(.68); }
+            header p#heroSub {
+                width:100% !important;
+                max-width:100% !important;
+                position:relative !important;
+                z-index:4 !important;
+            }
+            .hero-actions, .hero-trust { position:relative !important; z-index:4 !important; }
+
+            /* Keep the founder's full name on one line even on narrow phones. */
+            .profile-content-blend .profile-name-line {
+                white-space:nowrap !important;
+                font-size:clamp(.68rem,3vw,.92rem) !important;
+                letter-spacing:-.02em !important;
+            }
+            .profile-content-blend .profile-name-line strong { white-space:nowrap !important; }
+
+            .duration-grid { grid-template-columns:1fr 1fr !important; gap:9px !important; }
+            .duration-option { padding:14px 8px !important; }
+            .duration-option strong { font-size:1.02rem !important; }
+            .duration-option small { font-size:.68rem !important; }
+
+            #sec-how .step-grid { width:100% !important; }
+            #sec-how .step-box { padding:14px !important; }
+        }
+
+        @media (max-width: 420px) {
+            header h1 { width:66% !important; max-width:66% !important; font-size:clamp(1.62rem,7.1vw,1.9rem) !important; }
+            .hero-art { width:166px !important; height:162px !important; right:4px !important; top:38px !important; }
+            .hero-art .orbit-a { width:150px !important; height:150px !important; }
+            .hero-art .orbit-b { width:108px !important; height:108px !important; }
+            .hero-art .heart-mark { width:76px !important; height:76px !important; }
+            .hero-art .speech-card { width:70px !important; min-height:45px !important; padding:6px 7px !important; }
+            .hero-art .speech-b { right:5px !important; bottom:60px !important; z-index:4 !important; }
+            .profile-content-blend .profile-name-line { font-size:clamp(.64rem,2.9vw,.78rem) !important; }
+        }
+    </style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -3222,7 +3366,7 @@
         <!-- 1. 選ばれる理由 -->
         <div class="card reveal" id="sec-reasons">
             <h2 id="reasonsTitle">Kano×Kanoが選ばれる3つの理由</h2>
-            <p style="margin-top:-8px;margin-bottom:12px;color:var(--text-muted);font-size:.78rem;" id="reasonsNote">3つの青い丸が枠にとらわれず、ゆっくり浮かびます。タップすると、その丸がその場から滑らかに広がり、丸の中に詳細が現れます。</p>
+            <p style="margin-top:-8px;margin-bottom:12px;color:var(--text-muted);font-size:.78rem;" id="reasonsNote">Kano×Kanoならではの、他にはない3つの強みをご紹介します。タップすると詳細が出ます。</p>
 
             <div class="feature-grid">
                 <div class="reason-orbit-stage reveal-stagger" id="reasonOrbitStage">
@@ -3279,7 +3423,7 @@
                     <p class="profile-name-line"><strong id="profileName">代表・日本語教師　加納 春紀（かのう はるき）</strong></p>
                     <p id="profileP1">タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。</p>
                     <div class="profile-quote" id="profileP2">AIが普及し、知識や翻訳が一瞬で手に入る時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。</div>
-                    <p id="profileP3">日本語を覚えること自体をゴールにするのではなく、<strong>自分の考えを自分の言葉で伝え、誰かと関係を築けるようになること。</strong>Kano×Kanoでは、国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。</p>
+                    <p id="profileP3">Kano×Kanoが目指すのは、ただ日本語を覚えることではありません。<strong>相手の言葉を理解し、自分の言葉で伝え、相手と関係を築けるようになること。</strong>それを学びのゴールにしています。国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。</p>
                     <div class="badge-container">
                         <span class="badge" id="b1">国家資格保有</span>
                         <span class="badge" id="b2">シンガポール現役教師</span>
@@ -3380,7 +3524,7 @@
                 <div id="detail-n5" class="accordion-detail">
                     <p id="n5Detail">🏆 <strong>N5合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。</p>
                     <div class="duration-grid">
-                        <div class="duration-option" onclick="togglePace('pace-n5-six', this)"><strong id="n5SixTitle">6か月コース</strong><small id="n5SixNote">短期集中でN5合格を目指す</small></div>
+                        <div class="duration-option" onclick="togglePace('pace-n5-six', this)"><strong id="n5SixTitle">6ヶ月コース</strong><small id="n5SixNote">短期集中でN5合格を目指す</small></div>
                         <div class="duration-option" onclick="togglePace('pace-n5-year', this)"><strong id="n5YearTitle">1年コース</strong><small id="n5YearNote">基礎を固めながらじっくりN5合格を目指す</small></div>
                         <div class="pace-detail" id="pace-n5-six"><span id="n5SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                         <div class="pace-detail" id="pace-n5-year"><span id="n5YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
@@ -3400,8 +3544,8 @@
                 <div id="detail-n4" class="accordion-detail">
                     <p id="n4Detail">🏆 <strong>N4合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。</p>
                     <div class="duration-grid">
-                        <div class="duration-option" onclick="togglePace('pace-n4-six', this)"><strong id="n4SixTitle">6か月コース</strong><small id="n4SixNote">短期集中でN4合格を目指す</small></div>
-                        <div class="duration-option" onclick="togglePace('pace-n4-year', this)"><strong id="n4YearTitle">1年コース</strong><small id="n4YearNote">無理のないペースでN4合格を目指す</small></div>
+                        <div class="duration-option" onclick="togglePace('pace-n4-six', this)"><strong id="n4SixTitle">6ヶ月コース</strong><small id="n4SixNote">短期集中でN4合格を目指す</small></div>
+                        <div class="duration-option" onclick="togglePace('pace-n4-year', this)"><strong id="n4YearTitle">1年コース</strong><small id="n4YearNote">基礎を固めながらじっくりN4合格を目指す</small></div>
                         <div class="pace-detail" id="pace-n4-six"><span id="n4SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                         <div class="pace-detail" id="pace-n4-year"><span id="n4YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                     </div>
@@ -3819,7 +3963,7 @@
                 heroSub: "AIがどれだけ進化しても、気持ちを伝え、相手を理解し、関係をつくるのは人です。<br>Kano×Kanoは、国家資格を持つ日本語教師との1対1レッスンで、あなたの「伝わる」を育てます。",
                 heroTrial: "無料体験を予約", heroHow: "受講の流れを見る", heroNote: "<span>国家資格保有講師</span><span>完全1対1</span><span>世界中から受講</span>",
                 reasonsTitle: "Kano×Kanoが選ばれる3つの理由",
-                reasonsNote: "3つの青い丸が枠にとらわれず、ゆっくり浮かびます。タップすると、その丸がその場から滑らかに広がり、丸の中に詳細が現れます。",
+                reasonsNote: "Kano×Kanoならではの、他にはない3つの強みをご紹介します。タップすると詳細が出ます。",
                 feat1Title: "全員<br>国家資格", feat1Desc: "資格と専門性を備えた講師だけがレッスンを担当します。", feat1Hint: "詳しく見る →",
                 feat2Title: "授業の質", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "詳しく見る →",
                 feat3Title: "1対1<br>継続サポート", feat3Desc: "一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。", feat3Hint: "詳しく見る →",
@@ -3829,22 +3973,22 @@
                 profileTitle: "代表プロフィール（Profile）", profileName: "代表・日本語教師　加納 春紀（かのう はるき）",
                 profileP1: "タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。",
                 profileP2: "AIが普及し、知識や翻訳が一瞬で手に入る時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。",
-                profileP3: "日本語を覚えること自体をゴールにするのではなく、<strong>自分の考えを自分の言葉で伝え、誰かと関係を築けるようになること。</strong>Kano×Kanoでは、国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。",
+                profileP3: "Kano×Kanoが目指すのは、ただ日本語を覚えることではありません。<strong>相手の言葉を理解し、自分の言葉で伝え、相手と関係を築けるようになること。</strong>それを学びのゴールにしています。国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。",
                 b1: "国家資格保有", b2: "シンガポール現役教師", b3: "タイでの指導経験", b4: "海外学習者への指導", b5: "1対1レッスン",
                 coursesTitle: "コース・料金案内（Courses & Plans）", coursesNote: "初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。",
                 beginnerLabel: "初級", beginnerTitle: "初級日本語コース", beginnerDesc: "ひらがな・カタカナから基本文法まで、ゼロから着実に学びたい方へ。", beginnerSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", beginnerHint: "▼ プラン詳細を見る", beginnerDetail: "📘 初級日本語：\n「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。", beginner4Title: "月4回", beginner4Price: "8,000円 / 月", beginner4Note: "週1ペースで、無理なく続けたい方に", beginner8Title: "月8回", beginner8Price: "16,000円 / 月", beginner8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", beginner12Title: "月12回", beginner12Price: "24,000円 / 月", beginner12Note: "週3ペースで、集中的に上達を目指したい方に", beginnerRec: "おすすめ",
                 intermediateLabel: "中級", intermediateTitle: "中級日本語コース（N4〜N3目安）", intermediateDesc: "より複雑な文法・表現を学び、実践的に使える日本語を身につけます。", intermediateSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", intermediateHint: "▼ プラン詳細を見る", intermediateDetail: "📈 中級日本語：\n文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。", intermediate4Title: "月4回", intermediate4Price: "8,000円 / 月", intermediate4Note: "週1ペースで、無理なく続けたい方に", intermediate8Title: "月8回", intermediate8Price: "16,000円 / 月", intermediate8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", intermediate12Title: "月12回", intermediate12Price: "24,000円 / 月", intermediate12Note: "週3ペースで、集中的に上達を目指したい方に", intermediateRec: "おすすめ",
                 conversationLabel: "会話", conversationTitle: "日常会話コース", conversationDesc: "会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。", conversationSummary: "30分：月4回 4,000円〜 ・ 50分：月4回 6,000円〜 ｜ 毎月自動更新", conversationHint: "▼ プラン詳細を見る", conversationDetail: "💬 日常会話：\n旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。30分または50分を選び、月4回・8回・12回のサブスクリプションで受講します。毎月同じプランが自動更新されるため、継続して会話量を確保したい方に向いています。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。", conversation4Title: "月4回", conversation4Price: "30分 4,000円 / 50分 6,000円", conversation4Note: "月に4回、気軽に日本人との会話を楽しみたい方に", conversation8Title: "月8回", conversation8Price: "30分 8,000円 / 50分 12,000円", conversation8Note: "週2回ほど、会話する時間を生活の中に取り入れたい方に", conversation12Title: "月12回", conversation12Price: "30分 12,000円 / 50分 18,000円", conversation12Note: "たくさん話して、日本語での会話を日常的に楽しみたい方に", conversationRec: "おすすめ",
                 jlptSectionTitle: "JLPT 合格集中コース", jlptSectionDesc: "N5・N4は、合格までの期間を決めて体系的に進める特別カリキュラムです。",
-                n5Label: "JLPT N5", n5Title: "N5合格集中コース", n5Desc: "N5合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n5Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n5Hint: "▼ コース詳細を見る", n5Detail: "🏆 N5合格集中：\n文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n5SixTitle: "6か月コース", n5SixNote: "短期集中でN5合格を目指す", n5YearTitle: "1年コース", n5YearNote: "基礎を固めながらじっくりN5合格を目指す", n5SixPace: "6か月の学習ペース目安\n週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n5YearPace: "1年の学習ペース目安\n週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
-                n4Label: "JLPT N4", n4Title: "N4合格集中コース", n4Desc: "N4合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n4Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n4Hint: "▼ コース詳細を見る", n4Detail: "🏆 N4合格集中：\n文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n4SixTitle: "6か月コース", n4SixNote: "短期集中でN4合格を目指す", n4YearTitle: "1年コース", n4YearNote: "無理のないペースでN4合格を目指す", n4SixPace: "6か月の学習ペース目安\n週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n4YearPace: "1年の学習ペース目安\n週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
+                n5Label: "JLPT N5", n5Title: "N5合格集中コース", n5Desc: "N5合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n5Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n5Hint: "▼ コース詳細を見る", n5Detail: "🏆 N5合格集中：\n文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n5SixTitle: "6ヶ月コース", n5SixNote: "短期集中でN5合格を目指す", n5YearTitle: "1年コース", n5YearNote: "基礎を固めながらじっくりN5合格を目指す", n5SixPace: "6か月の学習ペース目安\n週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n5YearPace: "1年の学習ペース目安\n週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
+                n4Label: "JLPT N4", n4Title: "N4合格集中コース", n4Desc: "N4合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n4Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n4Hint: "▼ コース詳細を見る", n4Detail: "🏆 N4合格集中：\n文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n4SixTitle: "6ヶ月コース", n4SixNote: "短期集中でN4合格を目指す", n4YearTitle: "1年コース", n4YearNote: "基礎を固めながらじっくりN4合格を目指す", n4SixPace: "6か月の学習ペース目安\n週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n4YearPace: "1年の学習ペース目安\n週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
                 howTitle: "高品質な1対1レッスンを、世界中から", howIntro: "授業の質を第一にしながら、世界中の学習者が続けやすい予約制を採用。空いている資格保有講師と時間を選び、あなたの現地時間で1対1レッスンを受講できます。", step1Title: "無料登録", step1Desc: "学習目的や日本語レベルを登録します。", step2Title: "日時を選ぶ", step2Desc: "表示される空き時間から好きな日時を選びます。", step3Title: "1対1レッスン", step3Desc: "国家資格を持つ講師とオンラインで学びます。", step4Title: "復習・次回予約", step4Desc: "フィードバックを確認し、好きな時間に次回を予約。", globalNote: "🕒 予約時間は、生徒のタイムゾーンに合わせて表示するシステムを導入予定です。", contactTitle: "お問い合わせ・無料体験", contactDesc: "まずは15分の無料体験で、日本語レベル・目標・学び方を一緒に確認します。", contactSubDesc: "✨ 体験レッスンは15分無料です。", contactEmailLabel: "📧 メールアドレス:", btnText: "無料体験を予約する"
             },
             en: {
                 navReasons: "Reasons", navProfile: "Profile", navCourses: "Plans", navHow: "How it works", navContact: "Free Trial", navLogin: "Login", floatingTrialBtn: "Book a Free Trial",
                 heroTitle: "Language brings<br><span class=\"hero-accent\">people closer.</span>",
                 heroSub: "No matter how advanced AI becomes, people are the ones who share feelings, understand one another, and build relationships.<br>Kano×Kano helps you develop Japanese that truly connects, through 1-to-1 lessons with nationally certified teachers.", heroTrial: "Book a Free Trial", heroHow: "See How It Works", heroNote: "🎓 100% nationally certified teachers  ✅ School-managed quality  👤 Private 1-to-1",
-                reasonsTitle: "3 Reasons to Choose Kano×Kano", reasonsNote: "* Tap a floating blue circle. That exact circle smoothly expands from where it is and reveals the explanation inside.",
+                reasonsTitle: "3 Reasons to Choose Kano×Kano", reasonsNote: "Discover three strengths that make Kano×Kano different. Tap any item to see the details.",
                 feat1Title: "All Teachers<br>Certified", feat1Desc: "Only qualified professionals with national certification teach our lessons.", feat1Hint: "Learn more →",
                 feat2Title: "Lesson<br>Quality", feat2Desc: "We are not an open tutor marketplace. The school sets and manages standards for teachers and lessons.", feat2Hint: "Learn more →",
                 feat3Title: "1-to-1<br>Ongoing Support", feat3Desc: "Lessons and review are tailored to each learner’s goals, level, and weaknesses.", feat3Hint: "Learn more →",
@@ -3854,7 +3998,7 @@
                 profileTitle: "Instructor Profile", profileName: "Head Instructor: Haruki Kano / Haruki Sensei",
                 profileP1: "Hello, I’m Haruki Kano, head instructor of Kano×Kano. After teaching Japanese in Thailand, I now work as an active Japanese-language teacher in Singapore, teaching learners from a wide range of backgrounds.",
                 profileP2: "AI can now deliver knowledge and translation instantly. Even so, I believe what truly connects one person to another is the heart. Language is how we give that heart a voice.",
-                profileP3: "I have also practiced Kendo for more than 10 years and hold 3rd Dan, as well as a rank in Japanese calligraphy. My lessons go beyond words and grammar to include the culture, ways of thinking, and nuances behind real Japanese expression—with the goal of helping learners actually use the Japanese they study.",
+                profileP3: "At Kano×Kano, the goal is not simply to memorize Japanese. <strong>It is to understand the other person, express yourself in your own words, and build a relationship with them.</strong> I combine professional teaching expertise and international experience to create lessons that respect each learner’s goals, personality, and pace.",
                 b1: "Nationally Certified", b2: "Active Teacher in Singapore", b3: "Teaching Experience in Thailand", b4: "International Learners", b5: "Private 1-to-1",
                 coursesTitle: "Courses & Plans", coursesNote: "Beginner and intermediate lessons are 50 minutes. Conversation lessons can be 30 or 50 minutes. All are private 1-to-1 courses with 4, 8, or 12 lessons per month.",
                 beginnerLabel: "Beginner", beginnerTitle: "Beginner Japanese Course", beginnerDesc: "Start from hiragana and katakana and build a solid foundation in basic grammar.", beginnerSummary: "4 lessons: 8,000 JPY / 8 lessons: 16,000 JPY / 12 lessons: 24,000 JPY", beginnerHint: "▼ View plans", beginnerDetail: "📘 Beginner Japanese:\nBased on Minna no Nihongo, this course systematically covers hiragana, katakana, pronunciation, basic vocabulary, and essential grammar. Rather than simply following the textbook, we use specially refined materials designed to make concepts more intuitive and deepen understanding. Because every lesson is 1-to-1, the pace can be adjusted carefully to each learner.", beginner4Title: "4 / month", beginner4Price: "8,000 JPY / month", beginner4Note: "Four times a month — for casually enjoying conversation with Japanese speakers", beginner8Title: "8 / month", beginner8Price: "16,000 JPY / month", beginner8Note: "About twice a week — make Japanese conversation part of your routine", beginner12Title: "12 / month", beginner12Price: "24,000 JPY / month", beginner12Note: "Talk often and enjoy Japanese conversation as a regular part of your everyday life", beginnerRec: "Recommended",
@@ -3862,14 +4006,14 @@
                 conversationLabel: "Conversation", conversationTitle: "Daily Conversation Course", conversationDesc: "Perfect for improving conversation skills—and also for anyone who simply wants a relaxed chat with a Japanese teacher.", conversationSummary: "30 min: from 4,000 JPY/month · 50 min: from 6,000 JPY/month | auto-renew monthly", conversationHint: "▼ View plans", conversationDetail: "💬 Daily Conversation:\nTalk about travel, work, hobbies, anime, or anything else you enjoy. This course is not only for learners who want structured speaking practice; it is also perfect if you simply want to relax and chat with a Japanese person without using formal materials. Choose a 30-minute or 50-minute monthly subscription, with 4, 8, or 12 lessons per month. The subscription renews automatically each month, making it easy to maintain a steady conversation routine. Your teacher can also give feedback on grammar, vocabulary, and more natural expressions whenever you want it.", conversation4Title: "4 / month", conversation4Price: "30 min: 4,000 JPY / 50 min: 6,000 JPY", conversation4Note: "Four times a month — for casually enjoying conversation with Japanese speakers", conversation8Title: "8 / month", conversation8Price: "30 min: 8,000 JPY / 50 min: 12,000 JPY", conversation8Note: "About twice a week — make Japanese conversation part of your routine", conversation12Title: "12 / month", conversation12Price: "30 min: 12,000 JPY / 50 min: 18,000 JPY", conversation12Note: "Talk often and enjoy Japanese conversation as a regular part of your everyday life", conversationRec: "Recommended",
                 jlptSectionTitle: "JLPT Intensive Pass Courses", jlptSectionDesc: "N5 and N4 use structured curricula with a defined 6-month or 1-year study period.",
                 n5Label: "JLPT N5", n5Title: "JLPT N5 Intensive Course", n5Desc: "Study the grammar, listening, and reading needed for N5 over six months or one year.", n5Summary: "51 lessons · 100,000 JPY / 6-month or 1-year track", n5Hint: "▼ View course details", n5Detail: "🏆 N5 Intensive:\n51 lessons total: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Choose a 6-month or 1-year pace based on your target date.", n5SixTitle: "6-Month Track", n5SixNote: "Intensive preparation for N5", n5YearTitle: "1-Year Track", n5YearNote: "Build the foundation steadily toward N5", n5SixPace: "6-month pace\nAbout 2 lessons per week (roughly 8–9 per month), completing all 51 lessons: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Best for learners aiming to pass N5 in a shorter, focused period. Monthly lesson counts may vary slightly by calendar and booking availability.", n5YearPace: "1-year pace\nAbout 1 lesson per week (roughly 4–5 per month), completing the same 51-lesson curriculum. This pace gives you more time to review and consolidate each topic before the final mock exam and review. Monthly lesson counts may vary slightly by calendar and booking availability.",
-                n4Label: "JLPT N4", n4Title: "JLPT N4 Intensive Course", n4Desc: "Study the grammar, listening, and reading needed for N4 over six months or one year.", n4Summary: "51 lessons · 100,000 JPY / 6-month or 1-year track", n4Hint: "▼ View course details", n4Detail: "🏆 N4 Intensive:\n51 lessons total: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Choose a 6-month or 1-year pace based on your target date.", n4SixTitle: "6-Month Track", n4SixNote: "Intensive preparation for N4", n4YearTitle: "1-Year Track", n4YearNote: "A steady pace toward N4", n4SixPace: "6-month pace\nAbout 2 lessons per week (roughly 8–9 per month), completing all 51 lessons: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Best for focused N4 preparation over a shorter period. Monthly lesson counts may vary slightly by calendar and booking availability.", n4YearPace: "1-year pace\nAbout 1 lesson per week (roughly 4–5 per month), completing the same 51 lessons at a steady pace. Suitable for learners balancing study with work or school while preparing carefully for N4. Monthly lesson counts may vary slightly by calendar and booking availability.",
+                n4Label: "JLPT N4", n4Title: "JLPT N4 Intensive Course", n4Desc: "Study the grammar, listening, and reading needed for N4 over six months or one year.", n4Summary: "51 lessons · 100,000 JPY / 6-month or 1-year track", n4Hint: "▼ View course details", n4Detail: "🏆 N4 Intensive:\n51 lessons total: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Choose a 6-month or 1-year pace based on your target date.", n4SixTitle: "6-Month Track", n4SixNote: "Intensive preparation for N4", n4YearTitle: "1-Year Track", n4YearNote: "Build the foundation steadily toward N4", n4SixPace: "6-month pace\nAbout 2 lessons per week (roughly 8–9 per month), completing all 51 lessons: 30 grammar, 10 listening, 10 reading, and 1 mock exam with review. Best for focused N4 preparation over a shorter period. Monthly lesson counts may vary slightly by calendar and booking availability.", n4YearPace: "1-year pace\nAbout 1 lesson per week (roughly 4–5 per month), completing the same 51 lessons at a steady pace. Suitable for learners balancing study with work or school while preparing carefully for N4. Monthly lesson counts may vary slightly by calendar and booking availability.",
                 howTitle: "Quality 1-to-1 Lessons, Available Worldwide", howIntro: "Quality comes first. Our flexible booking system then makes it easy for learners worldwide to choose an available certified teacher and study in their own local time.", step1Title: "Create an Account", step1Desc: "Tell us your level and learning goals.", step2Title: "Choose a Time", step2Desc: "Pick from available lesson times.", step3Title: "Take a 1-to-1 Lesson", step3Desc: "Learn online with a certified professional teacher.", step4Title: "Review & Rebook", step4Desc: "Check feedback and book your next lesson anytime.", globalNote: "🕒 Booking times will be shown in each learner’s local time zone.", contactTitle: "Contact & Free Trial", contactDesc: "Start with a free 15-minute trial to discuss your level, goals, and study plan.", contactSubDesc: "✨ Your first 15-minute trial is free.", contactEmailLabel: "📧 Email:", btnText: "Book a Free Trial"
             },
             th: {
                 navReasons: "เหตุผล", navProfile: "ประวัติผู้สอน", navCourses: "แพ็กเกจ", navHow: "ขั้นตอนการเรียน", navContact: "ทดลองฟรี", navLogin: "เข้าสู่ระบบ", floatingTrialBtn: "จองทดลองเรียนฟรี",
                 heroTitle: "ภาษา ทำให้<br><span class=\"hero-accent\">ผู้คนใกล้กันมากขึ้น</span>",
                 heroSub: "ไม่ว่า AI จะพัฒนาไปไกลแค่ไหน คนยังคงเป็นผู้ถ่ายทอดความรู้สึก เข้าใจกัน และสร้างความสัมพันธ์<br>Kano×Kano ช่วยพัฒนาภาษาญี่ปุ่นที่สื่อถึงใจ ผ่านบทเรียนตัวต่อตัวกับครูที่มีคุณวุฒิระดับชาติ",
-                reasonsTitle: "3 เหตุผลที่ควรเลือก Kano×Kano", reasonsNote: "* แตะวงกลมสีน้ำเงินที่ลอยอยู่ วงกลมนั้นจะค่อย ๆ ขยายจากตำแหน่งเดิมและแสดงรายละเอียดภายใน",
+                reasonsTitle: "3 เหตุผลที่ควรเลือก Kano×Kano", reasonsNote: "พบกับ 3 จุดแข็งที่เป็นเอกลักษณ์ของ Kano×Kano แตะหัวข้อที่สนใจเพื่อดูรายละเอียด",
                 feat1Title: "ครูทุกคน<br>มีคุณวุฒิ", feat1Desc: "เฉพาะครูมืออาชีพที่มีคุณวุฒิและความเชี่ยวชาญเท่านั้นที่สอน", feat1Hint: "▼ กดเพื่อดูรายละเอียด",
                 feat2Title: "มาตรฐานโรงเรียน<br>ควบคุมคุณภาพ", feat2Desc: "ไม่ใช่ตลาดติวเตอร์แบบเปิด แต่ Kano×Kano กำหนดมาตรฐานและดูแลคุณภาพครูและบทเรียน", feat2Hint: "▼ กดเพื่อดูรายละเอียด",
                 feat3Title: "1 ต่อ 1<br>ดูแลต่อเนื่อง", feat3Desc: "ปรับบทเรียนและการทบทวนให้เหมาะกับเป้าหมาย ระดับ และจุดอ่อนของผู้เรียนแต่ละคน", feat3Hint: "▼ กดเพื่อดูรายละเอียด",
@@ -3879,7 +4023,7 @@
                 profileTitle: "ประวัติผู้สอน", profileName: "หัวหน้าผู้สอน: ฮารุกิ คาโน่ / Haruki Sensei",
                 profileP1: "ผมเคยสอนภาษาญี่ปุ่นในประเทศไทย และปัจจุบันสอนภาษาญี่ปุ่นในสิงคโปร์ให้กับผู้เรียนที่มีพื้นฐานด้านภาษาและวัฒนธรรมที่หลากหลาย",
                 profileP2: "ในยุคที่ AI ทำให้เราเข้าถึงความรู้และคำแปลได้ในพริบตา ผมยังเชื่อว่าสิ่งที่เชื่อมคนกับคนจริง ๆ คือหัวใจ และภาษาคือสิ่งที่ช่วยส่งหัวใจนั้นไปถึงอีกฝ่าย",
-                profileP3: "เป้าหมายไม่ใช่แค่จำภาษาญี่ปุ่น แต่คือการถ่ายทอดความคิดด้วยคำพูดของตัวเองและสร้างความสัมพันธ์กับผู้คน Kano×Kano จึงให้ความสำคัญกับบทเรียนแบบตัวต่อตัวที่เหมาะกับเป้าหมาย บุคลิก และจังหวะการเรียนของแต่ละคน",
+                profileP3: "เป้าหมายของ Kano×Kano ไม่ใช่เพียงการจดจำภาษาญี่ปุ่น แต่คือ <strong>การเข้าใจคำพูดของอีกฝ่าย ถ่ายทอดด้วยคำพูดของตนเอง และสร้างความสัมพันธ์กับอีกฝ่าย</strong> เราจึงให้ความสำคัญกับบทเรียนแบบตัวต่อตัวที่เหมาะกับเป้าหมาย บุคลิก และจังหวะการเรียนของแต่ละคน",
                 b1: "คุณวุฒิระดับชาติ", b2: "ครูประจำในสิงคโปร์", b3: "ประสบการณ์สอนในไทย", b4: "ผู้เรียนต่างชาติ", b5: "บทเรียนตัวต่อตัว",
                 coursesTitle: "คอร์สและแพ็กเกจ", coursesNote: "คอร์สระดับต้นและระดับกลางเรียนครั้งละ 50 นาที ส่วนคอร์สสนทนาเลือกได้ 30 หรือ 50 นาที ทุกคอร์สเป็นแบบตัวต่อตัว และเลือกเรียนเดือนละ 4, 8 หรือ 12 ครั้งได้",
                 beginnerLabel: "ระดับต้น", beginnerTitle: "คอร์สภาษาญี่ปุ่นระดับต้น", beginnerDesc: "เริ่มตั้งแต่ฮิรางานะ คาตากานะ และไวยากรณ์พื้นฐานอย่างเป็นระบบ", beginnerSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", beginnerHint: "▼ ดูแพ็กเกจ", beginnerDetail: "📘 ภาษาญี่ปุ่นระดับต้น:\nใช้ Minna no Nihongo เป็นพื้นฐาน เรียนฮิรางานะ คาตากานะ การออกเสียง คำศัพท์พื้นฐาน และไวยากรณ์อย่างเป็นระบบ เราไม่ได้เพียงเรียนตามหนังสือ แต่ปรับและพัฒนาสื่อการสอนของเราเองให้เข้าใจได้ง่ายและลึกขึ้น และด้วยการเรียนแบบตัวต่อตัว ครูสามารถปรับจังหวะให้เหมาะกับผู้เรียนแต่ละคนได้", beginner4Title: "4 ครั้ง/เดือน", beginner4Price: "8,000 เยน/เดือน", beginner4Note: "ประมาณสัปดาห์ละ 1 ครั้ง เหมาะสำหรับผู้ที่อยากเรียนอย่างต่อเนื่องโดยไม่หนักเกินไป", beginner8Title: "8 ครั้ง/เดือน", beginner8Price: "16,000 เยน/เดือน", beginner8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาภาษาญี่ปุ่นอย่างสม่ำเสมอ", beginner12Title: "12 ครั้ง/เดือน", beginner12Price: "24,000 เยน/เดือน", beginner12Note: "ประมาณสัปดาห์ละ 3 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาอย่างเข้มข้น", beginnerRec: "แนะนำ",
@@ -3887,14 +4031,14 @@
                 conversationLabel: "สนทนา", conversationTitle: "คอร์สสนทนาในชีวิตประจำวัน", conversationDesc: "เหมาะทั้งสำหรับผู้ที่อยากพัฒนาการสนทนา และผู้ที่เพียงอยากคุยกับคนญี่ปุ่นแบบสบาย ๆ", conversationSummary: "30 นาที เริ่ม 4,000 เยน/เดือน · 50 นาที เริ่ม 6,000 เยน/เดือน | ต่ออายุอัตโนมัติทุกเดือน", conversationHint: "▼ ดูแพ็กเกจ", conversationDetail: "💬 สนทนาในชีวิตประจำวัน:\nคุยเรื่องท่องเที่ยว งาน งานอดิเรก อนิเมะ หรือเรื่องที่คุณชอบได้อย่างสบาย ๆ เลือกแพ็กเกจ 30 หรือ 50 นาที และเรียนเดือนละ 4, 8 หรือ 12 ครั้ง แพ็กเกจเดิมจะต่ออายุอัตโนมัติทุกเดือน จึงเหมาะสำหรับผู้ที่ต้องการฝึกสนทนาอย่างต่อเนื่อง หากต้องการ ครูจะช่วยแนะนำไวยากรณ์ คำศัพท์ และสำนวนที่เป็นธรรมชาติให้ด้วย", conversation4Title: "4 ครั้ง/เดือน", conversation4Price: "30 นาที 4,000 เยน / 50 นาที 6,000 เยน", conversation4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", conversation8Title: "8 ครั้ง/เดือน", conversation8Price: "30 นาที 8,000 เยน / 50 นาที 12,000 เยน", conversation8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", conversation12Title: "12 ครั้ง/เดือน", conversation12Price: "30 นาที 12,000 เยน / 50 นาที 18,000 เยน", conversation12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", conversationRec: "แนะนำ",
                 jlptSectionTitle: "คอร์สเข้มข้นเพื่อสอบผ่าน JLPT", jlptSectionDesc: "คอร์ส N5 และ N4 เป็นหลักสูตรที่วางแผนเรียนแบบ 6 เดือนหรือ 1 ปีอย่างเป็นระบบ",
                 n5Label: "JLPT N5", n5Title: "คอร์สเข้มข้น JLPT N5", n5Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N5 ภายใน 6 เดือนหรือ 1 ปี", n5Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n5Hint: "▼ ดูรายละเอียด", n5Detail: "🏆 N5 Intensive:\nทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n5SixTitle: "คอร์ส 6 เดือน", n5SixNote: "เตรียมสอบ N5 แบบเข้มข้น", n5YearTitle: "คอร์ส 1 ปี", n5YearNote: "ค่อย ๆ สร้างพื้นฐานเพื่อสอบ N5", n5SixPace: "แนวทางเรียน 6 เดือน\nประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N5 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n5YearPace: "แนวทางเรียน 1 ปี\nประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้งเท่ากัน เหมาะกับผู้ที่ต้องการมีเวลาทบทวนและสร้างพื้นฐานอย่างมั่นคงก่อนสอบ N5 จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
-                n4Label: "JLPT N4", n4Title: "คอร์สเข้มข้น JLPT N4", n4Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N4 ภายใน 6 เดือนหรือ 1 ปี", n4Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n4Hint: "▼ ดูรายละเอียด", n4Detail: "🏆 N4 Intensive:\nทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n4SixTitle: "คอร์ส 6 เดือน", n4SixNote: "เตรียมสอบ N4 แบบเข้มข้น", n4YearTitle: "คอร์ส 1 ปี", n4YearNote: "เรียนอย่างต่อเนื่องเพื่อสอบ N4", n4SixPace: "แนวทางเรียน 6 เดือน\nประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N4 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n4YearPace: "แนวทางเรียน 1 ปี\nประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้ง เหมาะกับผู้ที่ต้องการเรียนควบคู่กับงานหรือโรงเรียนและเตรียมสอบ N4 อย่างต่อเนื่อง จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
+                n4Label: "JLPT N4", n4Title: "คอร์สเข้มข้น JLPT N4", n4Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N4 ภายใน 6 เดือนหรือ 1 ปี", n4Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n4Hint: "▼ ดูรายละเอียด", n4Detail: "🏆 N4 Intensive:\nทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n4SixTitle: "คอร์ส 6 เดือน", n4SixNote: "เตรียมสอบ N4 แบบเข้มข้น", n4YearTitle: "คอร์ส 1 ปี", n4YearNote: "ค่อย ๆ สร้างพื้นฐานเพื่อสอบ N4", n4SixPace: "แนวทางเรียน 6 เดือน\nประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N4 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n4YearPace: "แนวทางเรียน 1 ปี\nประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้ง เหมาะกับผู้ที่ต้องการเรียนควบคู่กับงานหรือโรงเรียนและเตรียมสอบ N4 อย่างต่อเนื่อง จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
                 contactTitle: "ติดต่อและสมัครเรียนทดลอง", contactDesc: "หากมีข้อสงสัยหรือสนใจเรียนทดลอง สามารถติดต่อได้ตลอดเวลาครับ!", contactSubDesc: "✨ ทดลองเรียน 15 นาทีแรกฟรี! เพื่อประเมินระดับภาษาและพูดคุยความต้องการของคุณ", contactEmailLabel: "📧 อีเมล:", btnText: "สมัครเรียนทดลอง"
             },
             ko: {
                 navReasons: "3가지 이유", navProfile: "프로필", navCourses: "요금 플랜", navHow: "수강 방법", navContact: "무료 체험", navLogin: "로그인", floatingTrialBtn: "무료 체험 예약",
                 heroTitle: "언어로,<br><span class=\"hero-accent\">사람과 사람을 더 가깝게.</span>",
                 heroSub: "AI가 아무리 발전해도 마음을 전하고, 서로를 이해하고, 관계를 만드는 주체는 사람입니다.<br>Kano×Kano는 국가자격을 갖춘 일본어 교사와의 1:1 수업을 통해 진짜로 전달되는 일본어를 키웁니다.",
-                reasonsTitle: "Kano×Kano를 선택하는 3가지 이유", reasonsNote: "* 떠 있는 파란 원을 누르면 그 자리에서 부드럽게 커지며 원 안에 자세한 설명이 나타납니다.",
+                reasonsTitle: "Kano×Kano를 선택하는 3가지 이유", reasonsNote: "Kano×Kano만의 차별화된 3가지 강점을 소개합니다. 궁금한 항목을 탭하면 자세한 내용이 표시됩니다.",
                 feat1Title: "전원<br>국가자격", feat1Desc: "검증된 프로 강사만 수업 담당.", feat1Hint: "▼ 상세 보기",
                 feat2Title: "학원 기준<br>품질 관리", feat2Desc: "오픈 튜터 마켓이 아니라 학원 기준으로 강사와 수업 품질을 관리합니다.", feat2Hint: "▼ 상세 보기",
                 feat3Title: "1:1<br>지속 지원", feat3Desc: "학습자의 목표·수준·약점에 맞춰 수업과 복습을 지원합니다.", feat3Hint: "▼ 상세 보기",
@@ -3904,7 +4048,7 @@
                 profileTitle: "대표 강사 프로필", profileName: "대표 강사: 카노 하루키 / 하루키 선생님",
                 profileP1: "안녕하세요. Kano×Kano 대표 강사 카노 하루키입니다. 태국에서 일본어 교육 경험을 쌓은 뒤, 현재는 싱가포르에서 현직 일본어 교사로 다양한 배경의 학습자를 지도하고 있습니다.",
                 profileP2: "AI가 지식과 번역을 순식간에 제공하는 시대가 되었지만, 사람과 사람을 진정으로 이어 주는 것은 결국 마음이라고 생각합니다. 그리고 그 마음을 상대에게 전하는 것이 바로 언어입니다.",
-                profileP3: "일본어를 외우는 것 자체가 목표가 아니라, 자신의 생각을 자신의 말로 전하고 사람과 관계를 만들어 갈 수 있게 되는 것이 목표입니다. Kano×Kano는 전문성과 해외 지도 경험을 바탕으로 각 학습자의 목표·성격·속도에 맞춘 1:1 수업을 소중히 합니다.",
+                profileP3: "Kano×Kano의 목표는 단순히 일본어를 외우는 것이 아닙니다. <strong>상대의 말을 이해하고, 자신의 말로 전하며, 상대와 관계를 만들어 갈 수 있게 되는 것</strong>을 학습의 목표로 합니다. 전문성과 해외 지도 경험을 바탕으로 각 학습자의 목표·성격·속도에 맞춘 1:1 수업을 소중히 합니다.",
                 b1: "국가자격 보유", b2: "싱가포르 현직 교사", b3: "태국 지도 경험", b4: "해외 학습자 지도", b5: "완전 1:1 수업",
                 coursesTitle: "코스・요금 안내", coursesNote: "초급・중급은 50분, 일상회화는 30분 또는 50분 1:1 수업입니다. 각 코스는 월 4회, 8회, 12회 플랜 중에서 선택할 수 있습니다.",
                 beginnerLabel: "초급", beginnerTitle: "초급 일본어 코스", beginnerDesc: "히라가나・가타카나부터 기본 문법까지 처음부터 탄탄하게 배웁니다.", beginnerSummary: "월 4회 8,000엔 / 월 8회 16,000엔 / 월 12회 24,000엔", beginnerHint: "▼ 플랜 상세 보기", beginnerDetail: "📘 초급 일본어:\n『민나노 니혼고』를 바탕으로 히라가나・가타카나, 발음, 기본 어휘와 기초 문법을 체계적으로 배웁니다. 교과서를 그대로 따라가는 데 그치지 않고 학습자가 더 직관적으로 이해하고 깊이 익힐 수 있도록 자체적으로 보완한 교재를 사용합니다. 1:1 수업이므로 각 학습자의 이해도에 맞춰 세심하게 진행합니다.", beginner4Title: "월 4회", beginner4Price: "월 8,000엔", beginner4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", beginner8Title: "월 8회", beginner8Price: "월 16,000엔", beginner8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", beginner12Title: "월 12회", beginner12Price: "월 24,000엔", beginner12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", beginnerRec: "추천",
@@ -3912,14 +4056,14 @@
                 conversationLabel: "회화", conversationTitle: "일상회화 코스", conversationDesc: "회화 실력을 늘리고 싶은 분은 물론, 부담 없이 일본인과 편하게 이야기하고 싶은 분도 환영합니다.", conversationSummary: "30분 월 4회 4,000엔부터 · 50분 월 4회 6,000엔부터 | 매월 자동 갱신", conversationHint: "▼ 플랜 상세 보기", conversationDetail: "💬 일상회화:\n여행, 일, 취미, 애니메이션 등 좋아하는 주제로 편하게 일본어를 말하는 코스입니다. 30분 또는 50분 플랜을 선택하고 월 4회·8회·12회 구독으로 수강합니다. 같은 플랜이 매월 자동 갱신되어 꾸준히 회화 시간을 확보하기 좋습니다. 원하면 문법, 어휘, 더 자연스러운 표현도 강사가 꼼꼼하게 피드백합니다.", conversation4Title: "월 4회", conversation4Price: "30분 4,000엔 / 50분 6,000엔", conversation4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", conversation8Title: "월 8회", conversation8Price: "30분 8,000엔 / 50분 12,000엔", conversation8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", conversation12Title: "월 12회", conversation12Price: "30분 12,000엔 / 50분 18,000엔", conversation12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", conversationRec: "추천",
                 jlptSectionTitle: "JLPT 합격 집중 코스", jlptSectionDesc: "N5・N4는 6개월 또는 1년 기간을 정해 체계적으로 진행하는 특별 커리큘럼입니다.",
                 n5Label: "JLPT N5", n5Title: "N5 합격 집중 코스", n5Desc: "N5에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n5Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n5Hint: "▼ 코스 상세 보기", n5Detail: "🏆 N5 집중:\n문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n5SixTitle: "6개월 코스", n5SixNote: "단기간 집중해서 N5 합격 목표", n5YearTitle: "1년 코스", n5YearNote: "기초를 다지며 천천히 N5 합격 목표", n5SixPace: "6개월 학습 페이스\n주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N5 합격을 목표로 하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n5YearPace: "1년 학습 페이스\n주 약 1회(월 4~5회 정도)로 같은 총 51회를 진행합니다. 복습 시간을 충분히 가지며 기초를 차근차근 다져 N5 합격을 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
-                n4Label: "JLPT N4", n4Title: "N4 합격 집중 코스", n4Desc: "N4에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n4Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n4Hint: "▼ 코스 상세 보기", n4Detail: "🏆 N4 집중:\n문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n4SixTitle: "6개월 코스", n4SixNote: "단기간 집중해서 N4 합격 목표", n4YearTitle: "1년 코스", n4YearNote: "무리 없는 페이스로 N4 합격 목표", n4SixPace: "6개월 학습 페이스\n주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N4 합격을 준비하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n4YearPace: "1년 학습 페이스\n주 약 1회(월 4~5회 정도)로 총 51회를 진행합니다. 학교나 일과 병행하면서 꾸준히 N4를 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
+                n4Label: "JLPT N4", n4Title: "N4 합격 집중 코스", n4Desc: "N4에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n4Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n4Hint: "▼ 코스 상세 보기", n4Detail: "🏆 N4 집중:\n문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n4SixTitle: "6개월 코스", n4SixNote: "단기간 집중해서 N4 합격 목표", n4YearTitle: "1년 코스", n4YearNote: "기초를 다지며 천천히 N4 합격 목표", n4SixPace: "6개월 학습 페이스\n주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N4 합격을 준비하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n4YearPace: "1년 학습 페이스\n주 약 1회(월 4~5회 정도)로 총 51회를 진행합니다. 학교나 일과 병행하면서 꾸준히 N4를 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
                 contactTitle: "문의 및 체험 레슨 신청", contactDesc: "체험 레슨을 신청하시려면 언제든 편하게 연락 주세요!", contactSubDesc: "✨ 체험 레슨은 15분 무료로 일본어 레벨 확인 및 희망 사항을 상담해 드립니다!", contactEmailLabel: "📧 이메일:", btnText: "체험 레슨 신청하기"
             },
             zh: {
                 navReasons: "选择理由", navProfile: "讲师简介", navCourses: "课程套餐", navHow: "上课流程", navContact: "免费试听", navLogin: "登录", floatingTrialBtn: "预约免费试听",
                 heroTitle: "用语言，<br><span class=\"hero-accent\">让人与人更靠近。</span>",
                 heroSub: "无论AI如何进步，传递感情、理解彼此、建立关系的依然是人。<br>Kano×Kano通过国家资格日语教师的一对一课程，帮助你培养真正能够传达心意的日语。",
-                reasonsTitle: "选择Kano×Kano的3大理由", reasonsNote: "※ 点击漂浮的蓝色圆形，该圆会从当前位置平滑放大，并在圆内显示详细说明。",
+                reasonsTitle: "选择Kano×Kano的3大理由", reasonsNote: "介绍Kano×Kano独有的3项优势。点击感兴趣的项目即可查看详细内容。",
                 feat1Title: "全员<br>国家资格", feat1Desc: "由严选专业讲师授课，保证高质量教学。", feat1Hint: "▼ 查看详情",
                 feat2Title: "课程<br>质量", feat2Desc: "不是开放式教师市场，而是由Kano×Kano按照标准筛选教师并管理课程质量。", feat2Hint: "▼ 查看详情",
                 feat3Title: "1对1<br>持续支持", feat3Desc: "根据每位学习者的目标、水平和弱项调整课程与复习。", feat3Hint: "▼ 查看详情",
@@ -3929,7 +4073,7 @@
                 profileTitle: "代表讲师简介", profileName: "代表讲师：加纳 春纪 / Haruki 老师",
                 profileP1: "您好，我是Kano×Kano代表讲师加纳春纪。在泰国从事日语教育后，目前在新加坡担任日语教师，教授来自不同背景的学习者。",
                 profileP2: "在AI让知识与翻译变得触手可及的时代，我依然相信，真正连接人与人的，是“心”。而语言，就是把这份心意传达给对方的方式。",
-                profileP3: "学习日语的目标不只是记住语言，而是能够用自己的话表达自己的想法，并与他人建立真实的关系。Kano×Kano结合专业教学能力与海外教学经验，重视贴合每位学习者目标、个性与节奏的一对一课程。",
+                profileP3: "Kano×Kano的目标不只是记住日语，而是理解对方的话，用自己的语言表达自己，并能够与对方建立关系。我们结合专业教学能力与海外教学经验，重视贴合每位学习者目标、个性与节奏的一对一课程。",
                 b1: "国家资格持有者", b2: "新加坡现役教师", b3: "泰国教学经验", b4: "海外学习者教学", b5: "完全一对一",
                 coursesTitle: "课程与收费方案", coursesNote: "初级和中级课程每次50分钟；日常会话可选择30分钟或50分钟。所有课程均为一对一，可选择每月4次、8次或12次。",
                 beginnerLabel: "初级", beginnerTitle: "初级日语课程", beginnerDesc: "从平假名、片假名和基础语法开始，扎实建立日语基础。", beginnerSummary: "每月4次 8,000日元 / 8次 16,000日元 / 12次 24,000日元", beginnerHint: "▼ 查看方案", beginnerDetail: "📘 初级日语：\n以《大家的日语》为基础，系统学习平假名、片假名、发音、基础词汇和基础语法。我们并非简单照着教材推进，而是使用经过独立优化的教学资料，让学习者更直观地理解并加深掌握。一对一授课也能根据每位学习者的理解程度细致调整进度。", beginner4Title: "每月4次", beginner4Price: "8,000日元/月", beginner4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", beginner8Title: "每月8次", beginner8Price: "16,000日元/月", beginner8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", beginner12Title: "每月12次", beginner12Price: "24,000日元/月", beginner12Note: "适合想多聊天、在日常中经常享受日语会话的人", beginnerRec: "推荐",
@@ -3937,7 +4081,7 @@
                 conversationLabel: "会话", conversationTitle: "日常会话课程", conversationDesc: "不仅适合想提高会话能力的人，也欢迎只是想轻松和日本人聊天的人。", conversationSummary: "30分钟：每月4次4,000日元起 · 50分钟：每月4次6,000日元起 | 每月自动续费", conversationHint: "▼ 查看方案", conversationDetail: "💬 日常会话：\n可以围绕旅行、工作、兴趣、动漫等喜欢的话题轻松地用日语聊天。请选择30分钟或50分钟方案，并从每月4次、8次或12次中选择。相同方案会每月自动续费，适合希望持续保持会话练习量的学习者。需要的话，老师也会对语法、词汇和更自然的表达给予细致反馈。", conversation4Title: "每月4次", conversation4Price: "30分钟 4,000日元 / 50分钟 6,000日元", conversation4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", conversation8Title: "每月8次", conversation8Price: "30分钟 8,000日元 / 50分钟 12,000日元", conversation8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", conversation12Title: "每月12次", conversation12Price: "30分钟 12,000日元 / 50分钟 18,000日元", conversation12Note: "适合想多聊天、在日常中经常享受日语会话的人", conversationRec: "推荐",
                 jlptSectionTitle: "JLPT 合格集中课程", jlptSectionDesc: "N5、N4采用设定6个月或1年学习周期的系统化特别课程。",
                 n5Label: "JLPT N5", n5Title: "N5合格集中课程", n5Desc: "在6个月或1年内系统学习N5所需的语法、听力和阅读。", n5Summary: "共51次・100,000日元 / 6个月或1年课程", n5Hint: "▼ 查看课程详情", n5Detail: "🏆 N5集中课程：\n共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n5SixTitle: "6个月课程", n5SixNote: "短期集中备考N5", n5YearTitle: "1年课程", n5YearNote: "扎实打基础，稳步备考N5", n5SixPace: "6个月学习节奏\n每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N5的学习者。每月次数可能会根据日历和预约情况略有调整。", n5YearPace: "1年学习节奏\n每周约1次（每月约4–5次），完成同样的51次课程。可以保留充足的复习时间，扎实建立基础并稳步准备N5。每月次数可能会根据日历和预约情况略有调整。",
-                n4Label: "JLPT N4", n4Title: "N4合格集中课程", n4Desc: "在6个月或1年内系统学习N4所需的语法、听力和阅读。", n4Summary: "共51次・100,000日元 / 6个月或1年课程", n4Hint: "▼ 查看课程详情", n4Detail: "🏆 N4集中课程：\n共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n4SixTitle: "6个月课程", n4SixNote: "短期集中备考N4", n4YearTitle: "1年课程", n4YearNote: "以稳定节奏备考N4", n4SixPace: "6个月学习节奏\n每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N4的学习者。每月次数可能会根据日历和预约情况略有调整。", n4YearPace: "1年学习节奏\n每周约1次（每月约4–5次），完成全部51次课程。适合希望兼顾工作或学校、以稳定节奏认真准备N4的学习者。每月次数可能会根据日历和预约情况略有调整。",
+                n4Label: "JLPT N4", n4Title: "N4合格集中课程", n4Desc: "在6个月或1年内系统学习N4所需的语法、听力和阅读。", n4Summary: "共51次・100,000日元 / 6个月或1年课程", n4Hint: "▼ 查看课程详情", n4Detail: "🏆 N4集中课程：\n共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n4SixTitle: "6个月课程", n4SixNote: "短期集中备考N4", n4YearTitle: "1年课程", n4YearNote: "扎实打基础，稳步备考N4", n4SixPace: "6个月学习节奏\n每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N4的学习者。每月次数可能会根据日历和预约情况略有调整。", n4YearPace: "1年学习节奏\n每周约1次（每月约4–5次），完成全部51次课程。适合希望兼顾工作或学校、以稳定节奏认真准备N4的学习者。每月次数可能会根据日历和预约情况略有调整。",
                 contactTitle: "咨询与试听课申請", contactDesc: "如有任何疑问或想申请试听课，欢迎随时与我们联系！", contactSubDesc: "✨ 试听课前15分钟免费！为您确认日语水平并详细了解您的学习需求。", contactEmailLabel: "📧 电子邮箱:", btnText: "申请试听课"
             }
         };

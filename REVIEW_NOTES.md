@@ -26,3 +26,11 @@
 - Verify Supabase Edge Function CORS, Auth Site URL/redirects, and RLS/Edge Function authorization against the final production domain.
 - Complete verified production email sender setup.
 - Complete the final Google Calendar / Google Meet production integration if automated meeting creation is required.
+
+## v37 mobile/content refinements
+- Repositioned the HEART / LEARN / CONNECT hero artwork to the right of the mobile headline and prevented it from covering the intro copy; the CONNECT card stays inside the viewport.
+- Rewrote the “3 reasons” intro as a concise Kano×Kano strengths message.
+- Kept the representative name on one line on narrow phones and revised the profile goal statement around understanding others, expressing oneself, and building relationships.
+- Made the JLPT 6-month / 1-year track names the primary labels in the N5 and N4 detail choices.
+- Changed the lesson-flow layout to a clear vertical 1 → 2 → 3 → 4 sequence.
+- Verified 320 / 360 / 390 / 430 / 498 px mobile widths without page-level horizontal overflow.
