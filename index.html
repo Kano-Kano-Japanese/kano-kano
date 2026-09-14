@@ -6,6 +6,12 @@
     <meta name="google-site-verification" content="8_hdlIGzCuYINWO3BJV29Al-4r03VnPgWDxkMWAkVVM" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kano×Kanoは、国家資格を持つ日本語教師による完全1対1のオンライン日本語レッスン。初級・中級・日常会話・JLPT対策を、世界中から受講できます。">
+    <meta name="theme-color" content="#14213d">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kano×Kano">
+    <meta property="og:title" content="Kano×Kano | 国家資格保有講師による1対1オンライン日本語レッスン">
+    <meta property="og:description" content="国家資格を持つ日本語教師と学ぶ、完全1対1のオンライン日本語レッスン。15分の無料体験受付中。">
     <title>Kano×Kano | 国家資格保有講師による高品質な1対1オンライン日本語レッスン</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -2397,6 +2403,617 @@
             .speech-card strong { font-size:.84rem !important; }
         }
 
+
+        /* ===== v28 polish: hero line, truly round/smooth reason orbs, blended profile, light plan drawers ===== */
+        /* Keep the key phrase on one line. The artwork may sit behind it, as intended. */
+        header h1 { font-size:clamp(2.6rem,4.75vw,4.65rem) !important; max-width:760px !important; }
+        .hero-copy { max-width:760px !important; }
+        .hero-accent { white-space:nowrap !important; }
+
+        /* The three reason buttons are true circles — never vertical ovals. */
+        .reason-orbit-stage { align-items:center !important; }
+        .reason-orb.feature-box {
+            box-sizing:border-box !important;
+            width:210px !important;
+            height:210px !important;
+            min-width:210px !important;
+            min-height:210px !important;
+            max-width:210px !important;
+            max-height:210px !important;
+            aspect-ratio:auto !important;
+            flex:none !important;
+            align-self:center !important;
+            border-radius:50% !important;
+            transform:translateZ(0);
+            backface-visibility:hidden;
+            -webkit-backface-visibility:hidden;
+            will-change:transform;
+            animation:reasonOrbFloatV28 6.8s cubic-bezier(.45,0,.55,1) infinite !important;
+        }
+        .reason-orb.feature-box:nth-child(1){ --float-base:-8px; animation-delay:-.55s !important; }
+        .reason-orb.feature-box:nth-child(2){ --float-base:10px; animation-delay:-2.35s !important; }
+        .reason-orb.feature-box:nth-child(3){ --float-base:-2px; animation-delay:-4.2s !important; }
+        @keyframes reasonOrbFloatV28 {
+            0%,100% { transform:translate3d(0,var(--float-base),0); }
+            50% { transform:translate3d(0,calc(var(--float-base) - 14px),0); }
+        }
+        .reason-orb.feature-box.reason-v28-hidden {
+            visibility:hidden !important;
+            pointer-events:none !important;
+        }
+        .reason-zoom-overlay {
+            z-index:2147483000 !important;
+            background:transparent !important;
+            transition:none !important;
+            overflow:hidden !important;
+            touch-action:none;
+        }
+        .reason-zoom-overlay.active-v28 {
+            visibility:visible !important;
+            pointer-events:auto !important;
+        }
+        .reason-orb-clone-v28 {
+            position:fixed !important;
+            z-index:2147483001 !important;
+            box-sizing:border-box !important;
+            margin:0 !important;
+            padding:26px 20px !important;
+            border-radius:50% !important;
+            animation:none !important;
+            transition:none !important;
+            transform-origin:0 0 !important;
+            will-change:transform;
+            backface-visibility:hidden;
+            -webkit-backface-visibility:hidden;
+            contain:paint style;
+            cursor:pointer;
+        }
+        .reason-orb-clone-v28:hover { transform:none; }
+        .reason-orb-clone-v28 .feature-meta,
+        .reason-orb-clone-v28 > h3,
+        .reason-orb-clone-v28 .orb-tap {
+            transition:opacity .34s ease, transform .4s ease;
+        }
+        .reason-orb-clone-v28.content-hidden .feature-meta,
+        .reason-orb-clone-v28.content-hidden > h3,
+        .reason-orb-clone-v28.content-hidden .orb-tap {
+            opacity:0;
+            transform:scale(.9);
+        }
+        .reason-detail-v28 {
+            position:fixed;
+            z-index:2147483002;
+            left:50%;
+            top:50%;
+            width:min(920px,76vw);
+            max-height:min(620px,72vh);
+            transform:translate(-50%,-47%) scale(.96);
+            opacity:0;
+            display:grid;
+            grid-template-columns:minmax(210px,.7fr) minmax(0,1.35fr);
+            gap:clamp(28px,4vw,70px);
+            align-items:center;
+            color:#fff;
+            text-align:left;
+            pointer-events:none;
+            transition:opacity .42s ease, transform .55s cubic-bezier(.22,.8,.2,1);
+        }
+        .reason-detail-v28.visible {
+            opacity:1;
+            transform:translate(-50%,-50%) scale(1);
+        }
+        .reason-detail-v28 .reason-detail-kicker-v24 { margin-bottom:13px; }
+        .reason-detail-v28 .reason-detail-title-v24 { font-size:clamp(2.5rem,5.2vw,5.2rem); }
+        .reason-detail-v28 .reason-detail-body-v24 {
+            max-height:48vh;
+            overflow:auto;
+            padding:18px 0 18px clamp(24px,3.2vw,46px);
+            font-size:clamp(.98rem,1.22vw,1.12rem);
+        }
+        .reason-detail-v28 .reason-detail-helper-v24 {
+            position:fixed;
+            left:50%;
+            bottom:7vh;
+        }
+
+        /* Profile: remove top/bottom photo gaps and dissolve the image into the copy. */
+        #sec-profile { position:relative; z-index:1; }
+        .profile-blend {
+            min-height:590px !important;
+            background:#fff !important;
+            overflow:hidden !important;
+            isolation:isolate;
+        }
+        .profile-photo-full {
+            flex:0 0 64% !important;
+            width:64% !important;
+            height:620px !important;
+            max-height:none !important;
+            object-fit:cover !important;
+            object-position:center 43% !important;
+            transform:scale(1.06) translateX(-1.5%) !important;
+            transform-origin:center center !important;
+            align-self:stretch !important;
+            z-index:0 !important;
+        }
+        .profile-content-blend {
+            flex:0 0 58% !important;
+            width:58% !important;
+            margin-left:-22% !important;
+            padding:48px 42px 44px 150px !important;
+            background:linear-gradient(90deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,.10) 10%,
+                rgba(255,255,255,.42) 22%,
+                rgba(255,255,255,.78) 34%,
+                rgba(255,255,255,.96) 47%,
+                #fff 60%,#fff 100%) !important;
+        }
+        .profile-content-blend::before {
+            content:'' !important;
+            position:absolute !important;
+            left:-115px !important;
+            top:0 !important;
+            bottom:0 !important;
+            width:180px !important;
+            background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.72) 72%,rgba(255,255,255,.98)) !important;
+            pointer-events:none !important;
+            display:block !important;
+        }
+
+        /* All three main course cards have identical height. */
+        .course-row-main .price-card {
+            height:270px !important;
+            min-height:270px !important;
+            max-height:270px !important;
+        }
+
+        /* Plan details: lighter, cleaner, premium instead of a heavy navy block. */
+        .course-row-main .accordion-detail {
+            color:#22304a !important;
+            background:
+                radial-gradient(circle at 8% 0%,rgba(79,118,238,.12),transparent 28%),
+                linear-gradient(135deg,rgba(250,252,255,.98),rgba(238,244,255,.98)) !important;
+            border:1px solid rgba(49,89,216,.14) !important;
+            box-shadow:0 24px 54px rgba(38,67,130,.12) !important;
+            backdrop-filter:blur(16px);
+        }
+        .course-row-main .accordion-detail p { color:#44536b !important; }
+        .course-row-main .accordion-detail strong { color:#17233e !important; }
+        .course-row-main .accordion-detail .mini-plan {
+            background:rgba(255,255,255,.88) !important;
+            border:1px solid rgba(49,89,216,.12) !important;
+            box-shadow:0 14px 28px rgba(38,67,130,.08) !important;
+        }
+        .course-row-main .accordion-detail .mini-plan.recommended {
+            background:linear-gradient(160deg,#fff,#f1f5ff) !important;
+            border-color:rgba(49,89,216,.30) !important;
+            box-shadow:0 18px 36px rgba(49,89,216,.13) !important;
+        }
+        .course-row-main .accordion-detail .mini-price { color:#3159d8 !important; }
+        .course-row-main .accordion-detail .checkout-note {
+            background:rgba(255,255,255,.70) !important;
+            color:#526078 !important;
+            border-color:rgba(49,89,216,.12) !important;
+        }
+
+        @media(max-width:800px){
+            header h1 { font-size:clamp(2rem,8.3vw,3.05rem) !important; }
+            .hero-accent { white-space:nowrap !important; }
+            .reason-orb.feature-box {
+                width:176px !important;height:176px !important;
+                min-width:176px !important;min-height:176px !important;
+                max-width:176px !important;max-height:176px !important;
+            }
+            .reason-detail-v28 {
+                width:84vw;
+                max-height:72vh;
+                grid-template-columns:1fr;
+                gap:18px;
+                text-align:left;
+            }
+            .reason-detail-v28 .reason-detail-title-v24 { font-size:clamp(2.25rem,11vw,4rem); }
+            .reason-detail-v28 .reason-detail-body-v24 {
+                border-left:0;
+                border-top:1px solid rgba(255,255,255,.28);
+                padding:18px 0 0;
+                max-height:38vh;
+            }
+            .profile-blend { display:block !important; min-height:0 !important; }
+            .profile-photo-full {
+                width:100% !important;
+                height:min(96vw,560px) !important;
+                object-fit:cover !important;
+                object-position:center 40% !important;
+                transform:scale(1.04) !important;
+            }
+            .profile-content-blend {
+                width:100% !important;
+                margin:-125px 0 0 !important;
+                padding:150px 22px 28px !important;
+                background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.70) 70px,rgba(255,255,255,.97) 122px,#fff 160px) !important;
+            }
+            .profile-content-blend::before { display:none !important; }
+            .course-row-main .price-card { height:250px !important; min-height:250px !important; max-height:250px !important; }
+        }
+
+
+        /* ===== v29: cleaner hero placement + exact, no-snap reason-orb round trip ===== */
+        /* Move the connection artwork into the upper-right breathing room so the key phrase stays easy to read. */
+        .hero-art {
+            width:420px !important;
+            height:350px !important;
+            right:12px !important;
+            top:34% !important;
+            opacity:1 !important;
+            transform:translateY(-50%) !important;
+        }
+        .hero-copy { max-width:745px !important; }
+        @media (max-width:1080px) {
+            .hero-art { width:382px !important; height:326px !important; right:4px !important; top:31% !important; }
+            .hero-copy { max-width:690px !important; }
+        }
+        @media (max-width:800px) {
+            .hero-art { width:285px !important; height:255px !important; right:4px !important; top:25% !important; }
+            .hero-copy { max-width:88% !important; }
+        }
+        @media (max-width:520px) {
+            .hero-art { width:245px !important; height:224px !important; right:0 !important; top:23% !important; }
+            .hero-copy { max-width:94% !important; }
+        }
+
+        /* The source orb is actually paused with !important before measuring it.
+           This prevents it from drifting invisibly while the large clone is open. */
+        .reason-orb.feature-box.reason-v29-paused { animation-play-state:paused !important; }
+        .reason-orb.feature-box.reason-v29-hidden { visibility:hidden !important; pointer-events:none !important; }
+        .reason-orb.feature-box.reason-v29-handoff { transition:none !important; animation-play-state:paused !important; }
+        .reason-orb-clone-v28 {
+            transform-origin:0 0 !important;
+            will-change:transform,opacity !important;
+            backface-visibility:hidden !important;
+            -webkit-backface-visibility:hidden !important;
+            contain:layout paint style !important;
+        }
+
+
+
+        /* ===== v30: rebuilt reason-orb zoom layer =====
+           Uses one fixed clone, center-origin transform-only motion, and keeps
+           the source frozen at its exact clicked animation phase. */
+        #reasonZoomOverlay { display:none !important; }
+        .reason-orb.feature-box.reason-v30-frozen {
+            animation:none !important;
+            transform:var(--reason-v30-freeze, translate3d(0,0,0)) !important;
+            transition:none !important;
+        }
+        .reason-orb.feature-box.reason-v30-hidden {
+            opacity:0 !important;
+            pointer-events:none !important;
+        }
+        .reason-v30-overlay {
+            position:fixed;
+            inset:0;
+            z-index:2147483646;
+            visibility:hidden;
+            pointer-events:none;
+            overflow:hidden;
+            isolation:isolate;
+            touch-action:none;
+            background:transparent;
+        }
+        .reason-v30-overlay.is-active {
+            visibility:visible;
+            pointer-events:auto;
+        }
+        .reason-v30-circle {
+            position:fixed !important;
+            z-index:1 !important;
+            margin:0 !important;
+            padding:26px 20px !important;
+            border-radius:50% !important;
+            animation:none !important;
+            transition:none !important;
+            transform-origin:center center !important;
+            will-change:transform,opacity;
+            backface-visibility:hidden;
+            -webkit-backface-visibility:hidden;
+            contain:none !important;
+            overflow:hidden !important;
+            cursor:pointer;
+            box-sizing:border-box !important;
+        }
+        .reason-v30-circle::before,
+        .reason-v30-circle::after { pointer-events:none; }
+        .reason-v30-circle .feature-meta,
+        .reason-v30-circle > h3,
+        .reason-v30-circle .orb-tap {
+            transition:opacity .34s ease, transform .34s ease !important;
+        }
+        .reason-v30-circle.hide-mini .feature-meta,
+        .reason-v30-circle.hide-mini > h3,
+        .reason-v30-circle.hide-mini .orb-tap {
+            opacity:0 !important;
+            transform:scale(.92) !important;
+        }
+        .reason-v30-detail {
+            position:fixed;
+            z-index:2;
+            left:50%;
+            top:50%;
+            width:min(820px,76vw);
+            max-height:min(64vh,610px);
+            transform:translate(-50%,-46%) scale(.97);
+            opacity:0;
+            color:#fff;
+            text-align:left;
+            pointer-events:none;
+            display:grid;
+            grid-template-columns:minmax(190px,.68fr) minmax(0,1.32fr);
+            gap:clamp(26px,4vw,64px);
+            align-items:center;
+            transition:opacity .42s ease, transform .56s cubic-bezier(.2,.8,.2,1);
+        }
+        .reason-v30-detail.is-visible {
+            opacity:1;
+            transform:translate(-50%,-50%) scale(1);
+        }
+        .reason-v30-kicker {
+            display:block;
+            margin-bottom:12px;
+            font-size:.68rem;
+            letter-spacing:.17em;
+            font-weight:900;
+            color:rgba(255,255,255,.68);
+        }
+        .reason-v30-title {
+            margin:0;
+            color:#fff;
+            font-size:clamp(2.35rem,4.7vw,4.8rem);
+            line-height:1.04;
+            font-weight:900;
+            letter-spacing:-.035em;
+            text-shadow:0 5px 24px rgba(5,24,82,.20);
+        }
+        .reason-v30-body {
+            max-height:48vh;
+            overflow:auto;
+            padding:18px 0 18px clamp(22px,3vw,42px);
+            border-left:1px solid rgba(255,255,255,.24);
+            color:rgba(255,255,255,.94);
+            font-size:clamp(.96rem,1.18vw,1.08rem);
+            line-height:1.88;
+            scrollbar-width:thin;
+            scrollbar-color:rgba(255,255,255,.38) transparent;
+        }
+        .reason-v30-body p { margin:0; color:inherit; line-height:inherit; font-size:inherit; }
+        .reason-v30-body strong { color:#fff; }
+        .reason-v30-helper {
+            position:fixed;
+            z-index:3;
+            left:50%;
+            bottom:20px;
+            transform:translateX(-50%) translateY(8px);
+            opacity:0;
+            color:rgba(255,255,255,.60);
+            font-size:.62rem;
+            letter-spacing:.14em;
+            font-weight:850;
+            white-space:nowrap;
+            pointer-events:none;
+            transition:opacity .32s ease, transform .32s ease;
+        }
+        .reason-v30-overlay.detail-ready .reason-v30-helper {
+            opacity:1;
+            transform:translateX(-50%) translateY(0);
+        }
+        /* Keep every later section — especially the founder profile — behind the blue circle. */
+        #sec-profile, #sec-courses, #sec-how, #sec-contact { position:relative !important; z-index:1 !important; }
+        .reason-v30-overlay { z-index:2147483646 !important; }
+        @media(max-width:800px){
+            .reason-v30-detail{
+                width:84vw;
+                max-height:70vh;
+                grid-template-columns:1fr;
+                gap:16px;
+            }
+            .reason-v30-title{font-size:clamp(2.1rem,10vw,3.7rem)}
+            .reason-v30-body{
+                border-left:0;
+                border-top:1px solid rgba(255,255,255,.24);
+                padding:16px 0 0;
+                max-height:40vh;
+                font-size:.92rem;
+                line-height:1.78;
+            }
+            .reason-v30-helper{bottom:12px;font-size:.53rem}
+        }
+        @media(prefers-reduced-motion:reduce){
+            .reason-v30-detail{transition-duration:.12s !important}
+        }
+
+
+        /* ===== v35 mobile width + founder profile fix ===== */
+        /* A softer desktop transition: no hard white band between the portrait and copy. */
+        .profile-content-blend {
+            background:linear-gradient(90deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,.10) 12%,
+                rgba(255,255,255,.38) 26%,
+                rgba(255,255,255,.68) 40%,
+                rgba(255,255,255,.90) 56%,
+                rgba(255,255,255,.985) 72%,
+                #fff 88%) !important;
+        }
+        .profile-content-blend::before { display:none !important; }
+
+        @media(max-width:800px) {
+            /* Nothing on the public site should require page-level horizontal swiping. */
+            html, body {
+                width:100%;
+                max-width:100%;
+                overflow-x:hidden !important;
+            }
+            *, *::before, *::after { box-sizing:border-box; }
+            img, video, svg, canvas { max-width:100%; }
+            .container,
+            .card,
+            .hero-inner,
+            .hero-copy,
+            .profile-blend,
+            .profile-content-blend,
+            .course-row,
+            .course-item,
+            .accordion-detail {
+                min-width:0 !important;
+                max-width:100% !important;
+            }
+            .container { width:100% !important; padding-left:14px !important; padding-right:14px !important; }
+            .card { width:100% !important; padding-left:18px !important; padding-right:18px !important; }
+            .card::before { display:none !important; }
+            header { overflow:hidden !important; }
+            header h1, header p#heroSub, .hero-copy { max-width:100% !important; }
+            .hero-accent { white-space:normal !important; }
+            .hero-art { max-width:100% !important; }
+
+            /* Founder profile: portrait first, text second. No overlapping fade on phones. */
+            .profile-blend {
+                display:flex !important;
+                flex-direction:column !important;
+                min-height:0 !important;
+                padding:0 !important;
+                background:#fff !important;
+                border-radius:20px !important;
+                overflow:hidden !important;
+            }
+            .profile-photo-full {
+                position:relative !important;
+                inset:auto !important;
+                flex:none !important;
+                width:100% !important;
+                height:auto !important;
+                max-height:none !important;
+                aspect-ratio:4 / 3 !important;
+                object-fit:cover !important;
+                object-position:center 34% !important;
+                transform:none !important;
+                align-self:stretch !important;
+                display:block !important;
+            }
+            .profile-content-blend {
+                position:relative !important;
+                flex:none !important;
+                width:100% !important;
+                margin:0 !important;
+                padding:24px 18px 28px !important;
+                background:#fff !important;
+                align-self:stretch !important;
+            }
+            .profile-content-blend::before { display:none !important; }
+            .profile-content-blend .profile-quote { padding-left:15px !important; }
+            .badge-container { max-width:100% !important; }
+
+            /* Course cards: stack vertically instead of making the visitor swipe sideways. */
+            .course-row-main,
+            .course-row-jlpt {
+                display:grid !important;
+                grid-template-columns:1fr !important;
+                gap:14px !important;
+                width:100% !important;
+                overflow:visible !important;
+                scroll-snap-type:none !important;
+                padding:2px 0 8px !important;
+                margin-right:0 !important;
+            }
+            .course-row .course-item {
+                display:block !important;
+                flex:none !important;
+                width:100% !important;
+                max-width:100% !important;
+                min-width:0 !important;
+                scroll-snap-align:none !important;
+            }
+            .course-row .price-card,
+            .course-row-main .price-card {
+                width:100% !important;
+                height:auto !important;
+                min-height:220px !important;
+                max-height:none !important;
+            }
+            .course-row-main .course-item .accordion-detail,
+            .course-row-main .course-item:nth-child(2) .accordion-detail,
+            .course-row-main .course-item:nth-child(3) .accordion-detail {
+                width:100% !important;
+                max-width:100% !important;
+                margin-left:0 !important;
+                overflow:hidden !important;
+            }
+            .course-row-main .accordion-detail .plan-grid {
+                display:grid !important;
+                grid-template-columns:1fr !important;
+                gap:12px !important;
+                width:100% !important;
+                overflow:visible !important;
+                scroll-snap-type:none !important;
+                padding:6px 0 0 !important;
+            }
+            .course-row-main .accordion-detail .mini-plan {
+                flex:none !important;
+                width:100% !important;
+                max-width:100% !important;
+                min-height:0 !important;
+                scroll-snap-align:none !important;
+            }
+            .checkout-actions { width:100%; }
+            .checkout-actions .checkout-btn { max-width:100%; }
+
+            /* Three reasons: 2 + 1 compact grid, still circular, no horizontal carousel. */
+            .reason-orbit-stage {
+                display:grid !important;
+                grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+                justify-items:center !important;
+                align-items:center !important;
+                justify-content:center !important;
+                gap:18px 10px !important;
+                width:100% !important;
+                min-height:0 !important;
+                margin:18px 0 8px !important;
+                padding:18px 0 26px !important;
+                overflow:visible !important;
+                scroll-snap-type:none !important;
+            }
+            .reason-orb.feature-box {
+                width:clamp(132px,38vw,158px) !important;
+                height:clamp(132px,38vw,158px) !important;
+                min-width:0 !important;
+                min-height:0 !important;
+                max-width:158px !important;
+                max-height:158px !important;
+                scroll-snap-align:none !important;
+            }
+            .reason-orb.feature-box:nth-child(3) {
+                grid-column:1 / -1 !important;
+                justify-self:center !important;
+            }
+            .reason-orb.feature-box h3 { font-size:clamp(.98rem,4.4vw,1.2rem) !important; }
+            .reason-orb .feature-meta, .reason-orb .orb-tap { font-size:.52rem !important; }
+
+            /* Navigation and floating controls must also remain inside the viewport. */
+            .nav-menu { width:100% !important; padding-left:10px !important; padding-right:10px !important; }
+            .lang-shell, .lang-bar { max-width:100% !important; }
+            .floating-trial-btn { max-width:calc(100vw - 24px) !important; }
+        }
+
+        @media(max-width:360px) {
+            .container { padding-left:10px !important; padding-right:10px !important; }
+            .card { padding-left:14px !important; padding-right:14px !important; }
+            .profile-content-blend { padding-left:15px !important; padding-right:15px !important; }
+            .reason-orb.feature-box {
+                width:clamp(122px,39vw,142px) !important;
+                height:clamp(122px,39vw,142px) !important;
+            }
+            .reason-orb.feature-box h3 { font-size:.94rem !important; }
+        }
+
 </style>
 </head>
 <body>
@@ -2468,7 +3085,7 @@
                     </button>
                     <button class="reason-orb feature-box" type="button" aria-expanded="false" aria-controls="detail-feat2" onclick="toggleReason(this,'detail-feat2')">
                         <span class="feature-meta">02 · QUALITY</span>
-                        <h3 id="feat2Title">塾基準<br>品質管理</h3>
+                        <h3 id="feat2Title">授業の質</h3>
                         <span class="orb-tap">TAP TO OPEN</span>
                     </button>
                     <button class="reason-orb feature-box" type="button" aria-expanded="false" aria-controls="detail-feat3" onclick="toggleReason(this,'detail-feat3')">
@@ -2533,7 +3150,7 @@
             <p style="margin-top: -8px; margin-bottom: 18px; color: var(--text-muted); font-size: 0.88rem;" id="coursesNote">
                 初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。
             </p>
-            <div class="stripe-test-banner" id="stripeTestBanner"><strong>Stripe テスト決済</strong>：現在はテストモードです。実際の請求は発生しません。各プランの「テスト決済へ」からStripeの安全な決済画面を確認できます。</div>
+            <div class="stripe-test-banner" id="stripeTestBanner"><strong>お申し込みについて</strong>：オンライン決済は現在最終準備中です。料金プランはご確認いただけます。受講をご希望の方は、まず無料体験をご予約ください。</div>
 
             <div class="course-row course-row-main">
             <div class="course-item">
@@ -2547,9 +3164,9 @@
                 <div id="detail-beginner" class="accordion-detail">
                     <p id="beginnerDetail">📘 <strong>初級日本語：</strong><br>「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。</p>
                     <div class="plan-grid reveal-stagger">
-                        <div class="mini-plan"><strong id="beginner4Title">月4回</strong><div class="mini-price" id="beginner4Price">8,000円 / 月</div><small id="beginner4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner4Pay" href="https://buy.stripe.com/test_00w7sK1W2gAGddN6cqeEo0i" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
-                        <div class="mini-plan recommended"><span class="mini-badge" id="beginnerRec">おすすめ</span><strong id="beginner8Title">月8回</strong><div class="mini-price" id="beginner8Price">16,000円 / 月</div><small id="beginner8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner8Pay" href="https://buy.stripe.com/test_00wdR80RY3NU5Ll8kyeEo0j" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
-                        <div class="mini-plan"><strong id="beginner12Title">月12回</strong><div class="mini-price" id="beginner12Price">24,000円 / 月</div><small id="beginner12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner12Pay" href="https://buy.stripe.com/test_4gMeVcgQWesy2z958meEo0k" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan"><strong id="beginner4Title">月4回</strong><div class="mini-price" id="beginner4Price">8,000円 / 月</div><small id="beginner4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner4Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_00w7sK1W2gAGddN6cqeEo0i" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="beginnerRec">おすすめ</span><strong id="beginner8Title">月8回</strong><div class="mini-price" id="beginner8Price">16,000円 / 月</div><small id="beginner8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner8Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_00wdR80RY3NU5Ll8kyeEo0j" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
+                        <div class="mini-plan"><strong id="beginner12Title">月12回</strong><div class="mini-price" id="beginner12Price">24,000円 / 月</div><small id="beginner12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="beginner12Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_4gMeVcgQWesy2z958meEo0k" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
                     </div>
                 </div>
             </div>
@@ -2565,9 +3182,9 @@
                 <div id="detail-intermediate" class="accordion-detail">
                     <p id="intermediateDetail">📈 <strong>中級日本語：</strong><br>文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。</p>
                     <div class="plan-grid reveal-stagger">
-                        <div class="mini-plan"><strong id="intermediate4Title">月4回</strong><div class="mini-price" id="intermediate4Price">8,000円 / 月</div><small id="intermediate4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate4Pay" href="https://buy.stripe.com/test_aFa28q8kq98e1v56cqeEo0l" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
-                        <div class="mini-plan recommended"><span class="mini-badge" id="intermediateRec">おすすめ</span><strong id="intermediate8Title">月8回</strong><div class="mini-price" id="intermediate8Price">16,000円 / 月</div><small id="intermediate8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate8Pay" href="https://buy.stripe.com/test_00weVceIO2JQ3DdgR4eEo0m" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
-                        <div class="mini-plan"><strong id="intermediate12Title">月12回</strong><div class="mini-price" id="intermediate12Price">24,000円 / 月</div><small id="intermediate12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate12Pay" href="https://buy.stripe.com/test_7sYfZgasy1FM5LlcAOeEo0n" target="_blank" rel="noopener" onclick="event.stopPropagation()">テスト決済へ</a></div></div>
+                        <div class="mini-plan"><strong id="intermediate4Title">月4回</strong><div class="mini-price" id="intermediate4Price">8,000円 / 月</div><small id="intermediate4Note">週1ペースで、無理なく続けたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate4Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_aFa28q8kq98e1v56cqeEo0l" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="intermediateRec">おすすめ</span><strong id="intermediate8Title">月8回</strong><div class="mini-price" id="intermediate8Price">16,000円 / 月</div><small id="intermediate8Note">週2ペースで、着実に日本語力を伸ばしたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate8Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_00weVceIO2JQ3DdgR4eEo0m" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
+                        <div class="mini-plan"><strong id="intermediate12Title">月12回</strong><div class="mini-price" id="intermediate12Price">24,000円 / 月</div><small id="intermediate12Note">週3ペースで、集中的に上達を目指したい方に</small><div class="checkout-actions"><a class="checkout-btn" id="intermediate12Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_7sYfZgasy1FM5LlcAOeEo0n" onclick="event.stopPropagation()">無料体験から相談</a></div></div>
                     </div>
                 </div>
             </div>
@@ -2584,9 +3201,9 @@
                     <p id="conversationDetail">💬 <strong>日常会話：</strong><br>旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。30分または50分を選び、月4回・8回・12回のサブスクリプションで受講します。毎月同じ回数が自動更新されるため、継続して会話量を確保したい方に向いています。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。</p>
                     <div class="checkout-note" id="conversationPayNote">日常会話も毎月自動更新のサブスクリプションです。30分または50分を選び、月4回・8回・12回からお選びください。</div>
                     <div class="plan-grid reveal-stagger">
-                        <div class="mini-plan"><strong id="conversation4Title">月4回</strong><div class="mini-price" id="conversation4Price">30分 4,000円 / 50分 6,000円</div><small id="conversation4Note">月に4回、気軽に日本人との会話を楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_4Pay" href="https://buy.stripe.com/test_7sYbJ00RYdoub5F9oCeEo0a" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月4回</a><a class="checkout-btn secondary" id="conversation50_4Pay" href="https://buy.stripe.com/test_9B65kCasy98eddNdESeEo0d" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月4回</a></div></div>
-                        <div class="mini-plan recommended"><span class="mini-badge" id="conversationRec">おすすめ</span><strong id="conversation8Title">月8回</strong><div class="mini-price" id="conversation8Price">30分 8,000円 / 50分 12,000円</div><small id="conversation8Note">週2回ほど、会話する時間を生活の中に取り入れたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_8Pay" href="https://buy.stripe.com/test_8x2aEWfMS2JQ0r1asGeEo0b" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月8回</a><a class="checkout-btn secondary" id="conversation50_8Pay" href="https://buy.stripe.com/test_bJe3cugQW1FM5Ll58meEo0e" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月8回</a></div></div>
-                        <div class="mini-plan"><strong id="conversation12Title">月12回</strong><div class="mini-price" id="conversation12Price">30分 12,000円 / 50分 18,000円</div><small id="conversation12Note">たくさん話して、日本語での会話を日常的に楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_12Pay" href="https://buy.stripe.com/test_aFa3cu44a98ea1B30eeEo0c" target="_blank" rel="noopener" onclick="event.stopPropagation()">30分・月12回</a><a class="checkout-btn secondary" id="conversation50_12Pay" href="https://buy.stripe.com/test_00wfZg3060BI0r130eeEo0f" target="_blank" rel="noopener" onclick="event.stopPropagation()">50分・月12回</a></div></div>
+                        <div class="mini-plan"><strong id="conversation4Title">月4回</strong><div class="mini-price" id="conversation4Price">30分 4,000円 / 50分 6,000円</div><small id="conversation4Note">月に4回、気軽に日本人との会話を楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_4Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_7sYbJ00RYdoub5F9oCeEo0a" onclick="event.stopPropagation()">30分・月4回を相談</a><a class="checkout-btn secondary" id="conversation50_4Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_9B65kCasy98eddNdESeEo0d" onclick="event.stopPropagation()">50分・月4回を相談</a></div></div>
+                        <div class="mini-plan recommended"><span class="mini-badge" id="conversationRec">おすすめ</span><strong id="conversation8Title">月8回</strong><div class="mini-price" id="conversation8Price">30分 8,000円 / 50分 12,000円</div><small id="conversation8Note">週2回ほど、会話する時間を生活の中に取り入れたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_8Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_8x2aEWfMS2JQ0r1asGeEo0b" onclick="event.stopPropagation()">30分・月8回を相談</a><a class="checkout-btn secondary" id="conversation50_8Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_bJe3cugQW1FM5Ll58meEo0e" onclick="event.stopPropagation()">50分・月8回を相談</a></div></div>
+                        <div class="mini-plan"><strong id="conversation12Title">月12回</strong><div class="mini-price" id="conversation12Price">30分 12,000円 / 50分 18,000円</div><small id="conversation12Note">たくさん話して、日本語での会話を日常的に楽しみたい方に</small><div class="checkout-actions"><a class="checkout-btn" id="conversation30_12Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_aFa3cu44a98ea1B30eeEo0c" onclick="event.stopPropagation()">30分・月12回を相談</a><a class="checkout-btn secondary" id="conversation50_12Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_00wfZg3060BI0r130eeEo0f" onclick="event.stopPropagation()">50分・月12回を相談</a></div></div>
                     </div>
                 </div>
             </div>
@@ -2620,7 +3237,7 @@
                         <div class="pace-detail" id="pace-n5-six"><span id="n5SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                         <div class="pace-detail" id="pace-n5-year"><span id="n5YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                     </div>
-                    <div class="checkout-actions"><a class="checkout-btn" id="n5Pay" href="https://buy.stripe.com/test_6oUaEW9ou3NU3Dd30eeEo0g" target="_blank" rel="noopener" onclick="event.stopPropagation()">N5コースをテスト決済（100,000円）</a></div>
+                    <div class="checkout-actions"><a class="checkout-btn" id="n5Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_6oUaEW9ou3NU3Dd30eeEo0g" onclick="event.stopPropagation()">N5コースについて相談</a></div>
                 </div>
             </div>
 
@@ -2640,7 +3257,7 @@
                         <div class="pace-detail" id="pace-n4-six"><span id="n4SixPace"><strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                         <div class="pace-detail" id="pace-n4-year"><span id="n4YearPace"><strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。</span></div>
                     </div>
-                    <div class="checkout-actions"><a class="checkout-btn" id="n4Pay" href="https://buy.stripe.com/test_dRm5kC0RYaci0r1gR4eEo0h" target="_blank" rel="noopener" onclick="event.stopPropagation()">N4コースをテスト決済（100,000円）</a></div>
+                    <div class="checkout-actions"><a class="checkout-btn" id="n4Pay" href="booking.html" data-test-href="https://buy.stripe.com/test_dRm5kC0RYaci0r1gR4eEo0h" onclick="event.stopPropagation()">N4コースについて相談</a></div>
                 </div>
             </div>
             </div>
@@ -2676,7 +3293,7 @@
 
     <footer>
         &copy; 2026 Kano×Kano. All Rights Reserved.<br>
-        <a href="tokusho.html" style="color:inherit; text-decoration:underline;">特定商取引法に基づく表記</a>
+        <a href="tokusho.html" style="color:inherit; text-decoration:underline;">特定商取引法に基づく表記</a> ・ <a href="privacy.html" style="color:inherit; text-decoration:underline;">プライバシーポリシー</a>
     </footer>
 
     <script>
@@ -2789,6 +3406,63 @@
             return {detailWrap, close, helper};
         }
 
+        function buildReasonDetailV28(card, detail) {
+            const wrap = document.createElement('div');
+            wrap.className = 'reason-detail-v28';
+
+            const head = document.createElement('div');
+            head.className = 'reason-detail-head-v24';
+            const kicker = document.createElement('span');
+            kicker.className = 'reason-detail-kicker-v24';
+            kicker.textContent = card.querySelector('.feature-meta')?.textContent || 'REASON';
+            const title = document.createElement('h3');
+            title.className = 'reason-detail-title-v24';
+            title.innerHTML = card.querySelector('h3')?.innerHTML || '';
+            head.append(kicker,title);
+
+            const body = document.createElement('div');
+            body.className = 'reason-detail-body-v24';
+            body.innerHTML = detail.innerHTML;
+
+            const helper = document.createElement('span');
+            helper.className = 'reason-detail-helper-v24';
+            helper.textContent = 'TAP ANYWHERE IN THE BLUE CIRCLE TO CLOSE';
+
+            wrap.append(head,body,helper);
+            return wrap;
+        }
+
+        function reasonTargetV28(startRect) {
+            const diameter = Math.max(window.innerWidth * 1.08, window.innerHeight * 1.38);
+            return {
+                diameter,
+                left:(window.innerWidth - diameter)/2,
+                top:(window.innerHeight - diameter)/2,
+                scale:diameter/startRect.width
+            };
+        }
+
+        function cleanupReasonV28() {
+            const overlay = document.getElementById('reasonZoomOverlay');
+            cancelReasonAnimation();
+            clearTimeout(reasonZoomOpenTimer);
+            overlay?.querySelector('.reason-detail-v28')?.remove();
+            reasonZoomClone?.remove();
+            reasonZoomClone = null;
+            if (reasonZoomSource) {
+                reasonZoomSource.classList.remove('reason-v28-hidden','reason-v29-hidden','reason-v29-handoff','reason-v29-paused');
+                reasonZoomSource.style.animationPlayState = '';
+                reasonZoomSource.setAttribute('aria-expanded','false');
+            }
+            overlay?.classList.remove('active-v28');
+            overlay?.setAttribute('aria-hidden','true');
+            reasonZoomSource = null;
+            reasonZoomStartRect = null;
+            reasonZoomTarget = null;
+            reasonZoomClosing = false;
+            reasonZoomPhase = 'idle';
+        }
+
         function toggleReason(card, id) {
             const detail = document.getElementById(id);
             const overlay = document.getElementById('reasonZoomOverlay');
@@ -2799,26 +3473,20 @@
                 return;
             }
 
-            clearTimeout(reasonZoomOpenTimer);
             cancelReasonAnimation();
+            clearTimeout(reasonZoomOpenTimer);
 
-            // Lock the viewport without changing its visual content width.
-            const scrollbarGap = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
-            document.body.style.setProperty('--reason-scrollbar-gap', `${scrollbarGap}px`);
-            document.body.classList.add('reason-zoom-open-v25');
-
-            // Critical fix: pause FIRST, then measure. In earlier versions the
-            // float animation advanced for a few frames after measurement, so
-            // the hidden real orb no longer matched the clone's return point.
-            card.style.animationPlayState = 'paused';
-            void card.offsetWidth;
+            // IMPORTANT: actually freeze the CSS float animation before reading
+            // geometry. The float shorthand is !important, so an inline
+            // animationPlayState alone was not enough in older versions.
+            card.classList.add('reason-v29-paused');
             const r = card.getBoundingClientRect();
             const startRect = {left:r.left, top:r.top, width:r.width, height:r.height};
-            const endRect = reasonZoomTargetRect();
+            const target = reasonTargetV28(startRect);
 
             reasonZoomSource = card;
             reasonZoomStartRect = startRect;
-            reasonZoomTarget = endRect;
+            reasonZoomTarget = target;
             reasonZoomClosing = false;
             reasonZoomPhase = 'opening';
 
@@ -2827,58 +3495,57 @@
             clone.removeAttribute('onkeydown');
             clone.removeAttribute('aria-controls');
             clone.setAttribute('aria-expanded','true');
-            clone.style.animationPlayState = '';
-            clone.classList.add('reason-orb-clone-v25');
-            clone.classList.remove('zoom-source-v24','zoom-handoff-v24','zoom-source-v25','zoom-return-v25','opened','lift-launch','return-visible');
-            clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-            clone.addEventListener('click', event => {
-                event.preventDefault();
-                event.stopPropagation();
+            clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+            clone.className = 'reason-orb feature-box reason-orb-clone-v28';
+            clone.style.left = `${startRect.left}px`;
+            clone.style.top = `${startRect.top}px`;
+            clone.style.width = `${startRect.width}px`;
+            clone.style.height = `${startRect.height}px`;
+            clone.style.minWidth = `${startRect.width}px`;
+            clone.style.minHeight = `${startRect.height}px`;
+            clone.style.maxWidth = `${startRect.width}px`;
+            clone.style.maxHeight = `${startRect.height}px`;
+            clone.style.transform = 'translate3d(0,0,0) scale(1)';
+            clone.addEventListener('click', e=>{
+                e.preventDefault();
+                e.stopPropagation();
                 if (reasonZoomPhase === 'open') closeReasonZoom();
             });
 
-            setFixedRect(clone, startRect);
-            clone.style.transform = 'matrix(1,0,0,1,0,0)';
             overlay.appendChild(clone);
             reasonZoomClone = clone;
-            overlay.classList.add('active-v25');
+            overlay.classList.add('active-v28');
             overlay.setAttribute('aria-hidden','false');
 
-            // Give Chromium one painted frame where clone and source are
-            // pixel-identical, then hide the paused source and animate only a
-            // compositor transform (no left/top/width/height reflow).
-            requestAnimationFrame(() => {
-                card.classList.add('zoom-source-v25');
-                requestAnimationFrame(() => {
-                    const targetMatrix = reasonMatrix(startRect, endRect);
+            // Paint clone exactly over the frozen source first; only then hide source.
+            requestAnimationFrame(()=>{
+                card.classList.add('reason-v29-hidden');
+                requestAnimationFrame(()=>{
+                    const dx = target.left - startRect.left;
+                    const dy = target.top - startRect.top;
+                    const endTransform = `translate3d(${dx}px,${dy}px,0) scale(${target.scale})`;
+
                     reasonZoomAnimation = clone.animate([
-                        { transform:'matrix(1,0,0,1,0,0)' },
-                        { transform:targetMatrix }
-                    ], {
-                        duration:1650,
+                        {transform:'translate3d(0,0,0) scale(1)'},
+                        {transform:endTransform}
+                    ],{
+                        duration:1550,
                         easing:'cubic-bezier(.4,0,.2,1)',
                         fill:'forwards'
                     });
-
-                    reasonZoomOpenTimer = setTimeout(() => clone.classList.add('zoom-content-mode'), 620);
-
-                    reasonZoomAnimation.onfinish = () => {
-                        // Pixel-equivalent representation swap: from a scaled
-                        // start-size circle to a full-size target circle. Do it
-                        // in one JS task, then cancel the fill-forwards effect so
-                        // no stale transform survives into the closing motion.
-                        const finishedOpening = reasonZoomAnimation;
-                        setFixedRect(clone, endRect);
-                        clone.style.transform = 'none';
-                        if (finishedOpening) {
-                            try { finishedOpening.cancel(); } catch (_) {}
-                        }
+                    reasonZoomOpenTimer = setTimeout(()=>clone.classList.add('content-hidden'),650);
+                    reasonZoomAnimation.onfinish = ()=>{
+                        // Bake the final compositor transform into inline style,
+                        // then cancel the finished animation. This avoids two
+                        // fill-forwards animations fighting during the return.
+                        try { reasonZoomAnimation.commitStyles(); } catch (_) { clone.style.transform = endTransform; }
+                        try { reasonZoomAnimation.cancel(); } catch (_) {}
+                        clone.style.transform = endTransform;
                         reasonZoomAnimation = null;
                         reasonZoomPhase = 'open';
-
-                        const {detailWrap, close, helper} = makeReasonDetail(card, detail);
-                        clone.append(detailWrap, close, helper);
-                        requestAnimationFrame(() => requestAnimationFrame(() => clone.classList.add('zoom-detail-visible')));
+                        const detailNode = buildReasonDetailV28(card, detail);
+                        overlay.appendChild(detailNode);
+                        requestAnimationFrame(()=>requestAnimationFrame(()=>detailNode.classList.add('visible')));
                     };
                 });
             });
@@ -2889,74 +3556,75 @@
             const clone = reasonZoomClone;
             const source = reasonZoomSource;
             const startRect = reasonZoomStartRect;
-            const endRect = reasonZoomTarget;
-            if (!overlay || !clone || !source || !startRect || !endRect || reasonZoomClosing || reasonZoomPhase !== 'open') return;
+            const target = reasonZoomTarget;
+            if (!overlay || !clone || !source || !startRect || !target || reasonZoomClosing || reasonZoomPhase !== 'open') return;
 
             reasonZoomClosing = true;
             reasonZoomPhase = 'closing';
             clearTimeout(reasonZoomOpenTimer);
             cancelReasonAnimation();
-            clone.classList.remove('zoom-detail-visible');
-            clone.classList.add('closing-v25');
 
-            // The clone currently has the target-sized DOM box. Shrink that
-            // box to the paused source rectangle with one transform only.
-            // This keeps the exact same trajectory all the way to the handoff.
-            const backMatrix = reasonMatrix(endRect, startRect);
+            const detailNode = overlay.querySelector('.reason-detail-v28');
+            detailNode?.classList.remove('visible');
 
-            setTimeout(() => {
-                // Remove explanation after its fade, before the circle becomes
-                // small enough that text layout could cause paint jank.
-                clone.querySelector('.reason-detail-v24')?.remove();
-                clone.querySelector('.reason-detail-close-v24')?.remove();
-                clone.querySelector('.reason-detail-helper-v24')?.remove();
+            const dx = target.left - startRect.left;
+            const dy = target.top - startRect.top;
+            const bigTransform = `translate3d(${dx}px,${dy}px,0) scale(${target.scale})`;
+            clone.style.transform = bigTransform;
 
+            setTimeout(()=>{
+                detailNode?.remove();
+                clone.classList.remove('content-hidden');
+
+                // The source has remained genuinely paused at the same float
+                // phase the entire time, so identity is the exact destination.
                 reasonZoomAnimation = clone.animate([
-                    { transform:'matrix(1,0,0,1,0,0)' },
-                    { transform:backMatrix }
-                ], {
-                    duration:1500,
+                    {transform:bigTransform},
+                    {transform:'translate3d(0,0,0) scale(1)'}
+                ],{
+                    duration:1450,
                     easing:'cubic-bezier(.4,0,.2,1)',
                     fill:'forwards'
                 });
 
-                reasonZoomAnimation.onfinish = () => {
+                reasonZoomAnimation.onfinish = ()=>{
+                    try { reasonZoomAnimation.commitStyles(); } catch (_) { clone.style.transform='translate3d(0,0,0) scale(1)'; }
+                    try { reasonZoomAnimation.cancel(); } catch (_) {}
+                    clone.style.transform='translate3d(0,0,0) scale(1)';
                     reasonZoomAnimation = null;
 
-                    // Reveal the real orb while it is STILL paused at the exact
-                    // rectangle captured before opening. The clone covers it,
-                    // so removing the clone is a true one-frame handoff.
-                    source.classList.remove('zoom-source-v25');
-                    source.classList.add('zoom-return-v25');
+                    // Cross-fade at the exact same pixels instead of abruptly
+                    // swapping clone/source. Keep source paused until the clone
+                    // has completely disappeared.
+                    source.classList.remove('reason-v29-hidden');
+                    source.classList.add('reason-v29-handoff');
                     source.setAttribute('aria-expanded','false');
+                    source.style.opacity='0';
 
-                    requestAnimationFrame(() => {
-                        if (reasonZoomAnimation) {
-                            try { reasonZoomAnimation.cancel(); } catch (_) {}
-                            reasonZoomAnimation = null;
-                        }
-                        clone.remove();
-                        reasonZoomClone = null;
-                        overlay.classList.remove('active-v25');
-                        overlay.setAttribute('aria-hidden','true');
-                        unlockReasonPage();
+                    requestAnimationFrame(()=>{
+                        const sourceFade = source.animate([{opacity:0},{opacity:1}],{duration:170,easing:'linear',fill:'forwards'});
+                        const cloneFade = clone.animate([{opacity:1},{opacity:0}],{duration:170,easing:'linear',fill:'forwards'});
+                        Promise.allSettled([sourceFade.finished, cloneFade.finished]).then(()=>{
+                            try { sourceFade.cancel(); } catch (_) {}
+                            try { cloneFade.cancel(); } catch (_) {}
+                            source.style.removeProperty('opacity');
+                            clone.remove();
+                            reasonZoomClone = null;
+                            overlay.classList.remove('active-v28');
+                            overlay.setAttribute('aria-hidden','true');
 
-                        // Resume floating only after the clone is gone and the
-                        // scrollbar compensation is removed. Because the source
-                        // never advanced while hidden, there is no snap to a new
-                        // keyframe phase.
-                        requestAnimationFrame(() => {
-                            source.classList.remove('zoom-return-v25');
-                            source.style.animationPlayState = '';
-                            reasonZoomSource = null;
-                            reasonZoomStartRect = null;
-                            reasonZoomTarget = null;
-                            reasonZoomClosing = false;
-                            reasonZoomPhase = 'idle';
+                            requestAnimationFrame(()=>{
+                                source.classList.remove('reason-v29-handoff','reason-v29-paused');
+                                reasonZoomSource = null;
+                                reasonZoomStartRect = null;
+                                reasonZoomTarget = null;
+                                reasonZoomClosing = false;
+                                reasonZoomPhase = 'idle';
+                            });
                         });
                     });
                 };
-            }, 180);
+            },220);
         }
 
         function reasonZoomBackdrop(event) {
@@ -3005,7 +3673,7 @@
                 reasonsTitle: "Kano×Kanoが選ばれる3つの理由",
                 reasonsNote: "3つの青い丸が枠にとらわれず、ゆっくり浮かびます。タップすると、その丸がその場から滑らかに広がり、丸の中に詳細が現れます。",
                 feat1Title: "全員<br>国家資格", feat1Desc: "資格と専門性を備えた講師だけがレッスンを担当します。", feat1Hint: "詳しく見る →",
-                feat2Title: "塾基準<br>品質管理", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "詳しく見る →",
+                feat2Title: "授業の質", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "詳しく見る →",
                 feat3Title: "1対1<br>継続サポート", feat3Desc: "一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。", feat3Hint: "詳しく見る →",
                 df1Desc: "🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格を持っていることを講師としてのスタートラインとし、そのうえで指導経験や説明のわかりやすさ、学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではなく、専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせて丁寧に指導します。「何となく話せる」だけではなく、文法・語彙・発音の背景まで正しく説明できる、質の高いレッスンを提供することが、Kano×Kanoの基本方針です。",
                 df2Desc: "✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。",
@@ -3018,7 +3686,7 @@
                 coursesTitle: "コース・料金案内（Courses & Plans）", coursesNote: "初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。",
                 beginnerLabel: "初級", beginnerTitle: "初級日本語コース", beginnerDesc: "ひらがな・カタカナから基本文法まで、ゼロから着実に学びたい方へ。", beginnerSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", beginnerHint: "▼ プラン詳細を見る", beginnerDetail: "📘 <strong>初級日本語：</strong><br>「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。", beginner4Title: "月4回", beginner4Price: "8,000円 / 月", beginner4Note: "週1ペースで、無理なく続けたい方に", beginner8Title: "月8回", beginner8Price: "16,000円 / 月", beginner8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", beginner12Title: "月12回", beginner12Price: "24,000円 / 月", beginner12Note: "週3ペースで、集中的に上達を目指したい方に", beginnerRec: "おすすめ",
                 intermediateLabel: "中級", intermediateTitle: "中級日本語コース（N4〜N3目安）", intermediateDesc: "より複雑な文法・表現を学び、実践的に使える日本語を身につけます。", intermediateSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", intermediateHint: "▼ プラン詳細を見る", intermediateDetail: "📈 <strong>中級日本語：</strong><br>文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。", intermediate4Title: "月4回", intermediate4Price: "8,000円 / 月", intermediate4Note: "週1ペースで、無理なく続けたい方に", intermediate8Title: "月8回", intermediate8Price: "16,000円 / 月", intermediate8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", intermediate12Title: "月12回", intermediate12Price: "24,000円 / 月", intermediate12Note: "週3ペースで、集中的に上達を目指したい方に", intermediateRec: "おすすめ",
-                conversationLabel: "会話", conversationTitle: "日常会話コース", conversationDesc: "会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。", conversationSummary: "30分 1,000円 / 回 ・ 50分 1,500円 / 回 ｜ 月4回・8回・12回", conversationHint: "▼ プラン詳細を見る", conversationDetail: "💬 <strong>日常会話：</strong><br>旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。会話力を伸ばしたい方はもちろん、「特別な教材は使わず、ただ気楽に日本人と話してみたい」という方もOK。レッスンは30分（1回1,000円）と50分（1回1,500円）から、予約ごとに選べます。忙しい日は「今日はサクッと30分」、時間がある日は「今日はじっくり50分」のように、ライフスタイルに合わせて利用できます。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。月額料金は、各回で選んだ30分・50分の組み合わせに応じて計算されます。", conversation4Title: "月4回", conversation4Price: "30分 4,000円 / 50分 6,000円", conversation4Note: "月に4回、気軽に日本人との会話を楽しみたい方に", conversation8Title: "月8回", conversation8Price: "30分 8,000円 / 50分 12,000円", conversation8Note: "週2回ほど、会話する時間を生活の中に取り入れたい方に", conversation12Title: "月12回", conversation12Price: "30分 12,000円 / 50分 18,000円", conversation12Note: "たくさん話して、日本語での会話を日常的に楽しみたい方に", conversationRec: "おすすめ",
+                conversationLabel: "会話", conversationTitle: "日常会話コース", conversationDesc: "会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。", conversationSummary: "30分：月4回 4,000円〜 ・ 50分：月4回 6,000円〜 ｜ 毎月自動更新", conversationHint: "▼ プラン詳細を見る", conversationDetail: "💬 <strong>日常会話：</strong><br>旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。30分または50分を選び、月4回・8回・12回のサブスクリプションで受講します。毎月同じプランが自動更新されるため、継続して会話量を確保したい方に向いています。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。", conversation4Title: "月4回", conversation4Price: "30分 4,000円 / 50分 6,000円", conversation4Note: "月に4回、気軽に日本人との会話を楽しみたい方に", conversation8Title: "月8回", conversation8Price: "30分 8,000円 / 50分 12,000円", conversation8Note: "週2回ほど、会話する時間を生活の中に取り入れたい方に", conversation12Title: "月12回", conversation12Price: "30分 12,000円 / 50分 18,000円", conversation12Note: "たくさん話して、日本語での会話を日常的に楽しみたい方に", conversationRec: "おすすめ",
                 jlptSectionTitle: "JLPT 合格集中コース", jlptSectionDesc: "N5・N4は、合格までの期間を決めて体系的に進める特別カリキュラムです。",
                 n5Label: "JLPT N5", n5Title: "N5合格集中コース", n5Desc: "N5合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n5Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n5Hint: "▼ コース詳細を見る", n5Detail: "🏆 <strong>N5合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n5SixTitle: "6か月コース", n5SixNote: "短期集中でN5合格を目指す", n5YearTitle: "1年コース", n5YearNote: "基礎を固めながらじっくりN5合格を目指す", n5SixPace: "<strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n5YearPace: "<strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回をじっくり積み上げ、最後に模擬試験＋解説1回で確認します。復習する時間を十分に取りながらN5合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
                 n4Label: "JLPT N4", n4Title: "N4合格集中コース", n4Desc: "N4合格に必要な文法・聴解・読解を、6か月または1年で体系的に学びます。", n4Summary: "全51回・100,000円 ／ 6か月コース または 1年コース", n4Hint: "▼ コース詳細を見る", n4Detail: "🏆 <strong>N4合格集中：</strong><br>文法30回・聴解10回・読解10回・模擬試験＋解説1回の全51回。目標時期に合わせて6か月または1年のペースで進めます。", n4SixTitle: "6か月コース", n4SixNote: "短期集中でN4合格を目指す", n4YearTitle: "1年コース", n4YearNote: "無理のないペースでN4合格を目指す", n4SixPace: "<strong>6か月の学習ペース目安</strong><br>週約2回（月8〜9回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を計画的に学び、最後に模擬試験＋解説1回で仕上げます。短期間で集中的にN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。", n4YearPace: "<strong>1年の学習ペース目安</strong><br>週約1回（月4〜5回程度）のペースで全51回を進めます。文法30回・聴解10回・読解10回を無理なく積み上げ、最後に模擬試験＋解説1回で確認します。学校や仕事と両立しながらN4合格を目指したい方におすすめです。※月ごとの回数は予約状況やカレンダーにより多少前後します。",
@@ -3030,7 +3698,7 @@
                 heroSub: "No matter how advanced AI becomes, people are the ones who share feelings, understand one another, and build relationships.<br>Kano×Kano helps you develop Japanese that truly connects, through 1-to-1 lessons with nationally certified teachers.", heroTrial: "Book a Free Trial", heroHow: "See How It Works", heroNote: "🎓 100% nationally certified teachers  ✅ School-managed quality  👤 Private 1-to-1",
                 reasonsTitle: "3 Reasons to Choose Kano×Kano", reasonsNote: "* Tap a floating blue circle. That exact circle smoothly expands from where it is and reveals the explanation inside.",
                 feat1Title: "All Teachers<br>Certified", feat1Desc: "Only qualified professionals with national certification teach our lessons.", feat1Hint: "Learn more →",
-                feat2Title: "School-led<br>Quality", feat2Desc: "We are not an open tutor marketplace. The school sets and manages standards for teachers and lessons.", feat2Hint: "Learn more →",
+                feat2Title: "Lesson<br>Quality", feat2Desc: "We are not an open tutor marketplace. The school sets and manages standards for teachers and lessons.", feat2Hint: "Learn more →",
                 feat3Title: "1-to-1<br>Ongoing Support", feat3Desc: "Lessons and review are tailored to each learner’s goals, level, and weaknesses.", feat3Hint: "Learn more →",
                 df1Desc: "🎓 <strong>Details:</strong><br>Every Kano×Kano teacher holds a national qualification in Japanese-language education. Certification is our minimum standard; we also value teaching experience, clear explanations, and thoughtful communication with learners. Kano×Kano is not an open marketplace where anyone can register as a tutor. Our teachers use professional knowledge to adapt explanations to each learner’s level and goals, including the grammar, vocabulary, pronunciation, and reasoning behind natural Japanese. Providing consistently high-quality lessons is a core principle of Kano×Kano.",
                 df2Desc: "✅ <strong>Details:</strong><br>Kano×Kano is not an open marketplace where anyone can register as a tutor. We review not only qualifications, but also teaching experience, clarity of explanation, and communication skills, and only instructors who meet our standards teach lessons. We also share materials, teaching guidelines, and learning records within the school, helping maintain continuity and a consistent standard of lesson quality even when a student studies with a different teacher.",
@@ -3066,9 +3734,9 @@
                 profileP3: "เป้าหมายไม่ใช่แค่จำภาษาญี่ปุ่น แต่คือการถ่ายทอดความคิดด้วยคำพูดของตัวเองและสร้างความสัมพันธ์กับผู้คน Kano×Kano จึงให้ความสำคัญกับบทเรียนแบบตัวต่อตัวที่เหมาะกับเป้าหมาย บุคลิก และจังหวะการเรียนของแต่ละคน",
                 b1: "คุณวุฒิระดับชาติ", b2: "ครูประจำในสิงคโปร์", b3: "ประสบการณ์สอนในไทย", b4: "ผู้เรียนต่างชาติ", b5: "บทเรียนตัวต่อตัว",
                 coursesTitle: "คอร์สและแพ็กเกจ", coursesNote: "คอร์สระดับต้นและระดับกลางเรียนครั้งละ 50 นาที ส่วนคอร์สสนทนาเลือกได้ 30 หรือ 50 นาที ทุกคอร์สเป็นแบบตัวต่อตัว และเลือกเรียนเดือนละ 4, 8 หรือ 12 ครั้งได้",
-                beginnerLabel: "ระดับต้น", beginnerTitle: "คอร์สภาษาญี่ปุ่นระดับต้น", beginnerDesc: "เริ่มตั้งแต่ฮิรางานะ คาตากานะ และไวยากรณ์พื้นฐานอย่างเป็นระบบ", beginnerSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", beginnerHint: "▼ ดูแพ็กเกจ", beginnerDetail: "📘 <strong>ภาษาญี่ปุ่นระดับต้น:</strong><br>ใช้ Minna no Nihongo เป็นพื้นฐาน เรียนฮิรางานะ คาตากานะ การออกเสียง คำศัพท์พื้นฐาน และไวยากรณ์อย่างเป็นระบบ เราไม่ได้เพียงเรียนตามหนังสือ แต่ปรับและพัฒนาสื่อการสอนของเราเองให้เข้าใจได้ง่ายและลึกขึ้น และด้วยการเรียนแบบตัวต่อตัว ครูสามารถปรับจังหวะให้เหมาะกับผู้เรียนแต่ละคนได้", beginner4Title: "4 ครั้ง/เดือน", beginner4Price: "8,000 เยน/เดือน", beginner4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", beginner8Title: "8 ครั้ง/เดือน", beginner8Price: "16,000 เยน/เดือน", beginner8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", beginner12Title: "12 ครั้ง/เดือน", beginner12Price: "24,000 เยน/เดือน", beginner12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", beginnerRec: "แนะนำ",
-                intermediateLabel: "ระดับกลาง", intermediateTitle: "คอร์สภาษาญี่ปุ่นระดับกลาง (ประมาณ N4–N3)", intermediateDesc: "พัฒนาไวยากรณ์และสำนวนที่ซับซ้อนขึ้นเพื่อใช้ภาษาญี่ปุ่นได้จริง", intermediateSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", intermediateHint: "▼ ดูแพ็กเกจ", intermediateDetail: "📈 <strong>ภาษาญี่ปุ่นระดับกลาง:</strong><br>พัฒนาไวยากรณ์ คำศัพท์ การอ่าน และการสนทนาอย่างสมดุล เพื่อเปลี่ยนจากภาษาญี่ปุ่นที่รู้เป็นภาษาญี่ปุ่นที่ใช้ได้จริง", intermediate4Title: "4 ครั้ง/เดือน", intermediate4Price: "8,000 เยน/เดือน", intermediate4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", intermediate8Title: "8 ครั้ง/เดือน", intermediate8Price: "16,000 เยน/เดือน", intermediate8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", intermediate12Title: "12 ครั้ง/เดือน", intermediate12Price: "24,000 เยน/เดือน", intermediate12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", intermediateRec: "แนะนำ",
-                conversationLabel: "สนทนา", conversationTitle: "คอร์สสนทนาในชีวิตประจำวัน", conversationDesc: "เหมาะทั้งสำหรับผู้ที่อยากพัฒนาการสนทนา และผู้ที่เพียงอยากคุยกับคนญี่ปุ่นแบบสบาย ๆ", conversationSummary: "30 นาที เริ่ม 4,000 เยน/เดือน · 50 นาที เริ่ม 6,000 เยน/เดือน | ต่ออายุอัตโนมัติทุกเดือน", conversationHint: "▼ ดูแพ็กเกจ", conversationDetail: "💬 <strong>สนทนาในชีวิตประจำวัน:</strong><br>คุยเรื่องท่องเที่ยว งาน งานอดิเรก อนิเมะ หรือเรื่องที่คุณชอบได้อย่างสบาย ๆ เหมาะทั้งสำหรับผู้ที่อยากฝึกพูดอย่างจริงจังและผู้ที่เพียงอยากคุยกับคนญี่ปุ่นโดยไม่ต้องใช้ตำรา เลือกได้ทุกครั้งว่าจะเรียน 30 นาที (1,000 เยน) หรือ 50 นาที (1,500 เยน) วันที่ยุ่งก็เรียนสั้น ๆ 30 นาที วันที่มีเวลาก็คุยเต็มที่ 50 นาที และหากต้องการ ครูจะช่วยแก้ไวยากรณ์ คำศัพท์ และสำนวนที่เป็นธรรมชาติให้ด้วย ค่าเรียนต่อเดือนจะคำนวณตามจำนวนครั้งที่เลือกเรียน 30 นาทีและ 50 นาที", conversation4Title: "4 ครั้ง/เดือน", conversation4Price: "30 นาที 4,000 เยน / 50 นาที 6,000 เยน", conversation4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", conversation8Title: "8 ครั้ง/เดือน", conversation8Price: "30 นาที 8,000 เยน / 50 นาที 12,000 เยน", conversation8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", conversation12Title: "12 ครั้ง/เดือน", conversation12Price: "30 นาที 12,000 เยน / 50 นาที 18,000 เยน", conversation12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", conversationRec: "แนะนำ",
+                beginnerLabel: "ระดับต้น", beginnerTitle: "คอร์สภาษาญี่ปุ่นระดับต้น", beginnerDesc: "เริ่มตั้งแต่ฮิรางานะ คาตากานะ และไวยากรณ์พื้นฐานอย่างเป็นระบบ", beginnerSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", beginnerHint: "▼ ดูแพ็กเกจ", beginnerDetail: "📘 <strong>ภาษาญี่ปุ่นระดับต้น:</strong><br>ใช้ Minna no Nihongo เป็นพื้นฐาน เรียนฮิรางานะ คาตากานะ การออกเสียง คำศัพท์พื้นฐาน และไวยากรณ์อย่างเป็นระบบ เราไม่ได้เพียงเรียนตามหนังสือ แต่ปรับและพัฒนาสื่อการสอนของเราเองให้เข้าใจได้ง่ายและลึกขึ้น และด้วยการเรียนแบบตัวต่อตัว ครูสามารถปรับจังหวะให้เหมาะกับผู้เรียนแต่ละคนได้", beginner4Title: "4 ครั้ง/เดือน", beginner4Price: "8,000 เยน/เดือน", beginner4Note: "ประมาณสัปดาห์ละ 1 ครั้ง เหมาะสำหรับผู้ที่อยากเรียนอย่างต่อเนื่องโดยไม่หนักเกินไป", beginner8Title: "8 ครั้ง/เดือน", beginner8Price: "16,000 เยน/เดือน", beginner8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาภาษาญี่ปุ่นอย่างสม่ำเสมอ", beginner12Title: "12 ครั้ง/เดือน", beginner12Price: "24,000 เยน/เดือน", beginner12Note: "ประมาณสัปดาห์ละ 3 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาอย่างเข้มข้น", beginnerRec: "แนะนำ",
+                intermediateLabel: "ระดับกลาง", intermediateTitle: "คอร์สภาษาญี่ปุ่นระดับกลาง (ประมาณ N4–N3)", intermediateDesc: "พัฒนาไวยากรณ์และสำนวนที่ซับซ้อนขึ้นเพื่อใช้ภาษาญี่ปุ่นได้จริง", intermediateSummary: "4 ครั้ง 8,000 เยน / 8 ครั้ง 16,000 เยน / 12 ครั้ง 24,000 เยน", intermediateHint: "▼ ดูแพ็กเกจ", intermediateDetail: "📈 <strong>ภาษาญี่ปุ่นระดับกลาง:</strong><br>พัฒนาไวยากรณ์ คำศัพท์ การอ่าน และการสนทนาอย่างสมดุล เพื่อเปลี่ยนจากภาษาญี่ปุ่นที่รู้เป็นภาษาญี่ปุ่นที่ใช้ได้จริง", intermediate4Title: "4 ครั้ง/เดือน", intermediate4Price: "8,000 เยน/เดือน", intermediate4Note: "ประมาณสัปดาห์ละ 1 ครั้ง เหมาะสำหรับผู้ที่อยากเรียนอย่างต่อเนื่องโดยไม่หนักเกินไป", intermediate8Title: "8 ครั้ง/เดือน", intermediate8Price: "16,000 เยน/เดือน", intermediate8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาภาษาญี่ปุ่นอย่างสม่ำเสมอ", intermediate12Title: "12 ครั้ง/เดือน", intermediate12Price: "24,000 เยน/เดือน", intermediate12Note: "ประมาณสัปดาห์ละ 3 ครั้ง เหมาะสำหรับผู้ที่ต้องการพัฒนาอย่างเข้มข้น", intermediateRec: "แนะนำ",
+                conversationLabel: "สนทนา", conversationTitle: "คอร์สสนทนาในชีวิตประจำวัน", conversationDesc: "เหมาะทั้งสำหรับผู้ที่อยากพัฒนาการสนทนา และผู้ที่เพียงอยากคุยกับคนญี่ปุ่นแบบสบาย ๆ", conversationSummary: "30 นาที เริ่ม 4,000 เยน/เดือน · 50 นาที เริ่ม 6,000 เยน/เดือน | ต่ออายุอัตโนมัติทุกเดือน", conversationHint: "▼ ดูแพ็กเกจ", conversationDetail: "💬 <strong>สนทนาในชีวิตประจำวัน:</strong><br>คุยเรื่องท่องเที่ยว งาน งานอดิเรก อนิเมะ หรือเรื่องที่คุณชอบได้อย่างสบาย ๆ เลือกแพ็กเกจ 30 หรือ 50 นาที และเรียนเดือนละ 4, 8 หรือ 12 ครั้ง แพ็กเกจเดิมจะต่ออายุอัตโนมัติทุกเดือน จึงเหมาะสำหรับผู้ที่ต้องการฝึกสนทนาอย่างต่อเนื่อง หากต้องการ ครูจะช่วยแนะนำไวยากรณ์ คำศัพท์ และสำนวนที่เป็นธรรมชาติให้ด้วย", conversation4Title: "4 ครั้ง/เดือน", conversation4Price: "30 นาที 4,000 เยน / 50 นาที 6,000 เยน", conversation4Note: "เดือนละ 4 ครั้ง เหมาะสำหรับผู้ที่อยากคุยกับคนญี่ปุ่นแบบสบาย ๆ และสนุกกับการสนทนา", conversation8Title: "8 ครั้ง/เดือน", conversation8Price: "30 นาที 8,000 เยน / 50 นาที 12,000 เยน", conversation8Note: "ประมาณสัปดาห์ละ 2 ครั้ง เหมาะสำหรับผู้ที่อยากให้เวลาพูดภาษาญี่ปุ่นเป็นส่วนหนึ่งของชีวิตประจำวัน", conversation12Title: "12 ครั้ง/เดือน", conversation12Price: "30 นาที 12,000 เยน / 50 นาที 18,000 เยน", conversation12Note: "เหมาะสำหรับผู้ที่อยากคุยบ่อย ๆ และสนุกกับการใช้ภาษาญี่ปุ่นในชีวิตประจำวัน", conversationRec: "แนะนำ",
                 jlptSectionTitle: "คอร์สเข้มข้นเพื่อสอบผ่าน JLPT", jlptSectionDesc: "คอร์ส N5 และ N4 เป็นหลักสูตรที่วางแผนเรียนแบบ 6 เดือนหรือ 1 ปีอย่างเป็นระบบ",
                 n5Label: "JLPT N5", n5Title: "คอร์สเข้มข้น JLPT N5", n5Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N5 ภายใน 6 เดือนหรือ 1 ปี", n5Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n5Hint: "▼ ดูรายละเอียด", n5Detail: "🏆 <strong>N5 Intensive:</strong><br>ทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n5SixTitle: "คอร์ส 6 เดือน", n5SixNote: "เตรียมสอบ N5 แบบเข้มข้น", n5YearTitle: "คอร์ส 1 ปี", n5YearNote: "ค่อย ๆ สร้างพื้นฐานเพื่อสอบ N5", n5SixPace: "<strong>แนวทางเรียน 6 เดือน</strong><br>ประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N5 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n5YearPace: "<strong>แนวทางเรียน 1 ปี</strong><br>ประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้งเท่ากัน เหมาะกับผู้ที่ต้องการมีเวลาทบทวนและสร้างพื้นฐานอย่างมั่นคงก่อนสอบ N5 จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
                 n4Label: "JLPT N4", n4Title: "คอร์สเข้มข้น JLPT N4", n4Desc: "เรียนไวยากรณ์ การฟัง และการอ่านที่จำเป็นสำหรับ N4 ภายใน 6 เดือนหรือ 1 ปี", n4Summary: "ทั้งหมด 51 ครั้ง · 100,000 เยน / เลือก 6 เดือนหรือ 1 ปี", n4Hint: "▼ ดูรายละเอียด", n4Detail: "🏆 <strong>N4 Intensive:</strong><br>ทั้งหมด 51 ครั้ง: ไวยากรณ์ 30 ครั้ง การฟัง 10 ครั้ง การอ่าน 10 ครั้ง และสอบจำลองพร้อมอธิบาย 1 ครั้ง เลือกเรียนแบบ 6 เดือนหรือ 1 ปีตามเป้าหมาย", n4SixTitle: "คอร์ส 6 เดือน", n4SixNote: "เตรียมสอบ N4 แบบเข้มข้น", n4YearTitle: "คอร์ส 1 ปี", n4YearNote: "เรียนอย่างต่อเนื่องเพื่อสอบ N4", n4SixPace: "<strong>แนวทางเรียน 6 เดือน</strong><br>ประมาณสัปดาห์ละ 2 ครั้ง (เดือนละประมาณ 8–9 ครั้ง) รวม 51 ครั้ง: ไวยากรณ์ 30 ฟัง 10 อ่าน 10 และสอบจำลองพร้อมอธิบาย 1 ครั้ง เหมาะกับผู้ที่ต้องการเตรียม N4 แบบเข้มข้นในระยะสั้น จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง", n4YearPace: "<strong>แนวทางเรียน 1 ปี</strong><br>ประมาณสัปดาห์ละ 1 ครั้ง (เดือนละประมาณ 4–5 ครั้ง) รวม 51 ครั้ง เหมาะกับผู้ที่ต้องการเรียนควบคู่กับงานหรือโรงเรียนและเตรียมสอบ N4 อย่างต่อเนื่อง จำนวนครั้งต่อเดือนอาจต่างกันเล็กน้อยตามปฏิทินและการจอง",
@@ -3093,7 +3761,7 @@
                 coursesTitle: "코스・요금 안내", coursesNote: "초급・중급은 50분, 일상회화는 30분 또는 50분 1:1 수업입니다. 각 코스는 월 4회, 8회, 12회 플랜 중에서 선택할 수 있습니다.",
                 beginnerLabel: "초급", beginnerTitle: "초급 일본어 코스", beginnerDesc: "히라가나・가타카나부터 기본 문법까지 처음부터 탄탄하게 배웁니다.", beginnerSummary: "월 4회 8,000엔 / 월 8회 16,000엔 / 월 12회 24,000엔", beginnerHint: "▼ 플랜 상세 보기", beginnerDetail: "📘 <strong>초급 일본어:</strong><br>『민나노 니혼고』를 바탕으로 히라가나・가타카나, 발음, 기본 어휘와 기초 문법을 체계적으로 배웁니다. 교과서를 그대로 따라가는 데 그치지 않고 학습자가 더 직관적으로 이해하고 깊이 익힐 수 있도록 자체적으로 보완한 교재를 사용합니다. 1:1 수업이므로 각 학습자의 이해도에 맞춰 세심하게 진행합니다.", beginner4Title: "월 4회", beginner4Price: "월 8,000엔", beginner4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", beginner8Title: "월 8회", beginner8Price: "월 16,000엔", beginner8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", beginner12Title: "월 12회", beginner12Price: "월 24,000엔", beginner12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", beginnerRec: "추천",
                 intermediateLabel: "중급", intermediateTitle: "중급 일본어 코스 (N4~N3 정도)", intermediateDesc: "더 복잡한 문법과 표현을 익혀 실전에서 사용할 수 있는 일본어를 기릅니다.", intermediateSummary: "월 4회 8,000엔 / 월 8회 16,000엔 / 월 12회 24,000엔", intermediateHint: "▼ 플랜 상세 보기", intermediateDetail: "📈 <strong>중급 일본어:</strong><br>문법, 어휘, 독해, 회화를 균형 있게 향상시켜 아는 일본어에서 실제로 쓰는 일본어로 발전합니다.", intermediate4Title: "월 4회", intermediate4Price: "월 8,000엔", intermediate4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", intermediate8Title: "월 8회", intermediate8Price: "월 16,000엔", intermediate8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", intermediate12Title: "월 12회", intermediate12Price: "월 24,000엔", intermediate12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", intermediateRec: "추천",
-                conversationLabel: "회화", conversationTitle: "일상회화 코스", conversationDesc: "회화 실력을 늘리고 싶은 분은 물론, 부담 없이 일본인과 편하게 이야기하고 싶은 분도 환영합니다.", conversationSummary: "30분 월 4회 4,000엔부터 · 50분 월 4회 6,000엔부터 | 매월 자동 갱신", conversationHint: "▼ 플랜 상세 보기", conversationDetail: "💬 <strong>일상회화:</strong><br>여행, 일, 취미, 애니메이션 등 좋아하는 주제로 즐겁게 일본어를 말하는 코스입니다. 회화 실력을 키우고 싶은 분뿐 아니라 별도 교재 없이 일본인과 편하게 이야기해 보고 싶은 분도 괜찮습니다. 예약할 때마다 30분(1회 1,000엔) 또는 50분(1회 1,500엔)을 선택할 수 있어 바쁜 날에는 30분, 여유 있는 날에는 50분으로 생활 패턴에 맞춰 이용할 수 있습니다. 원하면 문법, 어휘, 자연스러운 표현도 강사가 꼼꼼하게 피드백합니다. 월 요금은 각 예약에서 선택한 30분・50분 수업 조합에 따라 계산됩니다.", conversation4Title: "월 4회", conversation4Price: "30분 4,000엔 / 50분 6,000엔", conversation4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", conversation8Title: "월 8회", conversation8Price: "30분 8,000엔 / 50분 12,000엔", conversation8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", conversation12Title: "월 12회", conversation12Price: "30분 12,000엔 / 50분 18,000엔", conversation12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", conversationRec: "추천",
+                conversationLabel: "회화", conversationTitle: "일상회화 코스", conversationDesc: "회화 실력을 늘리고 싶은 분은 물론, 부담 없이 일본인과 편하게 이야기하고 싶은 분도 환영합니다.", conversationSummary: "30분 월 4회 4,000엔부터 · 50분 월 4회 6,000엔부터 | 매월 자동 갱신", conversationHint: "▼ 플랜 상세 보기", conversationDetail: "💬 <strong>일상회화:</strong><br>여행, 일, 취미, 애니메이션 등 좋아하는 주제로 편하게 일본어를 말하는 코스입니다. 30분 또는 50분 플랜을 선택하고 월 4회·8회·12회 구독으로 수강합니다. 같은 플랜이 매월 자동 갱신되어 꾸준히 회화 시간을 확보하기 좋습니다. 원하면 문법, 어휘, 더 자연스러운 표현도 강사가 꼼꼼하게 피드백합니다.", conversation4Title: "월 4회", conversation4Price: "30분 4,000엔 / 50분 6,000엔", conversation4Note: "월 4회, 일본인과 부담 없이 편하게 대화를 즐기고 싶은 분께", conversation8Title: "월 8회", conversation8Price: "30분 8,000엔 / 50분 12,000엔", conversation8Note: "주 2회 정도, 일본어로 이야기하는 시간을 일상에 자연스럽게 넣고 싶은 분께", conversation12Title: "월 12회", conversation12Price: "30분 12,000엔 / 50분 18,000엔", conversation12Note: "자주 이야기하며 일본어 회화를 일상적으로 즐기고 싶은 분께", conversationRec: "추천",
                 jlptSectionTitle: "JLPT 합격 집중 코스", jlptSectionDesc: "N5・N4는 6개월 또는 1년 기간을 정해 체계적으로 진행하는 특별 커리큘럼입니다.",
                 n5Label: "JLPT N5", n5Title: "N5 합격 집중 코스", n5Desc: "N5에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n5Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n5Hint: "▼ 코스 상세 보기", n5Detail: "🏆 <strong>N5 집중:</strong><br>문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n5SixTitle: "6개월 코스", n5SixNote: "단기간 집중해서 N5 합격 목표", n5YearTitle: "1년 코스", n5YearNote: "기초를 다지며 천천히 N5 합격 목표", n5SixPace: "<strong>6개월 학습 페이스</strong><br>주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N5 합격을 목표로 하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n5YearPace: "<strong>1년 학습 페이스</strong><br>주 약 1회(월 4~5회 정도)로 같은 총 51회를 진행합니다. 복습 시간을 충분히 가지며 기초를 차근차근 다져 N5 합격을 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
                 n4Label: "JLPT N4", n4Title: "N4 합격 집중 코스", n4Desc: "N4에 필요한 문법・청해・독해를 6개월 또는 1년에 걸쳐 체계적으로 학습합니다.", n4Summary: "총 51회・100,000엔 / 6개월 또는 1년 코스", n4Hint: "▼ 코스 상세 보기", n4Detail: "🏆 <strong>N4 집중:</strong><br>문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 총 51회입니다. 목표 시기에 맞춰 6개월 또는 1년 페이스를 선택합니다.", n4SixTitle: "6개월 코스", n4SixNote: "단기간 집중해서 N4 합격 목표", n4YearTitle: "1년 코스", n4YearNote: "무리 없는 페이스로 N4 합격 목표", n4SixPace: "<strong>6개월 학습 페이스</strong><br>주 약 2회(월 8~9회 정도)로 총 51회를 진행합니다. 문법 30회, 청해 10회, 독해 10회, 모의시험+해설 1회로 구성되며 단기간 집중해서 N4 합격을 준비하는 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.", n4YearPace: "<strong>1년 학습 페이스</strong><br>주 약 1회(월 4~5회 정도)로 총 51회를 진행합니다. 학교나 일과 병행하면서 꾸준히 N4를 준비하고 싶은 분께 적합합니다. 월별 횟수는 달력과 예약 상황에 따라 조금 달라질 수 있습니다.",
@@ -3105,7 +3773,7 @@
                 heroSub: "无论AI如何进步，传递感情、理解彼此、建立关系的依然是人。<br>Kano×Kano通过国家资格日语教师的一对一课程，帮助你培养真正能够传达心意的日语。",
                 reasonsTitle: "选择Kano×Kano的3大理由", reasonsNote: "※ 点击漂浮的蓝色圆形，该圆会从当前位置平滑放大，并在圆内显示详细说明。",
                 feat1Title: "全员<br>国家资格", feat1Desc: "由严选专业讲师授课，保证高质量教学。", feat1Hint: "▼ 查看详情",
-                feat2Title: "学校标准<br>质量管理", feat2Desc: "不是开放式教师市场，而是由Kano×Kano按照标准筛选教师并管理课程质量。", feat2Hint: "▼ 查看详情",
+                feat2Title: "课程<br>质量", feat2Desc: "不是开放式教师市场，而是由Kano×Kano按照标准筛选教师并管理课程质量。", feat2Hint: "▼ 查看详情",
                 feat3Title: "1对1<br>持续支持", feat3Desc: "根据每位学习者的目标、水平和弱项调整课程与复习。", feat3Hint: "▼ 查看详情",
                 df1Desc: "🎓 <strong>详细讲解：</strong><br>Kano×Kano所有授课教师均持有日语教育相关国家资格。持证只是我们对讲师的基本要求，我们同样重视教学经验、清晰易懂的讲解能力以及与学习者的沟通。这里不是任何人都可以注册成为教师的开放平台。专业教师会根据每位学习者的水平和目标，准确讲解语法、词汇、发音以及自然表达背后的原因，提供稳定而高质量的课程。",
                 df2Desc: "✅ <strong>详细讲解：</strong><br>Kano×Kano并不是任何人都可以自由注册成为教师的开放式平台。我们不仅确认教师的资格，还会综合考察教学经验、讲解能力和沟通能力，只有达到本校标准的教师才能授课。同时，教材、教学方针和学习记录会在校内共享，即使更换教师，也能尽量保持学习的连续性和稳定的课程质量。",
@@ -3118,7 +3786,7 @@
                 coursesTitle: "课程与收费方案", coursesNote: "初级和中级课程每次50分钟；日常会话可选择30分钟或50分钟。所有课程均为一对一，可选择每月4次、8次或12次。",
                 beginnerLabel: "初级", beginnerTitle: "初级日语课程", beginnerDesc: "从平假名、片假名和基础语法开始，扎实建立日语基础。", beginnerSummary: "每月4次 8,000日元 / 8次 16,000日元 / 12次 24,000日元", beginnerHint: "▼ 查看方案", beginnerDetail: "📘 <strong>初级日语：</strong><br>以《大家的日语》为基础，系统学习平假名、片假名、发音、基础词汇和基础语法。我们并非简单照着教材推进，而是使用经过独立优化的教学资料，让学习者更直观地理解并加深掌握。一对一授课也能根据每位学习者的理解程度细致调整进度。", beginner4Title: "每月4次", beginner4Price: "8,000日元/月", beginner4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", beginner8Title: "每月8次", beginner8Price: "16,000日元/月", beginner8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", beginner12Title: "每月12次", beginner12Price: "24,000日元/月", beginner12Note: "适合想多聊天、在日常中经常享受日语会话的人", beginnerRec: "推荐",
                 intermediateLabel: "中级", intermediateTitle: "中级日语课程（约N4～N3）", intermediateDesc: "学习更复杂的语法与表达，培养实际运用日语的能力。", intermediateSummary: "每月4次 8,000日元 / 8次 16,000日元 / 12次 24,000日元", intermediateHint: "▼ 查看方案", intermediateDetail: "📈 <strong>中级日语：</strong><br>均衡提升语法、词汇、阅读与会话能力，从“知道日语”进阶到“会用日语”。", intermediate4Title: "每月4次", intermediate4Price: "8,000日元/月", intermediate4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", intermediate8Title: "每月8次", intermediate8Price: "16,000日元/月", intermediate8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", intermediate12Title: "每月12次", intermediate12Price: "24,000日元/月", intermediate12Note: "适合想多聊天、在日常中经常享受日语会话的人", intermediateRec: "推荐",
-                conversationLabel: "会话", conversationTitle: "日常会话课程", conversationDesc: "不仅适合想提高会话能力的人，也欢迎只是想轻松和日本人聊天的人。", conversationSummary: "30分钟：每月4次4,000日元起 · 50分钟：每月4次6,000日元起 | 每月自动续费", conversationHint: "▼ 查看方案", conversationDetail: "💬 <strong>日常会话：</strong><br>可以围绕旅行、工作、兴趣、动漫等喜欢的话题轻松地用日语聊天。不仅适合想系统提高会话能力的人，也适合不使用特别教材、只是想轻松和日本人聊天的人。每次预约都可以选择30分钟（1次1,000日元）或50分钟（1次1,500日元）：忙的时候轻松聊30分钟，有时间时则认真聊50分钟。需要的话，老师也会对语法、词汇和更自然的表达给予细致反馈。每月费用会根据每次预约所选择的30分钟与50分钟课程组合计算。", conversation4Title: "每月4次", conversation4Price: "30分钟 4,000日元 / 50分钟 6,000日元", conversation4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", conversation8Title: "每月8次", conversation8Price: "30分钟 8,000日元 / 50分钟 12,000日元", conversation8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", conversation12Title: "每月12次", conversation12Price: "30分钟 12,000日元 / 50分钟 18,000日元", conversation12Note: "适合想多聊天、在日常中经常享受日语会话的人", conversationRec: "推荐",
+                conversationLabel: "会话", conversationTitle: "日常会话课程", conversationDesc: "不仅适合想提高会话能力的人，也欢迎只是想轻松和日本人聊天的人。", conversationSummary: "30分钟：每月4次4,000日元起 · 50分钟：每月4次6,000日元起 | 每月自动续费", conversationHint: "▼ 查看方案", conversationDetail: "💬 <strong>日常会话：</strong><br>可以围绕旅行、工作、兴趣、动漫等喜欢的话题轻松地用日语聊天。请选择30分钟或50分钟方案，并从每月4次、8次或12次中选择。相同方案会每月自动续费，适合希望持续保持会话练习量的学习者。需要的话，老师也会对语法、词汇和更自然的表达给予细致反馈。", conversation4Title: "每月4次", conversation4Price: "30分钟 4,000日元 / 50分钟 6,000日元", conversation4Note: "每月4次，适合想轻松和日本人聊天、享受会话的人", conversation8Title: "每月8次", conversation8Price: "30分钟 8,000日元 / 50分钟 12,000日元", conversation8Note: "每周约2次，适合想把日语聊天自然融入日常生活的人", conversation12Title: "每月12次", conversation12Price: "30分钟 12,000日元 / 50分钟 18,000日元", conversation12Note: "适合想多聊天、在日常中经常享受日语会话的人", conversationRec: "推荐",
                 jlptSectionTitle: "JLPT 合格集中课程", jlptSectionDesc: "N5、N4采用设定6个月或1年学习周期的系统化特别课程。",
                 n5Label: "JLPT N5", n5Title: "N5合格集中课程", n5Desc: "在6个月或1年内系统学习N5所需的语法、听力和阅读。", n5Summary: "共51次・100,000日元 / 6个月或1年课程", n5Hint: "▼ 查看课程详情", n5Detail: "🏆 <strong>N5集中课程：</strong><br>共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n5SixTitle: "6个月课程", n5SixNote: "短期集中备考N5", n5YearTitle: "1年课程", n5YearNote: "扎实打基础，稳步备考N5", n5SixPace: "<strong>6个月学习节奏</strong><br>每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N5的学习者。每月次数可能会根据日历和预约情况略有调整。", n5YearPace: "<strong>1年学习节奏</strong><br>每周约1次（每月约4–5次），完成同样的51次课程。可以保留充足的复习时间，扎实建立基础并稳步准备N5。每月次数可能会根据日历和预约情况略有调整。",
                 n4Label: "JLPT N4", n4Title: "N4合格集中课程", n4Desc: "在6个月或1年内系统学习N4所需的语法、听力和阅读。", n4Summary: "共51次・100,000日元 / 6个月或1年课程", n4Hint: "▼ 查看课程详情", n4Detail: "🏆 <strong>N4集中课程：</strong><br>共51次：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。可根据目标考试日期选择6个月或1年的学习节奏。", n4SixTitle: "6个月课程", n4SixNote: "短期集中备考N4", n4YearTitle: "1年课程", n4YearNote: "以稳定节奏备考N4", n4SixPace: "<strong>6个月学习节奏</strong><br>每周约2次（每月约8–9次），完成全部51次课程：语法30次、听力10次、阅读10次、模拟考试＋讲解1次。适合希望在较短时间内集中备考N4的学习者。每月次数可能会根据日历和预约情况略有调整。", n4YearPace: "<strong>1年学习节奏</strong><br>每周约1次（每月约4–5次），完成全部51次课程。适合希望兼顾工作或学校、以稳定节奏认真准备N4的学习者。每月次数可能会根据日历和预约情况略有调整。",
@@ -3126,13 +3794,29 @@
             }
         };
 
+        const stripeTestMode = new URLSearchParams(location.search).get('stripe_test') === '1';
         const paymentI18n = {
-            ja: { banner: '<strong>Stripe テスト決済</strong>：現在はテストモードです。実際の請求は発生しません。各プランの「テスト決済へ」からStripeの安全な決済画面を確認できます。', pay: 'テスト決済へ', c30_4: '30分・月4回', c50_4: '50分・月4回', c30_8: '30分・月8回', c50_8: '50分・月8回', c30_12: '30分・月12回', c50_12: '50分・月12回', cnote: '日常会話も毎月自動更新のサブスクリプションです。', n5: 'N5コースをテスト決済（100,000円）', n4: 'N4コースをテスト決済（100,000円）' },
-            en: { banner: '<strong>Stripe test checkout</strong>: This site is currently in test mode. No real charge will be made. Use the test checkout buttons to preview Stripe Checkout.', pay: 'Test checkout', c30_4: '30 min · 4/month', c50_4: '50 min · 4/month', c30_8: '30 min · 8/month', c50_8: '50 min · 8/month', c30_12: '30 min · 12/month', c50_12: '50 min · 12/month', cnote: 'Daily Conversation is also an auto-renewing monthly subscription.', n5: 'Test checkout N5 course (¥100,000)', n4: 'Test checkout N4 course (¥100,000)' },
-            th: { banner: '<strong>ชำระเงินทดสอบด้วย Stripe</strong>: ขณะนี้เป็นโหมดทดสอบ จึงไม่มีการเรียกเก็บเงินจริง กดปุ่มชำระเงินทดสอบเพื่อดูหน้าชำระเงินของ Stripe', pay: 'ชำระเงินทดสอบ', c30_4: '30 นาที · 4 ครั้ง/เดือน', c50_4: '50 นาที · 4 ครั้ง/เดือน', c30_8: '30 นาที · 8 ครั้ง/เดือน', c50_8: '50 นาที · 8 ครั้ง/เดือน', c30_12: '30 นาที · 12 ครั้ง/เดือน', c50_12: '50 นาที · 12 ครั้ง/เดือน', cnote: 'คอร์สสนทนาเป็นสมาชิกแบบต่ออายุอัตโนมัติทุกเดือนเช่นกัน', n5: 'ชำระเงินทดสอบคอร์ส N5 (¥100,000)', n4: 'ชำระเงินทดสอบคอร์ส N4 (¥100,000)' },
-            ko: { banner: '<strong>Stripe 테스트 결제</strong>: 현재 테스트 모드이므로 실제 청구는 발생하지 않습니다. 테스트 결제 버튼으로 Stripe 결제 화면을 확인할 수 있습니다.', pay: '테스트 결제', c30_4: '30분 · 월 4회', c50_4: '50분 · 월 4회', c30_8: '30분 · 월 8회', c50_8: '50분 · 월 8회', c30_12: '30분 · 월 12회', c50_12: '50분 · 월 12회', cnote: '일상회화도 매월 자동 갱신되는 구독입니다.', n5: 'N5 코스 테스트 결제 (¥100,000)', n4: 'N4 코스 테스트 결제 (¥100,000)' },
-            zh: { banner: '<strong>Stripe 测试支付</strong>：目前为测试模式，不会产生真实扣款。可通过测试支付按钮查看Stripe结账页面。', pay: '测试支付', c30_4: '30分钟·每月4次', c50_4: '50分钟·每月4次', c30_8: '30分钟·每月8次', c50_8: '50分钟·每月8次', c30_12: '30分钟·每月12次', c50_12: '50分钟·每月12次', cnote: '日常会话也是每月自动续费订阅。', n5: '测试支付N5课程（¥100,000）', n4: '测试支付N4课程（¥100,000）' }
+            ja: { publicBanner:'<strong>お申し込みについて</strong>：オンライン決済は現在最終準備中です。料金プランはご確認いただけます。受講をご希望の方は、まず無料体験をご予約ください。', testBanner:'<strong>開発用 Stripe テスト決済</strong>：テストモードです。実際の請求は発生しません。', consult:'無料体験から相談', testPay:'テスト決済へ', c30_4:'30分・月4回を相談', c50_4:'50分・月4回を相談', c30_8:'30分・月8回を相談', c50_8:'50分・月8回を相談', c30_12:'30分・月12回を相談', c50_12:'50分・月12回を相談', cnote:'日常会話も毎月自動更新のサブスクリプションです。30分または50分を選び、月4回・8回・12回からお選びください。', n5:'N5コースについて相談', n4:'N4コースについて相談' },
+            en: { publicBanner:'<strong>Enrollment</strong>: Online payment is being finalized. You can review all prices now; please book a free trial first if you would like to enroll.', testBanner:'<strong>Developer Stripe test checkout</strong>: Test mode only. No real charge will be made.', consult:'Ask after free trial', testPay:'Test checkout', c30_4:'Ask about 30 min · 4/month', c50_4:'Ask about 50 min · 4/month', c30_8:'Ask about 30 min · 8/month', c50_8:'Ask about 50 min · 8/month', c30_12:'Ask about 30 min · 12/month', c50_12:'Ask about 50 min · 12/month', cnote:'Daily Conversation is an auto-renewing monthly subscription. Choose either 30 or 50 minutes and 4, 8, or 12 lessons per month.', n5:'Ask about the N5 course', n4:'Ask about the N4 course' },
+            th: { publicBanner:'<strong>การสมัครเรียน</strong>: ระบบชำระเงินออนไลน์อยู่ระหว่างการเตรียมขั้นสุดท้าย สามารถดูราคาได้แล้ว หากต้องการสมัครเรียน กรุณาจองทดลองเรียนฟรีก่อน', testBanner:'<strong>Stripe โหมดทดสอบสำหรับพัฒนา</strong>: ไม่มีการเรียกเก็บเงินจริง', consult:'สอบถามหลังทดลองเรียน', testPay:'ชำระเงินทดสอบ', c30_4:'สอบถาม 30 นาที · 4 ครั้ง/เดือน', c50_4:'สอบถาม 50 นาที · 4 ครั้ง/เดือน', c30_8:'สอบถาม 30 นาที · 8 ครั้ง/เดือน', c50_8:'สอบถาม 50 นาที · 8 ครั้ง/เดือน', c30_12:'สอบถาม 30 นาที · 12 ครั้ง/เดือน', c50_12:'สอบถาม 50 นาที · 12 ครั้ง/เดือน', cnote:'คอร์สสนทนาเป็นสมาชิกต่ออายุอัตโนมัติทุกเดือน เลือก 30 หรือ 50 นาที และ 4, 8 หรือ 12 ครั้งต่อเดือน', n5:'สอบถามคอร์ส N5', n4:'สอบถามคอร์ส N4' },
+            ko: { publicBanner:'<strong>수강 신청 안내</strong>: 온라인 결제는 최종 준비 중입니다. 요금은 지금 확인할 수 있으며, 수강을 원하시면 먼저 무료 체험을 예약해 주세요.', testBanner:'<strong>개발용 Stripe 테스트 결제</strong>: 테스트 모드이며 실제 결제는 발생하지 않습니다.', consult:'무료 체험 후 상담', testPay:'테스트 결제', c30_4:'30분 · 월 4회 상담', c50_4:'50분 · 월 4회 상담', c30_8:'30분 · 월 8회 상담', c50_8:'50분 · 월 8회 상담', c30_12:'30분 · 월 12회 상담', c50_12:'50분 · 월 12회 상담', cnote:'일상회화도 매월 자동 갱신되는 구독입니다. 30분 또는 50분과 월 4회·8회·12회 중 선택합니다.', n5:'N5 코스 상담', n4:'N4 코스 상담' },
+            zh: { publicBanner:'<strong>报名说明</strong>：在线支付正在进行最终准备。现在可以查看全部价格；如希望报名，请先预约免费试听。', testBanner:'<strong>开发用 Stripe 测试支付</strong>：目前为测试模式，不会产生真实扣款。', consult:'试听后咨询', testPay:'测试支付', c30_4:'咨询30分钟·每月4次', c50_4:'咨询50分钟·每月4次', c30_8:'咨询30分钟·每月8次', c50_8:'咨询50分钟·每月8次', c30_12:'咨询30分钟·每月12次', c50_12:'咨询50分钟·每月12次', cnote:'日常会话也是每月自动续费订阅。请选择30分钟或50分钟，以及每月4次、8次或12次。', n5:'咨询N5课程', n4:'咨询N4课程' }
         };
+
+        function configurePaymentLinks() {
+            document.querySelectorAll('.checkout-btn[data-test-href]').forEach(a => {
+                if (stripeTestMode) {
+                    a.href = a.dataset.testHref;
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                } else {
+                    a.href = 'booking.html';
+                    a.removeAttribute('target');
+                    a.removeAttribute('rel');
+                }
+            });
+        }
+
 
         function toggleLanguageMenu() {
             const pop = document.getElementById('langPopover');
@@ -3173,19 +3857,21 @@
                 }
             }
             const pi = paymentI18n[lang] || paymentI18n.ja;
-            const banner = document.getElementById('stripeTestBanner'); if (banner) banner.innerHTML = pi.banner;
-            ['beginner4Pay','beginner8Pay','beginner12Pay','intermediate4Pay','intermediate8Pay','intermediate12Pay'].forEach(id => { const e=document.getElementById(id); if(e) e.textContent=pi.pay; });
-            [['conversation30_4Pay','c30_4'],['conversation50_4Pay','c50_4'],['conversation30_8Pay','c30_8'],['conversation50_8Pay','c50_8'],['conversation30_12Pay','c30_12'],['conversation50_12Pay','c50_12']].forEach(([id,key])=>{const el=document.getElementById(id); if(el && pi[key]) el.textContent=pi[key];});
+            const banner = document.getElementById('stripeTestBanner'); if (banner) banner.innerHTML = stripeTestMode ? pi.testBanner : pi.publicBanner;
+            ['beginner4Pay','beginner8Pay','beginner12Pay','intermediate4Pay','intermediate8Pay','intermediate12Pay'].forEach(id => { const e=document.getElementById(id); if(e) e.textContent=stripeTestMode ? pi.testPay : pi.consult; });
+            [['conversation30_4Pay','c30_4'],['conversation50_4Pay','c50_4'],['conversation30_8Pay','c30_8'],['conversation50_8Pay','c50_8'],['conversation30_12Pay','c30_12'],['conversation50_12Pay','c50_12']].forEach(([id,key])=>{const el=document.getElementById(id); if(el && pi[key]) el.textContent=stripeTestMode ? pi[key].replace(/を相談$| 상담$|咨询|สอบถาม /,'') : pi[key];});
             const cn=document.getElementById('conversationPayNote'); if(cn && pi.cnote)cn.textContent=pi.cnote;
-            const n5=document.getElementById('n5Pay'); if(n5)n5.textContent=pi.n5;
-            const n4=document.getElementById('n4Pay'); if(n4)n4.textContent=pi.n4;
+            const n5=document.getElementById('n5Pay'); if(n5)n5.textContent=stripeTestMode ? pi.testPay : pi.n5;
+            const n4=document.getElementById('n4Pay'); if(n4)n4.textContent=stripeTestMode ? pi.testPay : pi.n4;
+            configurePaymentLinks();
         }
     </script>
 
     <script>
     (() => {
         const savedLang = localStorage.getItem('kk-language');
-        if (savedLang && i18n[savedLang]) { const labels={ja:'日本語',en:'English',th:'ไทย',ko:'한국어',zh:'中文'}; selectLanguage(savedLang, labels[savedLang]); }
+        const labels={ja:'日本語',en:'English',th:'ไทย',ko:'한국어',zh:'中文'};
+        selectLanguage(savedLang && i18n[savedLang] ? savedLang : 'ja', labels[savedLang && i18n[savedLang] ? savedLang : 'ja']);
         const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const revealItems = [...document.querySelectorAll('.reveal, .reveal-stagger')];
         if (!reduced && 'IntersectionObserver' in window) {
@@ -3229,6 +3915,649 @@
         }
     })();
     </script>
+
+
+    <script>
+    /* v30 reason-orb interaction: isolated from all legacy zoom code. */
+    (() => {
+        let source = null;
+        let clone = null;
+        let overlay = null;
+        let detailNode = null;
+        let anim = null;
+        let phase = 'idle';
+        let frozenTransform = 'none';
+        let baseTransform = 'translate3d(0,0,0)';
+        let startRect = null;
+        let endTransform = 'none';
+        let miniTimer = null;
+        let closeMiniTimer = null;
+
+        const OPEN_MS = 1450;
+        const CLOSE_MS = 1320;
+        const EASE = 'cubic-bezier(.22,.74,.18,1)';
+
+        function ensureOverlay(){
+            let el = document.getElementById('reasonV30Overlay');
+            if (el) return el;
+            el = document.createElement('div');
+            el.id = 'reasonV30Overlay';
+            el.className = 'reason-v30-overlay';
+            el.setAttribute('aria-hidden','true');
+            el.addEventListener('click', () => {
+                if (phase === 'open') window.closeReasonZoom();
+            });
+            el.addEventListener('wheel', e => e.preventDefault(), {passive:false});
+            el.addEventListener('touchmove', e => e.preventDefault(), {passive:false});
+            document.body.appendChild(el);
+            return el;
+        }
+
+        function targetFor(rect){
+            const d = Math.max(window.innerWidth * 1.09, window.innerHeight * 1.36);
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
+            const sx = d / rect.width;
+            const sy = d / rect.height;
+            const tx = cx - (rect.left + rect.width/2);
+            const ty = cy - (rect.top + rect.height/2);
+            return { d, tx, ty, sx, sy, transform:`translate3d(${tx}px,${ty}px,0) scale(${sx},${sy})` };
+        }
+
+        function sourceBaseTransform(card){
+            const cs = getComputedStyle(card);
+            const b = (cs.getPropertyValue('--float-base') || '0px').trim() || '0px';
+            return `translate3d(0,${b},0)`;
+        }
+
+        function buildDetail(card, detail){
+            const wrap = document.createElement('div');
+            wrap.className = 'reason-v30-detail';
+            const head = document.createElement('div');
+            const kicker = document.createElement('span');
+            kicker.className = 'reason-v30-kicker';
+            kicker.textContent = card.querySelector('.feature-meta')?.textContent || 'REASON';
+            const title = document.createElement('h3');
+            title.className = 'reason-v30-title';
+            title.innerHTML = card.querySelector('h3')?.innerHTML || '';
+            head.append(kicker,title);
+            const body = document.createElement('div');
+            body.className = 'reason-v30-body';
+            const p = detail.querySelector('p');
+            body.innerHTML = p ? `<p>${p.innerHTML}</p>` : detail.innerHTML;
+            wrap.append(head,body);
+            return wrap;
+        }
+
+        function hardCleanup(){
+            clearTimeout(miniTimer); clearTimeout(closeMiniTimer);
+            if (anim) { try{anim.cancel()}catch(_){ } anim=null; }
+            if (clone) { try{clone.remove()}catch(_){ } clone=null; }
+            if (detailNode) { try{detailNode.remove()}catch(_){ } detailNode=null; }
+            if (overlay) {
+                overlay.classList.remove('is-active','detail-ready');
+                overlay.setAttribute('aria-hidden','true');
+            }
+            if (source) {
+                source.classList.remove('reason-v30-hidden','reason-v30-frozen');
+                source.style.removeProperty('--reason-v30-freeze');
+                source.style.removeProperty('animation');
+                source.style.removeProperty('transform');
+                source.style.removeProperty('transition');
+                source.style.removeProperty('opacity');
+                source.setAttribute('aria-expanded','false');
+            }
+            source=null; startRect=null; frozenTransform='none'; baseTransform='translate3d(0,0,0)'; endTransform='none'; phase='idle';
+        }
+
+        window.toggleReason = function(card,id){
+            const detail = document.getElementById(id);
+            if (!card || !detail || phase !== 'idle') return;
+            overlay = ensureOverlay();
+            phase='opening';
+            source=card;
+            source.setAttribute('aria-expanded','true');
+
+            // Capture the exact visual phase first, then freeze to that same transform.
+            const cs = getComputedStyle(source);
+            frozenTransform = cs.transform && cs.transform !== 'none' ? cs.transform : 'translate3d(0,0,0)';
+            baseTransform = sourceBaseTransform(source);
+            const r = source.getBoundingClientRect();
+            startRect = {left:r.left,top:r.top,width:r.width,height:r.height};
+            source.style.setProperty('--reason-v30-freeze', frozenTransform);
+            source.classList.add('reason-v30-frozen');
+            source.getBoundingClientRect(); // lock paint before cloning
+
+            clone = source.cloneNode(true);
+            clone.removeAttribute('onclick'); clone.removeAttribute('onkeydown'); clone.removeAttribute('aria-controls');
+            clone.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
+            clone.classList.remove('reason-v30-frozen','reason-v30-hidden');
+            clone.classList.add('reason-v30-circle');
+            clone.style.setProperty('left',`${startRect.left}px`,'important');
+            clone.style.setProperty('top',`${startRect.top}px`,'important');
+            clone.style.setProperty('width',`${startRect.width}px`,'important');
+            clone.style.setProperty('height',`${startRect.height}px`,'important');
+            clone.style.setProperty('min-width',`${startRect.width}px`,'important');
+            clone.style.setProperty('min-height',`${startRect.height}px`,'important');
+            clone.style.setProperty('max-width',`${startRect.width}px`,'important');
+            clone.style.setProperty('max-height',`${startRect.height}px`,'important');
+            clone.style.setProperty('transform','translate3d(0,0,0) scale(1)','important');
+            clone.style.setProperty('animation','none','important');
+            overlay.appendChild(clone);
+            overlay.classList.add('is-active');
+            overlay.setAttribute('aria-hidden','false');
+
+            // Wait for the clone to paint exactly over the source, then hide only the source.
+            requestAnimationFrame(()=>requestAnimationFrame(()=>{
+                source.classList.add('reason-v30-hidden');
+                const t = targetFor(startRect);
+                endTransform = t.transform;
+                anim = clone.animate([
+                    {transform:'translate3d(0,0,0) scale(1)'},
+                    {transform:endTransform}
+                ],{duration:OPEN_MS,easing:EASE,fill:'forwards'});
+                miniTimer = setTimeout(()=>clone?.classList.add('hide-mini'), Math.round(OPEN_MS*.42));
+                anim.onfinish = () => {
+                    if (phase!=='opening') return;
+                    try{anim.commitStyles()}catch(_){ clone.style.setProperty('transform',endTransform,'important'); }
+                    try{anim.cancel()}catch(_){ }
+                    clone.style.setProperty('transform',endTransform,'important');
+                    anim=null;
+                    phase='open';
+                    detailNode=buildDetail(source,detail);
+                    overlay.appendChild(detailNode);
+                    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+                        detailNode?.classList.add('is-visible');
+                        overlay?.classList.add('detail-ready');
+                    }));
+                };
+            }));
+        };
+
+        window.closeReasonZoom = function(){
+            if (phase!=='open' || !source || !clone || !overlay) return;
+            phase='closing';
+            clearTimeout(miniTimer); clearTimeout(closeMiniTimer);
+            overlay.classList.remove('detail-ready');
+            detailNode?.classList.remove('is-visible');
+
+            setTimeout(()=>{
+                detailNode?.remove(); detailNode=null;
+                // Keep mini labels hidden while the circle is still huge; reveal them near home.
+                closeMiniTimer=setTimeout(()=>clone?.classList.remove('hide-mini'), Math.round(CLOSE_MS*.68));
+                clone.style.setProperty('transform',endTransform,'important');
+                anim=clone.animate([
+                    {transform:endTransform},
+                    {transform:'translate3d(0,0,0) scale(1)'}
+                ],{duration:CLOSE_MS,easing:EASE,fill:'forwards'});
+                anim.onfinish=()=>{
+                    if (phase!=='closing') return;
+                    try{anim.commitStyles()}catch(_){ clone.style.setProperty('transform','translate3d(0,0,0) scale(1)','important'); }
+                    try{anim.cancel()}catch(_){ }
+                    anim=null;
+                    clone.style.setProperty('transform','translate3d(0,0,0) scale(1)','important');
+
+                    // Exact-pixel handoff: source is still frozen at the original clicked phase.
+                    source.classList.remove('reason-v30-hidden');
+                    source.style.setProperty('opacity','0','important');
+                    const sf=source.animate([{opacity:0},{opacity:1}],{duration:150,easing:'linear',fill:'forwards'});
+                    const cf=clone.animate([{opacity:1},{opacity:0}],{duration:150,easing:'linear',fill:'forwards'});
+                    Promise.allSettled([sf.finished,cf.finished]).then(()=>{
+                        try{sf.cancel()}catch(_){ } try{cf.cancel()}catch(_){ }
+                        source.style.removeProperty('opacity');
+                        clone.remove(); clone=null;
+                        overlay.classList.remove('is-active');
+                        overlay.setAttribute('aria-hidden','true');
+
+                        // Instead of snapping back into the floating keyframe, ease the real orb
+                        // from the frozen clicked phase to that animation's base pose, then restart.
+                        source.style.setProperty('animation','none','important');
+                        source.style.setProperty('transform',frozenTransform,'important');
+                        source.classList.remove('reason-v30-frozen');
+                        source.style.setProperty('transition','transform 520ms cubic-bezier(.22,.74,.18,1)','important');
+                        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+                            source.style.setProperty('transform',baseTransform,'important');
+                            setTimeout(()=>{
+                                source.style.removeProperty('transition');
+                                source.style.removeProperty('transform');
+                                source.style.removeProperty('animation');
+                                source.style.removeProperty('--reason-v30-freeze');
+                                source.setAttribute('aria-expanded','false');
+                                source=null; startRect=null; frozenTransform='none'; baseTransform='translate3d(0,0,0)'; endTransform='none'; phase='idle';
+                            },540);
+                        }));
+                    });
+                };
+            },180);
+        };
+
+        // Legacy hooks now point to the rebuilt closer.
+        window.reasonZoomBackdrop = function(){ if(phase==='open') window.closeReasonZoom(); };
+        window.reasonZoomCircleTap = function(){ if(phase==='open') window.closeReasonZoom(); };
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape' && phase==='open') window.closeReasonZoom(); });
+        window.addEventListener('beforeunload',hardCleanup);
+    })();
+    </script>
+
+
+
+<style>
+/* ===== v31: true in-place reason zoom =====================================
+   The REAL tapped orb is temporarily lifted into a fixed overlay.
+   No clone/handoff is used, so the visible orb cannot jump to another origin. */
+.reason-v31-overlay{
+  position:fixed; inset:0; z-index:2147483647; overflow:hidden;
+  visibility:hidden; pointer-events:none; background:transparent; isolation:isolate;
+  touch-action:none;
+}
+.reason-v31-overlay.is-active{visibility:visible;pointer-events:auto}
+.reason-v31-live{
+  position:fixed!important; margin:0!important; z-index:2!important;
+  animation:none!important; transition:none!important; transform:none;
+  transform-origin:center center!important; will-change:transform;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  contain:none!important; overflow:hidden!important; border-radius:50%!important;
+  box-sizing:border-box!important; cursor:pointer;
+}
+.reason-v31-live .feature-meta,.reason-v31-live>h3,.reason-v31-live .orb-tap{
+  transition:opacity .34s ease,transform .34s ease!important;
+}
+.reason-v31-live.reason-v31-expanded .feature-meta,
+.reason-v31-live.reason-v31-expanded>h3,
+.reason-v31-live.reason-v31-expanded .orb-tap{opacity:0!important;transform:scale(.94)!important}
+.reason-v31-placeholder{visibility:hidden!important;pointer-events:none!important;user-select:none!important}
+.reason-v31-detail{
+  position:fixed; left:50%; top:50%; z-index:3; width:min(820px,76vw);
+  max-height:min(64vh,610px); transform:translate(-50%,-46%) scale(.96); opacity:0;
+  color:#fff; display:grid; grid-template-columns:minmax(190px,.68fr) minmax(0,1.32fr);
+  gap:clamp(26px,4vw,64px); align-items:center; pointer-events:none; text-align:left;
+  transition:opacity .46s ease,transform .62s cubic-bezier(.2,.8,.2,1);
+}
+.reason-v31-detail.is-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.reason-v31-detail .reason-v30-kicker{margin-bottom:12px}
+.reason-v31-detail .reason-v30-title{font-size:clamp(2.35rem,4.7vw,4.8rem)}
+.reason-v31-detail .reason-v30-body{max-height:48vh}
+.reason-v31-helper{
+  position:fixed; left:50%; bottom:20px; z-index:4; transform:translateX(-50%) translateY(8px);
+  opacity:0; color:rgba(255,255,255,.62); font-size:.62rem; letter-spacing:.14em;
+  font-weight:850; white-space:nowrap; pointer-events:none; transition:opacity .32s ease,transform .32s ease;
+}
+.reason-v31-overlay.detail-ready .reason-v31-helper{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Explicitly keep the founder/profile and everything below behind the enlarged orb. */
+#sec-profile,#sec-courses,#sec-how,#sec-contact{position:relative!important;z-index:1!important}
+@media(max-width:800px){
+  .reason-v31-detail{width:84vw;max-height:70vh;grid-template-columns:1fr;gap:16px}
+  .reason-v31-detail .reason-v30-title{font-size:clamp(2.1rem,10vw,3.7rem)}
+  .reason-v31-detail .reason-v30-body{border-left:0;border-top:1px solid rgba(255,255,255,.24);padding:16px 0 0;max-height:40vh;font-size:.92rem;line-height:1.78}
+  .reason-v31-helper{bottom:12px;font-size:.53rem}
+}
+@media(prefers-reduced-motion:reduce){.reason-v31-detail{transition-duration:.12s!important}}
+</style>
+
+<script>
+/* v31 — animate the actual tapped orb from its exact on-screen position. */
+(()=>{
+  let phase='idle', source=null, placeholder=null, overlay=null, detailNode=null, helper=null, motion=null;
+  let startRect=null, endTransform='none', sourceParent=null, sourceNext=null, sourceAnimTime=null;
+  const OPEN_MS=1680, CLOSE_MS=1480;
+  const OPEN_EASE='cubic-bezier(.34,.02,.18,1)';
+  const CLOSE_EASE='cubic-bezier(.38,0,.22,1)';
+
+  const floatingAnimation = el => {
+    try{return el.getAnimations().find(a=>a.animationName && /reasonOrbFloat/i.test(a.animationName)) || null}catch(_){return null}
+  };
+
+  function ensureOverlay(){
+    let el=document.getElementById('reasonV31Overlay');
+    if(el)return el;
+    el=document.createElement('div'); el.id='reasonV31Overlay'; el.className='reason-v31-overlay'; el.setAttribute('aria-hidden','true');
+    el.addEventListener('click',()=>{if(phase==='open') window.closeReasonZoom()});
+    el.addEventListener('wheel',e=>e.preventDefault(),{passive:false});
+    el.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+    document.body.appendChild(el); return el;
+  }
+
+  function buildDetail(card,detail){
+    const wrap=document.createElement('div'); wrap.className='reason-v31-detail';
+    const head=document.createElement('div');
+    const kicker=document.createElement('span'); kicker.className='reason-v30-kicker'; kicker.textContent=card.querySelector('.feature-meta')?.textContent||'REASON';
+    const title=document.createElement('h3'); title.className='reason-v30-title'; title.innerHTML=card.querySelector('h3')?.innerHTML||'';
+    head.append(kicker,title);
+    const body=document.createElement('div'); body.className='reason-v30-body'; const p=detail.querySelector('p'); body.innerHTML=p?`<p>${p.innerHTML}</p>`:detail.innerHTML;
+    wrap.append(head,body); return wrap;
+  }
+
+  function targetTransform(rect){
+    const vw=innerWidth,vh=innerHeight;
+    // Large enough to fill almost the entire viewport while remaining visibly circular.
+    const targetD=Math.max(vw*1.18,vh*1.58);
+    const scale=targetD/rect.width;
+    const tx=vw/2-(rect.left+rect.width/2);
+    const ty=vh/2-(rect.top+rect.height/2);
+    return `translate3d(${tx}px,${ty}px,0) scale(${scale})`;
+  }
+
+  function clearDetail(){
+    overlay?.classList.remove('detail-ready');
+    detailNode?.classList.remove('is-visible');
+    if(helper){helper.remove();helper=null}
+  }
+
+  function restoreSourceImmediately(){
+    try{motion?.cancel()}catch(_){ } motion=null;
+    if(!source)return;
+    clearDetail(); detailNode?.remove(); detailNode=null;
+    source.classList.remove('reason-v31-live','reason-v31-expanded');
+    ['position','left','top','width','height','min-width','min-height','max-width','max-height','margin','z-index','animation','transition','transform','transform-origin','will-change','box-sizing'].forEach(k=>source.style.removeProperty(k));
+    if(placeholder?.isConnected){placeholder.replaceWith(source)} else if(sourceParent){sourceParent.insertBefore(source,sourceNext)}
+    placeholder=null;
+    source.setAttribute('aria-expanded','false');
+    overlay?.classList.remove('is-active','detail-ready'); overlay?.setAttribute('aria-hidden','true');
+    source=null; phase='idle';
+  }
+
+  window.toggleReason=function(card,id){
+    const detail=document.getElementById(id); if(!card||!detail||phase!=='idle')return;
+    phase='opening'; source=card; source.setAttribute('aria-expanded','true'); overlay=ensureOverlay();
+
+    // Capture the visual location and exact floating-animation phase BEFORE moving anything.
+    const r=source.getBoundingClientRect(); startRect={left:r.left,top:r.top,width:r.width,height:r.height};
+    sourceParent=source.parentNode; sourceNext=source.nextSibling;
+    const srcAnim=floatingAnimation(source); sourceAnimTime=srcAnim?.currentTime??null;
+
+    // Invisible animated placeholder keeps the grid slot and its floating phase alive.
+    placeholder=source.cloneNode(true);
+    placeholder.removeAttribute('onclick'); placeholder.removeAttribute('onkeydown'); placeholder.removeAttribute('aria-controls'); placeholder.removeAttribute('id');
+    placeholder.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
+    placeholder.classList.add('reason-v31-placeholder'); placeholder.setAttribute('aria-hidden','true');
+    sourceParent.insertBefore(placeholder,source);
+    const phAnim=floatingAnimation(placeholder); if(phAnim&&sourceAnimTime!=null){try{phAnim.currentTime=sourceAnimTime}catch(_){}}
+
+    // Turn the actual visible orb into a fixed layer at the exact same pixels.
+    source.classList.add('reason-v31-live');
+    source.style.setProperty('left',startRect.left+'px','important');
+    source.style.setProperty('top',startRect.top+'px','important');
+    source.style.setProperty('width',startRect.width+'px','important');
+    source.style.setProperty('height',startRect.height+'px','important');
+    source.style.setProperty('min-width',startRect.width+'px','important');
+    source.style.setProperty('min-height',startRect.height+'px','important');
+    source.style.setProperty('max-width',startRect.width+'px','important');
+    source.style.setProperty('max-height',startRect.height+'px','important');
+    source.style.setProperty('animation','none','important');
+    source.style.setProperty('transform','translate3d(0,0,0) scale(1)','important');
+    overlay.appendChild(source); overlay.classList.add('is-active'); overlay.setAttribute('aria-hidden','false');
+
+    // Because it is the SAME DOM node, frame 0 is literally the tapped orb.
+    requestAnimationFrame(()=>{
+      endTransform=targetTransform(startRect);
+      motion=source.animate([
+        {transform:'translate3d(0,0,0) scale(1)',offset:0},
+        {transform:'translate3d(0,0,0) scale(1.06)',offset:.08},
+        {transform:endTransform,offset:1}
+      ],{duration:OPEN_MS,easing:OPEN_EASE,fill:'forwards'});
+      setTimeout(()=>source?.classList.add('reason-v31-expanded'),Math.round(OPEN_MS*.34));
+      motion.onfinish=()=>{
+        if(phase!=='opening')return;
+        try{motion.commitStyles()}catch(_){source.style.setProperty('transform',endTransform,'important')}
+        try{motion.cancel()}catch(_){ } motion=null; source.style.setProperty('transform',endTransform,'important'); phase='open';
+        detailNode=buildDetail(source,detail); overlay.appendChild(detailNode);
+        helper=document.createElement('div'); helper.className='reason-v31-helper'; helper.textContent='青い丸をタップすると戻ります'; overlay.appendChild(helper);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{detailNode?.classList.add('is-visible');overlay?.classList.add('detail-ready')}));
+      };
+    });
+  };
+
+  window.closeReasonZoom=function(){
+    if(phase!=='open'||!source||!placeholder||!overlay)return;
+    phase='closing'; clearDetail();
+    setTimeout(()=>{
+      detailNode?.remove(); detailNode=null;
+      source.classList.remove('reason-v31-expanded');
+
+      // Return to WHERE THE placeholder is NOW (it continued floating while open).
+      const pr=placeholder.getBoundingClientRect();
+      const tx=(pr.left+pr.width/2)-(startRect.left+startRect.width/2);
+      const ty=(pr.top+pr.height/2)-(startRect.top+startRect.height/2);
+      const s=pr.width/startRect.width;
+      const returnTransform=`translate3d(${tx}px,${ty}px,0) scale(${s})`;
+      const current=source.style.transform||endTransform;
+      motion=source.animate([
+        {transform:current,offset:0},
+        {transform:returnTransform,offset:1}
+      ],{duration:CLOSE_MS,easing:CLOSE_EASE,fill:'forwards'});
+      motion.onfinish=()=>{
+        if(phase!=='closing')return;
+        try{motion.commitStyles()}catch(_){source.style.setProperty('transform',returnTransform,'important')}
+        try{motion.cancel()}catch(_){ } motion=null;
+
+        // Capture the placeholder's exact current CSS transform/animation time.
+        const phComputedTransform=getComputedStyle(placeholder).transform||'none';
+        const phA=floatingAnimation(placeholder); const phTime=phA?.currentTime??sourceAnimTime;
+
+        // Put the same orb back into the same DOM slot while preserving the exact visual pose.
+        placeholder.replaceWith(source); placeholder=null;
+        source.classList.remove('reason-v31-live','reason-v31-expanded');
+        ['position','left','top','width','height','min-width','min-height','max-width','max-height','margin','z-index','transform-origin','will-change','box-sizing'].forEach(k=>source.style.removeProperty(k));
+        source.style.setProperty('animation','none','important');
+        source.style.setProperty('transition','none','important');
+        source.style.setProperty('transform',phComputedTransform,'important');
+        overlay.classList.remove('is-active','detail-ready'); overlay.setAttribute('aria-hidden','true');
+
+        // Re-enable the original floating animation at the placeholder's exact phase BEFORE next paint.
+        requestAnimationFrame(()=>{
+          source.style.removeProperty('animation');
+          source.style.removeProperty('transform');
+          const a=floatingAnimation(source); if(a&&phTime!=null){try{a.currentTime=phTime}catch(_){}}
+          source.style.removeProperty('transition');
+          source.setAttribute('aria-expanded','false');
+          source=null; startRect=null; phase='idle';
+        });
+      };
+    },220);
+  };
+
+  window.reasonZoomBackdrop=()=>{if(phase==='open')window.closeReasonZoom()};
+  window.reasonZoomCircleTap=()=>{if(phase==='open')window.closeReasonZoom()};
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&phase==='open')window.closeReasonZoom()});
+  window.addEventListener('beforeunload',restoreSourceImmediately);
+})();
+</script>
+
+
+<style id="v33-reason-zoom-style">
+/* v33: one element, one path. The clicked orb is copied pixel-for-pixel at its
+   current screen position, then GPU-transformed from that exact point. Closing
+   reverses the SAME Web Animation, so there is no alternate return path. */
+.reason-v33-overlay{
+  position:fixed; inset:0; z-index:2147483647; overflow:hidden;
+  visibility:hidden; pointer-events:none; background:transparent; isolation:isolate;
+  touch-action:none;
+}
+.reason-v33-overlay.is-active{visibility:visible;pointer-events:auto}
+.reason-v33-orb{
+  position:fixed; z-index:2; margin:0; padding:0; border:0; border-radius:50%;
+  overflow:hidden; box-sizing:border-box; cursor:pointer;
+  transform-origin:50% 50%; will-change:transform; backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  background:
+    radial-gradient(circle at 33% 24%,rgba(255,255,255,.28),transparent 23%),
+    radial-gradient(circle at 62% 75%,rgba(101,142,255,.44),transparent 38%),
+    linear-gradient(145deg,#557cf2 0%,#3159d8 40%,#153390 100%);
+  box-shadow:0 24px 60px rgba(22,59,170,.28),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -34px 76px rgba(5,22,82,.20);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#fff; text-align:center;
+}
+.reason-v33-labels{display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .34s ease,transform .34s ease;pointer-events:none}
+.reason-v33-labels .feature-meta{font-size:.68rem;letter-spacing:.18em;font-weight:900;color:rgba(255,255,255,.72);margin-bottom:11px}
+.reason-v33-labels h3{margin:0;color:#fff;font-size:clamp(1.55rem,2.35vw,2.2rem);line-height:1.08;font-weight:900;letter-spacing:-.025em}
+.reason-v33-labels .orb-tap{margin-top:14px;font-size:.62rem;letter-spacing:.16em;font-weight:900;color:rgba(255,255,255,.66)}
+.reason-v33-orb.labels-hidden .reason-v33-labels{opacity:0;transform:scale(.96)}
+.reason-v33-orb::before{content:'';position:absolute;width:54%;height:30%;left:11%;top:6%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,0));transform:rotate(-13deg);pointer-events:none}
+.reason-v33-orb::after{content:'';position:absolute;width:38%;height:38%;right:-8%;bottom:-9%;border-radius:50%;border:1px solid rgba(255,255,255,.10);box-shadow:0 0 0 8% rgba(255,255,255,.025);pointer-events:none}
+.reason-v33-detail{
+  position:fixed; left:50%; top:50%; z-index:3; width:min(800px,77vw); max-height:min(66vh,620px);
+  transform:translate(-50%,-45%) scale(.965); opacity:0; pointer-events:none; color:#fff; text-align:left;
+  display:grid; grid-template-columns:minmax(180px,.62fr) minmax(0,1.38fr); gap:clamp(26px,4vw,60px); align-items:center;
+  transition:opacity .46s ease,transform .62s cubic-bezier(.22,.61,.36,1);
+}
+.reason-v33-detail.is-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.reason-v33-kicker{display:block;margin-bottom:12px;color:rgba(255,255,255,.68);font-size:.68rem;letter-spacing:.18em;font-weight:900}
+.reason-v33-title{margin:0;color:#fff;font-size:clamp(2.25rem,4.7vw,4.8rem);line-height:1.05;font-weight:900;letter-spacing:-.035em;text-shadow:0 6px 28px rgba(5,24,82,.22)}
+.reason-v33-body{padding-left:clamp(20px,3vw,34px);border-left:1px solid rgba(255,255,255,.27);color:rgba(255,255,255,.95);font-size:clamp(.94rem,1.2vw,1.07rem);line-height:1.92;max-height:48vh;overflow:auto}
+.reason-v33-body p{margin:0;color:inherit;font:inherit;line-height:inherit}.reason-v33-body strong{color:#fff}
+.reason-v33-helper{position:fixed;left:50%;bottom:20px;z-index:4;transform:translateX(-50%) translateY(8px);opacity:0;color:rgba(255,255,255,.64);font-size:.62rem;letter-spacing:.13em;font-weight:850;white-space:nowrap;pointer-events:none;transition:opacity .32s ease,transform .32s ease}
+.reason-v33-overlay.detail-ready .reason-v33-helper{opacity:1;transform:translateX(-50%) translateY(0)}
+body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none!important}
+/* Old experiments are left in the file for compatibility, but cannot render. */
+.reason-zoom-overlay,.reason-v31-overlay,.reason-v32-overlay{display:none!important}
+@media(max-width:800px){
+  .reason-v33-detail{width:84vw;max-height:68vh;grid-template-columns:1fr;gap:16px}
+  .reason-v33-title{font-size:clamp(2rem,10vw,3.55rem)}
+  .reason-v33-body{border-left:0;border-top:1px solid rgba(255,255,255,.24);padding:15px 0 0;max-height:40vh;font-size:.91rem;line-height:1.78}
+  .reason-v33-helper{bottom:12px;font-size:.52rem}
+}
+@media(prefers-reduced-motion:reduce){.reason-v33-detail,.reason-v33-labels{transition-duration:.16s!important}}
+</style>
+<script id="v33-reason-zoom-script">
+(()=>{
+  let state='idle';
+  let source=null, overlay=null, orb=null, detail=null, helper=null, motion=null;
+  let sourcePlayState='', sourcePlayPriority='';
+  let detailTimer=0, labelTimer=0, returnLabelTimer=0;
+  const OPEN_MS=1800, CLOSE_MS=1650;
+  const EASE='cubic-bezier(.22,.61,.36,1)';
+
+  function ensureOverlay(){
+    let o=document.getElementById('reasonV33Overlay');
+    if(o) return o;
+    o=document.createElement('div');
+    o.id='reasonV33Overlay';
+    o.className='reason-v33-overlay';
+    o.setAttribute('aria-hidden','true');
+    o.addEventListener('wheel',e=>{if(state!=='idle')e.preventDefault()},{passive:false});
+    o.addEventListener('touchmove',e=>{if(state!=='idle')e.preventDefault()},{passive:false});
+    document.body.appendChild(o);
+    return o;
+  }
+
+  function makeOrb(card,rect){
+    const el=document.createElement('div');
+    el.className='reason-v33-orb';
+    el.style.left=rect.left+'px';
+    el.style.top=rect.top+'px';
+    el.style.width=rect.width+'px';
+    el.style.height=rect.height+'px';
+    const labels=document.createElement('div');
+    labels.className='reason-v33-labels';
+    const meta=card.querySelector('.feature-meta')?.cloneNode(true);
+    const h3=card.querySelector('h3')?.cloneNode(true);
+    const tap=card.querySelector('.orb-tap')?.cloneNode(true);
+    if(meta) labels.appendChild(meta); if(h3) labels.appendChild(h3); if(tap) labels.appendChild(tap);
+    el.appendChild(labels);
+    return el;
+  }
+
+  function makeDetail(card,detailSource){
+    const wrap=document.createElement('div'); wrap.className='reason-v33-detail';
+    const head=document.createElement('div');
+    const kicker=document.createElement('span'); kicker.className='reason-v33-kicker'; kicker.textContent=card.querySelector('.feature-meta')?.textContent||'REASON';
+    const title=document.createElement('h3'); title.className='reason-v33-title'; title.innerHTML=card.querySelector('h3')?.innerHTML||'';
+    head.append(kicker,title);
+    const body=document.createElement('div'); body.className='reason-v33-body';
+    const p=detailSource.querySelector('p'); body.innerHTML=p?`<p>${p.innerHTML}</p>`:detailSource.innerHTML;
+    wrap.append(head,body); return wrap;
+  }
+
+  function clearTimers(){clearTimeout(detailTimer);clearTimeout(labelTimer);clearTimeout(returnLabelTimer);detailTimer=labelTimer=returnLabelTimer=0}
+
+  function finishClose(){
+    if(state!=='closing') return;
+    // At currentTime 0, the animated orb is exactly over the frozen real orb.
+    source.style.visibility='visible';
+    source.style.setProperty('animation-play-state','paused','important');
+    requestAnimationFrame(()=>{
+      orb?.remove(); orb=null;
+      detail?.remove(); detail=null;
+      helper?.remove(); helper=null;
+      overlay?.classList.remove('is-active','detail-ready');
+      overlay?.setAttribute('aria-hidden','true');
+      document.body.classList.remove('reason-v33-open');
+      source.setAttribute('aria-expanded','false');
+      const s=source, oldState=sourcePlayState, oldPriority=sourcePlayPriority;
+      source=null; motion=null; state='idle';
+      // Resume only after the handoff frame; restore the exact previous inline state.
+      requestAnimationFrame(()=>{
+        if(oldState) s.style.setProperty('animation-play-state',oldState,oldPriority);
+        else s.style.removeProperty('animation-play-state');
+      });
+    });
+  }
+
+  window.toggleReason=function(card,id){
+    if(state!=='idle'||!card) return;
+    const detailSource=document.getElementById(id); if(!detailSource) return;
+    state='opening'; source=card; source.setAttribute('aria-expanded','true');
+
+    // Freeze FIRST, then measure. This makes the visual origin immutable.
+    sourcePlayState=source.style.getPropertyValue('animation-play-state')||'';
+    sourcePlayPriority=source.style.getPropertyPriority('animation-play-state')||'';
+    /* The orb's float animation is declared with !important in older CSS.
+       Pause with !important too, otherwise it keeps moving under the zoom. */
+    source.style.setProperty('animation-play-state','paused','important');
+    const r=source.getBoundingClientRect();
+    const rect={left:r.left,top:r.top,width:r.width,height:r.height};
+    const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const targetDiameter=Math.hypot(vw,vh)*1.13;
+    const scale=targetDiameter/rect.width;
+    const dx=vw/2-cx, dy=vh/2-cy;
+
+    overlay=ensureOverlay(); overlay.classList.add('is-active'); overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('reason-v33-open');
+    orb=makeOrb(source,rect); overlay.appendChild(orb);
+    detail=makeDetail(source,detailSource); overlay.appendChild(detail);
+    helper=document.createElement('div'); helper.className='reason-v33-helper'; helper.textContent='青い丸をタップすると戻ります'; overlay.appendChild(helper);
+    orb.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(state==='open')window.closeReasonZoom()});
+
+    // Paint the orb at the exact source pixels before hiding the source.
+    requestAnimationFrame(()=>{
+      source.style.visibility='hidden';
+      requestAnimationFrame(()=>{
+        motion=orb.animate([
+          {transform:'translate3d(0px,0px,0) scale(1)'},
+          {transform:`translate3d(${dx}px,${dy}px,0) scale(${scale})`}
+        ],{duration:OPEN_MS,easing:EASE,fill:'both'});
+        labelTimer=setTimeout(()=>orb?.classList.add('labels-hidden'),Math.round(OPEN_MS*.46));
+        detailTimer=setTimeout(()=>{
+          if(state==='opening'){
+            detail?.classList.add('is-visible'); overlay?.classList.add('detail-ready');
+          }
+        },Math.round(OPEN_MS*.70));
+        motion.onfinish=()=>{if(state==='opening'){state='open';}};
+      });
+    });
+  };
+
+  window.closeReasonZoom=function(){
+    if(state!=='open'||!source||!orb||!motion) return;
+    state='closing'; clearTimers();
+    overlay?.classList.remove('detail-ready'); detail?.classList.remove('is-visible');
+    // Show the small labels only near the end of the reverse journey.
+    returnLabelTimer=setTimeout(()=>orb?.classList.remove('labels-hidden'),Math.round(CLOSE_MS*.68));
+    // Reverse the SAME animation object: mathematically identical path back.
+    motion.onfinish=finishClose;
+    const openDuration=OPEN_MS;
+    const rate=openDuration/CLOSE_MS;
+    motion.playbackRate=-rate;
+    if(motion.currentTime==null || motion.currentTime < openDuration-1) motion.currentTime=openDuration;
+    motion.play();
+  };
+
+  window.reasonZoomBackdrop=()=>{};
+  window.reasonZoomCircleTap=()=>{if(state==='open')window.closeReasonZoom()};
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state==='open')window.closeReasonZoom()});
+})();
+</script>
 
 </body>
 </html>

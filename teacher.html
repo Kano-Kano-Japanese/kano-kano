@@ -140,5 +140,5 @@ function showAuth(){document.getElementById('dashboard').classList.add('hidden')
 sb.auth.onAuthStateChange(async(event,session)=>{if(event==='PASSWORD_RECOVERY'){document.getElementById('authView').classList.add('hidden');document.getElementById('dashboard').classList.add('hidden');document.getElementById('recoveryView').classList.remove('hidden');return}if(event==='SIGNED_IN'&&session)showDashboard();if(event==='SIGNED_OUT')showAuth()});
 (async()=>{setLang(currentLang);const {data:{session}}=await sb.auth.getSession();if(session)showDashboard();else showAuth()})();
 </script>
-<div style="text-align:center;padding:16px 12px;color:#667085;font-size:.82rem"><a href="tokusho.html" style="color:inherit;text-decoration:underline">特定商取引法に基づく表記</a></div>
+<div style="text-align:center;padding:16px 12px;color:#667085;font-size:.82rem"><a href="tokusho.html" style="color:inherit;text-decoration:underline">特定商取引法に基づく表記</a> ・ <a href="privacy.html" style="color:inherit;text-decoration:underline">プライバシーポリシー</a></div>
 </body></html>
