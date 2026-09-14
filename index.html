@@ -3610,6 +3610,90 @@
         @media(prefers-reduced-motion:reduce){.learning-node,.learning-node::after,.learning-step,.learning-step h3,.learning-step>p,.learning-feature,.learning-bridge{animation:none!important;transition:none!important}}
 </style>
 
+
+<style id="v44-polish">
+/* ===== v44: tighter hero orbit, fully-contained heart caption, refined reason map, two-stage learning line ===== */
+.hero-art .heart-mark small{
+  display:block!important;left:10%!important;right:10%!important;bottom:7%!important;max-width:80%!important;
+  text-align:center!important;white-space:normal!important;overflow:hidden!important;overflow-wrap:normal!important;
+  line-height:1.08!important;letter-spacing:0!important;box-sizing:border-box!important;z-index:7!important;
+}
+.hero-art .heart-mark small b{display:block;font:inherit;font-weight:800;letter-spacing:.015em;white-space:nowrap}
+/* Opaque CONNECT card in the reason illustration: no orbit line may show through. */
+.reason-v38-visual .rv-connect{
+  z-index:12!important;background-color:#355bd5!important;background-image:none!important;color:#fff!important;
+  opacity:1!important;filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  isolation:isolate!important;overflow:hidden!important;
+}
+.reason-v38-visual .rv-connect::before{content:'';position:absolute;inset:0;background:#355bd5;z-index:-1;border-radius:inherit}
+/* Move REVIEW into the open upper-right area but keep it comfortably inside the frame. */
+.reason-v38-visual.personal .rv-tag-review{right:20%!important;top:6%!important;left:auto!important;bottom:auto!important}
+
+/* Two separately controlled learning-line segments. */
+.learning-cycle{--learning-stage1:0;--learning-stage2:0}
+.learning-progress-line{transition:none!important}
+.learning-progress-blue{
+  left:13%!important;right:auto!important;width:calc(37% * var(--learning-stage1))!important;
+  background:#3159d8!important;box-shadow:0 0 12px rgba(49,89,216,.17)!important;
+}
+.learning-progress-orange{
+  left:50%!important;right:auto!important;width:calc(37% * var(--learning-stage2))!important;
+  background:#ff7658!important;box-shadow:0 0 12px rgba(255,118,88,.18)!important;
+}
+/* Keep the first two nodes blue and only the final node orange. */
+.learning-step:nth-child(1) .learning-node,.learning-step:nth-child(2) .learning-node{background:linear-gradient(145deg,#3159d8,#173a9a)!important}
+.learning-step:nth-child(3) .learning-node{background:linear-gradient(145deg,#ff866b,#f05f44)!important}
+@media(max-width:600px){
+  .hero-art{width:184px!important;height:184px!important;right:10px!important;top:24px!important;overflow:visible!important}
+  .hero-art .heart-mark{width:82px!important;height:82px!important;left:50%!important;top:50%!important;overflow:hidden!important}
+  .hero-art .heart-mark em{top:7px!important;font-size:.255rem!important;letter-spacing:.17em!important}
+  .hero-art .heart-mark span{font-size:1.5rem!important;margin-top:3px!important}
+  .hero-art .heart-mark small{left:8%!important;right:8%!important;bottom:5px!important;max-width:84%!important;font-size:.158rem!important;line-height:1.08!important}
+  .hero-art .heart-mark small b{font-size:.145rem!important}
+  .hero-art .speech-card{width:40px!important;min-height:28px!important;padding:4px 4px!important;border-radius:8px!important}
+  .hero-art .speech-kicker{font-size:.18rem!important;letter-spacing:.08em!important;margin-bottom:1px!important}
+  .hero-art .speech-card strong{font-size:.44rem!important;line-height:1.02!important}
+  @keyframes heroCardOrbitA{
+    from{transform:translate(-50%,-50%) rotate(200deg) translateX(68px) rotate(-200deg) rotate(-7deg)}
+    to{transform:translate(-50%,-50%) rotate(560deg) translateX(68px) rotate(-560deg) rotate(-7deg)}
+  }
+  @keyframes heroCardOrbitB{
+    from{transform:translate(-50%,-50%) rotate(20deg) translateX(68px) rotate(-20deg) rotate(7deg)}
+    to{transform:translate(-50%,-50%) rotate(380deg) translateX(68px) rotate(-380deg) rotate(7deg)}
+  }
+  header h1{margin-top:70px!important}
+  header p#heroSub{position:relative!important;z-index:8!important;margin-top:0!important}
+  .learning-progress-blue{
+    left:50%!important;top:55px!important;width:2px!important;
+    height:calc(((100% - 110px) / 2) * var(--learning-stage1))!important;
+    transform:translateX(-50%)!important;background:#3159d8!important;
+  }
+  .learning-progress-orange{
+    left:50%!important;top:50%!important;width:2px!important;
+    height:calc(((100% - 110px) / 2) * var(--learning-stage2))!important;
+    transform:translateX(-50%)!important;background:#ff7658!important;
+  }
+}
+@media(max-width:360px){
+  .hero-art{width:174px!important;height:174px!important;right:8px!important;top:24px!important}
+  .hero-art .heart-mark{width:78px!important;height:78px!important}
+  .hero-art .heart-mark small{font-size:.148rem!important;bottom:4px!important}
+  .hero-art .heart-mark small b{font-size:.138rem!important}
+  .hero-art .speech-card{width:38px!important;min-height:27px!important}
+  @keyframes heroCardOrbitA{
+    from{transform:translate(-50%,-50%) rotate(200deg) translateX(64px) rotate(-200deg) rotate(-7deg)}
+    to{transform:translate(-50%,-50%) rotate(560deg) translateX(64px) rotate(-560deg) rotate(-7deg)}
+  }
+  @keyframes heroCardOrbitB{
+    from{transform:translate(-50%,-50%) rotate(20deg) translateX(64px) rotate(-20deg) rotate(7deg)}
+    to{transform:translate(-50%,-50%) rotate(380deg) translateX(64px) rotate(-380deg) rotate(7deg)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .learning-progress-blue,.learning-progress-orange{transition:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -3659,7 +3743,7 @@
                 <div class="connection-orbit orbit-b"></div>
                 <div class="speech-card speech-a"><span class="speech-kicker">LEARN</span><strong>わかる</strong></div>
                 <div class="speech-card speech-b"><span class="speech-kicker">CONNECT</span><strong>伝わる</strong></div>
-                <div class="heart-mark"><em>HEART</em><span>心</span><small>ことばは心をつなぐ · LANGUAGE CONNECTS HEARTS</small></div>
+                <div class="heart-mark"><em>HEART</em><span>心</span><small>ことばは心をつなぐ<br><b>LANGUAGE CONNECT HEART</b></small></div>
                 <div class="connection-dot dot-a"></div><div class="connection-dot dot-b"></div><div class="connection-dot dot-c"></div>
             </div>
         </div>
@@ -3724,7 +3808,7 @@
             <p class="learning-lead" id="learningLead">Kano×Kanoが大切にしているのは、知識を覚えるだけで終わらないこと。<strong>国家資格を持つ講師との1対1レッスン</strong>で、「理解する → 自分のことばで伝える → 人とつながる」までを一つの学びとして育てます。</p>
             <p class="learning-scroll-note">スクロールすると、学びの流れが順番に現れます。</p>
             <div class="learning-cycle" id="learningCycle">
-                <span class="learning-progress-line" aria-hidden="true"></span>
+                <span class="learning-progress-line learning-progress-blue" aria-hidden="true"></span><span class="learning-progress-line learning-progress-orange" aria-hidden="true"></span>
                 <div class="learning-step" data-learning-step="1">
                     <div class="learning-node"><div><span class="learning-en">LEARN</span><span class="learning-jp" id="learning1Word">わかる</span></div></div>
                     <h3 id="learning1Title">日本語の仕組みを理解する。</h3>
@@ -5171,9 +5255,9 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     art.className=`reason-v38-visual ${kind}`;
     art.setAttribute('aria-hidden','true');
     const tagSets={
-      cert:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span>`,
-      quality:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span>`,
-      personal:`<span class="rv-tag rv-tag-cert warm">資格 ✓</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span><span class="rv-tag rv-tag-review warm">復習</span><span class="rv-tag rv-tag-feedback warm">フィードバック</span>`
+      cert:`<span class="rv-tag rv-tag-cert warm">資格</span>`,
+      quality:`<span class="rv-tag rv-tag-cert warm">資格</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span>`,
+      personal:`<span class="rv-tag rv-tag-cert warm">資格</span><span class="rv-tag rv-tag-exp warm">経験</span><span class="rv-tag rv-tag-explain warm">説明力</span><span class="rv-tag rv-tag-comm warm">コミュニケーション力</span><span class="rv-tag rv-tag-review warm">復習</span><span class="rv-tag rv-tag-feedback warm">フィードバック</span>`
     };
     art.innerHTML=`<div class="rv-orbit rv-o1"></div><div class="rv-orbit rv-o2"></div><div class="rv-heart"><small>HEART</small><strong>心</strong></div><div class="rv-chip rv-learn"><small>LEARN</small><strong>わかる</strong></div><div class="rv-chip rv-connect"><small>CONNECT</small><strong>伝わる</strong></div><div class="rv-spark rv-s1"></div><div class="rv-spark rv-s2"></div>${tagSets[kind]}`;
     return art;
@@ -5282,7 +5366,7 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
 })();
 </script>
 
-<script id="v42-learning-scroll-script">
+<script id="v44-learning-scroll-script">
 (()=>{
   const sec=document.getElementById('sec-learning');
   const cycle=document.getElementById('learningCycle');
@@ -5293,13 +5377,23 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
   function update(){
     const r=cycle.getBoundingClientRect();
     const vh=window.innerHeight||document.documentElement.clientHeight;
-    const start=vh*.78;
-    const end=vh*.28;
-    const progress=clamp((start-r.top)/Math.max(1,r.height-(start-end)),0,1);
-    cycle.style.setProperty('--learning-progress',progress.toFixed(4));
-    const thresholds=[.08,.38,.68];
-    steps.forEach((step,i)=>step.classList.toggle('is-active',progress>=thresholds[i]));
-    bridge?.classList.toggle('is-active',progress>=.9);
+    const start=vh*.82;
+    const end=vh*.18;
+    const raw=clamp((start-r.top)/Math.max(1,r.height-(start-end)),0,1);
+
+    // Stage 1 grows from WAKARU to TSUTAWARU, then deliberately pauses.
+    const stage1=clamp(raw/.30,0,1);
+    // Long plateau: no second line growth until the learner scrolls further.
+    const stage2=raw<=.62 ? 0 : clamp((raw-.62)/.30,0,1);
+
+    cycle.style.setProperty('--learning-stage1',stage1.toFixed(4));
+    cycle.style.setProperty('--learning-stage2',stage2.toFixed(4));
+    cycle.style.setProperty('--learning-progress',((stage1+stage2)/2).toFixed(4));
+
+    steps[0].classList.toggle('is-active',raw>=.02);
+    steps[1].classList.toggle('is-active',raw>=.28);
+    steps[2].classList.toggle('is-active',raw>=.90);
+    bridge?.classList.toggle('is-active',raw>=.94);
   }
   let raf=0;
   const schedule=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;update()})};
