@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無料体験レッスン予約 | Kano×Kano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary:#0f172a;
+      --primary2:#1e293b;
+      --accent:#2563eb;
+      --accent-light:#eff6ff;
+      --cta:#f97316;
+      --cta-dark:#ea580c;
+      --bg:#f1f5f9;
+      --card:#fff;
+      --text:#334155;
+      --muted:#64748b;
+      --line:#cbd5e1;
+      --success:#15803d;
+      --success-bg:#f0fdf4;
+      --danger:#b91c1c;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.65}
+    .topbar{position:sticky;top:0;z-index:50;background:#020617;color:#cbd5e1;padding:9px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #1e293b}
+    .brand{color:white;text-decoration:none;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .back-link{color:#cbd5e1;text-decoration:none;font-size:.86rem}
+    .back-link:hover{color:white}
+    .lang-select{background:#1e293b;color:#fff;border:1px solid #334155;padding:6px 10px;border-radius:7px;font-family:inherit}
+    .hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;padding:42px 20px 36px;text-align:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.18);border:1px solid rgba(147,197,253,.35);color:#dbeafe;padding:7px 13px;border-radius:999px;font-size:.86rem;font-weight:700;margin-bottom:14px}
+    .hero h1{font-size:clamp(1.65rem,4vw,2.35rem);line-height:1.35;margin:0 0 10px}
+    .hero p{max-width:720px;margin:0 auto;color:#cbd5e1;font-size:1rem}
+    .quality-strip{max-width:900px;margin:18px auto 0;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+    .quality-pill{font-size:.82rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;color:#e2e8f0}
+    .wrap{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+    .stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 20px}
+    .step{background:#e2e8f0;color:#64748b;padding:11px 8px;border-radius:9px;text-align:center;font-size:.82rem;font-weight:700}
+    .step.active{background:var(--accent);color:#fff}
+    .step.done{background:#dbeafe;color:#1d4ed8}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px;box-shadow:0 10px 25px rgba(15,23,42,.07);margin-bottom:18px}
+    .panel h2{margin:0 0 6px;color:var(--primary);font-size:1.35rem}
+    .panel .lead{margin:0 0 22px;color:var(--muted);font-size:.93rem}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{display:block;font-weight:700;font-size:.88rem;color:var(--primary);margin-bottom:6px}
+    .field{margin-bottom:16px}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:12px 13px;background:white;color:var(--text);font-family:inherit;font-size:.95rem;outline:none;transition:.2s}
+    input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+    textarea{min-height:90px;resize:vertical}
+    .required{color:var(--danger)}
+    .timezone-box{display:flex;gap:12px;align-items:flex-start;background:var(--accent-light);border:1px solid #bfdbfe;border-radius:10px;padding:13px 15px;margin-bottom:20px}
+    .timezone-icon{font-size:1.25rem}
+    .timezone-title{font-weight:700;color:#1e40af;font-size:.9rem}
+    .timezone-text{font-size:.82rem;color:#475569;margin-top:2px}
+    .calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+    .month-title{font-weight:700;color:var(--primary);font-size:1.05rem}
+    .month-btn{border:1px solid var(--line);background:#fff;color:var(--primary);border-radius:8px;padding:7px 11px;cursor:pointer;font-family:inherit;font-weight:700}
+    .month-btn:disabled{opacity:.35;cursor:not-allowed}
+    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .dow{text-align:center;color:var(--muted);font-size:.72rem;font-weight:700;padding:4px}
+    .day{min-height:46px;border:1px solid #e2e8f0;background:#fff;border-radius:8px;cursor:pointer;color:var(--primary);font-family:inherit;font-weight:600;transition:.15s}
+    .day:hover:not(:disabled){border-color:var(--accent);background:#eff6ff;transform:translateY(-1px)}
+    .day.today{box-shadow:inset 0 0 0 1px var(--accent)}
+    .day.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+    .day:disabled{background:#f8fafc;color:#cbd5e1;cursor:not-allowed}
+    .empty-day{min-height:46px}
+    .slots-title{font-weight:700;color:var(--primary);margin:22px 0 10px}
+    .slots{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+    .slot{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;font-weight:700;color:#1e3a8a;transition:.15s}
+    .slot:hover{border-color:var(--accent);background:#eff6ff}
+    .slot.selected{background:var(--accent);border-color:var(--accent);color:white}
+    .empty-slots{grid-column:1/-1;background:#f8fafc;border:1px dashed var(--line);border-radius:9px;padding:16px;text-align:center;color:var(--muted);font-size:.88rem}
+    .button-row{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+    .btn{border:none;border-radius:9px;padding:13px 20px;font-family:inherit;font-weight:700;font-size:.95rem;cursor:pointer;text-decoration:none;text-align:center;transition:.2s}
+    .btn-primary{background:var(--cta);color:white;box-shadow:0 4px 12px rgba(249,115,22,.25)}
+    .btn-primary:hover{background:var(--cta-dark);transform:translateY(-1px)}
+    .btn-secondary{background:#e2e8f0;color:var(--primary)}
+    .btn-secondary:hover{background:#cbd5e1}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .summary{display:grid;grid-template-columns:145px 1fr;gap:8px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-top:14px;font-size:.9rem}
+    .summary-key{color:var(--muted);font-weight:700}
+    .summary-val{color:var(--primary);font-weight:600;word-break:break-word}
+    .teacher-note{margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:13px 15px;color:#9a3412;font-size:.86rem}
+    .booking-method{margin:4px 0 20px}
+    .method-title{font-weight:700;color:var(--primary);margin-bottom:9px;font-size:.92rem}
+    .method-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .method-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:14px;text-align:left;cursor:pointer;font-family:inherit;color:var(--text);transition:.15s}
+    .method-btn:hover{border-color:var(--accent);background:#f8fbff}
+    .method-btn.selected{border-color:var(--accent);background:var(--accent-light);box-shadow:inset 0 0 0 1px var(--accent)}
+    .method-btn strong{display:block;color:var(--primary);font-size:.95rem;margin-bottom:3px}
+    .method-btn span{display:block;color:var(--muted);font-size:.78rem;line-height:1.45}
+    .teacher-picker{margin:0 0 20px;padding:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px}
+    .teacher-picker-title{font-weight:700;color:var(--primary);font-size:.9rem;margin-bottom:9px}
+    .teacher-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .teacher-choice{border:1px solid var(--line);background:#fff;border-radius:9px;padding:11px 9px;cursor:pointer;font-family:inherit;font-weight:700;color:var(--primary);transition:.15s}
+    .teacher-choice:hover{border-color:var(--accent);background:#eff6ff}
+    .teacher-choice.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+    .teacher-loading{grid-column:1/-1;color:var(--muted);font-size:.84rem;padding:8px 2px}
+    .consent{display:flex;align-items:flex-start;gap:9px;margin-top:18px;font-size:.83rem;color:var(--muted)}
+    .consent input{width:auto;margin-top:4px}
+    .success{text-align:center;padding:10px 0 6px}
+    .success-icon{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:var(--success-bg);color:var(--success);display:flex;align-items:center;justify-content:center;font-size:2rem;border:1px solid #bbf7d0}
+    .success h2{font-size:1.55rem}
+    .booking-ref{display:inline-block;margin-top:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;color:var(--primary);font-weight:700;letter-spacing:.04em}
+    .demo-notice{margin-top:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:9px;padding:12px 14px;color:#1e40af;font-size:.82rem;text-align:left}
+    .hidden{display:none!important}
+    footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 20px 30px}
+    @media(max-width:720px){
+      .topbar{padding:8px 10px}.back-link{display:none}.lang-select{font-size:.75rem;padding:5px 7px}
+      .hero{padding:30px 14px 26px}.hero p{font-size:.86rem}.quality-strip{gap:6px}.quality-pill{font-size:.7rem;padding:5px 7px}
+      .wrap{padding:16px 8px 45px}.stepper{gap:4px}.step{font-size:.65rem;padding:8px 3px;border-radius:6px}
+      .panel{padding:18px 12px;border-radius:10px}.panel h2{font-size:1.12rem}.panel .lead{font-size:.8rem}
+      .grid2{grid-template-columns:1fr;gap:0}.calendar{gap:3px}.day,.empty-day{min-height:40px;font-size:.76rem}.dow{font-size:.62rem}
+      .slots{grid-template-columns:repeat(3,1fr);gap:6px}.slot{padding:9px 4px;font-size:.76rem}
+      .method-grid{grid-template-columns:1fr}.teacher-list{grid-template-columns:1fr 1fr}
+      .button-row{flex-direction:column-reverse}.btn{width:100%}.summary{grid-template-columns:1fr;gap:2px;padding:13px}.summary-val{margin-bottom:8px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="index.html">Kano×Kano</a>
+    <div class="top-actions">
+      <a class="back-link" id="backHome" href="index.html">← トップページへ</a>
+      <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+        <option value="th">ไทย</option>
+        <option value="ko">한국어</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-badge" id="heroBadge">🎓 国家資格保有講師による無料体験</div>
+    <h1 id="heroTitle">15分の無料体験レッスンを予約</h1>
+    <p id="heroText">あなたの日本語レベルと目標を確認し、最適な学習方法をご提案します。世界中どこからでもオンラインで受講できます。</p>
+    <div class="quality-strip">
+      <span class="quality-pill" id="pill1">✓ 全講師が国家資格保有</span>
+      <span class="quality-pill" id="pill2">✓ 完全1対1</span>
+      <span class="quality-pill" id="pill3">✓ 現地時間で予約</span>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="stepper">
+      <div class="step active" data-step-indicator="1" id="st1">1. 基本情報</div>
+      <div class="step" data-step-indicator="2" id="st2">2. 日時</div>
+      <div class="step" data-step-indicator="3" id="st3">3. 確認</div>
+      <div class="step" data-step-indicator="4" id="st4">4. 完了</div>
+    </div>
+
+    <section class="panel" id="step1">
+      <h2 id="aboutTitle">あなたについて</h2>
+      <p class="lead" id="aboutLead">体験レッスンをより有意義にするため、簡単に教えてください。</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="name"><span id="nameLabel">お名前</span> <span class="required">*</span></label>
+          <input id="name" autocomplete="name" required placeholder="例：Alex Smith">
+        </div>
+        <div class="field">
+          <label for="email"><span id="emailLabel">メールアドレス</span> <span class="required">*</span></label>
+          <input id="email" type="email" autocomplete="email" required placeholder="alex@example.com">
+        </div>
+        <div class="field">
+          <label for="country"><span id="countryLabel">国・地域</span> <span class="required">*</span></label>
+          <input id="country" autocomplete="country-name" required placeholder="例：Germany">
+        </div>
+        <div class="field">
+          <label for="level" id="levelLabel">現在の日本語レベル</label>
+          <select id="level">
+            <option value="complete-beginner">まったくの初心者</option>
+            <option value="beginner">初級 / N5程度</option>
+            <option value="elementary">初中級 / N4程度</option>
+            <option value="intermediate">中級 / N3程度</option>
+            <option value="advanced">N2以上</option>
+            <option value="unknown">わからない</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="goal" id="goalLabel">主な学習目的</label>
+          <select id="goal">
+            <option value="beginner">ゼロから日本語を学ぶ</option>
+            <option value="conversation">日常会話</option>
+            <option value="jlpt">JLPT対策</option>
+            <option value="work">仕事・ビジネス</option>
+            <option value="travel">旅行・日本生活</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="note" id="noteLabel">講師に伝えたいこと（任意）</label>
+        <textarea id="note" placeholder="学習経験、苦手なこと、目標など"></textarea>
+      </div>
+      <div class="button-row" style="justify-content:flex-end">
+        <button class="btn btn-primary" id="toStep2" onclick="goStep2()">日時を選ぶ →</button>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="step2">
+      <h2 id="scheduleTitle">希望日時を選択</h2>
+      <p class="lead" id="scheduleLead">表示されている時間は、あなたの端末のタイムゾーンに自動変換されています。</p><p id="hoursNote" style="margin:-4px 0 16px;color:#64748b;font-size:.82rem">受付時間：日本時間 8:00〜23:00（30分刻み）</p>
+      <div class="booking-method">
+        <div class="method-title" id="methodTitle">予約方法を選んでください</div>
+        <div class="method-grid">
+          <button type="button" class="method-btn selected" id="timeModeBtn" onclick="setBookingMode('time')">
+            <strong id="timeModeTitle">🕒 時間から選ぶ</strong>
+            <span id="timeModeText">都合のよい時間を先に選び、空いている講師をKano×Kanoが割り当てます。</span>
+          </button>
+          <button type="button" class="method-btn" id="teacherModeBtn" onclick="setBookingMode('teacher')">
+            <strong id="teacherModeTitle">👤 講師から選ぶ</strong>
+            <span id="teacherModeText">希望する講師を先に選び、その講師が空いている時間から予約します。</span>
+          </button>
+        </div>
+      </div>
+      <div class="teacher-picker hidden" id="teacherPicker">
+        <div class="teacher-picker-title" id="teacherPickerTitle">希望する講師を選択</div>
+        <div class="teacher-list" id="teacherList"><div class="teacher-loading">講師情報を読み込み中…</div></div>
+      </div>
+      <div class="timezone-box">
+        <div class="timezone-icon">🕒</div>
+        <div><div class="timezone-title" id="timezoneTitle">あなたのタイムゾーン</div><div class="timezone-text"><span id="tzName"></span><br><span id="timezoneHelp">海外にいても時差を計算する必要はありません。</span></div></div>
+      </div>
+      <div class="calendar-head">
+        <button class="month-btn" id="prevMonth" onclick="shiftMonth(-1)">‹</button>
+        <div class="month-title" id="monthTitle"></div>
+        <button class="month-btn" id="nextMonth" onclick="shiftMonth(1)">›</button>
+      </div>
+      <div class="calendar" id="calendar"></div>
+      <div class="slots-title" id="slotsTitle">空いている時間</div>
+      <div class="slots" id="slots"><div class="empty-slots" id="chooseDateText">先に日付を選んでください。</div></div>
+      <div class="teacher-note" id="teacherNote">🎓 体験レッスンは、選択した時間に対応できる<strong>国家資格保有講師</strong>を、Kano×Kanoが割り当てます。誰でも講師登録できるサービスではありません。</div>
+      <div class="button-row">
+        <button class="btn btn-secondary" id="back1" onclick="showStep(1)">← 戻る</button>
+        <button class="btn btn-primary" id="toStep3" onclick="goStep3()" disabled>予約内容を確認 →</button>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="step3">
+      <h2 id="confirmTitle">予約内容を確認</h2>
+      <p class="lead" id="confirmLead">内容を確認して「無料体験を予約する」を押してください。</p>
+      <div class="summary" id="summary"></div>
+      <div class="teacher-note" id="qualityNote">品質を守るため、担当講師はKano×Kanoの基準を満たす国家資格保有者に限られます。担当講師の情報は予約確定後にご案内します。</div>
+      <label class="consent"><input type="checkbox" id="consent" onchange="document.getElementById('confirmBtn').disabled=!this.checked"><span id="consentText">入力内容と予約日時を確認しました。</span></label>
+      <div class="button-row">
+        <button class="btn btn-secondary" id="back2" onclick="showStep(2)">← 日時を変更</button>
+        <button class="btn btn-primary" id="confirmBtn" onclick="confirmBooking()" disabled>無料体験を予約する</button>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="step4">
+      <div class="success">
+        <div class="success-icon">✓</div>
+        <h2 id="doneTitle">予約を受け付けました</h2>
+        <p class="lead" id="doneLead">体験レッスンの予約内容はこちらです。</p>
+        <div class="summary" id="finalSummary" style="text-align:left"></div>
+        <div class="booking-ref"><span id="refLabel">予約番号</span>: <span id="bookingRef"></span></div>
+        <div class="demo-notice" id="demoNotice"><strong>現在はデモ版です。</strong> この予約はこのブラウザ内に保存されますが、まだサーバー送信や確認メール送信は行いません。次の段階でSupabaseとメール通知を接続します。</div>
+        <div class="button-row" style="justify-content:center">
+          <a class="btn btn-secondary" id="homeBtn" href="index.html">トップページへ</a>
+          <button class="btn btn-primary" id="newBtn" onclick="newBooking()">別の予約をする</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Kano×Kano. All Rights Reserved.<br><a href="tokusho.html" style="color:inherit;text-decoration:underline">特定商取引法に基づく表記</a></footer>
+
+<script>
+const i18n = {
+ ja:{backHome:'← トップページへ',heroBadge:'🎓 国家資格保有講師による無料体験',heroTitle:'15分の無料体験レッスンを予約',heroText:'あなたの日本語レベルと目標を確認し、最適な学習方法をご提案します。世界中どこからでもオンラインで受講できます。',pill1:'✓ 全講師が国家資格保有',pill2:'✓ 完全1対1',pill3:'✓ 現地時間で予約',st1:'1. 基本情報',st2:'2. 日時',st3:'3. 確認',st4:'4. 完了',aboutTitle:'あなたについて',aboutLead:'体験レッスンをより有意義にするため、簡単に教えてください。',nameLabel:'お名前',emailLabel:'メールアドレス',countryLabel:'国・地域',levelLabel:'現在の日本語レベル',goalLabel:'主な学習目的',noteLabel:'講師に伝えたいこと（任意）',toStep2:'日時を選ぶ →',scheduleTitle:'希望日時を選択',scheduleLead:'表示されている時間は、あなたの端末のタイムゾーンに自動変換されています。',timezoneTitle:'あなたのタイムゾーン',timezoneHelp:'海外にいても時差を計算する必要はありません。',slotsTitle:'空いている時間',chooseDateText:'先に日付を選んでください。',noSlots:'この日は空き時間がありません。別の日を選んでください。',teacherNote:'🎓 体験レッスンは、選択した時間に対応できる<strong>国家資格保有講師</strong>を、Kano×Kanoが割り当てます。誰でも講師登録できるサービスではありません。',back1:'← 戻る',toStep3:'予約内容を確認 →',confirmTitle:'予約内容を確認',confirmLead:'内容を確認して「無料体験を予約する」を押してください。',qualityNote:'品質を守るため、担当講師はKano×Kanoの基準を満たす国家資格保有者に限られます。担当講師の情報は予約確定後にご案内します。',consentText:'入力内容と予約日時を確認しました。',back2:'← 日時を変更',confirmBtn:'無料体験を予約する',doneTitle:'予約を受け付けました',doneLead:'体験レッスンの予約内容はこちらです。',refLabel:'予約番号',demoNotice:'<strong>予約情報はKano×Kanoの予約データベースに送信されました。</strong> 現在、確認メールの自動送信機能は準備中です。担当講師などの詳細は別途ご案内します。',sendingText:'送信中…',bookingError:'予約の送信に失敗しました。通信環境を確認して、もう一度お試しください。',homeBtn:'トップページへ',newBtn:'別の予約をする',kName:'お名前',kEmail:'メール',kCountry:'国・地域',kLevel:'日本語レベル',kGoal:'学習目的',kDate:'日時',kTimezone:'タイムゾーン',kTeacher:'担当講師',teacherValue:'国家資格保有講師（予約確定後にご案内）'},
+ en:{backHome:'← Back to Home',heroBadge:'🎓 Free trial with nationally certified teachers',heroTitle:'Book Your Free 15-Minute Trial',heroText:'We will check your Japanese level and goals, then recommend a suitable learning plan. Join online from anywhere in the world.',pill1:'✓ All teachers nationally certified',pill2:'✓ Private 1-to-1',pill3:'✓ Times shown locally',st1:'1. About You',st2:'2. Date & Time',st3:'3. Confirm',st4:'4. Complete',aboutTitle:'Tell Us About You',aboutLead:'A few details will help us make your trial lesson more useful.',nameLabel:'Name',emailLabel:'Email',countryLabel:'Country / Region',levelLabel:'Current Japanese Level',goalLabel:'Main Learning Goal',noteLabel:'Anything you want the teacher to know (optional)',toStep2:'Choose Date & Time →',scheduleTitle:'Choose Your Preferred Time',scheduleLead:'All times are automatically shown in your device’s local time zone.',timezoneTitle:'Your Time Zone',timezoneHelp:'No need to calculate the time difference yourself.',slotsTitle:'Available Times',chooseDateText:'Choose a date first.',noSlots:'No slots are available on this date. Please choose another date.',teacherNote:'🎓 Kano×Kano will assign an available <strong>nationally certified teacher</strong> for your trial. This is not an open teacher marketplace.',back1:'← Back',toStep3:'Review Booking →',confirmTitle:'Review Your Booking',confirmLead:'Please check the details, then select “Book Free Trial.”',qualityNote:'To protect lesson quality, only nationally certified teachers who meet Kano×Kano standards teach our students. Teacher details will be provided after confirmation.',consentText:'I have checked my details and booking time.',back2:'← Change Time',confirmBtn:'Book Free Trial',doneTitle:'Your Trial Is Reserved',doneLead:'Here are your trial lesson details.',refLabel:'Booking ID',demoNotice:'<strong>Your booking has been sent to the Kano×Kano booking database.</strong> Automatic confirmation emails are still being prepared. Teacher details and other information will be provided separately.',sendingText:'Sending…',bookingError:'We could not submit your booking. Please check your connection and try again.',homeBtn:'Back to Home',newBtn:'Make Another Booking',kName:'Name',kEmail:'Email',kCountry:'Country / Region',kLevel:'Japanese Level',kGoal:'Learning Goal',kDate:'Date & Time',kTimezone:'Time Zone',kTeacher:'Teacher',teacherValue:'Nationally certified teacher (details after confirmation)'},
+ th:{backHome:'← กลับหน้าหลัก',heroBadge:'🎓 ทดลองเรียนกับครูที่มีคุณวุฒิระดับชาติ',heroTitle:'จองทดลองเรียนฟรี 15 นาที',heroText:'เราจะประเมินระดับภาษาญี่ปุ่นและเป้าหมายของคุณ พร้อมแนะนำแนวทางการเรียนที่เหมาะสม เรียนออนไลน์ได้จากทั่วโลก',pill1:'✓ ครูทุกคนมีคุณวุฒิระดับชาติ',pill2:'✓ เรียนตัวต่อตัว',pill3:'✓ แสดงเวลาท้องถิ่น',st1:'1. ข้อมูล',st2:'2. วันเวลา',st3:'3. ยืนยัน',st4:'4. เสร็จสิ้น',aboutTitle:'เกี่ยวกับคุณ',aboutLead:'กรุณาให้ข้อมูลเล็กน้อยเพื่อให้การทดลองเรียนมีประโยชน์มากขึ้น',nameLabel:'ชื่อ',emailLabel:'อีเมล',countryLabel:'ประเทศ / ภูมิภาค',levelLabel:'ระดับภาษาญี่ปุ่นปัจจุบัน',goalLabel:'เป้าหมายหลัก',noteLabel:'สิ่งที่ต้องการแจ้งครู (ไม่บังคับ)',toStep2:'เลือกวันและเวลา →',scheduleTitle:'เลือกวันและเวลาที่ต้องการ',scheduleLead:'เวลาทั้งหมดจะแสดงตามเขตเวลาของอุปกรณ์คุณโดยอัตโนมัติ',timezoneTitle:'เขตเวลาของคุณ',timezoneHelp:'ไม่ต้องคำนวณเวลาต่างประเทศด้วยตนเอง',slotsTitle:'เวลาที่ว่าง',chooseDateText:'กรุณาเลือกวันที่ก่อน',noSlots:'วันนี้ไม่มีเวลาว่าง กรุณาเลือกวันอื่น',teacherNote:'🎓 Kano×Kano จะจัด <strong>ครูที่มีคุณวุฒิระดับชาติ</strong> ที่ว่างให้กับคุณ ไม่ใช่แพลตฟอร์มที่ใครก็สมัครเป็นครูได้',back1:'← กลับ',toStep3:'ตรวจสอบการจอง →',confirmTitle:'ตรวจสอบการจอง',confirmLead:'กรุณาตรวจสอบข้อมูลแล้วกดจองทดลองเรียนฟรี',qualityNote:'เพื่อรักษาคุณภาพการสอน ผู้สอนทุกคนต้องมีคุณวุฒิระดับชาติและผ่านมาตรฐานของ Kano×Kano',consentText:'ฉันตรวจสอบข้อมูลและเวลาแล้ว',back2:'← เปลี่ยนเวลา',confirmBtn:'จองทดลองเรียนฟรี',doneTitle:'รับการจองแล้ว',doneLead:'รายละเอียดการทดลองเรียนของคุณ',refLabel:'หมายเลขการจอง',demoNotice:'<strong>ข้อมูลการจองของคุณถูกส่งไปยังฐานข้อมูลของ Kano×Kano แล้ว</strong> ระบบอีเมลยืนยันอัตโนมัติกำลังอยู่ระหว่างเตรียมการ รายละเอียดครูและข้อมูลเพิ่มเติมจะแจ้งให้ทราบภายหลัง',sendingText:'กำลังส่ง…',bookingError:'ไม่สามารถส่งการจองได้ กรุณาตรวจสอบการเชื่อมต่อและลองอีกครั้ง',homeBtn:'กลับหน้าหลัก',newBtn:'จองอีกครั้ง',kName:'ชื่อ',kEmail:'อีเมล',kCountry:'ประเทศ / ภูมิภาค',kLevel:'ระดับภาษาญี่ปุ่น',kGoal:'เป้าหมาย',kDate:'วันและเวลา',kTimezone:'เขตเวลา',kTeacher:'ผู้สอน',teacherValue:'ครูที่มีคุณวุฒิระดับชาติ (แจ้งรายละเอียดหลังยืนยัน)'},
+ ko:{backHome:'← 홈으로',heroBadge:'🎓 국가자격 보유 강사 무료 체험',heroTitle:'15분 무료 체험 레슨 예약',heroText:'일본어 수준과 목표를 확인하고 적합한 학습 방법을 제안합니다. 전 세계 어디서나 온라인으로 참여할 수 있습니다.',pill1:'✓ 전 강사 국가자격 보유',pill2:'✓ 완전 1:1',pill3:'✓ 현지 시간 표시',st1:'1. 기본 정보',st2:'2. 날짜/시간',st3:'3. 확인',st4:'4. 완료',aboutTitle:'기본 정보를 알려주세요',aboutLead:'체험 레슨을 더 유익하게 하기 위한 간단한 정보입니다.',nameLabel:'이름',emailLabel:'이메일',countryLabel:'국가 / 지역',levelLabel:'현재 일본어 수준',goalLabel:'주요 학습 목표',noteLabel:'강사에게 전할 내용 (선택)',toStep2:'날짜와 시간 선택 →',scheduleTitle:'희망 날짜와 시간 선택',scheduleLead:'모든 시간은 기기의 현지 시간대로 자동 변환됩니다.',timezoneTitle:'현재 시간대',timezoneHelp:'시차를 직접 계산할 필요가 없습니다.',slotsTitle:'예약 가능한 시간',chooseDateText:'먼저 날짜를 선택하세요.',noSlots:'이 날짜에는 예약 가능한 시간이 없습니다.',teacherNote:'🎓 체험 레슨은 Kano×Kano가 가능한 <strong>국가자격 보유 강사</strong>를 배정합니다. 누구나 강사로 등록하는 마켓플레이스가 아닙니다.',back1:'← 뒤로',toStep3:'예약 내용 확인 →',confirmTitle:'예약 내용 확인',confirmLead:'내용을 확인한 후 무료 체험 예약을 눌러주세요.',qualityNote:'수업 품질을 위해 Kano×Kano 기준을 충족한 국가자격 보유 강사만 수업을 담당합니다.',consentText:'입력 정보와 예약 시간을 확인했습니다.',back2:'← 시간 변경',confirmBtn:'무료 체험 예약',doneTitle:'예약이 접수되었습니다',doneLead:'체험 레슨 예약 내용입니다.',refLabel:'예약 번호',demoNotice:'<strong>예약 정보가 Kano×Kano 예약 데이터베이스에 전송되었습니다.</strong> 자동 확인 이메일 기능은 현재 준비 중입니다. 담당 강사 등 자세한 내용은 별도로 안내해 드립니다.',sendingText:'전송 중…',bookingError:'예약 전송에 실패했습니다. 인터넷 연결을 확인한 뒤 다시 시도해 주세요.',homeBtn:'홈으로',newBtn:'새 예약',kName:'이름',kEmail:'이메일',kCountry:'국가 / 지역',kLevel:'일본어 수준',kGoal:'학습 목표',kDate:'날짜 / 시간',kTimezone:'시간대',kTeacher:'담당 강사',teacherValue:'국가자격 보유 강사 (확정 후 안내)'},
+ zh:{backHome:'← 返回首页',heroBadge:'🎓 国家资格教师免费试听',heroTitle:'预约15分钟免费试听课',heroText:'我们会确认您的日语水平和学习目标，并推荐适合的学习方式。全球均可在线参加。',pill1:'✓ 全部教师持国家资格',pill2:'✓ 一对一教学',pill3:'✓ 显示当地时间',st1:'1. 基本信息',st2:'2. 日期时间',st3:'3. 确认',st4:'4. 完成',aboutTitle:'关于您',aboutLead:'请提供简单信息，让试听课更符合您的需要。',nameLabel:'姓名',emailLabel:'电子邮箱',countryLabel:'国家 / 地区',levelLabel:'目前日语水平',goalLabel:'主要学习目标',noteLabel:'想告诉教师的内容（选填）',toStep2:'选择日期和时间 →',scheduleTitle:'选择希望的日期和时间',scheduleLead:'所有时间会根据您的设备时区自动转换。',timezoneTitle:'您的时区',timezoneHelp:'无需自己计算时差。',slotsTitle:'可预约时间',chooseDateText:'请先选择日期。',noSlots:'当天没有空余时间，请选择其他日期。',teacherNote:'🎓 Kano×Kano将安排该时间可授课的<strong>国家资格教师</strong>。本校并非任何人都能注册为教师的平台。',back1:'← 返回',toStep3:'确认预约内容 →',confirmTitle:'确认预约内容',confirmLead:'请确认以下信息，然后点击预约免费试听。',qualityNote:'为保证教学质量，仅由符合Kano×Kano标准并持有国家资格的教师授课。教师信息将在预约确认后通知。',consentText:'我已确认填写内容和预约时间。',back2:'← 修改时间',confirmBtn:'预约免费试听',doneTitle:'预约已受理',doneLead:'以下是您的试听课预约信息。',refLabel:'预约编号',demoNotice:'<strong>您的预约信息已发送至Kano×Kano预约数据库。</strong> 自动确认邮件功能目前正在准备中。教师信息等详细内容将另行通知。',sendingText:'发送中…',bookingError:'预约提交失败。请检查网络连接后重试。',homeBtn:'返回首页',newBtn:'再次预约',kName:'姓名',kEmail:'邮箱',kCountry:'国家 / 地区',kLevel:'日语水平',kGoal:'学习目标',kDate:'日期和时间',kTimezone:'时区',kTeacher:'教师',teacherValue:'国家资格教师（确认后通知详情）'}
+};
+
+let lang='ja';
+let selectedDate=null;
+let selectedSlot=null;
+let bookingMode='time';
+let teachers=[];
+let teachersLoaded=false;
+let selectedTeacherId=null;
+let selectedTeacherName='';
+let viewMonth=new Date(); viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth(),1);
+const todayStart=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
+function jstYmd(date=new Date()){
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date),o={};
+ parts.forEach(p=>{if(p.type!=='literal')o[p.type]=p.value}); return `${o.year}-${o.month}-${o.day}`;
+}
+function addMonthsYmd(ymd,months){
+ const [y,m,d]=ymd.split('-').map(Number),first=new Date(Date.UTC(y,m-1+months,1)),ty=first.getUTCFullYear(),tm=first.getUTCMonth(),last=new Date(Date.UTC(ty,tm+1,0)).getUTCDate();
+ return `${ty}-${String(tm+1).padStart(2,'0')}-${String(Math.min(d,last)).padStart(2,'0')}`;
+}
+const maxBookDate=()=>{
+ const [y,m,d]=addMonthsYmd(jstYmd(),1).split('-').map(Number);
+ const horizonInstant=new Date(Date.UTC(y,m-1,d,14,59,59,999)); // 23:59 JST on the one-month horizon date
+ const localDay=new Date(horizonInstant); localDay.setHours(0,0,0,0); return localDay;
+};
+const tz=Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local time';
+
+// Public client credentials are safe to include in browser code. Access is restricted by Supabase RLS.
+const SUPABASE_URL='https://xyptzcdpiumxqgayihqi.supabase.co';
+
+async function publicBookingApi(action,payload={}){
+  const r=await fetch(SUPABASE_URL+'/functions/v1/public-booking-api',{
+    method:'POST',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},
+    body:JSON.stringify({action,payload})
+  });
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(j.error||('HTTP '+r.status));
+  return j.data||[];
+}
+
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_ydS-f68XrLtacf0CTiRrzw_3ViLjGAG';
+const LESSON_DURATION_MINUTES=15; // 現在の無料体験は15分。通常レッスンでは30/50分にも対応。
+const slotUi={ja:{hours:'受付時間：日本時間 8:00〜23:00（30分刻み）・予約は1か月先まで',loading:'空き時間を確認中…',error:'空き時間を取得できませんでした。もう一度お試しください。',taken:'申し訳ありません。この時間は直前に予約されました。別の時間を選んでください。',tooFar:'予約は1か月先までです。別の日を選んでください。'},en:{hours:'Booking hours: 8:00–23:00 Japan time (30-minute intervals) · Book up to 1 month ahead',loading:'Checking available times…',error:'Could not load available times. Please try again.',taken:'Sorry, this time was just booked. Please choose another time.',tooFar:'Bookings are available up to one month ahead. Please choose another date.'},th:{hours:'เวลารับจอง: 8:00–23:00 ตามเวลาญี่ปุ่น (ทุก 30 นาที) · จองล่วงหน้าได้สูงสุด 1 เดือน',loading:'กำลังตรวจสอบเวลาว่าง…',error:'ไม่สามารถโหลดเวลาว่างได้ กรุณาลองอีกครั้ง',taken:'ขออภัย เวลานี้เพิ่งถูกจอง กรุณาเลือกเวลาอื่น',tooFar:'สามารถจองล่วงหน้าได้สูงสุด 1 เดือน กรุณาเลือกวันอื่น'},ko:{hours:'예약 가능 시간: 일본 시간 8:00–23:00 (30분 간격) · 최대 1개월 후까지 예약 가능',loading:'예약 가능한 시간을 확인 중…',error:'예약 가능한 시간을 불러오지 못했습니다. 다시 시도해 주세요.',taken:'죄송합니다. 방금 예약된 시간입니다. 다른 시간을 선택해 주세요.',tooFar:'예약은 최대 1개월 후까지 가능합니다. 다른 날짜를 선택해 주세요.'},zh:{hours:'可预约时间：日本时间 8:00–23:00（每30分钟）· 最多可预约1个月后的日期',loading:'正在确认可预约时间…',error:'无法读取可预约时间，请重试。',taken:'抱歉，该时间刚刚被预约。请选择其他时间。',tooFar:'最多只能预约1个月后的日期，请选择其他日期。'}};
+const choiceUi={
+ ja:{methodTitle:'予約方法を選んでください',timeTitle:'🕒 時間から選ぶ',timeText:'都合のよい時間を先に選び、空いている講師をKano×Kanoが割り当てます。',teacherTitle:'👤 講師から選ぶ',teacherText:'希望する講師を先に選び、その講師が空いている時間から予約します。',pickerTitle:'希望する講師を選択',teacherLoading:'講師情報を読み込み中…',teacherLoadError:'講師情報を取得できませんでした。',noTeachers:'現在選択できる講師がいません。',chooseTeacherFirst:'先に希望する講師を選んでください。',autoTeacher:'空いている国家資格保有講師を自動割り当て',timeNote:'🎓 時間を優先して予約します。選択した時間に対応可能な国家資格保有講師を、Kano×Kanoが自動で割り当てます。',teacherNote:name=>'🎓 '+name+' を希望講師として予約します。この講師が対応可能な時間だけ表示しています。',qualityAuto:'品質を守るため、担当講師はKano×Kanoの基準を満たす国家資格保有者に限られます。',qualityTeacher:name=>'希望講師：'+name+'。予約送信時にも空き状況を再確認します。',teacherTaken:'申し訳ありません。選択した講師はこの時間に予約できなくなりました。別の時間を選んでください。'},
+ en:{methodTitle:'Choose how you want to book',timeTitle:'🕒 Choose by time',timeText:'Choose the time that suits you first and Kano×Kano will assign an available certified teacher.',teacherTitle:'👤 Choose by teacher',teacherText:'Choose your preferred teacher first, then select from that teacher’s available times.',pickerTitle:'Choose your preferred teacher',teacherLoading:'Loading teachers…',teacherLoadError:'Could not load teacher information.',noTeachers:'No teachers are currently available for selection.',chooseTeacherFirst:'Please choose a teacher first.',autoTeacher:'Available nationally certified teacher (assigned automatically)',timeNote:'🎓 Time-priority booking: Kano×Kano will assign a nationally certified teacher who is available at your selected time.',teacherNote:name=>'🎓 You are booking with '+name+'. Only times when this teacher is available are shown.',qualityAuto:'To protect lesson quality, all assigned teachers are nationally certified and meet Kano×Kano standards.',qualityTeacher:name=>'Preferred teacher: '+name+'. Availability is checked again when the booking is submitted.',teacherTaken:'Sorry, the selected teacher is no longer available at this time. Please choose another time.'},
+ th:{methodTitle:'เลือกวิธีการจอง',timeTitle:'🕒 เลือกตามเวลา',timeText:'เลือกเวลาที่สะดวกก่อน แล้ว Kano×Kano จะจัดครูที่มีคุณวุฒิและว่างในเวลานั้นให้',teacherTitle:'👤 เลือกตามครู',teacherText:'เลือกครูที่ต้องการก่อน แล้วเลือกจากเวลาที่ครูคนนั้นว่าง',pickerTitle:'เลือกครูที่ต้องการ',teacherLoading:'กำลังโหลดข้อมูลครู…',teacherLoadError:'ไม่สามารถโหลดข้อมูลครูได้',noTeachers:'ขณะนี้ไม่มีครูให้เลือก',chooseTeacherFirst:'กรุณาเลือกครูก่อน',autoTeacher:'จัดครูที่มีคุณวุฒิระดับชาติให้อัตโนมัติ',timeNote:'🎓 การจองแบบเน้นเวลา: Kano×Kano จะจัดครูที่มีคุณวุฒิและว่างในเวลาที่เลือกให้อัตโนมัติ',teacherNote:name=>'🎓 คุณเลือก '+name+' ระบบจะแสดงเฉพาะเวลาที่ครูคนนี้ว่าง',qualityAuto:'ครูที่ได้รับมอบหมายทุกคนมีคุณวุฒิระดับชาติและผ่านมาตรฐานของ Kano×Kano',qualityTeacher:name=>'ครูที่ต้องการ: '+name+' ระบบจะตรวจสอบเวลาว่างอีกครั้งตอนส่งการจอง',teacherTaken:'ขออภัย ครูที่เลือกไม่ว่างในเวลานี้แล้ว กรุณาเลือกเวลาอื่น'},
+ ko:{methodTitle:'예약 방법을 선택하세요',timeTitle:'🕒 시간으로 선택',timeText:'원하는 시간을 먼저 선택하면 Kano×Kano가 가능한 국가자격 보유 강사를 배정합니다.',teacherTitle:'👤 강사로 선택',teacherText:'희망 강사를 먼저 선택한 뒤 해당 강사의 가능한 시간에서 예약합니다.',pickerTitle:'희망 강사 선택',teacherLoading:'강사 정보를 불러오는 중…',teacherLoadError:'강사 정보를 불러오지 못했습니다.',noTeachers:'현재 선택 가능한 강사가 없습니다.',chooseTeacherFirst:'먼저 희망 강사를 선택하세요.',autoTeacher:'가능한 국가자격 보유 강사 자동 배정',timeNote:'🎓 시간 우선 예약입니다. 선택한 시간에 가능한 국가자격 보유 강사를 Kano×Kano가 자동 배정합니다.',teacherNote:name=>'🎓 '+name+' 강사를 선택했습니다. 이 강사가 가능한 시간만 표시됩니다.',qualityAuto:'수업 품질을 위해 모든 담당 강사는 국가자격을 보유하고 Kano×Kano 기준을 충족합니다.',qualityTeacher:name=>'희망 강사: '+name+'. 예약 전송 시 가능 여부를 다시 확인합니다.',teacherTaken:'선택한 강사가 이 시간에 더 이상 예약 가능하지 않습니다. 다른 시간을 선택해 주세요.'},
+ zh:{methodTitle:'请选择预约方式',timeTitle:'🕒 按时间选择',timeText:'先选择方便的时间，由Kano×Kano自动安排该时间有空的国家资格教师。',teacherTitle:'👤 按教师选择',teacherText:'先选择希望的教师，再从该教师可预约的时间中选择。',pickerTitle:'选择希望的教师',teacherLoading:'正在加载教师信息…',teacherLoadError:'无法加载教师信息。',noTeachers:'目前没有可选择的教师。',chooseTeacherFirst:'请先选择希望的教师。',autoTeacher:'自动安排有空的国家资格教师',timeNote:'🎓 时间优先预约：Kano×Kano会自动安排在所选时间有空的国家资格教师。',teacherNote:name=>'🎓 您已选择 '+name+'。这里只显示该教师可预约的时间。',qualityAuto:'为保证教学质量，所有安排的教师均持有国家资格并符合Kano×Kano标准。',qualityTeacher:name=>'希望教师：'+name+'。提交预约时系统会再次确认教师是否有空。',teacherTaken:'抱歉，所选教师在该时间已无法预约，请选择其他时间。'}
+};
+let slotRequestId=0;
+
+document.getElementById('tzName').textContent=tz;
+
+function setLang(v){
+  lang=v; const t=i18n[lang];
+  Object.keys(t).forEach(k=>{const el=document.getElementById(k); if(el) el.innerHTML=t[k]});
+  document.documentElement.lang=lang;
+  const hoursNote=document.getElementById('hoursNote'); if(hoursNote) hoursNote.textContent=slotUi[lang].hours;
+  updateChoiceUi(); renderTeacherList();
+  translateSelects(); renderCalendar(); if(selectedDate) renderSlots(); if(!document.getElementById('step3').classList.contains('hidden')) renderSummary('summary');
+}
+function translateSelects(){
+ const maps={
+  ja:{levels:['まったくの初心者','初級 / N5程度','初中級 / N4程度','中級 / N3程度','N2以上','わからない'],goals:['ゼロから日本語を学ぶ','日常会話','JLPT対策','仕事・ビジネス','旅行・日本生活','その他']},
+  en:{levels:['Complete beginner','Beginner / around N5','Elementary / around N4','Intermediate / around N3','N2 or above','Not sure'],goals:['Start Japanese from zero','Daily conversation','JLPT preparation','Work / business','Travel / living in Japan','Other']},
+  th:{levels:['ผู้เริ่มต้นจากศูนย์','ระดับต้น / ประมาณ N5','ต้น-กลาง / ประมาณ N4','ระดับกลาง / ประมาณ N3','N2 ขึ้นไป','ไม่แน่ใจ'],goals:['เริ่มภาษาญี่ปุ่นจากศูนย์','สนทนาในชีวิตประจำวัน','เตรียมสอบ JLPT','งาน / ธุรกิจ','ท่องเที่ยว / ใช้ชีวิตในญี่ปุ่น','อื่นๆ']},
+  ko:{levels:['완전 초보','초급 / N5 정도','초중급 / N4 정도','중급 / N3 정도','N2 이상','잘 모르겠음'],goals:['처음부터 일본어 배우기','일상 회화','JLPT 대비','업무 / 비즈니스','여행 / 일본 생활','기타']},
+  zh:{levels:['零基础','初级 / N5左右','初中级 / N4左右','中级 / N3左右','N2以上','不确定'],goals:['从零开始学日语','日常会话','JLPT备考','工作 / 商务','旅行 / 日本生活','其他']}
+ };
+ const level=document.getElementById('level'),goal=document.getElementById('goal');
+ [...level.options].forEach((o,i)=>o.textContent=maps[lang].levels[i]);
+ [...goal.options].forEach((o,i)=>o.textContent=maps[lang].goals[i]);
+}
+function showStep(n){
+ for(let i=1;i<=4;i++) document.getElementById('step'+i).classList.toggle('hidden',i!==n);
+ document.querySelectorAll('[data-step-indicator]').forEach((el,i)=>{const s=i+1;el.classList.toggle('active',s===n);el.classList.toggle('done',s<n)});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goStep2(){
+ const name=document.getElementById('name'),email=document.getElementById('email'),country=document.getElementById('country');
+ if(!name.value.trim()||!email.value.trim()||!country.value.trim()||!email.checkValidity()){
+   [name,email,country].forEach(x=>{if(!x.value.trim()||(x===email&&!x.checkValidity()))x.style.borderColor='#b91c1c';else x.style.borderColor=''});
+   return;
+ }
+ [name,email,country].forEach(x=>x.style.borderColor=''); showStep(2); renderCalendar(); loadTeachers(); updateChoiceUi();
+}
+function updateChoiceUi(){
+ const u=choiceUi[lang];
+ const map={methodTitle:u.methodTitle,timeModeTitle:u.timeTitle,timeModeText:u.timeText,teacherModeTitle:u.teacherTitle,teacherModeText:u.teacherText,teacherPickerTitle:u.pickerTitle};
+ Object.entries(map).forEach(([id,text])=>{const el=document.getElementById(id);if(el)el.textContent=text});
+ document.getElementById('timeModeBtn').classList.toggle('selected',bookingMode==='time');
+ document.getElementById('teacherModeBtn').classList.toggle('selected',bookingMode==='teacher');
+ document.getElementById('teacherPicker').classList.toggle('hidden',bookingMode!=='teacher');
+ const note=document.getElementById('teacherNote'),quality=document.getElementById('qualityNote');
+ if(bookingMode==='teacher'&&selectedTeacherName){note.textContent=u.teacherNote(selectedTeacherName);quality.textContent=u.qualityTeacher(selectedTeacherName)}
+ else{note.textContent=u.timeNote;quality.textContent=u.qualityAuto}
+}
+async function loadTeachers(){
+ if(teachersLoaded){renderTeacherList();return}
+ const list=document.getElementById('teacherList');
+ list.innerHTML='<div class="teacher-loading">'+choiceUi[lang].teacherLoading+'</div>';
+ try{
+   teachers=await publicBookingApi('teachers');teachersLoaded=true;renderTeacherList();
+ }catch(e){console.error('Teacher fetch failed:',e);list.innerHTML='<div class="teacher-loading">'+choiceUi[lang].teacherLoadError+'</div>'}
+}
+function renderTeacherList(){
+ const list=document.getElementById('teacherList');if(!list)return;const u=choiceUi[lang];
+ if(!teachersLoaded){list.innerHTML='<div class="teacher-loading">'+u.teacherLoading+'</div>';return}
+ if(!teachers.length){list.innerHTML='<div class="teacher-loading">'+u.noTeachers+'</div>';return}
+ list.innerHTML='';teachers.forEach(t=>{const b=document.createElement('button');b.type='button';b.className='teacher-choice'+(selectedTeacherId===t.teacher_id?' selected':'');b.textContent=t.display_name;b.addEventListener('click',()=>selectTeacher(t.teacher_id,t.display_name));list.appendChild(b)})
+}
+function setBookingMode(mode){
+ if(mode!=='time'&&mode!=='teacher')return;bookingMode=mode;selectedSlot=null;document.getElementById('toStep3').disabled=true;
+ if(mode==='time'){selectedTeacherId=null;selectedTeacherName=''}else loadTeachers();
+ updateChoiceUi();renderTeacherList();if(selectedDate)renderSlots();
+}
+function selectTeacher(id,name){selectedTeacherId=id;selectedTeacherName=name;selectedSlot=null;document.getElementById('toStep3').disabled=true;renderTeacherList();updateChoiceUi();if(selectedDate)renderSlots()}
+
+function renderCalendar(){
+ const cal=document.getElementById('calendar'); cal.innerHTML='';
+ const locale={ja:'ja-JP',en:'en-US',th:'th-TH',ko:'ko-KR',zh:'zh-CN'}[lang];
+ document.getElementById('monthTitle').textContent=viewMonth.toLocaleDateString(locale,{year:'numeric',month:'long'});
+ const dows={ja:['日','月','火','水','木','金','土'],en:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],th:['อา','จ','อ','พ','พฤ','ศ','ส'],ko:['일','월','화','수','목','금','토'],zh:['日','一','二','三','四','五','六']}[lang];
+ dows.forEach(x=>{const d=document.createElement('div');d.className='dow';d.textContent=x;cal.appendChild(d)});
+ const first=new Date(viewMonth.getFullYear(),viewMonth.getMonth(),1), last=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,0);
+ for(let i=0;i<first.getDay();i++){const e=document.createElement('div');e.className='empty-day';cal.appendChild(e)}
+ const min=todayStart(),max=maxBookDate();
+ for(let day=1;day<=last.getDate();day++){
+   const date=new Date(viewMonth.getFullYear(),viewMonth.getMonth(),day); const b=document.createElement('button');b.className='day';b.textContent=day;
+   if(date.getTime()===min.getTime())b.classList.add('today');
+   if(selectedDate&&sameDay(date,selectedDate))b.classList.add('selected');
+   const unavailable=date<min||date>max; b.disabled=unavailable;
+   if(!unavailable)b.onclick=()=>{selectedDate=date;selectedSlot=null;document.getElementById('toStep3').disabled=true;renderCalendar();renderSlots()};
+   cal.appendChild(b);
+ }
+ const now=new Date(); const currentMonth=new Date(now.getFullYear(),now.getMonth(),1); document.getElementById('prevMonth').disabled=viewMonth<=currentMonth;
+ document.getElementById('nextMonth').disabled=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,1)>new Date(max.getFullYear(),max.getMonth(),1);
+}
+function shiftMonth(delta){viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+delta,1);renderCalendar()}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+async function availabilityFor(date){
+ const start=new Date(date.getFullYear(),date.getMonth(),date.getDate(),0,0,0,0);
+ const end=new Date(date.getFullYear(),date.getMonth(),date.getDate()+1,0,0,0,0);
+ const teacherMode=bookingMode==='teacher';
+ if(teacherMode&&!selectedTeacherId)return [];
+ const rows=teacherMode
+   ? await publicBookingApi('teacher_availability',{teacher_id:selectedTeacherId,from:start.toISOString(),to:end.toISOString(),duration_minutes:LESSON_DURATION_MINUTES})
+   : await publicBookingApi('availability',{from:start.toISOString(),to:end.toISOString(),duration_minutes:LESSON_DURATION_MINUTES});
+ return (rows||[]).map(r=>r.slot_start).filter(Boolean);
+}
+
+function formatSlotTime(iso){
+ const locale={ja:'ja-JP',en:'en-US',th:'th-TH',ko:'ko-KR',zh:'zh-CN'}[lang];
+ return new Intl.DateTimeFormat(locale,{hour:'2-digit',minute:'2-digit'}).format(new Date(iso));
+}
+async function renderSlots(){
+ const requestId=++slotRequestId;
+ const box=document.getElementById('slots'),t=i18n[lang];
+ box.innerHTML='';
+ if(bookingMode==='teacher'&&!selectedTeacherId){box.innerHTML='<div class="empty-slots">'+choiceUi[lang].chooseTeacherFirst+'</div>';return}
+ if(!selectedDate){box.innerHTML='<div class="empty-slots">'+t.chooseDateText+'</div>';return}
+ box.innerHTML='<div class="empty-slots">'+slotUi[lang].loading+'</div>';
+ try{
+   const arr=await availabilityFor(selectedDate);
+   if(requestId!==slotRequestId)return;
+   box.innerHTML='';
+   if(!arr.length){box.innerHTML='<div class="empty-slots">'+t.noSlots+'</div>';return}
+   arr.forEach(iso=>{
+     const b=document.createElement('button');
+     b.className='slot'+(selectedSlot===iso?' selected':'');
+     b.textContent=formatSlotTime(iso);
+     b.onclick=()=>{selectedSlot=iso;document.getElementById('toStep3').disabled=false;renderSlots()};
+     box.appendChild(b)
+   });
+ }catch(err){
+   if(requestId!==slotRequestId)return;
+   console.error(err);
+   box.innerHTML='<div class="empty-slots">'+slotUi[lang].error+'</div>';
+ }
+}
+function goStep3(){if(!selectedDate||!selectedSlot)return;renderSummary('summary');document.getElementById('consent').checked=false;document.getElementById('confirmBtn').disabled=true;showStep(3)}
+function data(){
+ const locale={ja:'ja-JP',en:'en-US',th:'th-TH',ko:'ko-KR',zh:'zh-CN'}[lang];
+ const dt=new Date(selectedSlot);
+ const teacher=(bookingMode==='teacher'&&selectedTeacherName)?selectedTeacherName:choiceUi[lang].autoTeacher;
+ return {name:document.getElementById('name').value.trim(),email:document.getElementById('email').value.trim(),country:document.getElementById('country').value.trim(),level:document.getElementById('level').options[document.getElementById('level').selectedIndex].text,goal:document.getElementById('goal').options[document.getElementById('goal').selectedIndex].text,date:dt.toLocaleString(locale,{weekday:'short',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}),timezone:tz,teacher,raw:dt.toISOString(),note:document.getElementById('note').value.trim()};
+}
+function renderSummary(id){const d=data(),t=i18n[lang],el=document.getElementById(id);const rows=[[t.kName,d.name],[t.kEmail,d.email],[t.kCountry,d.country],[t.kLevel,d.level],[t.kGoal,d.goal],[t.kDate,d.date],[t.kTimezone,d.timezone],[t.kTeacher,d.teacher]];el.innerHTML=rows.map(r=>'<div class="summary-key">'+escapeHtml(r[0])+'</div><div class="summary-val">'+escapeHtml(r[1])+'</div>').join('')}
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+async function confirmBooking(){
+ const d=data();
+ const btn=document.getElementById('confirmBtn');
+ const originalText=btn.textContent;
+ btn.disabled=true;
+ btn.textContent=i18n[lang].sendingText;
+
+ const payload={
+   booking_ref:ref,
+   name:d.name,
+   email:d.email.toLowerCase(),
+   country:d.country,
+   level:d.level,
+   goal:d.goal,
+   lesson_start:d.raw,
+   lesson_duration_minutes:LESSON_DURATION_MINUTES,
+   timezone:d.timezone,
+   note:d.note || null,
+   locale:lang
+ };
+ if(bookingMode==='teacher'&&selectedTeacherId)payload.teacher_id=selectedTeacherId;
+
+ try{
+   const result=await publicBookingApi('create_booking',payload);
+   const ref=result?.booking_ref;
+   if(!ref) throw new Error('booking_create_failed');
+   document.getElementById('bookingRef').textContent=ref;
+   renderSummary('finalSummary');
+   showStep(4);
+ }catch(err){
+   console.error(err);
+   alert(i18n[lang].bookingError);
+   btn.disabled=!document.getElementById('consent').checked;
+ }finally{
+   btn.textContent=originalText;
+ }
+}
+function newBooking(){selectedDate=null;selectedSlot=null;bookingMode='time';selectedTeacherId=null;selectedTeacherName='';document.getElementById('toStep3').disabled=true;document.getElementById('consent').checked=false;document.getElementById('confirmBtn').disabled=true;viewMonth=new Date();viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth(),1);updateChoiceUi();renderTeacherList();showStep(1)}
+translateSelects();updateChoiceUi();renderCalendar();loadTeachers();
+</script>
+</body>
+</html>
