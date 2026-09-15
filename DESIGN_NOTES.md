@@ -22,3 +22,8 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - CONNECT card now has an explicit opaque foreground cover so orbit lines cannot appear inside it.
 - Learning-section heading is left-aligned on mobile; the small indicator dots on the first two blue nodes are orange.
 - The mobile learning path has no guide line beyond the final CONNECT/つながる node; つながる is the terminal goal.
+
+## v49 mobile reason-detail polish
+- Made the CONNECT / 「伝わる」 card fully opaque with an erase halo so neither the solid nor dashed orbit can appear inside or under its rounded edge.
+- Repositioned all orange labels on a shared middle ellipse between the solid and dashed orbits.
+- Within each reason illustration, orange labels are distributed at equal angular intervals (01: 1 point, 02: 4 × 90°, 03: 6 × 60°).

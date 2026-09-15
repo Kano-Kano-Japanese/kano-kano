@@ -4151,6 +4151,134 @@
 }
 </style>
 
+
+<style id="v49-reason-orbit-spacing-mask">
+/* ===== v49: clean CONNECT mask + evenly spaced orange labels ===== */
+
+/* Build a strict stacking context: orbit lines are always behind every card. */
+.reason-v38-visual{
+  isolation:isolate!important;
+}
+.reason-v38-visual .rv-orbit{
+  z-index:1!important;
+  pointer-events:none!important;
+}
+.reason-v38-visual .rv-heart{z-index:12!important}
+.reason-v38-visual .rv-spark{z-index:14!important}
+.reason-v38-visual .rv-tag{z-index:30!important}
+.reason-v38-visual .rv-chip{z-index:60!important}
+
+/* CONNECT / 伝わる: the blue tile is fully solid.  A blue erase halo also
+   covers antialiased pieces of the orbit immediately under the rounded edge,
+   then the thin white border is redrawn on top. */
+.reason-v38-visual .rv-connect{
+  z-index:80!important;
+  opacity:1!important;
+  background:#355bd5!important;
+  background-color:#355bd5!important;
+  background-image:none!important;
+  border:1px solid rgba(255,255,255,.45)!important;
+  outline:none!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  filter:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  box-shadow:
+    0 0 0 4px #355bd5,
+    inset 0 0 0 100vmax #355bd5,
+    0 12px 26px rgba(5,24,82,.24)!important;
+}
+.reason-v38-visual .rv-connect::before{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  inset:-6px!important;
+  border-radius:inherit!important;
+  background:#355bd5!important;
+  opacity:1!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+.reason-v38-visual .rv-connect::after{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  border-radius:inherit!important;
+  background:#355bd5!important;
+  opacity:1!important;
+  z-index:2!important;
+  pointer-events:none!important;
+}
+.reason-v38-visual .rv-connect small,
+.reason-v38-visual .rv-connect strong{
+  position:relative!important;
+  z-index:4!important;
+}
+
+/* All orange labels sit on the same middle ellipse between the outer solid
+   ellipse and the inner dashed ellipse.  Positions are distributed at equal
+   angular intervals inside each illustration. */
+.reason-v38-visual .rv-tag{
+  transform:translate(-50%,-50%)!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  animation:none!important;
+}
+
+/* 01: one label, centred in the open top part of the annulus. */
+.reason-v38-visual.cert .rv-tag-cert{
+  left:50%!important;top:14%!important;
+}
+
+/* 02: four equal 90° positions on the middle ellipse. */
+.reason-v38-visual.quality .rv-tag-cert{
+  left:50%!important;top:14%!important;
+}
+.reason-v38-visual.quality .rv-tag-comm{
+  left:81%!important;top:50%!important;
+}
+.reason-v38-visual.quality .rv-tag-explain{
+  left:50%!important;top:86%!important;
+}
+.reason-v38-visual.quality .rv-tag-exp{
+  left:19%!important;top:50%!important;
+}
+
+/* 03: six equal 60° positions on the same middle ellipse. */
+.reason-v38-visual.personal .rv-tag-cert{
+  left:50%!important;top:14%!important;
+}
+.reason-v38-visual.personal .rv-tag-comm{
+  left:76.8%!important;top:32%!important;
+}
+.reason-v38-visual.personal .rv-tag-review{
+  left:76.8%!important;top:68%!important;
+}
+.reason-v38-visual.personal .rv-tag-explain{
+  left:50%!important;top:86%!important;
+}
+.reason-v38-visual.personal .rv-tag-feedback{
+  left:23.2%!important;top:68%!important;
+}
+.reason-v38-visual.personal .rv-tag-exp{
+  left:23.2%!important;top:32%!important;
+}
+
+/* Long labels stay compact enough to remain inside the annulus. */
+.reason-v38-visual .rv-tag-comm{
+  padding-left:8px!important;
+  padding-right:8px!important;
+  font-size:.50rem!important;
+}
+.reason-v38-visual .rv-tag-feedback{
+  padding-left:8px!important;
+  padding-right:8px!important;
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
