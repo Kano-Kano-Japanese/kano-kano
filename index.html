@@ -1109,8 +1109,13 @@
             50% { opacity: .82; transform: translate3d(-10px,8px,0) scale(1.06); }
         }
         @keyframes ctaSheen {
-            0% { transform: translateX(-160%) skewX(-20deg); }
-            58%,100% { transform: translateX(260%) skewX(-20deg); }
+            /* The sheen must travel completely beyond the right edge before pausing.
+               Percentages in translateX are relative to the sheen itself (28% of the button),
+               so the previous 260% stopped while it was still over the button. */
+            0% { transform: translateX(-160%) skewX(-20deg); opacity: 0; }
+            4% { opacity: 1; }
+            52% { transform: translateX(520%) skewX(-20deg); opacity: 1; }
+            56%,100% { transform: translateX(520%) skewX(-20deg); opacity: 0; }
         }
         @keyframes lineGrow {
             from { transform: scaleX(0); transform-origin: left; }

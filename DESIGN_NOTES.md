@@ -78,3 +78,8 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 
 
 - v63: Repositioned the long 「コミュニケーション力」 pill so it clears HEART, CONNECT, and the right edge on mobile.
+
+
+## v65 — Hero free-trial button sheen
+- Extended the hero CTA sheen travel so the highlight exits completely past the right edge instead of stopping mid-button.
+- The visible sweep now runs continuously across the full button before fading out and waiting for the next cycle.
