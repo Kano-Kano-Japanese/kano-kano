@@ -4780,12 +4780,7 @@
 <style id="v60-edge-and-accent-fixes">
 /* ===== v60: keep orbiting/illustration cards inside the visible frame + accent polish ===== */
 /* Mobile hero: move the whole orbit artwork inward so the right-hand card never gets clipped by header overflow. */
-@media(max-width:600px){
-  .hero-art{right:38px!important;}
-}
-@media(max-width:360px){
-  .hero-art{right:32px!important;}
-}
+/* v61 supersedes the former left-shift workaround. */
 
 /* The long communication label stays fully inside the reason illustration. */
 .reason-v38-visual.quality .rv-tag-comm,
@@ -4803,6 +4798,26 @@
 
 /* Course duration summaries should read as the orange accent. */
 .course-summary-price{color:#e96545!important;}
+</style>
+
+
+<style id="v62-communication-safe-slot">
+/* ===== v62: keep コミュニケーション力 clear of HEART and fully inside the illustration =====
+   Anchor the long pill from the right edge instead of centering it on a percentage point.
+   This guarantees the right edge never clips, while the 60% vertical slot clears HEART
+   and finishes just above CONNECT on phone-sized reason illustrations. */
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:auto!important;
+  right:3%!important;
+  top:60%!important;
+  bottom:auto!important;
+  transform:translateY(-50%)!important;
+  max-width:none!important;
+  padding-left:8px!important;
+  padding-right:8px!important;
+  box-sizing:border-box!important;
+}
 </style>
 
 </head>
@@ -6570,3 +6585,22 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
 
 </body>
 </html>
+<style id="v61-hero-edge-without-shift">
+/* ===== v61: keep hero artwork in its original horizontal position =====
+   Do not shift the artwork left.  Instead, let the orbit use the header's
+   side padding and make the mobile orbit just small enough that the full
+   speech card remains inside the viewport at the right-most point. */
+@media(max-width:600px){
+  .hero-inner{overflow:visible!important;}
+  .hero-art{
+    right:4px!important; /* original mobile position */
+    --hero-orbit-r:68px;
+  }
+}
+@media(max-width:360px){
+  .hero-art{
+    right:4px!important;
+    --hero-orbit-r:64px;
+  }
+}
+</style>
