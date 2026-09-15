@@ -83,3 +83,18 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 ## v65 — Hero free-trial button sheen
 - Extended the hero CTA sheen travel so the highlight exits completely past the right edge instead of stopping mid-button.
 - The visible sweep now runs continuously across the full button before fading out and waiting for the next cycle.
+
+## v66 — multilingual audit and language handoff
+- Audited the public landing page and free-trial booking page across Japanese, English, Thai, Korean, and Chinese.
+- Brought the main-page translation dictionaries to full key parity (187 keys per language) and the booking page to full parity (59 keys per language).
+- Localized previously hard-coded public UI including hero illustration labels, reason-orbit labels, learning labels, profile labels, subscription/legal labels, booking placeholders, footer labels, and dynamic booking summaries/choice UI.
+- Language selection is persisted in `localStorage` (`kk-language`) and mirrored in `?lang=` URLs.
+- All links from the landing page to `booking.html` now carry the selected `?lang=` value; booking also restores the selected language from the query string first, then local storage.
+- Privacy-policy links preserve the same language, and `privacy.html` now automatically opens the matching language from `?lang=` / saved preference.
+
+
+## v67 — Trial booking plan selection
+- Added a required “plan being considered” selector to the free-trial booking form.
+- Options include undecided, beginner, intermediate, 30/50-minute conversation, JLPT N5, and JLPT N4.
+- Added translations for Japanese, English, Thai, Korean, and Chinese.
+- The selected plan appears in the confirmation view and is stored safely inside the existing booking note field, avoiding a backend schema dependency.

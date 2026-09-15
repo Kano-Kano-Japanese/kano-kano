@@ -34,3 +34,8 @@
 - Made the JLPT 6-month / 1-year track names the primary labels in the N5 and N4 detail choices.
 - Changed the lesson-flow layout to a clear vertical 1 → 2 → 3 → 4 sequence.
 - Verified 320 / 360 / 390 / 430 / 498 px mobile widths without page-level horizontal overflow.
+
+### v66 multilingual verification
+- Verified translation-key parity for ja/en/th/ko/zh on `index.html` and `booking.html`.
+- Verified inline JavaScript syntax and duplicate IDs for `index.html`, `booking.html`, and `privacy.html`.
+- Fixed language persistence from landing page → booking page and booking/privacy navigation.

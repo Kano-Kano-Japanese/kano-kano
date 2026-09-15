@@ -11,10 +11,10 @@
 </style>
 </head>
 <body>
-<header class="top"><div class="topin"><a class="brand" href="index.html">Kano×Kano</a><span class="spacer"></span><a class="home" href="index.html">← Home</a></div></header>
+<header class="top"><div class="topin"><a class="brand" id="brandHome" href="index.html">Kano×Kano</a><span class="spacer"></span><a class="home" id="homeLink" href="index.html">← トップページへ</a></div></header>
 <main class="wrap">
 <h1 id="pageTitle">プライバシーポリシー</h1>
-<div class="meta">最終更新日 / Last updated: 2026-09-14</div>
+<div class="meta" id="updatedLabel">最終更新日: 2026-09-14</div>
 <div class="langbar" aria-label="Language">
 <button class="active" data-lang="ja">日本語</button><button data-lang="en">English</button><button data-lang="th">ไทย</button><button data-lang="ko">한국어</button><button data-lang="zh">中文</button>
 </div>
@@ -94,13 +94,35 @@
 <h2>10. 政策变更</h2><p>本政策可能根据服务或相关要求的变化进行更新。重要变更将在本网站公布。</p>
 </section>
 </main>
-<div class="footer">© 2026 Kano×Kano · <a href="tokusho.html">特定商取引法に基づく表記</a></div>
+<div class="footer">© 2026 Kano×Kano · <a id="footerTokusho" href="tokusho.html">特定商取引法に基づく表記</a></div>
 <script>
-const titles={ja:'プライバシーポリシー',en:'Privacy Policy',th:'นโยบายความเป็นส่วนตัว',ko:'개인정보 처리방침',zh:'隐私政策'};
-document.querySelectorAll('.langbar button').forEach(btn=>btn.addEventListener('click',()=>{
- const lang=btn.dataset.lang; document.documentElement.lang=lang==='zh'?'zh-CN':lang; document.getElementById('pageTitle').textContent=titles[lang];
- document.querySelectorAll('.langbar button').forEach(b=>b.classList.toggle('active',b===btn));
+const privacyUi={
+ ja:{title:'プライバシーポリシー',home:'← トップページへ',updated:'最終更新日: 2026-09-14',tokusho:'特定商取引法に基づく表記'},
+ en:{title:'Privacy Policy',home:'← Back to Home',updated:'Last updated: 2026-09-14',tokusho:'Legal Notice / Specified Commercial Transactions Act'},
+ th:{title:'นโยบายความเป็นส่วนตัว',home:'← กลับหน้าหลัก',updated:'อัปเดตล่าสุด: 2026-09-14',tokusho:'ข้อมูลตามกฎหมายว่าด้วยธุรกรรมทางการค้าที่กำหนด'},
+ ko:{title:'개인정보 처리방침',home:'← 홈으로',updated:'최종 업데이트: 2026-09-14',tokusho:'특정상거래법에 따른 표기'},
+ zh:{title:'隐私政策',home:'← 返回首页',updated:'最后更新: 2026-09-14',tokusho:'特定商业交易法标示'}
+};
+function applyPrivacyLang(value){
+ const lang=privacyUi[value]?value:'ja'; const u=privacyUi[lang];
+ document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+ document.title=u.title+' | Kano×Kano';
+ document.getElementById('pageTitle').textContent=u.title;
+ document.getElementById('homeLink').textContent=u.home;
+ document.getElementById('updatedLabel').textContent=u.updated;
+ document.getElementById('footerTokusho').textContent=u.tokusho;
+ document.querySelectorAll('.langbar button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
  document.querySelectorAll('.policy').forEach(p=>p.classList.toggle('active',p.dataset.policy===lang));
-}));
+ const suffix='?lang='+encodeURIComponent(lang);
+ document.getElementById('brandHome').href='index.html'+suffix;
+ document.getElementById('homeLink').href='index.html'+suffix;
+ document.getElementById('footerTokusho').href='tokusho.html'+suffix;
+ localStorage.setItem('kk-language',lang);
+ try{const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url);}catch(_){ }
+}
+document.querySelectorAll('.langbar button').forEach(btn=>btn.addEventListener('click',()=>applyPrivacyLang(btn.dataset.lang)));
+const queryLang=new URLSearchParams(location.search).get('lang');
+const savedLang=localStorage.getItem('kk-language');
+applyPrivacyLang(privacyUi[queryLang]?queryLang:(privacyUi[savedLang]?savedLang:'ja'));
 </script>
 </body></html>
