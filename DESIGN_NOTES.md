@@ -122,3 +122,7 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 
 ## v71
 - Restored hero orbit cards (わかる / 伝わる) to the exact v68 card dimensions on desktop and mobile while preserving the v70 orbit behavior and clipping fixes.
+
+## v72 — hero orbit card typography
+- Kept the v68-sized LEARN / CONNECT cards unchanged.
+- Increased the Japanese `理解 / わかる` and `表現 / 伝わる` typography slightly for better readability, including mobile-specific sizing.

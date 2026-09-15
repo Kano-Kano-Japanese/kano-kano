@@ -5058,6 +5058,34 @@ html:not([lang="ja"]) .hero-art .speech-card strong{
 }
 </style>
 
+
+<style id="v72-hero-card-type-scale">
+/* v72: keep v68 card dimensions, but make the Japanese labels more legible. */
+html[lang="ja"] .hero-art .speech-kicker{
+  font-size:.50rem!important;
+  line-height:1.02!important;
+  margin-bottom:4px!important;
+}
+html[lang="ja"] .hero-art .speech-card strong{
+  font-size:1.10rem!important;
+  line-height:1.02!important;
+}
+@media(max-width:600px){
+  html[lang="ja"] .hero-art .speech-kicker{
+    font-size:.23rem!important;
+    margin-bottom:1px!important;
+  }
+  html[lang="ja"] .hero-art .speech-card strong{
+    font-size:.56rem!important;
+    line-height:1!important;
+  }
+}
+@media(max-width:360px){
+  html[lang="ja"] .hero-art .speech-kicker{font-size:.21rem!important;}
+  html[lang="ja"] .hero-art .speech-card strong{font-size:.52rem!important;}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
