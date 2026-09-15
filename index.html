@@ -4367,6 +4367,58 @@
 }
 </style>
 
+
+<style id="v51-reason-label-route">
+/* ===== v51: two clean, equally-spaced orange routes from LEARN to CONNECT =====
+   Keep the cumulative 01 -> 02 -> 03 story.  The lower-left route carries
+   資格 -> 経験 -> 説明力; the upper-right route carries
+   フィードバック -> 復習 -> コミュニケーション力.
+   Every centre point sits in the annulus between the solid and dashed ellipses,
+   away from both LEARN and CONNECT. */
+.reason-v38-visual .rv-tag{
+  right:auto!important;
+  bottom:auto!important;
+  transform:translate(-50%,-50%)!important;
+  margin:0!important;
+  animation:none!important;
+}
+
+/* Lower-left route, 30-degree-equivalent spacing on the middle ellipse. */
+.reason-v38-visual.cert .rv-tag-cert,
+.reason-v38-visual.quality .rv-tag-cert,
+.reason-v38-visual.personal .rv-tag-cert{
+  left:19%!important;
+  top:50%!important;
+}
+.reason-v38-visual.quality .rv-tag-exp,
+.reason-v38-visual.personal .rv-tag-exp{
+  left:23.2%!important;
+  top:69.5%!important;
+}
+.reason-v38-visual.quality .rv-tag-explain,
+.reason-v38-visual.personal .rv-tag-explain{
+  left:34.5%!important;
+  top:83.8%!important;
+}
+
+/* Upper-right route, the same spacing.  In panel 02 only the final
+   コミュニケーション力 point is present; panel 03 fills in the two preceding
+   points without moving anything that was already shown. */
+.reason-v38-visual.personal .rv-tag-feedback{
+  left:65.5%!important;
+  top:16.2%!important;
+}
+.reason-v38-visual.personal .rv-tag-review{
+  left:76.8%!important;
+  top:30.5%!important;
+}
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:81%!important;
+  top:50%!important;
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>

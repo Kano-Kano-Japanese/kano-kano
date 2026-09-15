@@ -27,3 +27,9 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Made the CONNECT / 「伝わる」 card fully opaque with an erase halo so neither the solid nor dashed orbit can appear inside or under its rounded edge.
 - Repositioned all orange labels on a shared middle ellipse between the solid and dashed orbits.
 - Within each reason illustration, orange labels are distributed at equal angular intervals (01: 1 point, 02: 4 × 90°, 03: 6 × 60°).
+
+
+## v51
+- Repositioned reason-detail orange labels into two fixed, equally spaced routes between the dashed and solid ellipses.
+- Lower-left route: 資格 → 経験 → 説明力. Upper-right route: フィードバック → 復習 → コミュニケーション力.
+- Preserved cumulative 01 → 02 → 03 positions and kept labels clear of わかる / 伝わる.
