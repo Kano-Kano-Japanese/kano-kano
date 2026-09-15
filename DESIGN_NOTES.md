@@ -98,3 +98,10 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Options include undecided, beginner, intermediate, 30/50-minute conversation, JLPT N5, and JLPT N4.
 - Added translations for Japanese, English, Thai, Korean, and Chinese.
 - The selected plan appears in the confirmation view and is stored safely inside the existing booking note field, avoiding a backend schema dependency.
+
+
+## v68
+- Fixed HEART caption styling by separating the caption element from legacy main-word span rules.
+- Profile badges use a two-column responsive layout.
+- Added subscription rationale to the course introduction and expanded the intermediate-material explanation in all five languages.
+- Added live approximate local-currency display for English (USD), Thai (THB), Korean (KRW), and Chinese (CNY) using the Frankfurter JPY reference-rate API; JPY remains the authoritative displayed price.
