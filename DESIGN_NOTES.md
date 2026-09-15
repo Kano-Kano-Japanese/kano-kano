@@ -64,3 +64,8 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - AI-era profile sentence revised to 「知識が一瞬で手に入り、簡単に翻訳できる時代」.
 - Japanese course heading shortened to 「コース・料金案内」.
 - On mobile, 30-minute and 50-minute Daily Conversation consultation buttons stay side-by-side for 4/8/12 monthly plans.
+
+## v58
+- Hero orbit corrected so LEARN/CONNECT revolve around the actual HEART center on mobile without crossing the heart tile.
+- Beginner title updated to 「初級日本語コース（ゼロ～N5目安）」.
+- Replaced the orange monthly-price summary on the three main course cards with lesson-duration information: 50-minute 1-to-1 for beginner/intermediate; 30- or 50-minute 1-to-1 choice for conversation.
