@@ -16,3 +16,9 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - 03 「経験」「コミュニケーション力」 reuse the 02 positions to avoid LEARN/CONNECT overlap.
 - CONNECT/「伝わる」 receives a fully opaque foreground cover so orbit lines cannot show through.
 
+
+## v48 mobile refinements
+- Reason illustration labels remain cumulative from 01 to 02 to 03, with qualification moved below LEARN, experience/explanation stacked below, communication moved slightly down while remaining above CONNECT, and review/feedback placed between LEARN and communication.
+- CONNECT card now has an explicit opaque foreground cover so orbit lines cannot appear inside it.
+- Learning-section heading is left-aligned on mobile; the small indicator dots on the first two blue nodes are orange.
+- The mobile learning path has no guide line beyond the final CONNECT/つながる node; つながる is the terminal goal.

@@ -4057,6 +4057,100 @@
 }
 </style>
 
+
+
+<style id="v48-mobile-position-polish">
+/* ===== v48: requested mobile composition refinements ===== */
+
+/* Reason illustration stacking: orbit lines always stay behind the chips/cards. */
+.reason-v38-visual .rv-orbit{z-index:1!important}
+.reason-v38-visual .rv-heart{z-index:8!important}
+.reason-v38-visual .rv-spark{z-index:9!important}
+.reason-v38-visual .rv-tag{z-index:30!important}
+.reason-v38-visual .rv-chip{z-index:40!important}
+
+/* CONNECT / 伝わる: add an opaque inner cover above every orbit line.
+   This prevents even antialiased portions of the solid/dashed orbit from
+   appearing inside the blue card. */
+.reason-v38-visual .rv-connect{
+  z-index:60!important;
+  background:#355bd5!important;
+  background-image:none!important;
+  opacity:1!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+}
+.reason-v38-visual .rv-connect::before{
+  content:''!important;display:block!important;position:absolute!important;
+  inset:0!important;border-radius:inherit!important;background:#355bd5!important;
+  z-index:1!important;opacity:1!important;pointer-events:none!important;
+}
+.reason-v38-visual .rv-connect::after{
+  content:''!important;display:block!important;position:absolute!important;
+  inset:1px!important;border-radius:inherit!important;background:#355bd5!important;
+  z-index:1!important;opacity:1!important;pointer-events:none!important;
+}
+.reason-v38-visual .rv-connect small,
+.reason-v38-visual .rv-connect strong{position:relative!important;z-index:3!important}
+
+/* The label map is cumulative: 01 -> 02 -> 03. Any label that already exists
+   retains exactly the same coordinates in every later illustration. */
+
+/* 資格: directly below LEARN / わかる. */
+.reason-v38-visual.cert .rv-tag-cert,
+.reason-v38-visual.quality .rv-tag-cert,
+.reason-v38-visual.personal .rv-tag-cert{
+  left:24%!important;top:35%!important;right:auto!important;bottom:auto!important;
+}
+
+/* 経験 and 説明力: continue downward below 資格 along the left side. */
+.reason-v38-visual.quality .rv-tag-exp,
+.reason-v38-visual.personal .rv-tag-exp{
+  left:17%!important;top:53%!important;right:auto!important;bottom:auto!important;
+}
+.reason-v38-visual.quality .rv-tag-explain,
+.reason-v38-visual.personal .rv-tag-explain{
+  left:17%!important;top:70%!important;right:auto!important;bottom:auto!important;
+}
+
+/* コミュニケーション力: slightly lower than before, clear of HEART,
+   but still above CONNECT / 伝わる. */
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:80%!important;top:59%!important;right:auto!important;bottom:auto!important;
+}
+
+/* 03 only: place the two new labels between LEARN and コミュニケーション力.
+   フィードバック stays on the LEARN / わかる side. */
+.reason-v38-visual.personal .rv-tag-feedback{
+  left:48%!important;top:27%!important;right:auto!important;bottom:auto!important;
+}
+.reason-v38-visual.personal .rv-tag-review{
+  left:70%!important;top:31%!important;right:auto!important;bottom:auto!important;
+}
+
+/* Learning story: orange indicator dots on both blue goal nodes. */
+.learning-step[data-learning-step="1"] .learning-node::after,
+.learning-step[data-learning-step="2"] .learning-node::after{
+  background:#ff7658!important;
+  box-shadow:0 0 0 6px rgba(255,118,88,.14)!important;
+}
+
+@media(max-width:800px){
+  /* Left-align the heading while preserving the requested single-line first phrase. */
+  #sec-learning h2{text-align:left!important}
+  #learningTitle .learning-title-main{
+    margin-left:0!important;margin-right:0!important;text-align:left!important;
+  }
+  #learningTitle .learning-title-rest{text-align:left!important}
+
+  /* No guide/progress line continues below the final CONNECT / つながる node.
+     Only the two animated segment elements remain; the second one ends at the
+     centre of the final node and is hidden beneath the node itself. */
+  .learning-cycle::before{display:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
