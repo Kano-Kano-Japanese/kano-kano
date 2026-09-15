@@ -4279,6 +4279,94 @@
 }
 </style>
 
+
+<style id="v50-connect-layer-fix">
+/* ===== v50: definitive CONNECT/orbit layering fix =====
+   The animated orbit DIVs created their own compositor layers on some mobile
+   browsers, which could paint above CONNECT despite z-index.  Replace those
+   orbit DIVs visually with two non-composited background ellipses belonging
+   to the illustration itself.  All cards/chips are then unambiguously above
+   the orbit artwork. */
+.reason-v38-visual{
+  isolation:isolate!important;
+}
+
+/* Do not paint the old animated orbit elements. */
+.reason-v38-visual .rv-orbit{
+  display:none!important;
+  animation:none!important;
+}
+
+/* Outer solid ellipse. */
+.reason-v38-visual::before{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:78%!important;
+  height:96%!important;
+  transform:translate(-50%,-50%)!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:50%!important;
+  box-sizing:border-box!important;
+  pointer-events:none!important;
+  z-index:1!important;
+}
+
+/* Inner dashed ellipse. */
+.reason-v38-visual::after{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:54%!important;
+  height:67%!important;
+  transform:translate(-50%,-50%) rotate(18deg)!important;
+  border:1px dashed rgba(255,255,255,.20)!important;
+  border-radius:50%!important;
+  box-sizing:border-box!important;
+  pointer-events:none!important;
+  z-index:1!important;
+}
+
+/* All foreground illustration pieces are above both ellipses. */
+.reason-v38-visual .rv-heart{z-index:20!important}
+.reason-v38-visual .rv-spark{z-index:22!important}
+.reason-v38-visual .rv-tag{z-index:30!important}
+.reason-v38-visual .rv-chip{z-index:50!important}
+
+/* CONNECT is a genuinely opaque foreground tile.  No pseudo transparency,
+   backdrop filter, or animation is allowed to expose the orbit underneath. */
+.reason-v38-visual .rv-connect{
+  position:absolute!important;
+  z-index:100!important;
+  opacity:1!important;
+  background:#355bd5!important;
+  background-color:#355bd5!important;
+  background-image:none!important;
+  border:1px solid rgba(255,255,255,.48)!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  filter:none!important;
+  animation:none!important;
+  box-shadow:0 12px 26px rgba(5,24,82,.24)!important;
+}
+.reason-v38-visual .rv-connect::before,
+.reason-v38-visual .rv-connect::after{
+  display:none!important;
+  content:none!important;
+}
+.reason-v38-visual .rv-connect small,
+.reason-v38-visual .rv-connect strong{
+  position:relative!important;
+  z-index:2!important;
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
