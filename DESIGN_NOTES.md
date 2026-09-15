@@ -55,3 +55,12 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Learning-flow lines now run circle-edge to circle-edge instead of through node centers.
 - On mobile, the next learning node remains fully hidden until the incoming line reaches its edge, then appears at the same threshold.
 - Removed the passive learning guide line so no line continues beyond the final 「つながる」 goal.
+
+## v57 (2026-09-15)
+- Hero copy order changed to 「相手を理解し、気持ちを伝え」.
+- Hero LEARN / CONNECT cards now slowly orbit the HEART mark on a shared path.
+- 「伝わる」 learning feature chip changed to the orange accent treatment.
+- Founder profile adds long-term exposure to Japanese culture: anime, over 10 years of kendo (3rd dan), and a calligraphy rank.
+- AI-era profile sentence revised to 「知識が一瞬で手に入り、簡単に翻訳できる時代」.
+- Japanese course heading shortened to 「コース・料金案内」.
+- On mobile, 30-minute and 50-minute Daily Conversation consultation buttons stay side-by-side for 4/8/12 monthly plans.

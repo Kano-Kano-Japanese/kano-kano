@@ -4586,6 +4586,79 @@
 }
 </style>
 
+
+<style id="v57-requested-polish">
+/* ===== v57: requested copy, hero orbit, learning accent, and mobile conversation buttons ===== */
+
+/* Hero: LEARN / わかる and CONNECT / 伝わる slowly orbit HEART.
+   The cards remain upright while their centers travel around one shared circle. */
+.hero-art .speech-card{
+  left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;
+  margin:0!important;transform-origin:center center!important;will-change:transform!important;
+}
+.hero-art .speech-a{animation:heroOrbitV57A 20s linear infinite!important}
+.hero-art .speech-b{animation:heroOrbitV57B 20s linear infinite!important}
+@keyframes heroOrbitV57A{
+  from{transform:translate(-50%,-50%) rotate(200deg) translateX(142px) rotate(-200deg) rotate(-7deg)}
+  to{transform:translate(-50%,-50%) rotate(560deg) translateX(142px) rotate(-560deg) rotate(-7deg)}
+}
+@keyframes heroOrbitV57B{
+  from{transform:translate(-50%,-50%) rotate(20deg) translateX(142px) rotate(-20deg) rotate(7deg)}
+  to{transform:translate(-50%,-50%) rotate(380deg) translateX(142px) rotate(-380deg) rotate(7deg)}
+}
+
+/* The EXPRESS / 伝わる learning feature uses the same orange treatment as the goal accent. */
+#learning2Feature{background:#fff0eb!important;color:#c84a33!important}
+#learning2Feature::before{background:#ff7658!important}
+
+/* Keep the 30-minute and 50-minute consultation choices on one row on phones. */
+@media(max-width:800px){
+  #detail-conversation .checkout-actions{
+    display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:8px!important;width:100%!important;
+  }
+  #detail-conversation .checkout-actions .checkout-btn{
+    width:100%!important;max-width:none!important;min-width:0!important;
+    padding:9px 6px!important;font-size:.72rem!important;line-height:1.25!important;
+    white-space:nowrap!important;box-sizing:border-box!important;
+  }
+}
+@media(max-width:380px){
+  #detail-conversation .checkout-actions{gap:6px!important}
+  #detail-conversation .checkout-actions .checkout-btn{font-size:.64rem!important;padding:8px 4px!important}
+}
+
+/* Mobile orbit radius: large enough to visibly circle HEART, compact enough to stay in the hero art. */
+@media(max-width:600px){
+  .hero-art .speech-card{left:50%!important;top:50%!important;right:auto!important;bottom:auto!important}
+  .hero-art .speech-a{animation:heroOrbitV57Am 20s linear infinite!important}
+  .hero-art .speech-b{animation:heroOrbitV57Bm 20s linear infinite!important}
+  @keyframes heroOrbitV57Am{
+    from{transform:translate(-50%,-50%) rotate(200deg) translateX(62px) rotate(-200deg) rotate(-7deg)}
+    to{transform:translate(-50%,-50%) rotate(560deg) translateX(62px) rotate(-560deg) rotate(-7deg)}
+  }
+  @keyframes heroOrbitV57Bm{
+    from{transform:translate(-50%,-50%) rotate(20deg) translateX(62px) rotate(-20deg) rotate(7deg)}
+    to{transform:translate(-50%,-50%) rotate(380deg) translateX(62px) rotate(-380deg) rotate(7deg)}
+  }
+}
+@media(max-width:360px){
+  .hero-art .speech-a{animation-name:heroOrbitV57As!important}
+  .hero-art .speech-b{animation-name:heroOrbitV57Bs!important}
+  @keyframes heroOrbitV57As{
+    from{transform:translate(-50%,-50%) rotate(200deg) translateX(58px) rotate(-200deg) rotate(-7deg)}
+    to{transform:translate(-50%,-50%) rotate(560deg) translateX(58px) rotate(-560deg) rotate(-7deg)}
+  }
+  @keyframes heroOrbitV57Bs{
+    from{transform:translate(-50%,-50%) rotate(20deg) translateX(58px) rotate(-20deg) rotate(7deg)}
+    to{transform:translate(-50%,-50%) rotate(380deg) translateX(58px) rotate(-380deg) rotate(7deg)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art .speech-a,.hero-art .speech-b{animation:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -4623,7 +4696,7 @@
             <div class="hero-copy">
                 <div class="hero-eyebrow"><span class="eyebrow-dot"></span>ONLINE JAPANESE SCHOOL · 1 TO 1</div>
                 <h1 id="heroTitle">ことばで、<br><span class="hero-accent">人と人を近づける。</span></h1>
-                <p id="heroSub">AIがどれだけ進化しても、気持ちを伝え、相手を理解し、関係をつくるのは人です。<br>Kano×Kanoは、国家資格を持つ日本語教師との1対1レッスンで、あなたの「わかる」と「伝わる」を育てます。</p>
+                <p id="heroSub">AIがどれだけ進化しても、相手を理解し、気持ちを伝え、関係をつくるのは人です。<br>Kano×Kanoは、国家資格を持つ日本語教師との1対1レッスンで、あなたの「わかる」と「伝わる」を育てます。</p>
                 <div class="hero-actions">
                     <a href="booking.html" class="hero-btn primary" id="heroTrial">無料体験を予約</a>
                     <a href="#sec-how" class="hero-btn secondary" id="heroHow">受講の流れを見る</a>
@@ -4739,8 +4812,8 @@
                     <img class="profile-photo-full" src="representative-haruki.jpg" alt="Kano×Kano代表 加納春紀">
                     <div class="profile-content profile-content-blend">
                         <span class="section-kicker">MESSAGE FROM THE FOUNDER</span>
-                        <p id="profileP1">タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。</p>
-                        <div class="profile-quote" id="profileP2">AIが普及し、知識や翻訳が一瞬で手に入る時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。</div>
+                        <p id="profileP1">タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。幼い頃からアニメなどを通して日本文化に親しみ、剣道は10年以上続けて三段を取得、書道でも段位を取得しました。言語だけでなく、日本の文化や価値観にも深く触れてきた経験を、レッスンに生かしています。</p>
+                        <div class="profile-quote" id="profileP2">AIが普及し、知識が一瞬で手に入り、簡単に翻訳できる時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。</div>
                         <p id="profileP3">Kano×Kanoが目指すのは、ただ日本語を覚えることではありません。<strong>相手の言葉を理解し、自分の言葉で伝え、相手と関係を築けるようになること。</strong>それを学びのゴールにしています。国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。</p>
                         <div class="badge-container">
                             <span class="badge" id="b1">国家資格保有</span>
@@ -4757,7 +4830,7 @@
 
         <!-- 3. コース・料金 -->
         <div class="card reveal" id="sec-courses">
-            <h2 id="coursesTitle">コース・料金案内（Courses & Plans）</h2>
+            <h2 id="coursesTitle">コース・料金案内</h2>
             <p style="margin-top: -8px; margin-bottom: 18px; color: var(--text-muted); font-size: 0.88rem;" id="coursesNote">
                 初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。
             </p>
@@ -5305,7 +5378,7 @@
             ja: {
                 navReasons: "3つの理由", navProfile: "プロフィール", navCourses: "料金プラン", navHow: "受講の流れ", navContact: "無料体験", navLogin: "ログイン", floatingTrialBtn: "無料体験予約はこちら",
                 heroTitle: "ことばで、<br><span class=\"hero-accent\">人と人を近づける。</span>",
-                heroSub: "AIがどれだけ進化しても、気持ちを伝え、相手を理解し、関係をつくるのは人です。<br>Kano×Kanoは、国家資格を持つ日本語教師との1対1レッスンで、あなたの「わかる」と「伝わる」を育てます。",
+                heroSub: "AIがどれだけ進化しても、相手を理解し、気持ちを伝え、関係をつくるのは人です。<br>Kano×Kanoは、国家資格を持つ日本語教師との1対1レッスンで、あなたの「わかる」と「伝わる」を育てます。",
                 heroTrial: "無料体験を予約", heroHow: "受講の流れを見る", heroNote: "<span>国家資格保有講師</span><span>完全1対1</span><span>世界中から受講</span>",
                 reasonsTitle: "Kano×Kanoが選ばれる3つの理由",
                 reasonsNote: "Kano×Kanoならではの、他にはない3つの強みをご紹介します。タップすると詳細が出ます。",
@@ -5323,11 +5396,11 @@
                 df2Desc: "✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。",
                 df3Desc: "📝 <strong>詳細解説：</strong><br>1対1だからこそ、学習者一人ひとりのレベル・目的・苦手分野に合わせて、授業内容や進度、練習量を柔軟に調整できます。授業中だけで終わらず、QuizletやGoogleフォームなどを活用して、語彙・漢字・文法の復習や必要に応じた宿題・フィードバックまでサポート。次のレッスンにつなげながら、自分のペースで学び、苦手を置き去りにしない学習を目指します。",
                 profileTitle: "代表プロフィール（Profile）", profileName: "加納 春紀（かのう はるき）",
-                profileP1: "タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。",
-                profileP2: "AIが普及し、知識や翻訳が一瞬で手に入る時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。",
+                profileP1: "タイで日本語教育に携わり、現在はシンガポールで、多様な言語・文化背景を持つ学習者に日本語を教えています。幼い頃からアニメなどを通して日本文化に親しみ、剣道は10年以上続けて三段を取得、書道でも段位を取得しました。言語だけでなく、日本の文化や価値観にも深く触れてきた経験を、レッスンに生かしています。",
+                profileP2: "AIが普及し、知識が一瞬で手に入り、簡単に翻訳できる時代になりました。それでも、人と人を本当につなぐのは「心」だと考えています。そして、その心を相手に届けるためにあるのが言語です。",
                 profileP3: "Kano×Kanoが目指すのは、ただ日本語を覚えることではありません。<strong>相手の言葉を理解し、自分の言葉で伝え、相手と関係を築けるようになること。</strong>それを学びのゴールにしています。国家資格を持つ教師としての専門性と海外での指導経験を生かし、一人ひとりの目的・性格・ペースに寄り添うレッスンを大切にしています。",
                 b1: "国家資格保有", b2: "シンガポール現役教師", b3: "タイでの指導経験", b4: "海外学習者への指導", b5: "1対1レッスン",
-                coursesTitle: "コース・料金案内（Courses & Plans）", coursesNote: "初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。",
+                coursesTitle: "コース・料金案内", coursesNote: "初級・中級は1回50分、日常会話は30分または50分の完全1対1。各コースとも、学習ペースに合わせて月4回・月8回・月12回から選べます。",
                 beginnerLabel: "初級", beginnerTitle: "初級日本語コース", beginnerDesc: "ひらがな・カタカナから基本文法まで、ゼロから着実に学びたい方へ。", beginnerSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", beginnerHint: "▼ プラン詳細を見る", beginnerDetail: "📘 初級日本語：\n「みんなの日本語」をベースに、ひらがな・カタカナ、発音、基本語彙、基礎文法を体系的に学びます。教科書の内容をそのまま進めるだけではなく、学習者がより直感的に理解し、理解を深められるよう独自にブラッシュアップした教材を使用。1対1だからこそ、一人ひとりの理解度に合わせて丁寧に進めます。", beginner4Title: "月4回", beginner4Price: "8,000円 / 月", beginner4Note: "週1ペースで、無理なく続けたい方に", beginner8Title: "月8回", beginner8Price: "16,000円 / 月", beginner8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", beginner12Title: "月12回", beginner12Price: "24,000円 / 月", beginner12Note: "週3ペースで、集中的に上達を目指したい方に", beginnerRec: "おすすめ",
                 intermediateLabel: "中級", intermediateTitle: "中級日本語コース（N4〜N3目安）", intermediateDesc: "より複雑な文法・表現を学び、実践的に使える日本語を身につけます。", intermediateSummary: "月4回 8,000円 ／ 月8回 16,000円 ／ 月12回 24,000円", intermediateHint: "▼ プラン詳細を見る", intermediateDetail: "📈 中級日本語：\n文法・語彙・読解・会話をバランスよく伸ばし、「知っている日本語」から「使える日本語」へ進みます。", intermediate4Title: "月4回", intermediate4Price: "8,000円 / 月", intermediate4Note: "週1ペースで、無理なく続けたい方に", intermediate8Title: "月8回", intermediate8Price: "16,000円 / 月", intermediate8Note: "週2ペースで、着実に日本語力を伸ばしたい方に", intermediate12Title: "月12回", intermediate12Price: "24,000円 / 月", intermediate12Note: "週3ペースで、集中的に上達を目指したい方に", intermediateRec: "おすすめ",
                 conversationLabel: "会話", conversationTitle: "日常会話コース", conversationDesc: "会話力を伸ばしたい方はもちろん、「勉強というより、気軽に日本人と話したい」という方も大歓迎です。", conversationSummary: "30分：月4回 4,000円〜 ・ 50分：月4回 6,000円〜 ｜ 毎月自動更新", conversationHint: "▼ プラン詳細を見る", conversationDetail: "💬 日常会話：\n旅行・仕事・趣味・アニメなど、好きなテーマで楽しく日本語を話すコースです。30分または50分を選び、月4回・8回・12回のサブスクリプションで受講します。毎月同じプランが自動更新されるため、継続して会話量を確保したい方に向いています。必要に応じて、会話中の文法・語彙・自然な表現も講師が丁寧にフィードバックします。", conversation4Title: "月4回", conversation4Price: "30分 4,000円 / 50分 6,000円", conversation4Note: "月に4回、気軽に日本人との会話を楽しみたい方に", conversation8Title: "月8回", conversation8Price: "30分 8,000円 / 50分 12,000円", conversation8Note: "週2回ほど、会話する時間を生活の中に取り入れたい方に", conversation12Title: "月12回", conversation12Price: "30分 12,000円 / 50分 18,000円", conversation12Note: "たくさん話して、日本語での会話を日常的に楽しみたい方に", conversationRec: "おすすめ",
