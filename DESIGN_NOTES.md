@@ -105,3 +105,10 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Profile badges use a two-column responsive layout.
 - Added subscription rationale to the course introduction and expanded the intermediate-material explanation in all five languages.
 - Added live approximate local-currency display for English (USD), Thai (THB), Korean (KRW), and Chinese (CNY) using the Frankfurter JPY reference-rate API; JPY remains the authoritative displayed price.
+
+## v69 — localization fit + copy polish
+- Hero HEART kicker changed from 「心」 to 「つながる」; translated equivalents are used in EN/TH/KO/ZH.
+- Removed the duplicated small label above the final 「つながる」 learning node.
+- Rewrote Daily Conversation detail copy to emphasize choosing 30/50 minutes and monthly frequency to fit the learner's lifestyle, without subscription wording inside that detail.
+- Added localization-safe wrapping/sizing for fixed pills, buttons, badges, hero cards, reason labels, and course summaries so longer translations stay within their frames.
+- Verified visible text overflow at 320, 360, 390, and 430 px viewport widths in all five languages (JA/EN/TH/KO/ZH).
