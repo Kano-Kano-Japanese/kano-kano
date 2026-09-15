@@ -118,3 +118,7 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Centered the CONNECT/つながる label directly above the central 心.
 - Matched the reason-detail heart kicker to the localized CONNECT/つながる label.
 - Added a full edge-to-edge sheen animation to the fixed free-trial button.
+
+
+## v71
+- Restored hero orbit cards (わかる / 伝わる) to the exact v68 card dimensions on desktop and mobile while preserving the v70 orbit behavior and clipping fixes.

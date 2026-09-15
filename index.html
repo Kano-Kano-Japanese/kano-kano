@@ -4995,6 +4995,69 @@ html:not([lang="ja"]) .hero-art .speech-kicker{white-space:normal!important;over
 @media(prefers-reduced-motion:reduce){.floating-trial-btn::after{animation:none!important;display:none!important;}}
 </style>
 
+
+<style id="v71-restore-v68-hero-card-size">
+/* v71: restore LEARN / CONNECT card sizing to the exact v68 proportions.
+   Keep the newer orbit structure, centered CONNECT label, and edge-safe trajectory. */
+.hero-art .speech-card{
+  width:104px!important;
+  min-height:68px!important;
+  padding:11px 12px!important;
+  border-radius:17px!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
+.hero-art .speech-kicker{
+  font-size:.45rem!important;
+  letter-spacing:.12em!important;
+  margin-bottom:4px!important;
+  line-height:1.05!important;
+}
+.hero-art .speech-card strong{
+  font-size:1rem!important;
+  line-height:1.05!important;
+}
+@media(max-width:600px){
+  .hero-art .speech-card{
+    width:48px!important;
+    min-height:31px!important;
+    padding:4px 5px!important;
+    border-radius:9px!important;
+  }
+  .hero-art .speech-kicker{
+    font-size:.19rem!important;
+    letter-spacing:.08em!important;
+    margin-bottom:1px!important;
+  }
+  .hero-art .speech-card strong{
+    font-size:.49rem!important;
+    line-height:1.02!important;
+  }
+}
+@media(max-width:360px){
+  .hero-art .speech-card{
+    width:45px!important;
+    min-height:29px!important;
+    padding:4px!important;
+  }
+  .hero-art .speech-card strong{font-size:.46rem!important;}
+}
+/* Localized labels remain inside the restored compact v68 cards. */
+html:not([lang="ja"]) .hero-art .speech-kicker,
+html:not([lang="ja"]) .hero-art .speech-card strong{
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+@media(max-width:600px){
+  html[lang="en"] .hero-art .speech-card strong{font-size:.38rem!important;}
+  html[lang="th"] .hero-art .speech-card strong{font-size:.36rem!important;line-height:1.06!important;}
+  html[lang="ko"] .hero-art .speech-card strong,
+  html[lang="zh-CN"] .hero-art .speech-card strong{font-size:.42rem!important;}
+  html:not([lang="ja"]) .hero-art .speech-kicker{font-size:.16rem!important;}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
