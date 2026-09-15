@@ -6061,6 +6061,7 @@ html[lang="en"] .hero-art #heroArtLearnKicker{
             const n4=document.getElementById('n4Pay'); if(n4)n4.textContent=stripeTestMode ? pi.testPay : pi.n4;
             configurePaymentLinks();
             if (window.updateApproxPrices) window.updateApproxPrices(lang);
+            if (window.syncLearningNodeLabels) window.syncLearningNodeLabels();
             syncProfileButton(lang);
             requestAnimationFrame(() => window.fitLocalizedFrames && window.fitLocalizedFrames());
         }
@@ -6864,15 +6865,14 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
 })();
 </script>
 
-\n<script id="v68-live-fx">
+\n<script id="v78-resilient-live-fx">
 (() => {
   const languageCurrency = { en:'USD', th:'THB', ko:'KRW', zh:'CNY' };
-  const localeFor = { en:'en-US', th:'th-TH', ko:'ko-KR', zh:'zh-CN' };
   const fxLabels = {
-    en:{loading:'Approx. …', prefix:'Approx. '},
-    th:{loading:'ประมาณ …', prefix:'ประมาณ '},
-    ko:{loading:'약 …', prefix:'약 '},
-    zh:{loading:'约 …', prefix:'约 '}
+    en:{prefix:'Approx. '},
+    th:{prefix:'ประมาณ '},
+    ko:{prefix:'약 '},
+    zh:{prefix:'约 '}
   };
   const priceSpecs = {
     beginner4Price:[8000], beginner8Price:[16000], beginner12Price:[24000],
@@ -6880,7 +6880,10 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     conversation4Price:[4000,6000], conversation8Price:[8000,12000], conversation12Price:[12000,18000],
     n5Summary:[100000], n4Summary:[100000]
   };
-  let rateCache = {};
+  /* Built-in emergency references are shown only until a live/previously-saved rate is available.
+     They prevent the local-currency row from disappearing on a slow/offline first load. */
+  const emergencyRates = { USD:0.0068, THB:0.215, KRW:9.35, CNY:0.0485 };
+  const rateCache = {};
 
   function ensureApproxNode(id){
     const source=document.getElementById(id); if(!source) return null;
@@ -6893,57 +6896,92 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     return node;
   }
   function currencyText(amount,currency,lang){
-    const value=amount;
-    if(lang==='th') return new Intl.NumberFormat('th-TH',{style:'currency',currency:'THB',maximumFractionDigits:0}).format(value);
-    if(lang==='ko') return new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW',maximumFractionDigits:0}).format(value);
-    if(lang==='zh') return new Intl.NumberFormat('zh-CN',{style:'currency',currency:'CNY',maximumFractionDigits:0}).format(value);
-    return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
+    const locale=lang==='th'?'th-TH':lang==='ko'?'ko-KR':lang==='zh'?'zh-CN':'en-US';
+    return new Intl.NumberFormat(locale,{style:'currency',currency,maximumFractionDigits:0}).format(amount);
   }
-  async function getRate(currency){
-    if(rateCache[currency]) return rateCache[currency];
+  function readSaved(currency){
     const key='kk-fx-jpy-'+currency;
     try{
-      const cached=JSON.parse(sessionStorage.getItem(key)||'null');
-      if(cached && cached.rate && cached.savedAt && Date.now()-cached.savedAt<6*60*60*1000){rateCache[currency]=cached;return cached;}
+      const saved=JSON.parse(localStorage.getItem(key)||'null');
+      if(saved && Number.isFinite(Number(saved.rate)) && Number(saved.rate)>0) return {...saved,rate:Number(saved.rate),source:'saved'};
     }catch(_){}
-    const res=await fetch(`https://api.frankfurter.dev/v2/rate/jpy/${currency.toLowerCase()}`,{cache:'no-store'});
-    if(!res.ok) throw new Error('FX HTTP '+res.status);
-    const row=await res.json();
-    if(!row || !Number.isFinite(Number(row.rate))) throw new Error('Invalid FX response');
-    const out={rate:Number(row.rate),date:row.date||'',savedAt:Date.now()};
-    rateCache[currency]=out;
-    try{sessionStorage.setItem(key,JSON.stringify(out));}catch(_){}
-    return out;
+    return null;
+  }
+  function saveRate(currency, value){
+    try{ localStorage.setItem('kk-fx-jpy-'+currency,JSON.stringify(value)); }catch(_){}
+  }
+  function renderRate(lang,currency,fx,state){
+    const prefix=(fxLabels[lang]||fxLabels.en).prefix;
+    Object.entries(priceSpecs).forEach(([id,amounts])=>{
+      const node=ensureApproxNode(id); if(!node) return;
+      const converted=amounts.map(v=>currencyText(v*fx.rate,currency,lang));
+      let text='';
+      if(id.startsWith('conversation') && converted.length===2){
+        if(lang==='th') text=`${prefix}${converted[0]} (30 นาที) / ${converted[1]} (50 นาที)`;
+        else if(lang==='ko') text=`${prefix}${converted[0]} (30분) / ${converted[1]} (50분)`;
+        else if(lang==='zh') text=`${prefix}${converted[0]}（30分钟）/ ${converted[1]}（50分钟）`;
+        else text=`${prefix}${converted[0]} (30 min) / ${converted[1]} (50 min)`;
+      } else text=prefix+converted[0];
+      node.textContent=text;
+      node.dataset.state=state;
+      node.hidden=false;
+      if(fx.date) node.title=`JPY/${currency} reference rate: ${fx.date}`;
+      else if(state==='fallback') node.title='Temporary reference rate; updating when the latest rate is available.';
+    });
+  }
+  async function fetchJson(url, timeoutMs=5500){
+    const ctrl=new AbortController();
+    const timer=setTimeout(()=>ctrl.abort(),timeoutMs);
+    try{
+      const res=await fetch(url,{cache:'no-store',signal:ctrl.signal});
+      if(!res.ok) throw new Error('FX HTTP '+res.status);
+      return await res.json();
+    } finally { clearTimeout(timer); }
+  }
+  async function getLiveRate(currency){
+    if(rateCache[currency] && rateCache[currency].source==='live') return rateCache[currency];
+    let row;
+    try{
+      row=await fetchJson(`https://api.frankfurter.dev/v2/rate/jpy/${currency.toLowerCase()}`);
+      if(row && Number.isFinite(Number(row.rate))) {
+        const out={rate:Number(row.rate),date:row.date||'',savedAt:Date.now(),source:'live'};
+        rateCache[currency]=out; saveRate(currency,out); return out;
+      }
+    }catch(firstErr){
+      /* Older Frankfurter endpoint is a second network path/response format. */
+      try{
+        const alt=await fetchJson(`https://api.frankfurter.app/latest?from=JPY&to=${currency}`);
+        const rate=Number(alt?.rates?.[currency]);
+        if(Number.isFinite(rate) && rate>0){
+          const out={rate,date:alt?.date||'',savedAt:Date.now(),source:'live'};
+          rateCache[currency]=out; saveRate(currency,out); return out;
+        }
+      }catch(_){}
+      throw firstErr;
+    }
+    throw new Error('Invalid FX response');
   }
   async function updateApproxPrices(lang){
     const currency=languageCurrency[lang];
-    Object.keys(priceSpecs).forEach(id=>{
-      const n=ensureApproxNode(id);
-      if(!n) return;
-      if(!currency){n.textContent='';n.dataset.state='error';return;}
-      n.textContent=(fxLabels[lang]||fxLabels.en).loading; n.dataset.state='loading';
-    });
-    if(!currency) return;
+    if(!currency){
+      Object.keys(priceSpecs).forEach(id=>{const n=ensureApproxNode(id);if(n){n.textContent='';n.hidden=true;n.dataset.state='off';}});
+      return;
+    }
+
+    /* Always paint a usable approximation synchronously. Prefer the last successful live rate. */
+    const saved=readSaved(currency);
+    const initial=saved || {rate:emergencyRates[currency],date:'',savedAt:0,source:'fallback'};
+    renderRate(lang,currency,initial,saved?'cached':'fallback');
+
     try{
-      const fx=await getRate(currency);
-      const prefix=(fxLabels[lang]||fxLabels.en).prefix;
-      Object.entries(priceSpecs).forEach(([id,amounts])=>{
-        const node=ensureApproxNode(id); if(!node) return;
-        const converted=amounts.map(v=>currencyText(v*fx.rate,currency,lang));
-        let text='';
-        if(id.startsWith('conversation') && converted.length===2){
-          if(lang==='ja') text='';
-          else if(lang==='th') text=`${prefix}${converted[0]} (30 นาที) / ${converted[1]} (50 นาที)`;
-          else if(lang==='ko') text=`${prefix}${converted[0]} (30분) / ${converted[1]} (50분)`;
-          else if(lang==='zh') text=`${prefix}${converted[0]}（30分钟）/ ${converted[1]}（50分钟）`;
-          else text=`${prefix}${converted[0]} (30 min) / ${converted[1]} (50 min)`;
-        }else text=prefix+converted[0];
-        node.textContent=text; node.dataset.state='ready';
-        if(fx.date) node.title=`JPY/${currency} reference rate: ${fx.date}`;
-      });
+      const live=await getLiveRate(currency);
+      /* Ignore an old async response if the user changed language while it was loading. */
+      const active=(localStorage.getItem('kk-language')||'ja');
+      if(active!==lang) return;
+      renderRate(lang,currency,live,'ready');
     }catch(err){
-      console.warn('Live FX unavailable',err);
-      Object.keys(priceSpecs).forEach(id=>{const n=ensureApproxNode(id);if(n){n.textContent='';n.dataset.state='error';}});
+      console.warn('Live FX unavailable; keeping visible reference rate',err);
+      /* Deliberately keep the already-visible cached/emergency approximation. */
     }
   }
   window.updateApproxPrices=updateApproxPrices;
@@ -6965,8 +7003,7 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     }
   }
   function fitLocalizedFrames(){
-    const hw=document.getElementById('heroArtHeartWord');
-    if(hw) fitSingleLine(hw, hw.closest('.heart-mark'), 9);
+    /* v78: hero HEART/心 uses deterministic CSS sizing; do not persist an early-load shrink value. */
     document.querySelectorAll('.reason-v38-visual .rv-heart strong').forEach(el=>fitSingleLine(el,el.closest('.rv-heart'),8));
   }
   window.fitLocalizedFrames=fitLocalizedFrames;
@@ -6975,6 +7012,71 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
 })();
 </script>
 
+
+<style id="v78-stable-heart-fx-learning">
+/* Stable HEART/心 sizing: no early-load JS measurement can shrink this word anymore. */
+.hero-art .heart-mark #heroArtHeartWord{
+  font-size:2.5rem!important;
+  line-height:.92!important;
+  letter-spacing:0!important;
+}
+html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{font-size:1.72rem!important;letter-spacing:-.045em!important;}
+html[lang="th"] .hero-art .heart-mark #heroArtHeartWord,
+html[lang="ko"] .hero-art .heart-mark #heroArtHeartWord{font-size:2.05rem!important;}
+@media(max-width:600px){
+  .hero-art .heart-mark #heroArtHeartWord{font-size:1.52rem!important;line-height:.9!important;}
+  html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{font-size:.78rem!important;letter-spacing:-.055em!important;}
+  html[lang="th"] .hero-art .heart-mark #heroArtHeartWord,
+  html[lang="ko"] .hero-art .heart-mark #heroArtHeartWord{font-size:1.06rem!important;}
+}
+@media(max-width:360px){
+  .hero-art .heart-mark #heroArtHeartWord{font-size:1.42rem!important;}
+  html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{font-size:.72rem!important;}
+}
+
+/* Local currency must never vanish just because the live-rate request is slow or unavailable. */
+.fx-approx,.fx-approx[data-state="error"],.fx-approx[data-state="fallback"],.fx-approx[data-state="cached"]{
+  display:block!important;
+  visibility:visible!important;
+  min-height:1em!important;
+}
+.fx-approx[data-state="fallback"]{opacity:.78;}
+.fx-approx[data-state="cached"]{opacity:.9;}
+
+/* When the small and large words are the same, show only the large word at the exact node centre. */
+.learning-node .learning-en[hidden]{display:none!important;}
+.learning-node.learning-single-label>div{
+  height:100%!important;width:100%!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.learning-node.learning-single-label .learning-jp{
+  margin:0!important;line-height:1!important;text-align:center!important;
+}
+html[lang="en"] .learning-node.learning-single-label .learning-jp{
+  font-size:.98rem!important;letter-spacing:-.035em!important;white-space:nowrap!important;
+}
+@media(max-width:600px){
+  html[lang="en"] .learning-node.learning-single-label .learning-jp{font-size:.84rem!important;}
+}
+</style>
+<script id="v78-learning-duplicate-labels">
+(function(){
+  const pairs=[['learningEn1','learning1Word'],['learningEn2','learning2Word'],['learningEn3','learning3Word']];
+  const norm=v=>String(v||'').trim().replace(/\s+/g,' ').toLocaleLowerCase();
+  function syncLearningNodeLabels(){
+    pairs.forEach(([smallId,bigId])=>{
+      const small=document.getElementById(smallId), big=document.getElementById(bigId);
+      if(!small||!big) return;
+      const node=big.closest('.learning-node');
+      const duplicate=!!norm(small.textContent) && norm(small.textContent)===norm(big.textContent);
+      small.hidden=duplicate;
+      if(node) node.classList.toggle('learning-single-label',duplicate);
+    });
+  }
+  window.syncLearningNodeLabels=syncLearningNodeLabels;
+  document.addEventListener('DOMContentLoaded',syncLearningNodeLabels);
+})();
+</script>
 </body>
 </html>
 <style id="v61-hero-edge-without-shift">
