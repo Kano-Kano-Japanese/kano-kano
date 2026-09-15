@@ -4479,6 +4479,71 @@
 }
 </style>
 
+
+<style id="v53-reason-route-balance-and-connect-float">
+/* ===== v53: rebalance both orange routes + make CONNECT float exactly like LEARN =====
+   Left route uses the full lower-left arc toward CONNECT:
+     資格 -> 経験 -> 説明力
+   Right route uses the full upper-right arc toward CONNECT:
+     フィードバック -> 復習 -> コミュニケーション力
+   Existing 01 -> 02 -> 03 cumulative labels keep the same coordinates whenever present. */
+.reason-v38-visual .rv-tag{
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  transform:translate(-50%,-50%)!important;
+}
+
+/* Left route: spread across the whole side so the final label no longer leaves
+   an oversized empty gap before CONNECT. */
+.reason-v38-visual.cert .rv-tag-cert,
+.reason-v38-visual.quality .rv-tag-cert,
+.reason-v38-visual.personal .rv-tag-cert{
+  left:17.0%!important;
+  top:50.0%!important;
+}
+.reason-v38-visual.cert .rv-tag-exp,
+.reason-v38-visual.quality .rv-tag-exp,
+.reason-v38-visual.personal .rv-tag-exp{
+  left:26.7%!important;
+  top:79.0%!important;
+}
+.reason-v38-visual.quality .rv-tag-explain,
+.reason-v38-visual.personal .rv-tag-explain{
+  left:50.0%!important;
+  top:91.0%!important;
+}
+
+/* Right route: distribute all three labels across the whole upper/right arc,
+   leaving a deliberate final gap before CONNECT instead of crowding it. */
+.reason-v38-visual.personal .rv-tag-feedback{
+  left:55.7%!important;
+  top:9.6%!important;
+}
+.reason-v38-visual.personal .rv-tag-review{
+  left:75.3%!important;
+  top:23.6%!important;
+}
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:83.0%!important;
+  top:50.0%!important;
+}
+
+/* LEARN and CONNECT use the exact same floating motion and phase.  Earlier
+   masking fixes had temporarily disabled CONNECT's animation on some browsers. */
+.reason-v38-visual .rv-learn,
+.reason-v38-visual .rv-connect{
+  animation:rvFloat 4.8s ease-in-out infinite!important;
+  animation-delay:0s!important;
+  will-change:margin-top!important;
+}
+@media (prefers-reduced-motion:reduce){
+  .reason-v38-visual .rv-learn,
+  .reason-v38-visual .rv-connect{animation:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
