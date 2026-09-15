@@ -39,3 +39,9 @@
 - Verified translation-key parity for ja/en/th/ko/zh on `index.html` and `booking.html`.
 - Verified inline JavaScript syntax and duplicate IDs for `index.html`, `booking.html`, and `privacy.html`.
 - Fixed language persistence from landing page → booking page and booking/privacy navigation.
+
+## v75 pre-launch language audit
+- Verified index/booking translation key parity across ja/en/th/ko/zh.
+- Checked 320px, 390px and desktop widths for horizontal text overflow on index and all four booking steps.
+- Added full five-language support and language persistence to `tokusho.html`.
+- Updated Japanese timezone note to reflect that local-time conversion is already implemented.
