@@ -62,10 +62,10 @@
     .month-btn:disabled{opacity:.35;cursor:not-allowed}
     .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
     .dow{text-align:center;color:var(--muted);font-size:.72rem;font-weight:700;padding:4px}
-    .day{min-height:46px;border:1px solid #e2e8f0;background:#fff;border-radius:8px;cursor:pointer;color:var(--primary);font-family:inherit;font-weight:600;transition:.15s}
+    .day{min-height:46px;border:1px solid #e2e8f0;background:#fff;border-radius:8px;cursor:pointer;color:var(--primary);font-family:inherit;font-weight:600;transition:.15s;-webkit-appearance:none;appearance:none}
     .day:hover:not(:disabled){border-color:var(--accent);background:#eff6ff;transform:translateY(-1px)}
     .day.today{box-shadow:inset 0 0 0 1px var(--accent)}
-    .day.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+    .day.selected,.day.selected:hover,.day.selected:focus,.day.selected:active{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important;box-shadow:0 0 0 2px rgba(37,99,235,.14)!important;transform:none!important}
     .day:disabled{background:#f8fafc;color:#cbd5e1;cursor:not-allowed}
     .empty-day{min-height:46px}
     .slots-title{font-weight:700;color:var(--primary);margin:22px 0 10px}
@@ -477,7 +477,7 @@ async function renderSlots(){
      const b=document.createElement('button');
      b.className='slot'+(selectedSlot===iso?' selected':'');
      b.textContent=formatSlotTime(iso);
-     b.onclick=()=>{selectedSlot=iso;document.getElementById('toStep3').disabled=false;renderSlots()};
+     b.onclick=()=>{selectedSlot=iso;document.getElementById('toStep3').disabled=false;box.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')};
      box.appendChild(b)
    });
  }catch(err){

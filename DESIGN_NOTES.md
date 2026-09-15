@@ -132,3 +132,9 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Applied equivalent protection to the center HEART tile inside the three reason-detail illustrations.
 - Made the representative profile name language-safe: long English/Thai/Korean/Japanese strings can wrap/scale inside the profile summary instead of overflowing its frame.
 - Removed the legacy forced single-line behavior from profile-name text in the expanded profile.
+
+
+## v74
+- English `Understand` in the first learning circle now scales down on English UI so it stays inside the blue circle.
+- Booking calendar selected dates are forced blue (including iOS/native button states).
+- Selecting a time slot no longer re-fetches availability or flashes the loading message; selection is updated in-place.
