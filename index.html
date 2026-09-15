@@ -4709,6 +4709,73 @@
 }
 </style>
 
+
+<style id="v59-hero-orbit-structural-fix">
+/* ===== v59: structural hero orbit fix =====
+   The previous animation rotated each card with one compound transform, which
+   let older mobile transform rules pull the cards back over HEART.  The orbit
+   now lives on fresh wrapper elements, so legacy card positioning cannot
+   change the radius.  LEARN and CONNECT stay exactly 180deg apart. */
+.hero-art{--hero-orbit-r:148px}
+.hero-art .hero-card-orbit{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:0!important;
+  height:0!important;
+  z-index:6!important;
+  transform-origin:0 0!important;
+  pointer-events:none!important;
+  animation:heroRingSpinV59 24s linear infinite!important;
+  will-change:transform!important;
+}
+.hero-art .hero-card-orbit-a{animation-delay:-12s!important}
+.hero-art .hero-card-orbit-b{animation-delay:0s!important}
+.hero-art .hero-card-radius{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:0!important;
+  height:0!important;
+  transform:translateX(var(--hero-orbit-r))!important;
+}
+.hero-art .hero-card-upright{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:0!important;
+  height:0!important;
+  transform-origin:0 0!important;
+  animation:heroRingCounterV59 24s linear infinite!important;
+  will-change:transform!important;
+}
+.hero-art .hero-card-orbit-a .hero-card-upright{animation-delay:-12s!important}
+.hero-art .hero-card-orbit-b .hero-card-upright{animation-delay:0s!important}
+.hero-art .hero-card-orbit .speech-card{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  animation:none!important;
+  transform-origin:center center!important;
+}
+.hero-art .hero-card-orbit .speech-a{transform:translate(-50%,-50%) rotate(-7deg)!important}
+.hero-art .hero-card-orbit .speech-b{transform:translate(-50%,-50%) rotate(7deg)!important}
+@keyframes heroRingSpinV59{from{transform:rotate(25deg)}to{transform:rotate(385deg)}}
+@keyframes heroRingCounterV59{from{transform:rotate(-25deg)}to{transform:rotate(-385deg)}}
+@media(max-width:600px){.hero-art{--hero-orbit-r:72px}}
+@media(max-width:360px){.hero-art{--hero-orbit-r:68px}}
+@media(prefers-reduced-motion:reduce){
+  .hero-art .hero-card-orbit,.hero-art .hero-card-upright{animation:none!important}
+  .hero-art .hero-card-orbit-a{transform:rotate(205deg)!important}
+  .hero-art .hero-card-orbit-b{transform:rotate(25deg)!important}
+  .hero-art .hero-card-orbit-a .hero-card-upright{transform:rotate(-205deg)!important}
+  .hero-art .hero-card-orbit-b .hero-card-upright{transform:rotate(-25deg)!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -4756,8 +4823,8 @@
             <div class="hero-art" aria-hidden="true">
                 <div class="connection-orbit orbit-a"></div>
                 <div class="connection-orbit orbit-b"></div>
-                <div class="speech-card speech-a"><span class="speech-kicker">LEARN</span><strong>わかる</strong></div>
-                <div class="speech-card speech-b"><span class="speech-kicker">CONNECT</span><strong>伝わる</strong></div>
+                <div class="hero-card-orbit hero-card-orbit-a"><div class="hero-card-radius"><div class="hero-card-upright"><div class="speech-card speech-a"><span class="speech-kicker">LEARN</span><strong>わかる</strong></div></div></div></div>
+                <div class="hero-card-orbit hero-card-orbit-b"><div class="hero-card-radius"><div class="hero-card-upright"><div class="speech-card speech-b"><span class="speech-kicker">CONNECT</span><strong>伝わる</strong></div></div></div></div>
                 <div class="heart-mark"><em>HEART</em><span>心</span><small>ことばは心をつなぐ<br><b>LANGUAGE CONNECT HEART</b></small></div>
                 <div class="connection-dot dot-a"></div><div class="connection-dot dot-b"></div><div class="connection-dot dot-c"></div>
             </div>
