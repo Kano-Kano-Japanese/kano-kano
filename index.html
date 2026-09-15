@@ -4776,6 +4776,35 @@
 }
 </style>
 
+
+<style id="v60-edge-and-accent-fixes">
+/* ===== v60: keep orbiting/illustration cards inside the visible frame + accent polish ===== */
+/* Mobile hero: move the whole orbit artwork inward so the right-hand card never gets clipped by header overflow. */
+@media(max-width:600px){
+  .hero-art{right:38px!important;}
+}
+@media(max-width:360px){
+  .hero-art{right:32px!important;}
+}
+
+/* The long communication label stays fully inside the reason illustration. */
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:77%!important;
+  right:auto!important;
+  max-width:46%!important;
+  padding-left:7px!important;
+  padding-right:7px!important;
+  box-sizing:border-box!important;
+}
+
+/* EXPRESS feature: orange pill/text, but the leading dot remains blue. */
+#learning2Feature::before{background:#3159d8!important;}
+
+/* Course duration summaries should read as the orange accent. */
+.course-summary-price{color:#e96545!important;}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>

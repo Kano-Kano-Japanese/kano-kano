@@ -69,3 +69,10 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Hero orbit corrected so LEARN/CONNECT revolve around the actual HEART center on mobile without crossing the heart tile.
 - Beginner title updated to 「初級日本語コース（ゼロ～N5目安）」.
 - Replaced the orange monthly-price summary on the three main course cards with lesson-duration information: 50-minute 1-to-1 for beginner/intermediate; 30- or 50-minute 1-to-1 choice for conversation.
+
+## v60
+- Mobile hero orbit moved inward so LEARN/CONNECT cards never clip at the right viewport edge.
+- Long コミュニケーション力 chip shifted inward while keeping the reason-illustration route.
+- EXPRESS feature pill keeps orange treatment with a blue leading dot.
+- Course duration summaries use the orange accent.
+
