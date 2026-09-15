@@ -5086,6 +5086,104 @@ html[lang="ja"] .hero-art .speech-card strong{
 }
 </style>
 
+
+<style id="v73-localized-frame-fit">
+/* v73: language-safe fitting for fixed visual frames. */
+.hero-art .heart-mark{
+  overflow:hidden!important;
+}
+.hero-art .heart-mark #heroArtHeartWord{
+  display:block!important;
+  width:82%!important;
+  max-width:82%!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  box-sizing:border-box!important;
+}
+/* HEART needs a smaller type size than one/two-character CJK/Thai words. */
+html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{
+  font-size:1.72rem!important;
+  letter-spacing:-.045em!important;
+}
+html[lang="th"] .hero-art .heart-mark #heroArtHeartWord,
+html[lang="ko"] .hero-art .heart-mark #heroArtHeartWord{
+  font-size:2.15rem!important;
+}
+@media(max-width:600px){
+  html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{
+    font-size:.78rem!important;
+    letter-spacing:-.055em!important;
+  }
+  html[lang="th"] .hero-art .heart-mark #heroArtHeartWord,
+  html[lang="ko"] .hero-art .heart-mark #heroArtHeartWord{
+    font-size:1.08rem!important;
+  }
+}
+@media(max-width:360px){
+  html[lang="en"] .hero-art .heart-mark #heroArtHeartWord{font-size:.72rem!important;}
+}
+
+/* The same protection applies to the HEART tile in the three reason illustrations. */
+.reason-v38-visual .rv-heart{overflow:hidden!important;}
+.reason-v38-visual .rv-heart strong{
+  display:block!important;
+  width:84%!important;
+  max-width:84%!important;
+  margin:0 auto!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+}
+html[lang="en"] .reason-v38-visual .rv-heart strong{
+  font-size:.86rem!important;
+  letter-spacing:-.045em!important;
+}
+html[lang="th"] .reason-v38-visual .rv-heart strong,
+html[lang="ko"] .reason-v38-visual .rv-heart strong{
+  font-size:1.13rem!important;
+}
+
+/* Founder name: never force localized names onto a single overflowing line. */
+.profile-summary-v38{min-width:0!important;}
+.profile-summary-name{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:visible!important;
+  line-height:1.22!important;
+}
+.profile-summary-name strong{
+  display:block!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  text-wrap:balance;
+  line-height:1.22!important;
+}
+.profile-content-blend .profile-name-line,
+.profile-content-blend .profile-name-line strong{
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+@media(max-width:600px){
+  .profile-summary-name{
+    font-size:clamp(.80rem,3.8vw,1.06rem)!important;
+    padding-left:2px!important;
+    padding-right:2px!important;
+  }
+  html[lang="en"] .profile-summary-name,
+  html[lang="th"] .profile-summary-name,
+  html[lang="ko"] .profile-summary-name{
+    font-size:clamp(.73rem,3.25vw,.94rem)!important;
+  }
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -5920,6 +6018,7 @@ html[lang="ja"] .hero-art .speech-card strong{
             configurePaymentLinks();
             if (window.updateApproxPrices) window.updateApproxPrices(lang);
             syncProfileButton(lang);
+            requestAnimationFrame(() => window.fitLocalizedFrames && window.fitLocalizedFrames());
         }
     </script>
 
@@ -6805,7 +6904,34 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
   }
   window.updateApproxPrices=updateApproxPrices;
 })();
-</script>\n</body>
+</script>\n
+<script id="v73-localized-auto-fit">
+/* Last-resort measurement pass for localized fixed-frame text. */
+(function(){
+  function fitSingleLine(el, parent, minPx){
+    if(!el || !parent) return;
+    el.style.removeProperty('font-size');
+    const cs=getComputedStyle(el);
+    let size=parseFloat(cs.fontSize)||16;
+    const maxW=Math.max(1,parent.clientWidth*.84);
+    let guard=0;
+    while(el.scrollWidth>maxW && size>minPx && guard++<40){
+      size-=0.5;
+      el.style.setProperty('font-size',size+'px','important');
+    }
+  }
+  function fitLocalizedFrames(){
+    const hw=document.getElementById('heroArtHeartWord');
+    if(hw) fitSingleLine(hw, hw.closest('.heart-mark'), 9);
+    document.querySelectorAll('.reason-v38-visual .rv-heart strong').forEach(el=>fitSingleLine(el,el.closest('.rv-heart'),8));
+  }
+  window.fitLocalizedFrames=fitLocalizedFrames;
+  window.addEventListener('resize',()=>requestAnimationFrame(fitLocalizedFrames),{passive:true});
+  document.addEventListener('DOMContentLoaded',()=>requestAnimationFrame(fitLocalizedFrames));
+})();
+</script>
+
+</body>
 </html>
 <style id="v61-hero-edge-without-shift">
 /* ===== v61: keep hero artwork in its original horizontal position =====

@@ -126,3 +126,9 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 ## v72 — hero orbit card typography
 - Kept the v68-sized LEARN / CONNECT cards unchanged.
 - Increased the Japanese `理解 / わかる` and `表現 / 伝わる` typography slightly for better readability, including mobile-specific sizing.
+
+## v73 multilingual frame fitting
+- Prevented the localized HEART/心 word from escaping the central hero tile. English HEART is scaled more aggressively and a measurement-based fallback shrinks only when necessary.
+- Applied equivalent protection to the center HEART tile inside the three reason-detail illustrations.
+- Made the representative profile name language-safe: long English/Thai/Korean/Japanese strings can wrap/scale inside the profile summary instead of overflowing its frame.
+- Removed the legacy forced single-line behavior from profile-name text in the expanded profile.
