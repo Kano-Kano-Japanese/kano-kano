@@ -76,3 +76,5 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - EXPRESS feature pill keeps orange treatment with a blue leading dot.
 - Course duration summaries use the orange accent.
 
+
+- v63: Repositioned the long 「コミュニケーション力」 pill so it clears HEART, CONNECT, and the right edge on mobile.
