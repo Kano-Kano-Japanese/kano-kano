@@ -33,3 +33,8 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Repositioned reason-detail orange labels into two fixed, equally spaced routes between the dashed and solid ellipses.
 - Lower-left route: 資格 → 経験 → 説明力. Upper-right route: フィードバック → 復習 → コミュニケーション力.
 - Preserved cumulative 01 → 02 → 03 positions and kept labels clear of わかる / 伝わる.
+
+## v52 mobile reason illustration polish
+- CONNECT / 「伝わる」 now uses the same gentle floating animation as LEARN / 「わかる」.
+- Orange labels are spread over the full lower-left and upper-right routes with even spacing while avoiding both LEARN and CONNECT.
+- REASON 01 now includes 「資格」 + 「経験」; later panels keep cumulative positions and add the remaining labels.
