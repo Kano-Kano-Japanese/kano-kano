@@ -48,3 +48,10 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 
 ## v54
 - 「わかる」「伝わる」の浮遊を margin ベースから transform ベースへ変更。特に bottom で絶対配置されている「伝わる」でも、10px の上下移動が確実に見えるようにした。
+
+
+## v55
+- Shortened and completed the Japanese “全員 国家資格” detail copy; removed 「指導経験や」.
+- Learning-flow lines now run circle-edge to circle-edge instead of through node centers.
+- On mobile, the next learning node remains fully hidden until the incoming line reaches its edge, then appears at the same threshold.
+- Removed the passive learning guide line so no line continues beyond the final 「つながる」 goal.

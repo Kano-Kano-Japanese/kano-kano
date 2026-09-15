@@ -4574,6 +4574,18 @@
 }
 </style>
 
+
+<style id="v55-learning-line-sync">
+/* ===== v55: node/line synchronization — line touches the next circle exactly when it appears ===== */
+/* Never draw a passive guide beyond the final goal. Only the two live segments are visible. */
+.learning-cycle::before{display:none!important}
+@media(max-width:800px){
+  /* Future steps are fully hidden. Their circle appears only when the growing line reaches it. */
+  .learning-step:not(.is-active){opacity:0!important;transform:none!important}
+  .learning-step.is-active{opacity:1!important;transform:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -4657,7 +4669,7 @@
 
                 <div class="reason-detail-stage" id="reasonDetailStage">
                     <div id="detail-feat1" class="accordion-detail feature-detail-full">
-                        <p id="df1Desc">🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格を持っていることを講師としてのスタートラインとし、そのうえで指導経験や説明のわかりやすさ、学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではなく、専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせて丁寧に指導します。「何となく話せる」だけではなく、文法・語彙・発音の背景まで正しく説明できる、質の高いレッスンを提供することが、Kano×Kanoの基本方針です。</p>
+                        <p id="df1Desc">🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格は講師としてのスタートライン。そのうえで、説明のわかりやすさと学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではありません。専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせ、文法・語彙・発音の背景まで丁寧に説明します。正しく、わかりやすく説明できる質の高いレッスンを提供することが、Kano×Kanoの基本方針です。</p>
                     </div>
                     <div id="detail-feat2" class="accordion-detail feature-detail-full">
                         <p id="df2Desc">✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。</p>
@@ -5307,7 +5319,7 @@
                 feat1Title: "全員<br>国家資格", feat1Desc: "資格と専門性を備えた講師だけがレッスンを担当します。", feat1Hint: "詳しく見る →",
                 feat2Title: "授業の質", feat2Desc: "誰でも登録できる講師マーケットではなく、塾の基準で講師と授業の質を管理します。", feat2Hint: "詳しく見る →",
                 feat3Title: "1対1<br>継続サポート", feat3Desc: "一人ひとりの目標や弱点に合わせ、授業から復習まで継続して支えます。", feat3Hint: "詳しく見る →",
-                df1Desc: "🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格を持っていることを講師としてのスタートラインとし、そのうえで指導経験や説明のわかりやすさ、学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではなく、専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせて丁寧に指導します。「何となく話せる」だけではなく、文法・語彙・発音の背景まで正しく説明できる、質の高いレッスンを提供することが、Kano×Kanoの基本方針です。",
+                df1Desc: "🎓 <strong>詳細解説：</strong><br>Kano×Kanoでは、レッスンを担当する講師全員が日本語教育に関する国家資格を保有しています。資格は講師としてのスタートライン。そのうえで、説明のわかりやすさと学習者とのコミュニケーションも大切にしています。誰でも講師として登録できるサービスではありません。専門的な知識を持つ講師が、一人ひとりの理解度や目的に合わせ、文法・語彙・発音の背景まで丁寧に説明します。正しく、わかりやすく説明できる質の高いレッスンを提供することが、Kano×Kanoの基本方針です。",
                 df2Desc: "✅ <strong>詳細解説：</strong><br>Kano×Kanoは、誰でも自由に講師登録できるマーケットプレイス型サービスではありません。運営側が資格だけでなく、指導経験・説明力・コミュニケーション力なども確認し、塾の基準を満たした講師のみがレッスンを担当します。さらに、教材・授業方針・学習記録を塾内で共有することで、担当講師が変わっても学習の流れが途切れにくく、一定水準の授業品質を保てる体制を整えています。",
                 df3Desc: "📝 <strong>詳細解説：</strong><br>1対1だからこそ、学習者一人ひとりのレベル・目的・苦手分野に合わせて、授業内容や進度、練習量を柔軟に調整できます。授業中だけで終わらず、QuizletやGoogleフォームなどを活用して、語彙・漢字・文法の復習や必要に応じた宿題・フィードバックまでサポート。次のレッスンにつなげながら、自分のペースで学び、苦手を置き去りにしない学習を目指します。",
                 profileTitle: "代表プロフィール（Profile）", profileName: "加納 春紀（かのう はるき）",
@@ -6261,6 +6273,7 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
   if(!sec||!cycle||steps.length<3||!blue||!orange) return;
   const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
   const progressAcross=(trigger,start,end)=>clamp((start-trigger)/Math.min(-1,start-end),0,1);
+  const setLineGeometry=(el,props)=>{ for(const [name,value] of Object.entries(props)) el.style.setProperty(name,value,'important'); };
 
   function update(){
     const vh=window.innerHeight||document.documentElement.clientHeight;
@@ -6272,42 +6285,55 @@ body.reason-v33-open .floating-trial-btn{opacity:0!important;pointer-events:none
     let stage1=0,stage2=0;
 
     if(isMobile){
-      /* The growing tip stays at 66% of the viewport: visibly below centre.
-         A segment therefore starts only when its source node reaches that line. */
+      /* Keep the growing tip slightly below viewport centre. The progress value
+         is still driven by node centres, but each visible segment is drawn only
+         from the OUTER EDGE of one circle to the OUTER EDGE of the next.
+         Therefore no line can be seen inside an unrevealed circle. */
       const triggerY=vh*.66;
       stage1=progressAcross(triggerY,centers[0],centers[1]);
       stage2=progressAcross(triggerY,centers[1],centers[2]);
 
       const x=rects[0].left-cycleRect.left+rects[0].width/2;
-      const y1=centers[0]-cycleRect.top;
-      const y2=centers[1]-cycleRect.top;
-      const y3=centers[2]-cycleRect.top;
-      Object.assign(blue.style,{left:`${x}px`,top:`${y1}px`,width:'3px',height:`${Math.max(0,y2-y1)*stage1}px`,transform:'translateX(-50%)'});
-      Object.assign(orange.style,{left:`${x}px`,top:`${y2}px`,width:'3px',height:`${Math.max(0,y3-y2)*stage2}px`,transform:'translateX(-50%)'});
+      const firstStart=rects[0].bottom-cycleRect.top;
+      const firstEnd=rects[1].top-cycleRect.top;
+      const secondStart=rects[1].bottom-cycleRect.top;
+      const secondEnd=rects[2].top-cycleRect.top;
+      setLineGeometry(blue,{
+        left:`${x}px`,top:`${firstStart}px`,width:'3px',
+        height:`${Math.max(0,firstEnd-firstStart)*stage1}px`,transform:'translateX(-50%)'
+      });
+      setLineGeometry(orange,{
+        left:`${x}px`,top:`${secondStart}px`,width:'3px',
+        height:`${Math.max(0,secondEnd-secondStart)*stage2}px`,transform:'translateX(-50%)'
+      });
 
+      /* Reveal the next circle at exactly the same threshold at which the
+         preceding segment reaches 100%. The final circle is the goal: there is
+         deliberately no third segment below it. */
       steps[0].classList.toggle('is-active',centers[0]<=triggerY);
-      steps[1].classList.toggle('is-active',centers[1]<=triggerY);
-      steps[2].classList.toggle('is-active',centers[2]<=triggerY);
-      bridge?.classList.toggle('is-active',centers[2]<=vh*.48);
+      steps[1].classList.toggle('is-active',stage1>=.999);
+      steps[2].classList.toggle('is-active',stage2>=.999);
+      bridge?.classList.toggle('is-active',stage2>=.999 && centers[2]<=vh*.48);
     }else{
-      /* Keep the established desktop horizontal behaviour; the node-centre
-         trigger above is intentionally mobile-only because desktop nodes share
-         the same Y coordinate. */
       const startY=vh*.82;
       const endY=vh*.18;
       const raw=clamp((startY-cycleRect.top)/Math.max(1,cycleRect.height-(startY-endY)),0,1);
       stage1=clamp(raw/.45,0,1);
       stage2=raw<=.78?0:clamp((raw-.78)/.20,0,1);
 
-      const cxs=rects.map(r=>r.left+r.width/2-cycleRect.left);
+      /* Desktop segments also stop at circle edges, never through their centres. */
+      const firstStart=rects[0].right-cycleRect.left;
+      const firstEnd=rects[1].left-cycleRect.left;
+      const secondStart=rects[1].right-cycleRect.left;
+      const secondEnd=rects[2].left-cycleRect.left;
       const y=rects[0].top-cycleRect.top+rects[0].height/2;
-      Object.assign(blue.style,{left:`${cxs[0]}px`,top:`${y}px`,height:'3px',width:`${Math.max(0,cxs[1]-cxs[0])*stage1}px`,transform:'none'});
-      Object.assign(orange.style,{left:`${cxs[1]}px`,top:`${y}px`,height:'3px',width:`${Math.max(0,cxs[2]-cxs[1])*stage2}px`,transform:'none'});
+      setLineGeometry(blue,{left:`${firstStart}px`,top:`${y}px`,height:'3px',width:`${Math.max(0,firstEnd-firstStart)*stage1}px`,transform:'none'});
+      setLineGeometry(orange,{left:`${secondStart}px`,top:`${y}px`,height:'3px',width:`${Math.max(0,secondEnd-secondStart)*stage2}px`,transform:'none'});
 
       steps[0].classList.toggle('is-active',raw>=.04);
-      steps[1].classList.toggle('is-active',raw>=.43);
-      steps[2].classList.toggle('is-active',raw>=.86);
-      bridge?.classList.toggle('is-active',raw>=.96);
+      steps[1].classList.toggle('is-active',stage1>=.999);
+      steps[2].classList.toggle('is-active',stage2>=.999);
+      bridge?.classList.toggle('is-active',stage2>=.999);
     }
 
     cycle.style.setProperty('--learning-stage1',stage1.toFixed(4));
