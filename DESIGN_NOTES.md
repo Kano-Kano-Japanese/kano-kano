@@ -44,3 +44,7 @@ Reason orbs now use a single exact-position fixed clone. The clone first paints 
 - Rebalanced the reason-detail orange labels across the full left and right arcs.
 - Left route: 資格 → 経験 → 説明力; right route: フィードバック → 復習 → コミュニケーション力.
 - CONNECT / 伝わる now uses the exact same rvFloat animation and phase as LEARN / わかる.
+
+
+## v54
+- 「わかる」「伝わる」の浮遊を margin ベースから transform ベースへ変更。特に bottom で絶対配置されている「伝わる」でも、10px の上下移動が確実に見えるようにした。

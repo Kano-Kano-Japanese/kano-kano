@@ -4544,6 +4544,36 @@
 }
 </style>
 
+
+
+<style id="v54-connect-real-float">
+/* ===== v54: make both LEARN / わかる and CONNECT / 伝わる visibly float =====
+   The old rvFloat keyframe moved margin-top. CONNECT is absolutely positioned
+   from the bottom, so that movement could be visually cancelled by layout.
+   Animate transform instead; this produces an unmistakable vertical float while
+   preserving each card's tilt. */
+.reason-v38-visual .rv-learn{
+  --rv-card-angle:-6deg;
+}
+.reason-v38-visual .rv-connect{
+  --rv-card-angle:6deg;
+}
+.reason-v38-visual .rv-learn,
+.reason-v38-visual .rv-connect{
+  animation:rvChipFloatV54 4.8s ease-in-out infinite!important;
+  animation-delay:0s!important;
+  will-change:transform!important;
+}
+@keyframes rvChipFloatV54{
+  0%,100%{transform:translateY(0) rotate(var(--rv-card-angle))}
+  50%{transform:translateY(-10px) rotate(var(--rv-card-angle))}
+}
+@media (prefers-reduced-motion:reduce){
+  .reason-v38-visual .rv-learn,
+  .reason-v38-visual .rv-connect{animation:none!important}
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
