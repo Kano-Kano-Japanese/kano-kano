@@ -3950,6 +3950,113 @@
   .learning-step{padding-bottom:28px!important}
 }
 </style>
+
+
+<style id="v47-mobile-illustration-polish">
+/* ===== v47: cumulative reason labels + mobile readability ===== */
+
+/* Mobile HERO HEART caption: keep the tighter spacing from v46, but make
+   「ことばは心をつなぐ」 visibly larger. The English subline stays subtle. */
+@media(max-width:600px){
+  .hero-art .heart-mark small{
+    font-size:.30rem!important;
+    line-height:1.05!important;
+    font-weight:800!important;
+    bottom:12px!important;
+    left:5%!important;right:5%!important;max-width:90%!important;
+  }
+  .hero-art .heart-mark small b{
+    font-size:.118rem!important;
+    line-height:1!important;
+    margin-top:1px!important;
+  }
+}
+@media(max-width:360px){
+  .hero-art .heart-mark small{font-size:.28rem!important;bottom:11px!important}
+  .hero-art .heart-mark small b{font-size:.108rem!important}
+}
+
+/* Every orange tag now uses one consistent visual size.  01 -> 02 -> 03 is
+   cumulative: labels that already exist never move in the next illustration. */
+.reason-v38-visual .rv-tag{
+  min-height:28px!important;
+  padding:6px 10px!important;
+  font-size:.54rem!important;
+  line-height:1!important;
+  font-weight:900!important;
+  box-sizing:border-box!important;
+  transform:translate(-50%,-50%)!important;
+  margin:0!important;
+  z-index:30!important;
+}
+/* The long label keeps the same type size, with slightly tighter horizontal
+   padding so it remains comfortably inside the frame on phones. */
+.reason-v38-visual .rv-tag-comm{padding-left:9px!important;padding-right:9px!important}
+
+/* QUALIFICATION — same exact slot in 01, 02 and 03. */
+.reason-v38-visual.cert .rv-tag-cert,
+.reason-v38-visual.quality .rv-tag-cert,
+.reason-v38-visual.personal .rv-tag-cert{
+  left:50%!important;top:10%!important;right:auto!important;bottom:auto!important;
+}
+
+/* EXPERIENCE — introduced in 02 and kept in exactly the same place in 03. */
+.reason-v38-visual.quality .rv-tag-exp,
+.reason-v38-visual.personal .rv-tag-exp{
+  left:17%!important;top:50%!important;right:auto!important;bottom:auto!important;
+}
+
+/* EXPLANATION — directly below EXPERIENCE, same in 02 and 03. */
+.reason-v38-visual.quality .rv-tag-explain,
+.reason-v38-visual.personal .rv-tag-explain{
+  left:17%!important;top:70%!important;right:auto!important;bottom:auto!important;
+}
+
+/* COMMUNICATION — introduced in 02 and kept in the same open right-side slot
+   in 03, away from the CONNECT card. */
+.reason-v38-visual.quality .rv-tag-comm,
+.reason-v38-visual.personal .rv-tag-comm{
+  left:80%!important;top:50%!important;right:auto!important;bottom:auto!important;
+}
+
+/* 03 only: add two new labels without disturbing the four inherited ones. */
+.reason-v38-visual.personal .rv-tag-review{
+  left:80%!important;top:27%!important;right:auto!important;bottom:auto!important;
+}
+.reason-v38-visual.personal .rv-tag-feedback{
+  left:50%!important;top:90%!important;right:auto!important;bottom:auto!important;
+}
+
+/* CONNECT / 「伝わる」 must be fully opaque.  This foreground cover sits
+   above both orbit lines, so no solid/dashed circle can show through the card. */
+.reason-v38-visual .rv-connect{
+  position:absolute!important;
+  z-index:40!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  opacity:1!important;
+  background:#355bd5!important;
+  background-image:none!important;
+  box-shadow:0 12px 26px rgba(5,24,82,.24)!important;
+}
+.reason-v38-visual .rv-connect::before{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  inset:-3px!important;
+  z-index:0!important;
+  border-radius:inherit!important;
+  background:#355bd5!important;
+  opacity:1!important;
+}
+.reason-v38-visual .rv-connect::after{display:none!important}
+.reason-v38-visual .rv-connect small,
+.reason-v38-visual .rv-connect strong{
+  position:relative!important;
+  z-index:2!important;
+}
+</style>
+
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>

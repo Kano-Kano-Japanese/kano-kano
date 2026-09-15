@@ -7,3 +7,12 @@ Kano×Kano v30
 
 ## v32
 Reason orbs now use a single exact-position fixed clone. The clone first paints over the tapped orb, then visibly interpolates left/top/width/height for 1.7 s. Details fade in only after expansion; closing reverses the exact geometry back to the frozen source before handoff.
+
+## v47 mobile illustration polish
+- Mobile HEART caption 「ことばは心をつなぐ」 enlarged while keeping the compact vertical spacing.
+- Reason-detail orange labels now accumulate consistently from 01 → 02 → 03: existing labels retain identical positions.
+- 「説明力」 moved directly below 「経験」.
+- All orange labels enlarged to a common size; 「資格」「復習」「フィードバック」 are easier to read on phones.
+- 03 「経験」「コミュニケーション力」 reuse the 02 positions to avoid LEARN/CONNECT overlap.
+- CONNECT/「伝わる」 receives a fully opaque foreground cover so orbit lines cannot show through.
+
