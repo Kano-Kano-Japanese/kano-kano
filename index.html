@@ -5832,6 +5832,107 @@ html[lang="en"] .hero-art #heroArtLearnKicker{
 }
 </style>
 
+
+<style id="v95-support-progressive-orbit">
+/* v95: progressive reveal — once a step opens it stays open; after lap one, only the arrow keeps orbiting. */
+#sec-continuity .support-diagram{
+  width:min(620px,100%)!important;height:520px!important;margin:-6px auto 2px!important;
+}
+#sec-continuity .support-route .route-base{
+  stroke:#e9eef7!important;stroke-width:4!important;
+}
+#sec-continuity .support-segment{
+  stroke:#4b78df!important;stroke-width:5.5!important;stroke-linecap:round!important;
+  opacity:0!important;transition:opacity .5s ease!important;filter:drop-shadow(0 2px 5px rgba(49,89,216,.12))!important;
+}
+#sec-continuity .support-segment.is-visited{opacity:1!important}
+#sec-continuity .support-segment.is-preview{opacity:.28!important}
+#sec-continuity .support-arrow-marker{
+  opacity:0;filter:drop-shadow(0 5px 10px rgba(40,80,180,.25));will-change:transform;
+}
+#sec-continuity .support-arrow-glow{fill:rgba(73,118,222,.12)!important}
+#sec-continuity .support-arrow-dot{fill:#fff!important;stroke:#4b78df!important;stroke-width:2.2!important}
+#sec-continuity .support-arrow-head{
+  fill:#3f6ed6!important;stroke:#fff!important;stroke-width:1.25!important;stroke-linejoin:round!important;
+}
+#sec-continuity .support-center{
+  width:112px!important;height:112px!important;padding:12px!important;
+  background:linear-gradient(145deg,#ff9f55,#f47b31)!important;
+  box-shadow:0 15px 34px rgba(230,112,43,.20),inset 0 1px 0 rgba(255,255,255,.42)!important;
+}
+#sec-continuity .support-center strong{font-size:1rem!important;letter-spacing:.02em!important}
+
+#sec-continuity .support-node{
+  width:84px!important;height:84px!important;min-height:84px!important;padding:8px!important;border-radius:50%!important;
+  background:linear-gradient(155deg,#eef4ff,#dce8ff)!important;border:1px solid #c8d8f8!important;
+  box-shadow:0 7px 18px rgba(48,82,160,.10),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  color:#3159d8!important;cursor:pointer!important;outline:none!important;
+  transform:translate(-50%,-50%) scale(1)!important;
+  transition:width .62s cubic-bezier(.2,.8,.2,1),height .62s cubic-bezier(.2,.8,.2,1),background .45s ease,border-color .45s ease,box-shadow .45s ease,transform .45s ease!important;
+  -webkit-tap-highlight-color:transparent;
+}
+#sec-continuity .support-node:hover{transform:translate(-50%,-50%) scale(1.035)!important}
+#sec-continuity .support-node:focus-visible{box-shadow:0 0 0 4px rgba(49,89,216,.16),0 10px 25px rgba(48,82,160,.16)!important}
+#sec-continuity .support-node .support-icon,
+#sec-continuity .support-node:nth-of-type(even) .support-icon{
+  width:22px!important;height:22px!important;margin:0 auto 4px!important;background:#fff!important;color:#3159d8!important;
+  border:1px solid rgba(49,89,216,.12)!important;font-size:.6rem!important;box-shadow:0 3px 8px rgba(49,89,216,.08)!important;
+}
+#sec-continuity .support-node h3{
+  margin:0!important;color:#3159d8!important;font-size:.58rem!important;line-height:1.16!important;font-weight:850!important;text-shadow:none!important;
+}
+#sec-continuity .support-node p{
+  display:block!important;max-height:0!important;opacity:0!important;margin:0!important;overflow:hidden!important;
+  color:rgba(255,255,255,.94)!important;font-size:.67rem!important;line-height:1.48!important;text-align:center!important;
+  transition:max-height .48s ease .08s,opacity .32s ease .16s,margin .45s ease!important;
+}
+#sec-continuity .support-node.is-revealed{
+  width:150px!important;height:150px!important;min-height:150px!important;padding:15px 14px!important;
+  background:linear-gradient(145deg,#5f88e9 0%,#3159d8 78%)!important;border-color:rgba(255,255,255,.45)!important;
+  box-shadow:0 14px 31px rgba(44,79,175,.20),inset 0 1px 0 rgba(255,255,255,.28)!important;color:#fff!important;
+}
+#sec-continuity .support-node.is-revealed .support-icon{
+  width:29px!important;height:29px!important;margin-bottom:6px!important;background:rgba(255,255,255,.96)!important;color:#3159d8!important;font-size:.72rem!important;
+}
+#sec-continuity .support-node.is-revealed h3{color:#fff!important;font-size:.83rem!important;line-height:1.22!important}
+#sec-continuity .support-node.is-revealed p{max-height:104px!important;opacity:1!important;margin-top:6px!important}
+#sec-continuity:not(.support-cycle-complete) .support-node.is-current.is-revealed{
+  box-shadow:0 0 0 5px rgba(84,127,229,.13),0 18px 38px rgba(44,79,175,.24),inset 0 1px 0 rgba(255,255,255,.30)!important;
+}
+#sec-continuity.support-cycle-complete .support-node.is-revealed{
+  box-shadow:0 12px 27px rgba(44,79,175,.17),inset 0 1px 0 rgba(255,255,255,.28)!important;
+}
+#sec-continuity.support-cycle-complete .support-node.is-current{
+  box-shadow:0 12px 27px rgba(44,79,175,.17),inset 0 1px 0 rgba(255,255,255,.28)!important;
+}
+#sec-continuity .support-footer{margin-top:0!important}
+
+@media(max-width:760px){
+  #sec-continuity .support-diagram{width:calc(100% + 10px)!important;max-width:none!important;height:410px!important;margin:-8px -5px 0!important}
+  #sec-continuity .support-center{width:74px!important;height:74px!important;padding:7px!important}
+  #sec-continuity .support-center strong{font-size:.68rem!important}
+  #sec-continuity .support-node{width:62px!important;height:62px!important;min-height:62px!important;padding:6px 5px!important}
+  #sec-continuity .support-node .support-icon,#sec-continuity .support-node:nth-of-type(even) .support-icon{width:18px!important;height:18px!important;margin-bottom:3px!important;font-size:.50rem!important}
+  #sec-continuity .support-node h3{font-size:.49rem!important;line-height:1.13!important}
+  #sec-continuity .support-node p{font-size:.50rem!important;line-height:1.34!important}
+  #sec-continuity .support-node.is-revealed{width:116px!important;height:116px!important;min-height:116px!important;padding:10px 9px!important}
+  #sec-continuity .support-node.is-revealed .support-icon{width:23px!important;height:23px!important;margin-bottom:4px!important;font-size:.58rem!important}
+  #sec-continuity .support-node.is-revealed h3{font-size:.65rem!important;line-height:1.16!important}
+  #sec-continuity .support-node.is-revealed p{max-height:74px!important;margin-top:4px!important;font-size:.48rem!important;line-height:1.30!important}
+}
+@media(max-width:390px){
+  #sec-continuity .support-diagram{height:392px!important}
+  #sec-continuity .support-node.is-revealed{width:110px!important;height:110px!important;min-height:110px!important;padding:9px 8px!important}
+  #sec-continuity .support-node.is-revealed h3{font-size:.61rem!important}
+  #sec-continuity .support-node.is-revealed p{font-size:.455rem!important;line-height:1.27!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #sec-continuity .support-node{transition:none!important}
+  #sec-continuity .support-arrow-marker{display:none!important}
+  #sec-continuity .support-segment{transition:none!important}
+}
+</style>
+
 </head>
 <body>
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
@@ -7712,7 +7813,7 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
 })();
 </script>
 
-<script id="v94-support-cycle-controller">
+<script id="v95-support-cycle-controller">
 (() => {
   const section = document.getElementById('sec-continuity');
   const diagram = document.getElementById('supportDiagram');
@@ -7720,128 +7821,202 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
   const base = route?.querySelector('.route-base');
   const marker = route?.querySelector('.support-arrow-marker');
   if (!section || !diagram || !route || !base || !marker) return;
+
   const nodes = Array.from(diagram.querySelectorAll('.support-node[data-support-step]'));
   const segments = Array.from(route.querySelectorAll('.support-segment'));
   if (nodes.length !== 5 || segments.length !== 5) return;
 
-  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const reduced = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const angles = [-90,-18,54,126,198].map(v => v * Math.PI / 180);
   let points = [];
-  let active = 0, dwellTimer = 0, handoffTimer = 0, running = false, raf = 0;
+  let revealed = 0;       // highest step opened during the first lap, 0..5
+  let current = 0;        // marker is currently at this node index
+  let running = false;
+  let complete = false;
+  let dwellTimer = 0;
+  let raf = 0;
+  let actionToken = 0;
   const dwellMs = 3000;
-  const travelMs = 2200;
+  const travelMs = 2450;
+  const loopSegmentMs = 2550;
+  const jumpSegmentMs = 360;
 
-  function clearTimers(){
-    clearTimeout(dwellTimer); clearTimeout(handoffTimer);
+  function clearMotion(){
+    clearTimeout(dwellTimer);
+    dwellTimer = 0;
     if (raf) cancelAnimationFrame(raf);
-    dwellTimer = handoffTimer = raf = 0;
+    raf = 0;
+    actionToken++;
+  }
+
+  function setMarkerAtNode(index, visible=true){
+    if (!points[index]) return;
+    const next = points[(index+1)%points.length];
+    const p = points[index];
+    const deg = Math.atan2(next.y-p.y,next.x-p.x)*180/Math.PI;
+    marker.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${deg})`);
+    marker.style.opacity = visible ? '1' : '0';
   }
 
   function layout(){
-    const w = diagram.clientWidth || 600, h = diagram.clientHeight || 500;
+    const w = diagram.clientWidth || 600;
+    const h = diagram.clientHeight || 500;
     const mobile = window.matchMedia('(max-width:760px)').matches;
-    const cx = w / 2, cy = h / 2;
-    const activeSize = mobile ? (w < 360 ? 118 : 124) : 164;
-    const edgePad = mobile ? 4 : 12;
-    const safeX = Math.max(96, (w - activeSize) / 2 - edgePad);
-    const safeY = Math.max(96, (h - activeSize) / 2 - edgePad);
-    const r = Math.min(mobile ? 128 : 176, safeX, safeY);
-    points = angles.map(a => ({x:cx + r*Math.cos(a), y:cy + r*Math.sin(a)}));
-    route.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    base.setAttribute('cx', cx); base.setAttribute('cy', cy); base.setAttribute('r', r);
-    nodes.forEach((node,i) => {
-      node.style.setProperty('left', `${points[i].x}px`, 'important');
-      node.style.setProperty('top', `${points[i].y}px`, 'important');
+    const cx = w/2, cy = h/2;
+    const openSize = mobile ? (w < 360 ? 110 : 116) : 150;
+    const pad = mobile ? 4 : 12;
+    const safeX = Math.max(90,(w-openSize)/2-pad);
+    const safeY = Math.max(90,(h-openSize)/2-pad);
+    const r = Math.min(mobile ? 118 : 174,safeX,safeY);
+    points = angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}));
+    route.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    base.setAttribute('cx',cx); base.setAttribute('cy',cy); base.setAttribute('r',r);
+    nodes.forEach((node,i)=>{
+      node.style.setProperty('left',`${points[i].x}px`,'important');
+      node.style.setProperty('top',`${points[i].y}px`,'important');
     });
-    segments.forEach((seg,i) => {
-      const a = points[i], b = points[(i+1)%5];
-      seg.setAttribute('d', `M ${a.x} ${a.y} A ${r} ${r} 0 0 1 ${b.x} ${b.y}`);
-      seg.style.strokeDasharray = '';
-      seg.style.strokeDashoffset = '';
+    segments.forEach((seg,i)=>{
+      const a=points[i], b=points[(i+1)%5];
+      seg.setAttribute('d',`M ${a.x} ${a.y} A ${r} ${r} 0 0 1 ${b.x} ${b.y}`);
+      seg.style.strokeDasharray=''; seg.style.strokeDashoffset='';
     });
+    setMarkerAtNode(current,running && !reduced);
   }
 
-  function setActive(index){
-    nodes.forEach((node,i) => node.classList.toggle('is-active', i === index));
-    active = index;
+  function syncNodes(){
+    nodes.forEach((node,i)=>{
+      const open = complete || i < revealed;
+      node.classList.toggle('is-revealed',open);
+      node.classList.toggle('is-current',i===current);
+      node.setAttribute('aria-pressed', open ? 'true' : 'false');
+    });
+    section.classList.toggle('support-cycle-complete',complete);
+    segments.forEach((seg,i)=>seg.classList.toggle('is-visited', complete || i < Math.max(0,revealed-1)));
   }
 
-  function resetTrail(){
-    segments.forEach(seg => seg.classList.remove('is-trail','is-fading'));
-    marker.style.opacity = '0';
+  function revealThrough(stepNumber){
+    revealed = Math.max(revealed,Math.max(1,Math.min(5,stepNumber)));
+    if (revealed >= 5) complete = true;
+    syncNodes();
   }
 
-  function fadeOldestFor(segmentIndex){
-    // Keep a three-segment moving trail. When 4→5 starts, 1→2 is the first line to fade.
-    const oldIndex = (segmentIndex + 2) % 5;
-    const old = segments[oldIndex];
-    if (!old.classList.contains('is-trail')) return;
-    old.classList.add('is-fading');
-    setTimeout(() => old.classList.remove('is-trail','is-fading'), 1850);
-  }
-
-  function drawArrow(seg, index, done){
-    const len = seg.getTotalLength();
-    fadeOldestFor(index);
-    seg.classList.add('is-trail');
-    seg.classList.remove('is-fading');
-    seg.style.strokeDasharray = String(len);
-    seg.style.strokeDashoffset = String(len);
-    marker.style.opacity = '1';
-    const start = performance.now();
-    const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
-    const frame = now => {
-      if (!running) { marker.style.opacity = '0'; return; }
-      const raw = Math.min(1, (now-start)/travelMs), p = ease(raw);
-      seg.style.strokeDashoffset = String(len*(1-p));
-      const at = Math.min(len, Math.max(0, len*p));
-      const pt = seg.getPointAtLength(at);
-      const pt2 = seg.getPointAtLength(Math.min(len, at+3));
-      const deg = Math.atan2(pt2.y-pt.y, pt2.x-pt.x)*180/Math.PI;
-      marker.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${deg})`);
-      if (raw < 1) raf = requestAnimationFrame(frame);
-      else {
-        raf = 0;
-        marker.style.opacity = '0';
-        seg.style.strokeDasharray = '';
-        seg.style.strokeDashoffset = '';
-        if (done) done();
-      }
+  function animateAlong(seg,index,duration,token,onDone){
+    const len=seg.getTotalLength();
+    marker.style.opacity='1';
+    const start=performance.now();
+    const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    const frame=now=>{
+      if (!running || token!==actionToken) return;
+      const raw=Math.min(1,(now-start)/duration), p=ease(raw);
+      const at=Math.min(len,Math.max(0,len*p));
+      const pt=seg.getPointAtLength(at);
+      const pt2=seg.getPointAtLength(Math.min(len,at+3));
+      const deg=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
+      marker.setAttribute('transform',`translate(${pt.x} ${pt.y}) rotate(${deg})`);
+      if(raw<1) raf=requestAnimationFrame(frame);
+      else{raf=0; current=(index+1)%5; syncNodes(); onDone?.();}
     };
-    raf = requestAnimationFrame(frame);
+    raf=requestAnimationFrame(frame);
   }
 
-  function schedule(){
-    clearTimeout(dwellTimer); clearTimeout(handoffTimer);
-    if (!running || reduced) return;
-    dwellTimer = setTimeout(() => {
-      if (!running) return;
-      const index = active;
-      drawArrow(segments[index], index, () => {
-        if (!running) return;
-        handoffTimer = setTimeout(() => {
-          setActive((index+1)%nodes.length);
-          schedule();
-        }, 260);
+  function scheduleFirstLap(){
+    clearTimeout(dwellTimer);
+    if (!running || reduced || complete) return;
+    dwellTimer=setTimeout(()=>{
+      if(!running || complete) return;
+      const from=current;
+      const token=actionToken;
+      segments[from].classList.add('is-visited');
+      animateAlong(segments[from],from,travelMs,token,()=>{
+        if(token!==actionToken || !running) return;
+        revealThrough(current+1);
+        if(complete){
+          segments.forEach(s=>s.classList.add('is-visited'));
+          startLoop();
+        }else scheduleFirstLap();
       });
-    }, dwellMs);
+    },dwellMs);
   }
+
+  function loopNext(token){
+    if(!running || !complete || reduced || token!==actionToken) return;
+    const from=current;
+    animateAlong(segments[from],from,loopSegmentMs,token,()=>loopNext(token));
+  }
+
+  function startLoop(){
+    if(!running || reduced) return;
+    complete=true; revealed=5; syncNodes();
+    segments.forEach(s=>s.classList.add('is-visited'));
+    const token=actionToken;
+    loopNext(token);
+  }
+
+  function fastAdvanceTo(target){
+    target=Math.max(0,Math.min(4,target));
+    clearMotion();
+    const token=actionToken;
+    if(!running) running=true;
+
+    if(!complete && target+1>revealed){
+      // Make every skipped step visibly part of the learner's history immediately.
+      revealThrough(target+1);
+    }
+
+    // Already-open nodes remain open. If the requested node is behind us, snap there rather than revealing later steps.
+    if(target<=current || complete){
+      current=target; syncNodes(); setMarkerAtNode(current,!reduced);
+      if(complete) startLoop(); else scheduleFirstLap();
+      return;
+    }
+
+    const hops=[];
+    for(let i=current;i<target;i++) hops.push(i);
+    const runHop=(pos)=>{
+      if(token!==actionToken || !running) return;
+      if(pos>=hops.length){
+        current=target; syncNodes(); setMarkerAtNode(current,!reduced);
+        if(complete) startLoop(); else scheduleFirstLap();
+        return;
+      }
+      const segIndex=hops[pos];
+      segments[segIndex].classList.add('is-visited');
+      animateAlong(segments[segIndex],segIndex,jumpSegmentMs,token,()=>runHop(pos+1));
+    };
+    runHop(0);
+  }
+
+  nodes.forEach((node,i)=>{
+    node.setAttribute('role','button');
+    node.setAttribute('tabindex','0');
+    node.setAttribute('aria-pressed','false');
+    const activate=()=>fastAdvanceTo(i);
+    node.addEventListener('click',activate);
+    node.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}
+    });
+  });
 
   function start(){
-    if (running) return;
-    running = true; layout(); resetTrail(); setActive(active); schedule();
-  }
-  function stop(){
-    running = false; clearTimers(); marker.style.opacity = '0';
+    if(running) return;
+    running=true;
+    if(revealed===0){revealed=1;current=0;}
+    layout(); syncNodes(); setMarkerAtNode(current,!reduced);
+    if(reduced){revealed=5;complete=true;syncNodes();segments.forEach(s=>s.classList.add('is-visited'));return;}
+    if(complete) startLoop(); else scheduleFirstLap();
   }
 
-  layout(); resetTrail(); setActive(0);
-  window.addEventListener('resize', () => { layout(); setActive(active); }, {passive:true});
-  if (reduced) return;
-  const io = new IntersectionObserver(entries => {
-    const visible = entries.some(e => e.isIntersecting && e.intersectionRatio > .15);
-    if (visible) start(); else stop();
-  }, {threshold:[0,.15,.35]});
+  function stop(){
+    running=false; clearMotion(); marker.style.opacity='0';
+  }
+
+  layout(); revealThrough(1); current=0; syncNodes(); marker.style.opacity='0';
+  window.addEventListener('resize',()=>{layout();syncNodes();},{passive:true});
+  if(reduced){revealed=5;complete=true;syncNodes();segments.forEach(s=>s.classList.add('is-visited'));return;}
+  const io=new IntersectionObserver(entries=>{
+    const visible=entries.some(e=>e.isIntersecting&&e.intersectionRatio>.12);
+    if(visible) start(); else stop();
+  },{threshold:[0,.12,.3]});
   io.observe(section);
 })();
 </script>
