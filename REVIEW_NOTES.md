@@ -71,3 +71,39 @@
 - Expanded reason-detail illustration is moved to the top of the phone viewport.
 - Orange route labels are substantially larger while remaining single-line.
 - Detail overlay uses nearly the full dynamic viewport height; explanation text is no longer clipped and can scroll only when truly necessary.
+
+
+## v85 pricing update
+- Beginner 50-min monthly plans: ¥12,000 / ¥23,200 / ¥33,600 for 4 / 8 / 12 lessons.
+- Intermediate 50-min monthly plans: same pricing.
+- Local-currency approximate conversion source amounts updated.
+- Daily conversation and JLPT pricing unchanged.
+- Stripe sandbox: created new recurring Prices and Payment Links for the six beginner/intermediate plans; website test links now point to the new sandbox links. Old sandbox payment links deactivated.
+- Supabase stripe_plan_mappings updated to the six new sandbox Price IDs and new JPY amounts.
+- Production Stripe remains untouched/not enabled.
+
+
+## v86 pricing update
+- Updated daily conversation monthly pricing across all 5 languages.
+- 30 min: 4/month ¥7,200; 8/month ¥13,600; 12/month ¥19,200.
+- 50 min: 4/month ¥10,400; 8/month ¥20,000; 12/month ¥28,800.
+- Updated JPY source values used for approximate currency display.
+- JLPT pricing remains unchanged in v86 pending final decision.
+
+
+## v87 JLPT pricing update
+- Updated JLPT N5 51-lesson package from ¥100,000 to ¥160,000.
+- Updated JLPT N4 51-lesson package from ¥100,000 to ¥170,000.
+- Updated all five site languages and local-currency reference amounts.
+- Updated sandbox Stripe test Payment Links to the new v87 one-time Prices and retired the previous ¥100,000 JLPT links.
+- Updated the legal price range in `tokusho.html` to ¥7,200–¥170,000.
+- Updated Supabase `stripe_plan_mappings` for `jlpt_n5_package` and `jlpt_n4_package` to the new Stripe Price IDs and prices.
+
+
+## v88 pricing consistency fix
+- Replaced all six daily-conversation sandbox Stripe Prices with the new monthly prices: 30 min ¥7,200 / ¥13,600 / ¥19,200; 50 min ¥10,400 / ¥20,000 / ¥28,800.
+- Replaced the six sandbox Payment Links in `index.html` and retired the previous daily-conversation Payment Links.
+- Updated Supabase `stripe_plan_mappings` for all six daily-conversation plans to the new Price IDs and amounts.
+- Retired the previous daily-conversation sandbox Stripe Price objects.
+- No Stripe live-mode objects were changed.
+- Updated the admin manual-entry default from the retired ¥16,000 example to ¥23,200, matching the current 50-minute monthly 8-lesson standard plan.
