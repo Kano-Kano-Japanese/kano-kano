@@ -60,3 +60,8 @@
 - Repeated/concurrent upsert calls now reuse the same Calendar event and Meet link.
 
 - v82: Removed the orange box-shadow/glow outside the fixed free-trial CTA; pill shape and internal sheen remain unchanged.
+
+
+## v83
+- Hero catchcopy changed from 「ことばで、人と人を近づける。」 to 「ことばで、人と人をつなげる。」; equivalent localized hero copy updated.
+- Mobile three-reasons detail illustrations enlarged; HEART, LEARN/CONNECT cards and orange labels use larger type while keeping long labels single-line and inside the illustration.
