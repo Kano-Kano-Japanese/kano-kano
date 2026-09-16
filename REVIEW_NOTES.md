@@ -117,3 +117,9 @@
 ## v97
 - Enlarged the collapsed continuity-cycle nodes so all five Japanese titles remain on one line on mobile, including 「わからないことを質問」.
 - Changed the Kano×Kano flow comparison pill to the same soft orange palette used by the 「だから〜」 conclusion card.
+
+## v101
+- Changed the continuity-cycle trail so every moving arrow erases the opposite blue trail by the same travelled fraction; the effect now uses line length rather than a delayed opacity fade.
+- Removed forced empty space above course detail links; detail prompts now sit immediately under each course description.
+- Removed JLPT package prices from the closed course cards and moved the 51-lesson package, price, one-to-one format, ongoing support, and 6-month/1-year choice into the opened detail panel.
+- Added ongoing-support wording to Beginner, Intermediate, JLPT N5, and JLPT N4 plan metadata in all five languages.
