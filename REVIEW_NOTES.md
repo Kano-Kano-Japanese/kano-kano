@@ -65,3 +65,9 @@
 ## v83
 - Hero catchcopy changed from 「ことばで、人と人を近づける。」 to 「ことばで、人と人をつなげる。」; equivalent localized hero copy updated.
 - Mobile three-reasons detail illustrations enlarged; HEART, LEARN/CONNECT cards and orange labels use larger type while keeping long labels single-line and inside the illustration.
+
+
+## v84 mobile reason-detail polish
+- Expanded reason-detail illustration is moved to the top of the phone viewport.
+- Orange route labels are substantially larger while remaining single-line.
+- Detail overlay uses nearly the full dynamic viewport height; explanation text is no longer clipped and can scroll only when truly necessary.
