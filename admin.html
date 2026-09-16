@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kano×Kano Admin | 予約管理</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kano×Kano Admin | 予約管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
       --primary:#0f172a;
       --accent:#2563eb;
@@ -57,192 +58,178 @@
   
 .payment-grid{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:16px}.payment-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.payment-form-grid .wide{grid-column:1/-1}.payment-list{display:grid;gap:10px}.payment-card{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff}.payment-top{display:flex;justify-content:space-between;gap:10px}.payment-title{font-weight:900}.payment-email{font-size:12px;color:var(--muted);margin-top:4px}.payment-status{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef2f7}.payment-status.paid{background:#e9f8ef;color:#147542}.payment-status.unpaid{background:#fff6e6;color:#9b6200}.payment-status.overdue{background:#ffecec;color:#b42318}.payment-status.waived{background:#eef2ff;color:#4653c8}.payment-meta{font-size:13px;color:var(--muted);line-height:1.7;margin-top:8px}.payment-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}@media(max-width:850px){.payment-grid{grid-template-columns:1fr}.payment-form-grid{grid-template-columns:1fr}}
 </style>
-</head>
+<meta content="noindex,nofollow,noarchive" name="robots"/><link href="favicon.svg" rel="icon" type="image/svg+xml"/></head>
 <body>
-  <div class="topbar">
-    <div class="brand">Kano×Kano <span>Admin</span></div>
-    <div class="top-actions">
-      <button id="homeBtn" onclick="location.href='index.html'">サイトを見る</button>
-      <button id="logoutBtn" class="hidden">ログアウト</button>
-    </div>
-  </div>
-
-  <main class="wrap">
-    <section id="authView" class="auth-wrap">
-      <div class="panel">
-        <h1>管理者ログイン</h1>
-        <p class="muted">予約者の個人情報を扱うため、管理者認証が必要です。</p>
-
-        <div class="auth-tabs">
-          <button class="auth-tab active" data-mode="login">ログイン</button>
-          <button class="auth-tab" data-mode="signup">初回登録</button>
-        </div>
-
-        <form id="authForm">
-          <div class="field">
-            <label for="authEmail">管理者メールアドレス</label>
-            <input id="authEmail" type="email" value="adgjp0129@gmail.com" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="authPassword">パスワード</label>
-            <input id="authPassword" type="password" minlength="8" autocomplete="current-password" placeholder="8文字以上" required>
-          </div>
-          <button id="authSubmit" class="primary-btn" type="submit">ログイン</button>
-        </form>
-        <div id="authMessage"></div>
-        <p class="muted" style="margin-top:16px">初回は「初回登録」からアカウントを作成し、Supabaseから届く確認メールでメールアドレスを確認してください。その後、このページでログインできます。</p>
-      </div>
-    </section>
-
-    <section id="dashboardView" class="hidden">
-      <div class="dashboard-head">
-        <div>
-          <h1>予約管理ダッシュボード</h1>
-          <div class="admin-email" id="signedInAs"></div>
-        </div>
-        <button id="refreshBtn" class="secondary-btn">↻ 最新情報に更新</button>
-      </div>
-
-      <div class="summary-grid" style="margin-bottom:20px">
-        <div class="summary"><div class="label">未確認</div><div class="value" id="sumPending">0</div><div class="sub">Pending</div></div>
-        <div class="summary"><div class="label">予約確定</div><div class="value" id="sumConfirmed">0</div><div class="sub">Confirmed</div></div>
-        <div class="summary"><div class="label">今日のレッスン</div><div class="value" id="sumToday">0</div><div class="sub">Browser local time</div></div>
-        <div class="summary"><div class="label">予約総数</div><div class="value" id="sumTotal">0</div><div class="sub">All bookings</div></div>
-      </div>
-
-      <div class="panel">
-        <div class="availability-head">
-          <div>
-            <h2 style="margin-bottom:6px">レッスン受付可能時間</h2>
-            <div class="availability-note">日本時間（JST）で設定します。月〜日、8:00〜23:00の範囲を30分刻みでON/OFFできます。<br>23:00が終了時刻です。50分レッスンの最終開始は22:00、30分レッスンは22:30です。</div>
-          </div>
-          <button id="reloadAvailabilityBtn" class="secondary-btn">↻ 空き枠を再読込</button>
-        </div>
-        <div id="availabilityArea" class="loading"><span class="dot"></span>空き枠設定を読み込んでいます…</div>
-      </div>
-
-      <div class="panel">
-        <div class="availability-head">
-          <div>
-            <h2 style="margin-bottom:6px">日別スケジュール・臨時変更</h2>
-            <div class="availability-note">通常の曜日設定をベースに、その日だけ受付時間を変更できます。<strong>今日から3か月先まで</strong>先に設定できます。<br>「終日休講」「一部時間だけOFF」「普段OFFの時間をこの日だけON」に対応しています。</div>
-          </div>
-          <button id="reloadDailyBtn" class="secondary-btn">↻ 日別設定を再読込</button>
-        </div>
-        <div class="daily-toolbar">
-          <div><label for="dailyScheduleDate">変更する日（日本時間）</label><input id="dailyScheduleDate" type="date"></div>
-          <button id="loadDailyBtn" class="secondary-btn">この日の設定を開く</button>
-        </div>
-        <div id="dailyScheduleArea" class="loading"><span class="dot"></span>日付を準備しています…</div>
-      </div>
-
-      <div class="panel">
-        <div class="availability-head">
-          <div>
-            <h2 style="margin-bottom:6px">講師管理</h2>
-            <div class="availability-note">講師を登録し、講師ごとの勤務可能時間を設定します。生徒には、その時間に対応可能な講師が1人以上いる場合だけ予約枠が表示されます。</div>
-          </div>
-          <button id="reloadTeachersBtn" class="secondary-btn">↻ 講師情報を再読込</button>
-        </div>
-        <div class="teacher-grid" style="margin-top:16px">
-          <div>
-            <form id="teacherForm" class="panel" style="box-shadow:none;margin-bottom:12px;padding:16px">
-              <h3 id="teacherFormTitle" style="margin:0 0 12px">講師を追加</h3>
-              <input id="teacherId" type="hidden">
-              <div class="teacher-form-grid">
-                <div class="field"><label for="teacherName">表示名</label><input id="teacherName" required placeholder="例：Haruki Sensei"></div>
-                <div class="field"><label for="teacherEmail">メール（任意）</label><input id="teacherEmail" type="email" placeholder="teacher@example.com"></div>
-                <div class="field wide"><label for="teacherNotes">メモ（任意）</label><textarea id="teacherNotes" placeholder="資格、担当可能コースなど"></textarea></div>
-                <div class="field"><label for="teacherActive">状態</label><select id="teacherActive"><option value="true">有効</option><option value="false">無効</option></select></div>
-                <div class="field"><label for="teacherSortOrder">表示順</label><input id="teacherSortOrder" type="number" min="1" value="10"></div>
-              </div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" id="teacherSaveBtn" type="submit">講師を保存</button><button class="secondary-btn" id="teacherFormReset" type="button">新規入力に戻す</button></div>
-              <div id="teacherFormMessage"></div>
-            </form>
-            <div id="teachersArea" class="loading"><span class="dot"></span>講師を読み込んでいます…</div>
-          </div>
-          <div>
-            <div id="teacherScheduleArea" class="teacher-empty">左の講師を選択すると勤務時間を設定できます。</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel" id="contractPanel">
-        <div class="availability-head">
-          <div><h2 style="margin-bottom:6px">コース契約・残りレッスン管理</h2><div class="availability-note">生徒の月謝・パッケージ契約を管理します。予約を「完了」にすると、契約期間・レッスン時間が一致する有効契約から1回自動消化します。</div></div>
-          <button id="reloadContractsBtn" class="secondary-btn">↻ 契約を再読込</button>
-        </div>
-        <div class="contract-grid" style="margin-top:16px">
-          <form id="contractForm" class="panel" style="box-shadow:none;margin:0;padding:16px">
-            <h3 id="contractFormTitle" style="margin:0 0 12px">契約を追加</h3>
-            <input id="contractId" type="hidden">
-            <div class="contract-form-grid">
-              <div class="field wide"><label>生徒メール</label><input id="contractEmail" type="email" required placeholder="student@example.com"></div>
-              <div class="field"><label>コースコード</label><input id="contractCode" required placeholder="beginner-8"></div>
-              <div class="field"><label>コース名</label><input id="contractName" required placeholder="初級日本語コース 月8回"></div>
-              <div class="field"><label>契約タイプ</label><select id="contractBilling"><option value="monthly">月謝</option><option value="package">パッケージ</option></select></div>
-              <div class="field"><label>1回の時間</label><select id="contractDuration"><option value="30">30分</option><option value="50" selected>50分</option><option value="60">60分</option><option value="90">90分</option><option value="15">15分</option></select></div>
-              <div class="field"><label>含まれる回数</label><input id="contractIncluded" type="number" min="0" value="8"></div>
-              <div class="field"><label>料金（円）</label><input id="contractPrice" type="number" min="0" value="16000"></div>
-              <div class="field"><label>開始日</label><input id="contractStart" type="date" required></div>
-              <div class="field"><label>終了日</label><input id="contractEnd" type="date" required></div>
-              <div class="field"><label>状態</label><select id="contractStatus"><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
-              <div class="field wide"><label>管理メモ</label><textarea id="contractNotes" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px" placeholder="支払い状況、特記事項など"></textarea></div>
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" type="submit" id="contractSaveBtn">契約を保存</button><button class="secondary-btn" type="button" id="contractResetBtn">新規入力</button></div>
-            <div id="contractMessage"></div>
-          </form>
-          <div><div style="display:flex;gap:8px;margin-bottom:10px"><input id="contractSearch" type="search" placeholder="生徒メール・コース名で検索" style="flex:1"><select id="contractStatusFilter"><option value="all">すべて</option><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div><div id="contractsArea" class="loading"><span class="dot"></span>契約を読み込んでいます…</div></div>
-        </div>
-      </div>
-
-
-      <div class="panel" id="paymentPanel">
-        <div class="availability-head">
-          <div><h2 style="margin-bottom:6px">支払い状況管理</h2><div class="availability-note">生徒ごとの請求・支払期限・支払い状況を管理します。期限を過ぎた未払いは生徒画面で自動的に「期限超過」と表示されます。</div></div>
-          <button id="reloadPaymentsBtn" class="secondary-btn">↻ 支払いを再読込</button>
-        </div>
-        <div class="payment-grid" style="margin-top:16px">
-          <form id="paymentForm" class="panel" style="box-shadow:none;margin:0;padding:16px">
-            <h3 id="paymentFormTitle" style="margin:0 0 12px">請求を追加</h3>
-            <input id="paymentId" type="hidden">
-            <div class="payment-form-grid">
-              <div class="field wide"><label>生徒メール</label><input id="paymentEmail" type="email" required placeholder="student@example.com"></div>
-              <div class="field wide"><label>請求名</label><input id="paymentLabel" required placeholder="例：2026年9月 月謝"></div>
-              <div class="field"><label>金額（円）</label><input id="paymentAmount" type="number" min="0" value="16000" required></div>
-              <div class="field"><label>支払期限</label><input id="paymentDue" type="date" required></div>
-              <div class="field"><label>状態</label><select id="paymentStatus"><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
-              <div class="field"><label>支払方法</label><input id="paymentMethod" placeholder="銀行振込 / Stripe / 現金 など"></div>
-              <div class="field"><label>支払日時</label><input id="paymentPaidAt" type="datetime-local"></div>
-              <div class="field"><label>契約ID（任意）</label><input id="paymentContractId" placeholder="自動連携用。空欄可"></div>
-              <div class="field wide"><label>管理メモ</label><textarea id="paymentNotes" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px"></textarea></div>
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" type="submit" id="paymentSaveBtn">請求を保存</button><button class="secondary-btn" type="button" id="paymentResetBtn">新規入力</button></div>
-            <div id="paymentMessage"></div>
-          </form>
-          <div>
-            <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><input id="paymentSearch" type="search" placeholder="生徒メール・請求名で検索" style="flex:1;min-width:220px"><select id="paymentStatusFilter"><option value="all">すべて</option><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
-            <div id="paymentsArea" class="loading"><span class="dot"></span>支払い情報を読み込んでいます…</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h2>予約一覧</h2>
-        <div class="toolbar" style="margin-bottom:14px">
-          <div class="search"><input id="searchInput" type="search" placeholder="名前・メール・予約番号・国・目的で検索"></div>
-          <div><select id="statusFilter"><option value="all">すべての状態</option><option value="pending">未確認</option><option value="confirmed">確定</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
-          <div><select id="timeFilter"><option value="all">全期間</option><option value="upcoming">今後のみ</option><option value="today">今日</option><option value="past">過去</option></select></div>
-          <button id="clearFilterBtn" class="secondary-btn">クリア</button>
-        </div>
-
-        <div id="tableArea" class="loading"><span class="dot"></span>予約情報を読み込んでいます…</div>
-      </div>
-    </section>
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
-  <script>
+<div class="topbar">
+<div class="brand">Kano×Kano <span>Admin</span></div>
+<div class="top-actions">
+<button id="homeBtn" onclick="location.href='index.html'">サイトを見る</button>
+<button class="hidden" id="logoutBtn">ログアウト</button>
+</div>
+</div>
+<main class="wrap">
+<section class="auth-wrap" id="authView">
+<div class="panel">
+<h1>管理者ログイン</h1>
+<p class="muted">予約者の個人情報を扱うため、管理者認証が必要です。</p>
+<div class="auth-tabs">
+<button class="auth-tab active" data-mode="login">ログイン</button>
+<button class="auth-tab" data-mode="signup">初回登録</button>
+</div>
+<form id="authForm">
+<div class="field">
+<label for="authEmail">管理者メールアドレス</label>
+<input autocomplete="email" id="authEmail" required="" type="email" value="adgjp0129@gmail.com"/>
+</div>
+<div class="field">
+<label for="authPassword">パスワード</label>
+<input autocomplete="current-password" id="authPassword" minlength="8" placeholder="8文字以上" required="" type="password"/>
+</div>
+<button class="primary-btn" id="authSubmit" type="submit">ログイン</button>
+</form>
+<div id="authMessage"></div>
+<p class="muted" style="margin-top:16px">初回は「初回登録」からアカウントを作成し、Supabaseから届く確認メールでメールアドレスを確認してください。その後、このページでログインできます。</p>
+</div>
+</section>
+<section class="hidden" id="dashboardView">
+<div class="dashboard-head">
+<div>
+<h1>予約管理ダッシュボード</h1>
+<div class="admin-email" id="signedInAs"></div>
+</div>
+<button class="secondary-btn" id="refreshBtn">↻ 最新情報に更新</button>
+</div>
+<div class="summary-grid" style="margin-bottom:20px">
+<div class="summary"><div class="label">未確認</div><div class="value" id="sumPending">0</div><div class="sub">Pending</div></div>
+<div class="summary"><div class="label">予約確定</div><div class="value" id="sumConfirmed">0</div><div class="sub">Confirmed</div></div>
+<div class="summary"><div class="label">今日のレッスン</div><div class="value" id="sumToday">0</div><div class="sub">Browser local time</div></div>
+<div class="summary"><div class="label">予約総数</div><div class="value" id="sumTotal">0</div><div class="sub">All bookings</div></div>
+</div>
+<div class="panel">
+<div class="availability-head">
+<div>
+<h2 style="margin-bottom:6px">レッスン受付可能時間</h2>
+<div class="availability-note">日本時間（JST）で設定します。月〜日、8:00〜23:00の範囲を30分刻みでON/OFFできます。<br/>23:00が終了時刻です。50分レッスンの最終開始は22:00、30分レッスンは22:30です。</div>
+</div>
+<button class="secondary-btn" id="reloadAvailabilityBtn">↻ 空き枠を再読込</button>
+</div>
+<div class="loading" id="availabilityArea"><span class="dot"></span>空き枠設定を読み込んでいます…</div>
+</div>
+<div class="panel">
+<div class="availability-head">
+<div>
+<h2 style="margin-bottom:6px">日別スケジュール・臨時変更</h2>
+<div class="availability-note">通常の曜日設定をベースに、その日だけ受付時間を変更できます。<strong>今日から3か月先まで</strong>先に設定できます。<br/>「終日休講」「一部時間だけOFF」「普段OFFの時間をこの日だけON」に対応しています。</div>
+</div>
+<button class="secondary-btn" id="reloadDailyBtn">↻ 日別設定を再読込</button>
+</div>
+<div class="daily-toolbar">
+<div><label for="dailyScheduleDate">変更する日（日本時間）</label><input id="dailyScheduleDate" type="date"/></div>
+<button class="secondary-btn" id="loadDailyBtn">この日の設定を開く</button>
+</div>
+<div class="loading" id="dailyScheduleArea"><span class="dot"></span>日付を準備しています…</div>
+</div>
+<div class="panel">
+<div class="availability-head">
+<div>
+<h2 style="margin-bottom:6px">講師管理</h2>
+<div class="availability-note">講師を登録し、講師ごとの勤務可能時間を設定します。生徒には、その時間に対応可能な講師が1人以上いる場合だけ予約枠が表示されます。</div>
+</div>
+<button class="secondary-btn" id="reloadTeachersBtn">↻ 講師情報を再読込</button>
+</div>
+<div class="teacher-grid" style="margin-top:16px">
+<div>
+<form class="panel" id="teacherForm" style="box-shadow:none;margin-bottom:12px;padding:16px">
+<h3 id="teacherFormTitle" style="margin:0 0 12px">講師を追加</h3>
+<input id="teacherId" type="hidden"/>
+<div class="teacher-form-grid">
+<div class="field"><label for="teacherName">表示名</label><input id="teacherName" placeholder="例：Haruki Sensei" required=""/></div>
+<div class="field"><label for="teacherEmail">メール（任意）</label><input id="teacherEmail" placeholder="teacher@example.com" type="email"/></div>
+<div class="field wide"><label for="teacherNotes">メモ（任意）</label><textarea id="teacherNotes" placeholder="資格、担当可能コースなど"></textarea></div>
+<div class="field"><label for="teacherActive">状態</label><select id="teacherActive"><option value="true">有効</option><option value="false">無効</option></select></div>
+<div class="field"><label for="teacherSortOrder">表示順</label><input id="teacherSortOrder" min="1" type="number" value="10"/></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" id="teacherSaveBtn" type="submit">講師を保存</button><button class="secondary-btn" id="teacherFormReset" type="button">新規入力に戻す</button></div>
+<div id="teacherFormMessage"></div>
+</form>
+<div class="loading" id="teachersArea"><span class="dot"></span>講師を読み込んでいます…</div>
+</div>
+<div>
+<div class="teacher-empty" id="teacherScheduleArea">左の講師を選択すると勤務時間を設定できます。</div>
+</div>
+</div>
+</div>
+<div class="panel" id="contractPanel">
+<div class="availability-head">
+<div><h2 style="margin-bottom:6px">コース契約・残りレッスン管理</h2><div class="availability-note">生徒の月謝・パッケージ契約を管理します。予約を「完了」にすると、契約期間・レッスン時間が一致する有効契約から1回自動消化します。</div></div>
+<button class="secondary-btn" id="reloadContractsBtn">↻ 契約を再読込</button>
+</div>
+<div class="contract-grid" style="margin-top:16px">
+<form class="panel" id="contractForm" style="box-shadow:none;margin:0;padding:16px">
+<h3 id="contractFormTitle" style="margin:0 0 12px">契約を追加</h3>
+<input id="contractId" type="hidden"/>
+<div class="contract-form-grid">
+<div class="field wide"><label>生徒メール</label><input id="contractEmail" placeholder="student@example.com" required="" type="email"/></div>
+<div class="field"><label>コースコード</label><input id="contractCode" placeholder="beginner-8" required=""/></div>
+<div class="field"><label>コース名</label><input id="contractName" placeholder="初級日本語コース 月8回" required=""/></div>
+<div class="field"><label>契約タイプ</label><select id="contractBilling"><option value="monthly">月謝</option><option value="package">パッケージ</option></select></div>
+<div class="field"><label>1回の時間</label><select id="contractDuration"><option value="30">30分</option><option selected="" value="50">50分</option><option value="60">60分</option><option value="90">90分</option><option value="15">15分</option></select></div>
+<div class="field"><label>含まれる回数</label><input id="contractIncluded" min="0" type="number" value="8"/></div>
+<div class="field"><label>料金（円）</label><input id="contractPrice" min="0" type="number" value="16000"/></div>
+<div class="field"><label>開始日</label><input id="contractStart" required="" type="date"/></div>
+<div class="field"><label>終了日</label><input id="contractEnd" required="" type="date"/></div>
+<div class="field"><label>状態</label><select id="contractStatus"><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
+<div class="field wide"><label>管理メモ</label><textarea id="contractNotes" placeholder="支払い状況、特記事項など" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px"></textarea></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" id="contractSaveBtn" type="submit">契約を保存</button><button class="secondary-btn" id="contractResetBtn" type="button">新規入力</button></div>
+<div id="contractMessage"></div>
+</form>
+<div><div style="display:flex;gap:8px;margin-bottom:10px"><input id="contractSearch" placeholder="生徒メール・コース名で検索" style="flex:1" type="search"/><select id="contractStatusFilter"><option value="all">すべて</option><option value="active">有効</option><option value="paused">一時停止</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div><div class="loading" id="contractsArea"><span class="dot"></span>契約を読み込んでいます…</div></div>
+</div>
+</div>
+<div class="panel" id="paymentPanel">
+<div class="availability-head">
+<div><h2 style="margin-bottom:6px">支払い状況管理</h2><div class="availability-note">生徒ごとの請求・支払期限・支払い状況を管理します。期限を過ぎた未払いは生徒画面で自動的に「期限超過」と表示されます。</div></div>
+<button class="secondary-btn" id="reloadPaymentsBtn">↻ 支払いを再読込</button>
+</div>
+<div class="payment-grid" style="margin-top:16px">
+<form class="panel" id="paymentForm" style="box-shadow:none;margin:0;padding:16px">
+<h3 id="paymentFormTitle" style="margin:0 0 12px">請求を追加</h3>
+<input id="paymentId" type="hidden"/>
+<div class="payment-form-grid">
+<div class="field wide"><label>生徒メール</label><input id="paymentEmail" placeholder="student@example.com" required="" type="email"/></div>
+<div class="field wide"><label>請求名</label><input id="paymentLabel" placeholder="例：2026年9月 月謝" required=""/></div>
+<div class="field"><label>金額（円）</label><input id="paymentAmount" min="0" required="" type="number" value="16000"/></div>
+<div class="field"><label>支払期限</label><input id="paymentDue" required="" type="date"/></div>
+<div class="field"><label>状態</label><select id="paymentStatus"><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
+<div class="field"><label>支払方法</label><input id="paymentMethod" placeholder="銀行振込 / Stripe / 現金 など"/></div>
+<div class="field"><label>支払日時</label><input id="paymentPaidAt" type="datetime-local"/></div>
+<div class="field"><label>契約ID（任意）</label><input id="paymentContractId" placeholder="自動連携用。空欄可"/></div>
+<div class="field wide"><label>管理メモ</label><textarea id="paymentNotes" style="width:100%;min-height:72px;padding:10px;border:1px solid var(--border);border-radius:8px"></textarea></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary-btn" id="paymentSaveBtn" type="submit">請求を保存</button><button class="secondary-btn" id="paymentResetBtn" type="button">新規入力</button></div>
+<div id="paymentMessage"></div>
+</form>
+<div>
+<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap"><input id="paymentSearch" placeholder="生徒メール・請求名で検索" style="flex:1;min-width:220px" type="search"/><select id="paymentStatusFilter"><option value="all">すべて</option><option value="unpaid">未払い</option><option value="paid">支払済み</option><option value="overdue">期限超過</option><option value="waived">免除</option></select></div>
+<div class="loading" id="paymentsArea"><span class="dot"></span>支払い情報を読み込んでいます…</div>
+</div>
+</div>
+</div>
+<div class="panel">
+<h2>予約一覧</h2>
+<div class="toolbar" style="margin-bottom:14px">
+<div class="search"><input id="searchInput" placeholder="名前・メール・予約番号・国・目的で検索" type="search"/></div>
+<div><select id="statusFilter"><option value="all">すべての状態</option><option value="pending">未確認</option><option value="confirmed">確定</option><option value="completed">完了</option><option value="cancelled">キャンセル</option></select></div>
+<div><select id="timeFilter"><option value="all">全期間</option><option value="upcoming">今後のみ</option><option value="today">今日</option><option value="past">過去</option></select></div>
+<button class="secondary-btn" id="clearFilterBtn">クリア</button>
+</div>
+<div class="loading" id="tableArea"><span class="dot"></span>予約情報を読み込んでいます…</div>
+</div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+<script>
     const SUPABASE_URL = 'https://xyptzcdpiumxqgayihqi.supabase.co';
     const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ydS-f68XrLtacf0CTiRrzw_3ViLjGAG';
     const ADMIN_EMAIL = 'adgjp0129@gmail.com';
@@ -451,8 +438,11 @@
               <select id="status-${b.id}">
                 ${['pending','confirmed','completed','cancelled'].map(s => `<option value="${s}" ${s===b.status?'selected':''}>${statusLabel(s)}</option>`).join('')}
               </select>
-              <input id="meet-${b.id}" type="url" placeholder="https://meet.google.com/..." value="${escapeAttr(b.google_meet_url||'')}" style="width:100%;min-width:220px;padding:7px 8px;border:1px solid var(--border);border-radius:7px">
-              ${b.google_meet_url?`<a href="${escapeAttr(b.google_meet_url)}" target="_blank" rel="noopener" class="mini-btn" style="text-decoration:none;text-align:center">Meetを開く</a>`:''}
+              ${b.google_meet_url
+                ? `<a href="${escapeAttr(b.google_meet_url)}" target="_blank" rel="noopener" class="mini-btn" style="text-decoration:none;text-align:center">Meetを開く</a><div class="small">Google Calendar / Meet 自動連携済み</div>`
+                : b.status==='confirmed'
+                  ? `<div class="small">Google Meetを自動生成中…（通常1〜2分）</div>`
+                  : `<div class="small">予約を「確定」にするとGoogle CalendarとMeetを自動生成します。</div>`}
               <button class="save-btn" onclick="saveBooking('${b.id}', this)">保存</button>
             </div>
           </td>
@@ -469,18 +459,12 @@
     async function saveBooking(id, button) {
       const teacherId = document.getElementById(`teacher-${id}`).value || null;
       const status = document.getElementById(`status-${id}`).value;
-      const meetUrl = (document.getElementById(`meet-${id}`).value || '').trim() || null;
-      if (meetUrl && !/^https:\/\/meet\.google\.com\/[A-Za-z0-9_-]+/.test(meetUrl)) {
-        alert('Google Meet URLは https://meet.google.com/... の形式で入力してください。');
-        return;
-      }
       button.disabled = true;
       button.textContent = '保存中…';
 
       const { error } = await db.from('bookings').update({
         teacher_id: teacherId,
         status,
-        google_meet_url: meetUrl,
         updated_at: new Date().toISOString()
       }).eq('id', id);
 
@@ -495,7 +479,6 @@
       if (item) {
         item.teacher_id = teacherId;
         item.status = status;
-        item.google_meet_url = meetUrl;
         const teacher = teachers.find(t=>t.id===teacherId);
         item.assigned_teacher_name = teacher ? teacher.display_name : null;
         item.updated_at = new Date().toISOString();

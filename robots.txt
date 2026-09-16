@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /student
+Disallow: /student.html
+Disallow: /teacher
+Disallow: /teacher.html
+
+Sitemap: https://kano-kano.vercel.app/sitemap.xml

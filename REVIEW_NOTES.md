@@ -45,3 +45,16 @@
 - Checked 320px, 390px and desktop widths for horizontal text overflow on index and all four booking steps.
 - Added full five-language support and language persistence to `tokusho.html`.
 - Updated Japanese timezone note to reflect that local-time conversion is already implemented.
+
+
+## v80
+- Added Supabase Calendar/Meet sync queue + dispatcher architecture.
+- Admin Meet URL is read-only/automatic; confirming a booking triggers generation after Google Apps Script bridge is connected.
+- Monthly-plan no-rollover/expiry policy clarified in site, student portal, and legal page in 5 languages.
+- Stripe sandbox monthly Payment Links require explicit agreement to credit expiry policy.
+- Added Google Apps Script bridge source and one-time setup guide.
+
+## v81
+- Hardened Google Calendar bridge against duplicate event creation.
+- Added Apps Script LockService serialization and booking-ID extendedProperties lookup.
+- Repeated/concurrent upsert calls now reuse the same Calendar event and Meet link.

@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>マイページ | Kano×Kano</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <style>
@@ -18,60 +19,53 @@ a{color:inherit}.topbar{background:#fff;border-bottom:1px solid var(--line);posi
 
 .payment-list{display:grid;gap:10px}.payment-item{border:1px solid #dce6f2;border-radius:14px;padding:15px;background:#fff}.payment-item.overdue{border-color:#f0b5b0;background:#fffafa}.payment-head{display:flex;justify-content:space-between;gap:10px}.payment-name{font-weight:900}.payment-amount{font-size:20px;font-weight:900;margin-top:8px}.payment-info{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.7}.pay-status{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:#eef2f7;height:max-content}.pay-status.paid{background:#e9f8ef;color:#147542}.pay-status.unpaid{background:#fff6e6;color:#9b6200}.pay-status.overdue{background:#ffecec;color:#b42318}.pay-status.waived{background:#eef2ff;color:#4653c8}
 </style>
-</head>
+<meta content="noindex,nofollow,noarchive" name="robots"/><link href="favicon.svg" rel="icon" type="image/svg+xml"/></head>
 <body>
-<header class="topbar"><div class="topin"><a class="brand" href="index.html">Kano×Kano <small>Online Japanese School</small></a><div class="spacer"></div><a class="home" href="index.html" id="homeLink">トップへ</a><select id="lang" class="lang" onchange="setLang(this.value)"><option value="ja">日本語</option><option value="en">English</option><option value="th">ไทย</option><option value="ko">한국어</option><option value="zh">中文</option></select></div></header>
+<header class="topbar"><div class="topin"><a class="brand" href="index.html">Kano×Kano <small>Online Japanese School</small></a><div class="spacer"></div><a class="home" href="index.html" id="homeLink">トップへ</a><select class="lang" id="lang" onchange="setLang(this.value)"><option value="ja">日本語</option><option value="en">English</option><option value="th">ไทย</option><option value="ko">한국어</option><option value="zh">中文</option></select></div></header>
 <main class="wrap">
 <section class="hero"><h1 id="pageTitle">生徒マイページ</h1><p id="pageLead">次回レッスン、担当講師、Google Meet、予約履歴を確認できます。</p></section>
-
-<section id="authView" class="card authbox">
-  <div class="tabs"><button id="loginTab" class="tab active" onclick="switchAuth('login')">ログイン</button><button id="signupTab" class="tab" onclick="switchAuth('signup')">アカウント作成</button></div>
-  <h2 id="authTitle">ログイン</h2>
-  <label id="emailLabel" for="email">メールアドレス</label><input id="email" type="email" autocomplete="email">
-  <label id="passwordLabel" for="password">パスワード</label><input id="password" type="password" autocomplete="current-password" minlength="6">
-  <label id="confirmLabel" class="hidden" for="password2">パスワード確認</label><input id="password2" class="hidden" type="password" minlength="6">
-  <button id="authBtn" class="btn primary wide" onclick="submitAuth()">ログイン</button>
-  <button id="forgotBtn" class="smalllink" onclick="forgotPassword()">パスワードを忘れた方</button>
-  <div id="authMsg" class="msg"></div>
-  <p class="footnote" id="authNote">予約時に入力したメールアドレスと同じアドレスでログインしてください。</p>
+<section class="card authbox" id="authView">
+<div class="tabs"><button class="tab active" id="loginTab" onclick="switchAuth('login')">ログイン</button><button class="tab" id="signupTab" onclick="switchAuth('signup')">アカウント作成</button></div>
+<h2 id="authTitle">ログイン</h2>
+<label for="email" id="emailLabel">メールアドレス</label><input autocomplete="email" id="email" type="email"/>
+<label for="password" id="passwordLabel">パスワード</label><input autocomplete="current-password" id="password" minlength="6" type="password"/>
+<label class="hidden" for="password2" id="confirmLabel">パスワード確認</label><input class="hidden" id="password2" minlength="6" type="password"/>
+<button class="btn primary wide" id="authBtn" onclick="submitAuth()">ログイン</button>
+<button class="smalllink" id="forgotBtn" onclick="forgotPassword()">パスワードを忘れた方</button>
+<div class="msg" id="authMsg"></div>
+<p class="footnote" id="authNote">予約時に入力したメールアドレスと同じアドレスでログインしてください。</p>
 </section>
-
-<section id="recoveryView" class="card authbox hidden">
-  <h2 id="recoveryTitle">新しいパスワードを設定</h2>
-  <label id="newPasswordLabel">新しいパスワード</label><input id="newPassword" type="password" minlength="6">
-  <button class="btn primary wide" id="savePasswordBtn" onclick="saveNewPassword()">パスワードを保存</button>
-  <div id="recoveryMsg" class="msg"></div>
+<section class="card authbox hidden" id="recoveryView">
+<h2 id="recoveryTitle">新しいパスワードを設定</h2>
+<label id="newPasswordLabel">新しいパスワード</label><input id="newPassword" minlength="6" type="password"/>
+<button class="btn primary wide" id="savePasswordBtn" onclick="saveNewPassword()">パスワードを保存</button>
+<div class="msg" id="recoveryMsg"></div>
 </section>
-
-<section id="dashboard" class="hidden">
-  <div class="account card"><div class="avatar">K×K</div><div><div style="font-weight:900" id="welcomeText">ようこそ</div><div class="email" id="accountEmail"></div></div><div class="spacer"></div><button class="btn ghost" id="logoutBtn" onclick="logout()">ログアウト</button></div>
-  <div class="grid">
-    <div>
-      <div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="nextTitle">次回レッスン</h2><span class="count" id="nextCount"></span></div><div id="nextLesson" class="loading">読み込み中…</div></div>
-      <div class="card"><div class="section-title"><h2 id="upcomingTitle">今後の予約</h2><span class="count" id="upcomingCount"></span></div><div id="upcomingList" class="list"></div></div>
-      <div class="card" style="margin-top:20px"><div class="section-title"><h2 id="feedbackHistoryTitle">学習記録・宿題</h2><span class="count" id="feedbackCount"></span></div><div id="feedbackHistory" class="feedback-list"><div class="loading">読み込み中…</div></div></div>
-      <div class="card" style="margin-top:20px"><div class="section-title"><h2 id="homeworkSubmitTitle">宿題提出</h2><span class="count" id="homeworkSubmitCount"></span></div><div id="homeworkSubmitList" class="homework-list"><div class="loading">読み込み中…</div></div></div>
-    </div>
-    <div>
-      <div class="card" style="margin-bottom:20px"><h2 id="quickTitle">クイックメニュー</h2><div class="side-actions"><a class="btn primary" href="booking.html" id="newBookingBtn">無料体験を予約</a><button class="btn secondary" onclick="loadBookings()" id="refreshBtn">予約情報を更新</button></div><p class="footnote" id="meetNote">Google Meetボタンは、予約確定後にMeet URLが登録されると表示されます。</p></div>
-      <div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="paymentTitle">支払い状況</h2><span class="count" id="paymentCount"></span></div><div id="paymentBox" class="payment-list"><div class="loading">読み込み中…</div></div></div>
-      <div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="courseContractTitle">コース契約・残り回数</h2><span class="count" id="courseContractCount"></span></div><div id="courseContractBox" class="course-contracts"><div class="loading">読み込み中…</div></div></div>
-      <div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="learningProfileTitle">長期学習カルテ</h2><span class="count" id="learningProfileUpdated"></span></div><div id="learningProfileBox" class="learning-profile"><div class="loading">読み込み中…</div></div></div>
-<div class="card"><div class="section-title"><h2 id="historyTitle">レッスン履歴</h2><span class="count" id="historyCount"></span></div><div id="historyList" class="list"></div></div>
-    </div>
-  </div>
+<section class="hidden" id="dashboard">
+<div class="account card"><div class="avatar">K×K</div><div><div id="welcomeText" style="font-weight:900">ようこそ</div><div class="email" id="accountEmail"></div></div><div class="spacer"></div><button class="btn ghost" id="logoutBtn" onclick="logout()">ログアウト</button></div>
+<div class="grid">
+<div>
+<div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="nextTitle">次回レッスン</h2><span class="count" id="nextCount"></span></div><div class="loading" id="nextLesson">読み込み中…</div></div>
+<div class="card"><div class="section-title"><h2 id="upcomingTitle">今後の予約</h2><span class="count" id="upcomingCount"></span></div><div class="list" id="upcomingList"></div></div>
+<div class="card" style="margin-top:20px"><div class="section-title"><h2 id="feedbackHistoryTitle">学習記録・宿題</h2><span class="count" id="feedbackCount"></span></div><div class="feedback-list" id="feedbackHistory"><div class="loading">読み込み中…</div></div></div>
+<div class="card" style="margin-top:20px"><div class="section-title"><h2 id="homeworkSubmitTitle">宿題提出</h2><span class="count" id="homeworkSubmitCount"></span></div><div class="homework-list" id="homeworkSubmitList"><div class="loading">読み込み中…</div></div></div>
+</div>
+<div>
+<div class="card" style="margin-bottom:20px"><h2 id="quickTitle">クイックメニュー</h2><div class="side-actions"><a class="btn primary" href="booking.html" id="newBookingBtn">無料体験を予約</a><button class="btn secondary" id="refreshBtn" onclick="loadBookings()">予約情報を更新</button></div><p class="footnote" id="meetNote">Google Meetボタンは、予約確定後にMeet URLが登録されると表示されます。</p></div>
+<div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="paymentTitle">支払い状況</h2><span class="count" id="paymentCount"></span></div><div class="payment-list" id="paymentBox"><div class="loading">読み込み中…</div></div></div>
+<div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="courseContractTitle">コース契約・残り回数</h2><span class="count" id="courseContractCount"></span></div><div class="course-contracts" id="courseContractBox"><div class="loading">読み込み中…</div></div></div>
+<div class="card" style="margin-bottom:20px"><div class="section-title"><h2 id="learningProfileTitle">長期学習カルテ</h2><span class="count" id="learningProfileUpdated"></span></div><div class="learning-profile" id="learningProfileBox"><div class="loading">読み込み中…</div></div></div>
+<div class="card"><div class="section-title"><h2 id="historyTitle">レッスン履歴</h2><span class="count" id="historyCount"></span></div><div class="list" id="historyList"></div></div>
+</div>
+</div>
 </section>
 </main>
-<div id="rescheduleModal" class="modalback hidden" onclick="if(event.target===this)closeReschedule()"><div class="modal"><div class="modalhead"><h2 id="rescheduleTitle">日時を変更</h2><button class="btn ghost" onclick="closeReschedule()">×</button></div><p id="rescheduleNote" class="footnote">24時間前まで変更できます。変更後は確認待ちに戻ります。</p><label id="dateLabel" for="rescheduleDate">変更したい日</label><input id="rescheduleDate" type="date"><button id="findSlotsBtn" class="btn secondary wide" onclick="loadRescheduleSlots()">空き時間を表示</button><div id="rescheduleMsg" class="modalmsg"></div><div id="slotGrid" class="slotgrid"></div></div></div>
-
-<div id="homeworkModal" class="modalback hidden" onclick="if(event.target===this)closeHomeworkModal()"><div class="modal homework-modal"><div class="modalhead"><h2 id="homeworkModalTitle">宿題を提出</h2><button class="btn ghost" onclick="closeHomeworkModal()">×</button></div><div id="homeworkModalRef" class="footnote"></div><div id="homeworkAssignment" class="homework-box" style="margin-top:12px"></div><label id="homeworkAnswerLabel" for="homeworkAnswer">回答</label><textarea id="homeworkAnswer" maxlength="10000"></textarea><label id="homeworkCommentLabel" for="homeworkComment">先生へのコメント</label><textarea id="homeworkComment" maxlength="3000" style="min-height:80px"></textarea><label id="homeworkFileLabel" for="homeworkFile">ファイル（任意）</label><input id="homeworkFile" type="file"><div id="homeworkFileNote" class="file-note">最大10MB。提出ファイルは本人と担当講師だけが閲覧できます。</div><button id="homeworkSubmitBtn" class="btn primary wide" onclick="submitHomework()">提出する</button><div id="homeworkMsg" class="msg"></div></div></div>
-
+<div class="modalback hidden" id="rescheduleModal" onclick="if(event.target===this)closeReschedule()"><div class="modal"><div class="modalhead"><h2 id="rescheduleTitle">日時を変更</h2><button class="btn ghost" onclick="closeReschedule()">×</button></div><p class="footnote" id="rescheduleNote">24時間前まで変更できます。変更後は確認待ちに戻ります。</p><label for="rescheduleDate" id="dateLabel">変更したい日</label><input id="rescheduleDate" type="date"/><button class="btn secondary wide" id="findSlotsBtn" onclick="loadRescheduleSlots()">空き時間を表示</button><div class="modalmsg" id="rescheduleMsg"></div><div class="slotgrid" id="slotGrid"></div></div></div>
+<div class="modalback hidden" id="homeworkModal" onclick="if(event.target===this)closeHomeworkModal()"><div class="modal homework-modal"><div class="modalhead"><h2 id="homeworkModalTitle">宿題を提出</h2><button class="btn ghost" onclick="closeHomeworkModal()">×</button></div><div class="footnote" id="homeworkModalRef"></div><div class="homework-box" id="homeworkAssignment" style="margin-top:12px"></div><label for="homeworkAnswer" id="homeworkAnswerLabel">回答</label><textarea id="homeworkAnswer" maxlength="10000"></textarea><label for="homeworkComment" id="homeworkCommentLabel">先生へのコメント</label><textarea id="homeworkComment" maxlength="3000" style="min-height:80px"></textarea><label for="homeworkFile" id="homeworkFileLabel">ファイル（任意）</label><input id="homeworkFile" type="file"/><div class="file-note" id="homeworkFileNote">最大10MB。提出ファイルは本人と担当講師だけが閲覧できます。</div><button class="btn primary wide" id="homeworkSubmitBtn" onclick="submitHomework()">提出する</button><div class="msg" id="homeworkMsg"></div></div></div>
 <div id="subscriptionPolicyBox" style="margin:14px 0 24px;padding:16px 18px;border:1px solid #d9e2ec;border-radius:14px;background:#f8fafc;line-height:1.75;">
-  <strong>月額プランの自動更新について</strong><br>
-  月額プランは自動更新です。原則として、決済完了後の契約キャンセル・返金は受け付けていません。<br>
-  継続を希望しない場合は、<strong>次回更新日前までにご自身で自動更新を停止</strong>してください。停止しても、現在の支払済み期間はその終了まで利用できます。<br>
-  <div style="margin-top:12px" id="subscriptionPortalArea"><span class="footnote">オンラインでの自動更新停止機能は現在最終準備中です。停止をご希望の場合はKano×Kanoへお問い合わせください。</span></div>
-  <small>※ 正式なStripe顧客管理画面の公開後は、生徒マイページからご自身で停止手続きができるようになります。法令上必要な場合、当校の責による場合、その他当校が特別に認める場合を除きます。</small>
+<div id="subscriptionPolicyText"></div>
+<div id="subscriptionPortalArea" style="margin-top:12px"><span class="footnote">オンラインでの自動更新停止機能は現在最終準備中です。停止をご希望の場合はKano×Kanoへお問い合わせください。</span></div>
+<div id="subscriptionPolicyFoot" style="margin-top:8px"></div>
 </div>
 <script>
 const SUPABASE_URL='https://xyptzcdpiumxqgayihqi.supabase.co';
@@ -103,10 +97,18 @@ en:{home:'Home',title:'Student Dashboard',lead:'View your next lesson, teacher, 
 th:{home:'หน้าหลัก',title:'หน้าของนักเรียน',lead:'ตรวจสอบคลาสถัดไป ผู้สอน Google Meet และประวัติการจอง',login:'เข้าสู่ระบบ',signup:'สร้างบัญชี',email:'อีเมล',password:'รหัสผ่าน',confirm:'ยืนยันรหัสผ่าน',forgot:'ลืมรหัสผ่าน?',note:'กรุณาใช้อีเมลเดียวกับที่ใช้ตอนจอง',welcome:'ยินดีต้อนรับ',logout:'ออกจากระบบ',next:'คลาสถัดไป',upcoming:'การจองที่กำลังจะมาถึง',quick:'เมนูด่วน',book:'จองทดลองเรียนฟรี',refresh:'อัปเดตข้อมูลการจอง',meetNote:'ปุ่ม Google Meet จะแสดงหลังจากยืนยันการจองและมีการกำหนดลิงก์แล้ว',history:'ประวัติคลาส',loading:'กำลังโหลด…',noneNext:'ไม่มีคลาสถัดไป',noneUpcoming:'ไม่มีการจองที่กำลังจะมาถึง',noneHistory:'ยังไม่มีประวัติ',teacher:'ผู้สอน',unassigned:'กำลังจัดผู้สอน',meet:'เข้าร่วม Google Meet',ref:'หมายเลขการจอง',duration:'นาที',recovery:'ตั้งรหัสผ่านใหม่',newpass:'รหัสผ่านใหม่',savepass:'บันทึกรหัสผ่าน',loginOk:'เข้าสู่ระบบแล้ว',signupCheck:'ส่งอีเมลยืนยันแล้ว กรุณาเปิดลิงก์ในอีเมลเพื่อยืนยันบัญชี',signupOk:'สร้างบัญชีแล้ว',badMatch:'รหัสผ่านไม่ตรงกัน',fill:'กรุณากรอกอีเมลและรหัสผ่าน',forgotSent:'ส่งอีเมลรีเซ็ตรหัสผ่านแล้ว',saved:'บันทึกรหัสผ่านใหม่แล้ว',change:'เปลี่ยนเวลา',cancel:'ยกเลิก',rescheduleTitle:'เปลี่ยนเวลาเรียน',rescheduleNote:'เปลี่ยนได้ก่อนเริ่มเรียนอย่างน้อย 24 ชั่วโมง และสถานะจะกลับเป็นรอยืนยัน',dateLabel:'เลือกวันที่',findSlots:'แสดงเวลาว่าง',noSlots:'วันนี้ไม่มีเวลาว่าง',changeConfirm:'เปลี่ยนเป็นเวลานี้หรือไม่?',changed:'เปลี่ยนเวลาเรียนแล้ว',cancelConfirm:'ยกเลิกการจองนี้หรือไม่?',cancelledOk:'ยกเลิกการจองแล้ว',modifyDeadline:'ภายใน 24 ชั่วโมงก่อนเรียน กรุณาติดต่อเจ้าหน้าที่เพื่อเปลี่ยนหรือยกเลิก',status:{pending:'รอยืนยัน',confirmed:'ยืนยันแล้ว',completed:'เสร็จสิ้น',cancelled:'ยกเลิก'}},
 ko:{home:'홈',title:'학생 마이페이지',lead:'다음 수업, 담당 강사, Google Meet, 예약 내역을 확인할 수 있습니다.',login:'로그인',signup:'계정 만들기',email:'이메일',password:'비밀번호',confirm:'비밀번호 확인',forgot:'비밀번호를 잊으셨나요?',note:'예약 시 입력한 이메일 주소와 같은 주소로 로그인해 주세요.',welcome:'환영합니다',logout:'로그아웃',next:'다음 수업',upcoming:'예정된 예약',quick:'빠른 메뉴',book:'무료 체험 예약',refresh:'예약 정보 새로고침',meetNote:'예약이 확정되고 Meet URL이 등록되면 Google Meet 버튼이 표시됩니다.',history:'수업 기록',loading:'불러오는 중…',noneNext:'예정된 다음 수업이 없습니다.',noneUpcoming:'예정된 예약이 없습니다.',noneHistory:'아직 기록이 없습니다.',teacher:'담당 강사',unassigned:'조정 중',meet:'Google Meet 참가',ref:'예약 번호',duration:'분',recovery:'새 비밀번호 설정',newpass:'새 비밀번호',savepass:'비밀번호 저장',loginOk:'로그인했습니다.',signupCheck:'확인 이메일을 보냈습니다. 이메일의 링크에서 가입을 완료해 주세요.',signupOk:'계정을 만들었습니다.',badMatch:'비밀번호가 일치하지 않습니다.',fill:'이메일과 비밀번호를 입력해 주세요.',forgotSent:'비밀번호 재설정 이메일을 보냈습니다.',saved:'새 비밀번호를 저장했습니다.',change:'시간 변경',cancel:'취소',rescheduleTitle:'수업 시간 변경',rescheduleNote:'수업 시작 24시간 전까지 변경할 수 있으며, 변경 후에는 확인 대기 상태로 돌아갑니다.',dateLabel:'날짜 선택',findSlots:'가능한 시간 보기',noSlots:'이 날짜에는 가능한 시간이 없습니다.',changeConfirm:'이 시간으로 변경할까요?',changed:'수업 시간이 변경되었습니다.',cancelConfirm:'이 예약을 취소할까요?',cancelledOk:'예약이 취소되었습니다.',modifyDeadline:'수업 24시간 이내의 변경·취소는 관리자에게 문의해 주세요.',status:{pending:'확인 대기',confirmed:'예약 확정',completed:'완료',cancelled:'취소'}},
 zh:{home:'首页',title:'学生主页',lead:'查看下一节课、负责教师、Google Meet 和预约记录。',login:'登录',signup:'创建账号',email:'邮箱',password:'密码',confirm:'确认密码',forgot:'忘记密码？',note:'请使用预约时填写的同一邮箱登录。',welcome:'欢迎',logout:'退出登录',next:'下一节课',upcoming:'即将到来的预约',quick:'快捷菜单',book:'预约免费试听',refresh:'刷新预约信息',meetNote:'预约确认并登记Meet链接后，将显示Google Meet按钮。',history:'课程记录',loading:'加载中…',noneNext:'目前没有下一节课。',noneUpcoming:'没有即将到来的预约。',noneHistory:'暂无记录。',teacher:'负责教师',unassigned:'安排中',meet:'加入 Google Meet',ref:'预约编号',duration:'分钟',recovery:'设置新密码',newpass:'新密码',savepass:'保存密码',loginOk:'已登录。',signupCheck:'确认邮件已发送，请打开邮件中的链接完成注册。',signupOk:'账号已创建。',badMatch:'两次密码不一致。',fill:'请输入邮箱和密码。',forgotSent:'密码重置邮件已发送。',saved:'新密码已保存。',change:'更改时间',cancel:'取消预约',rescheduleTitle:'更改课程时间',rescheduleNote:'可在课程开始至少24小时前更改。更改后预约将恢复为待确认状态。',dateLabel:'选择日期',findSlots:'显示可预约时间',noSlots:'当天没有可预约时间。',changeConfirm:'要更改到这个时间吗？',changed:'课程时间已更改。',cancelConfirm:'要取消这个预约吗？',cancelledOk:'预约已取消。',modifyDeadline:'距离课程开始不足24小时时，请联系工作人员更改或取消。',status:{pending:'待确认',confirmed:'已确认',completed:'已完成',cancelled:'已取消'}}};
+
+const SUBPOL={
+ja:{text:'<strong>月額プランの自動更新・回数失効について</strong><br>月額プランは自動更新です。<strong>未使用のレッスン回数は翌月へ繰り越されません。</strong>更新日に残回数は失効し、新しい月の契約回数へリセットされます。自動更新を停止した場合も、現在の支払済み期間の終了時に残回数は失効し0回になります。',foot:'Stripe決済画面では、この回数失効ルールへの同意が必須です。停止しても現在の支払済み期間は終了まで利用できます。'},
+en:{text:'<strong>Monthly renewal & lesson expiry</strong><br>Monthly plans renew automatically. <strong>Unused lessons do not roll over.</strong> They expire on the renewal date and the balance resets to the new monthly allowance. If auto-renewal is stopped, any unused lessons expire and the balance becomes zero when the current paid period ends.',foot:'Agreement to this lesson-expiry rule is required on the Stripe checkout page. You can use the current paid period until it ends.'},
+th:{text:'<strong>การต่ออายุรายเดือนและการหมดอายุของจำนวนคลาส</strong><br>แพ็กเกจรายเดือนต่ออายุอัตโนมัติ <strong>จำนวนคลาสที่ไม่ได้ใช้จะไม่ยกยอดไปเดือนถัดไป</strong> จำนวนที่เหลือจะหมดอายุในวันต่ออายุและรีเซ็ตเป็นจำนวนของรอบใหม่ หากปิดการต่ออายุอัตโนมัติ จำนวนที่ยังไม่ได้ใช้จะหมดอายุและเหลือ 0 เมื่อสิ้นสุดรอบที่ชำระแล้ว',foot:'ต้องยอมรับกฎการหมดอายุของจำนวนคลาสในหน้าชำระเงิน Stripe ก่อนชำระเงิน และยังใช้รอบที่ชำระแล้วได้จนสิ้นสุดรอบ'},
+ko:{text:'<strong>월간 자동 갱신 및 레슨 횟수 소멸</strong><br>월간 플랜은 자동 갱신됩니다. <strong>미사용 레슨 횟수는 다음 달로 이월되지 않습니다.</strong> 갱신일에 남은 횟수는 소멸하고 새 월의 계약 횟수로 초기화됩니다. 자동 갱신을 중지한 경우에도 현재 결제 기간 종료 시 남은 횟수는 소멸하여 0회가 됩니다.',foot:'Stripe 결제 화면에서 이 횟수 소멸 규칙에 대한 동의가 필수입니다. 현재 결제 기간은 종료일까지 이용할 수 있습니다.'},
+zh:{text:'<strong>月度自动续费与课程次数失效</strong><br>月度套餐会自动续费。<strong>未使用的课程次数不会结转到下个月。</strong>续费日剩余次数将失效，并重置为新周期的套餐次数。如果关闭自动续费，当前已付款周期结束时，未使用次数也会失效并归零。',foot:'在Stripe付款页面必须同意此课程次数失效规则后才能付款。当前已付款周期仍可使用至结束。'}
+};
 const SF={ja:{title:'学習記録・宿題',none:'まだ学習記録はありません。',summary:'今日やった内容',homework:'宿題',comment:'講師コメント',teacher:'担当講師',updated:'更新'},en:{title:'Learning notes & homework',none:'No learning notes yet.',summary:'What we covered',homework:'Homework',comment:'Teacher comment',teacher:'Teacher',updated:'Updated'},th:{title:'บันทึกการเรียนและการบ้าน',none:'ยังไม่มีบันทึกการเรียน',summary:'เนื้อหาที่เรียนวันนี้',homework:'การบ้าน',comment:'ความคิดเห็นจากผู้สอน',teacher:'ผู้สอน',updated:'อัปเดต'},ko:{title:'학습 기록・숙제',none:'아직 학습 기록이 없습니다.',summary:'오늘 배운 내용',homework:'숙제',comment:'강사 코멘트',teacher:'담당 강사',updated:'업데이트'},zh:{title:'学习记录・作业',none:'还没有学习记录。',summary:'今天学习的内容',homework:'作业',comment:'教师评语',teacher:'负责教师',updated:'更新'}};function sft(){return SF[currentLang]||SF.ja}
 function tr(){return T[currentLang]||T.ja}
 function setLang(l){currentLang=l;localStorage.setItem('hj-lang',l);document.documentElement.lang=l;document.getElementById('lang').value=l;applyText();if(!document.getElementById('dashboard').classList.contains('hidden')) loadBookings()}
-function applyText(){const t=tr();const pairs={homeLink:t.home,pageTitle:t.title,pageLead:t.lead,loginTab:t.login,signupTab:t.signup,emailLabel:t.email,passwordLabel:t.password,confirmLabel:t.confirm,forgotBtn:t.forgot,authNote:t.note,welcomeText:t.welcome,logoutBtn:t.logout,nextTitle:t.next,upcomingTitle:t.upcoming,quickTitle:t.quick,newBookingBtn:t.book,refreshBtn:t.refresh,meetNote:t.meetNote,historyTitle:t.history,recoveryTitle:t.recovery,newPasswordLabel:t.newpass,savePasswordBtn:t.savepass,rescheduleTitle:t.rescheduleTitle,rescheduleNote:t.rescheduleNote,dateLabel:t.dateLabel,findSlotsBtn:t.findSlots};for(const [id,v] of Object.entries(pairs)){const el=document.getElementById(id);if(el)el.textContent=v}switchAuth(authMode,false);const sf=sft(),fh=document.getElementById('feedbackHistoryTitle');if(fh)fh.textContent=sf.title;const hw=hwt(),hh=document.getElementById('homeworkSubmitTitle');if(hh)hh.textContent=hw.title;const lp=slpt(),lt=document.getElementById('learningProfileTitle');if(lt)lt.textContent=lp.title;const cc=cct(),ct=document.getElementById('courseContractTitle');if(ct)ct.textContent=cc.title}
+function applyText(){const t=tr();const pairs={homeLink:t.home,pageTitle:t.title,pageLead:t.lead,loginTab:t.login,signupTab:t.signup,emailLabel:t.email,passwordLabel:t.password,confirmLabel:t.confirm,forgotBtn:t.forgot,authNote:t.note,welcomeText:t.welcome,logoutBtn:t.logout,nextTitle:t.next,upcomingTitle:t.upcoming,quickTitle:t.quick,newBookingBtn:t.book,refreshBtn:t.refresh,meetNote:t.meetNote,historyTitle:t.history,recoveryTitle:t.recovery,newPasswordLabel:t.newpass,savePasswordBtn:t.savepass,rescheduleTitle:t.rescheduleTitle,rescheduleNote:t.rescheduleNote,dateLabel:t.dateLabel,findSlotsBtn:t.findSlots};for(const [id,v] of Object.entries(pairs)){const el=document.getElementById(id);if(el)el.textContent=v}switchAuth(authMode,false);const sp=SUBPOL[currentLang]||SUBPOL.ja,spText=document.getElementById('subscriptionPolicyText'),spFoot=document.getElementById('subscriptionPolicyFoot');if(spText)spText.innerHTML=sp.text;if(spFoot)spFoot.innerHTML='<small>'+sp.foot+'</small>';const sf=sft(),fh=document.getElementById('feedbackHistoryTitle');if(fh)fh.textContent=sf.title;const hw=hwt(),hh=document.getElementById('homeworkSubmitTitle');if(hh)hh.textContent=hw.title;const lp=slpt(),lt=document.getElementById('learningProfileTitle');if(lt)lt.textContent=lp.title;const cc=cct(),ct=document.getElementById('courseContractTitle');if(ct)ct.textContent=cc.title}
 function switchAuth(mode,clear=true){authMode=mode;const t=tr();document.getElementById('loginTab').classList.toggle('active',mode==='login');document.getElementById('signupTab').classList.toggle('active',mode==='signup');document.getElementById('authTitle').textContent=mode==='login'?t.login:t.signup;document.getElementById('authBtn').textContent=mode==='login'?t.login:t.signup;document.getElementById('confirmLabel').classList.toggle('hidden',mode!=='signup');document.getElementById('password2').classList.toggle('hidden',mode!=='signup');document.getElementById('forgotBtn').classList.toggle('hidden',mode!=='login');document.getElementById('password').autocomplete=mode==='login'?'current-password':'new-password';if(clear)showMsg('authMsg','')}
 function showMsg(id,text,ok=false){const el=document.getElementById(id);el.textContent=text;el.className='msg'+(text?' show '+(ok?'ok':'err'):'')}
 async function submitAuth(){const t=tr(),email=document.getElementById('email').value.trim(),password=document.getElementById('password').value;if(!email||!password)return showMsg('authMsg',t.fill);document.getElementById('authBtn').disabled=true;try{if(authMode==='login'){const {error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;showMsg('authMsg',t.loginOk,true)}else{if(password!==document.getElementById('password2').value)return showMsg('authMsg',t.badMatch);const {data,error}=await sb.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}});if(error)throw error;showMsg('authMsg',data.session?t.signupOk:t.signupCheck,true)}}catch(e){showMsg('authMsg',e.message||String(e))}finally{document.getElementById('authBtn').disabled=false}}
