@@ -58,3 +58,5 @@
 - Hardened Google Calendar bridge against duplicate event creation.
 - Added Apps Script LockService serialization and booking-ID extendedProperties lookup.
 - Repeated/concurrent upsert calls now reuse the same Calendar event and Meet link.
+
+- v82: Removed the orange box-shadow/glow outside the fixed free-trial CTA; pill shape and internal sheen remain unchanged.
