@@ -113,3 +113,7 @@
 - Added a new pre-course section explaining Kano×Kano continuous learning support beyond lesson time.
 - Added animated learning cycle: 1-to-1 lesson → feedback/focus → between-lesson learning → questions → next lesson.
 - Added responsive mobile timeline and five-language localization.
+
+## v97
+- Enlarged the collapsed continuity-cycle nodes so all five Japanese titles remain on one line on mobile, including 「わからないことを質問」.
+- Changed the Kano×Kano flow comparison pill to the same soft orange palette used by the 「だから〜」 conclusion card.
