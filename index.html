@@ -6112,9 +6112,7 @@ html[lang="en"] .hero-art #heroArtLearnKicker{
       <path class="support-segment support-segment-4"/>
       <path class="support-segment support-segment-5"/>
       <g class="support-arrow-marker" aria-hidden="true">
-        <circle class="support-arrow-glow" cx="0" cy="0" r="8"/>
-        <circle class="support-arrow-dot" cx="0" cy="0" r="4.2"/>
-        <path class="support-arrow-head" d="M -10 -7 L 4 0 L -10 7 L -5 0 Z"/>
+        <path class="support-arrow-head" d="M -8 -7 L 2 0 L -8 7"/>
       </g>
     </svg>
     <div class="support-center">
@@ -7837,9 +7835,9 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
   let raf = 0;
   let actionToken = 0;
   const dwellMs = 3000;
-  const travelMs = 2450;
-  const loopSegmentMs = 2550;
-  const jumpSegmentMs = 360;
+  const travelMs = 2000;
+  const loopSegmentMs = 2000;
+  const jumpSegmentMs = 300;
 
   function clearMotion(){
     clearTimeout(dwellTimer);
@@ -7903,6 +7901,10 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
   function animateAlong(seg,index,duration,token,onDone){
     const len=seg.getTotalLength();
     marker.style.opacity='1';
+    seg.classList.remove('is-preview');
+    seg.classList.add('is-drawing');
+    seg.style.strokeDasharray=`${len} ${len}`;
+    seg.style.strokeDashoffset=`${len}`;
     const start=performance.now();
     const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
     const frame=now=>{
@@ -7910,11 +7912,22 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
       const raw=Math.min(1,(now-start)/duration), p=ease(raw);
       const at=Math.min(len,Math.max(0,len*p));
       const pt=seg.getPointAtLength(at);
-      const pt2=seg.getPointAtLength(Math.min(len,at+3));
+      const pt2=seg.getPointAtLength(Math.min(len,at+4));
       const deg=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
       marker.setAttribute('transform',`translate(${pt.x} ${pt.y}) rotate(${deg})`);
+      /* The blue trail is drawn strictly behind the moving arrow. */
+      seg.style.strokeDashoffset=`${Math.max(0,len-at)}`;
+      seg.style.opacity='1';
       if(raw<1) raf=requestAnimationFrame(frame);
-      else{raf=0; current=(index+1)%5; syncNodes(); onDone?.();}
+      else{
+        raf=0;
+        seg.classList.remove('is-drawing');
+        seg.classList.add('is-visited');
+        seg.style.strokeDasharray='';
+        seg.style.strokeDashoffset='';
+        seg.style.opacity='';
+        current=(index+1)%5; syncNodes(); onDone?.();
+      }
     };
     raf=requestAnimationFrame(frame);
   }
@@ -7926,7 +7939,6 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
       if(!running || complete) return;
       const from=current;
       const token=actionToken;
-      segments[from].classList.add('is-visited');
       animateAlong(segments[from],from,travelMs,token,()=>{
         if(token!==actionToken || !running) return;
         revealThrough(current+1);
@@ -7980,7 +7992,6 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
         return;
       }
       const segIndex=hops[pos];
-      segments[segIndex].classList.add('is-visited');
       animateAlong(segments[segIndex],segIndex,jumpSegmentMs,token,()=>runHop(pos+1));
     };
     runHop(0);
@@ -8020,6 +8031,51 @@ html[lang="en"] .learning-node.learning-single-label .learning-jp{
   io.observe(section);
 })();
 </script>
+
+<style id="v96-support-color-arrow-polish">
+/* v96: match the exact learning-section palette; cleaner route arrow; one-line node titles. */
+#sec-continuity .support-center{
+  background:linear-gradient(145deg,#ff866b,#f05f44)!important;
+  box-shadow:0 15px 34px rgba(240,95,68,.22),inset 0 1px 0 rgba(255,255,255,.38)!important;
+}
+#sec-continuity .support-node,
+#sec-continuity .support-node.is-revealed{
+  background:linear-gradient(145deg,#3159d8,#173a9a)!important;
+  border-color:rgba(255,255,255,.42)!important;
+  color:#fff!important;
+}
+#sec-continuity .support-node{opacity:.92!important;box-shadow:0 8px 20px rgba(23,58,154,.14),inset 0 1px 0 rgba(255,255,255,.24)!important}
+#sec-continuity .support-node.is-revealed{opacity:1!important;box-shadow:0 14px 31px rgba(23,58,154,.22),inset 0 1px 0 rgba(255,255,255,.28)!important}
+#sec-continuity .support-node .support-icon,
+#sec-continuity .support-node:nth-of-type(even) .support-icon,
+#sec-continuity .support-node.is-revealed .support-icon{background:rgba(255,255,255,.96)!important;color:#3159d8!important}
+#sec-continuity .support-node h3,
+#sec-continuity .support-node.is-revealed h3{
+  color:#fff!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important;
+  letter-spacing:-.035em!important;
+}
+#sec-continuity .support-segment{
+  stroke:#3159d8!important;stroke-width:5.5!important;stroke-linecap:round!important;
+  filter:drop-shadow(0 2px 4px rgba(49,89,216,.13))!important;
+}
+#sec-continuity .support-segment.is-drawing{opacity:1!important}
+#sec-continuity .support-arrow-glow,#sec-continuity .support-arrow-dot{display:none!important}
+#sec-continuity .support-arrow-marker{filter:drop-shadow(0 2px 5px rgba(23,58,154,.28))!important}
+#sec-continuity .support-arrow-head{
+  fill:none!important;stroke:#3159d8!important;stroke-width:3.4!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+  vector-effect:non-scaling-stroke;
+}
+@media(max-width:760px){
+  #sec-continuity .support-node h3,#sec-continuity .support-node.is-revealed h3{font-size:.57rem!important;letter-spacing:-.055em!important}
+  #sec-continuity .support-node.is-revealed{width:128px!important;height:128px!important;min-height:128px!important}
+  #sec-continuity .support-node.is-revealed h3{font-size:.68rem!important}
+}
+@media(max-width:390px){
+  #sec-continuity .support-node h3{font-size:.54rem!important}
+  #sec-continuity .support-node.is-revealed{width:122px!important;height:122px!important;min-height:122px!important}
+  #sec-continuity .support-node.is-revealed h3{font-size:.64rem!important}
+}
+</style>
 </body>
 </html>
 <style id="v61-hero-edge-without-shift">
