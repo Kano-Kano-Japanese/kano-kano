@@ -107,3 +107,9 @@
 - Retired the previous daily-conversation sandbox Stripe Price objects.
 - No Stripe live-mode objects were changed.
 - Updated the admin manual-entry default from the retired ¥16,000 example to ¥23,200, matching the current 50-minute monthly 8-lesson standard plan.
+
+
+## v89
+- Added a new pre-course section explaining Kano×Kano continuous learning support beyond lesson time.
+- Added animated learning cycle: 1-to-1 lesson → feedback/focus → between-lesson learning → questions → next lesson.
+- Added responsive mobile timeline and five-language localization.
